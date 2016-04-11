@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% block content %}
+  <section class="whowe">
+    <div class="row text-center whowe-row-title-icon">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <img src="{% static 'img/icons/bench.png' %}" alt="banca"
+             class="img-bench center-block img-responsive"/>
+      </div>
+    </div>
+    <div class="row text-center whowe-row-title">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h2 class="whowe-title">Quiénes somos</h2>
+      </div>
+    </div>
+    <div class="row text-center whowe-row-images">
+      <div class="vertical-top col-xs-8 col-sm-3 col-md-3 col-lg-2 whowe-col-photo">
+        <div class="row whowe-row-images-img">
+          <img src="{% static 'img/Mara.png' %}" alt="Mara"
+               class="img-responsive whowe-photo">
+        </div>
+        <div class="row">
+          <p class="whowe-photo-name">
+            Mara Martínez
+          </p>
+          <p class="whowe-photo-place">
+            DIRECTORA GENERAL
+          </p>
+        </div>
+      </div>
+      <div class="vertical-top col-xs-8 col-sm-3 col-md-3 col-lg-2 whowe-col-photo">
+        <div class="row whowe-row-images-img">
+          <img src="{% static 'img/Fer.png' %}" alt="Fer"
+               class="img-responsive whowe-photo">
+        </div>
+        <div class="row">
+          <p class="whowe-photo-name">
+            Fernanda Sottil
+          </p>
+          <p class="whowe-photo-place">
+            DIRECTORA EN OPERACIONES
+          </p>
+        </div>
+      </div>
+      <div class="vertical-top col-xs-8 col-sm-3 col-md-3 col-lg-2 whowe-col-photo">
+        <div class="row whowe-row-images-img">
+          <img src="{% static 'img/Lore.png' %}" alt="Lore"
+               class="img-responsive whowe-photo">
+        </div>
+        <div class="row">
+          <p class="whowe-photo-name">
+            Lorena Piedras
+          </p>
+          <p class="whowe-photo-place">
+            DIRECTORA EN FINANZAS
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

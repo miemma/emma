@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% block content %}
+  <section class="success">
+    <div class="row text-center success-row-icon">
+      <div class="col-xs-12 col-sm-12 col-md-12">
+        <img src="{% static 'img/icons/check.png' %}"
+             alt="success" class="img-check center-block img-responsive"/>
+      </div>
+    </div>
+    <div class="row text-center success-row-desc">
+        <div class="col-lg-7">
+          <p class="success-desc">
+            Gracias, en cuanto recibamos tu solicitud nos
+            pondremos en contacto contigo
+          </p>
+        </div>
+    </div>
+    <div class="row text-center success-row-btn">
+      <div class="col-xs-8 col-sm-5 col-md-4 col-lg-4">
+        <a id="successBtn" href="{% url 'landing:home' %}"
+           class="emma-btn emma-btn-dark success-btn">
+          Regresar a la pagina principal
+        </a>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

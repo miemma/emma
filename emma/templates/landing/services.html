@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% block content %}
+  <section class="services-detail">
+    <h1 class="services-detail-title">Servicios</h1>
+      <div class="row text-center">
+        <div class="col-lg-5 col-md-5 col-sm-8 col-xs-10 services-detail-col-serv vertical-top">
+          <div class="services-detail-cont">
+            <div class="services-detail-cont-title">
+              <span class="services-detail-cont-title-text">
+                Acompañamiento <br> con propósito
+              </span>
+              <span class="services-detail-cont-title-price f-price">
+                $240 por hora
+              </span>
+            </div>
+            <figure class="services-detail-cont-img">
+              <img src="{% static 'img/acomp_3.jpg' %}" class="img-responsive">
+            </figure>
+          </div>
+          <div class="services-detail-cont-desc">
+            A través de nuestros talleres, ayudamos a tu ser querido a
+            permanecer activo y motivado. Nuestras Emmas adecúan las
+            actividades al interés y ritmo de aprendizaje de cada persona
+            mayor. Ya sea mediante un taller en particular o una
+            combinación de varios:
+          </div>
+          <ul class="services-detail-cont-list">
+            <li class="services-detail-cont-list-item">
+              <figure class="services-detail-cont-list-item-img">
+                <img src="{% static 'img/icons/list.png' %}' %}" alt="check"/>
+              </figure>
+              <span>Taller de juegos de mesa</span>
+            </li>
+            <li class="services-detail-cont-list-item">
+              <figure class="services-detail-cont-list-item-img">
+                <img src="{% static 'img/icons/list.png' %}' %}" alt="check"/>
+              </figure>
+              <span>Taller de discusiones guiadas</span>
+            </li>
+            <li class="services-detail-cont-list-item">
+              <figure class="services-detail-cont-list-item-img">
+                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
+              </figure>
+              <span>Taller de cine casero</span>
+            </li>
+            <li class="services-detail-cont-list-item">
+              <figure class="services-detail-cont-list-item-img">
+                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
+              </figure>
+              <span>Taller de tecnología</span>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-8 col-xs-10 services-detail-col-serv vertical-top ">
+          <div class="services-detail-cont">
+            <div class="services-detail-cont-title">
+              <span class="services-detail-cont-title-text text-sp nowrap">
+                Asistencia en transporte
+              </span>
+              <span class="services-detail-cont-title-price">
+                $180 por hora
+              </span>
+            </div>
+            <figure class="services-detail-cont-img">
+              <img src="{% static 'img/asistencia_2.jpg' %}" class="img-responsive">
+            </figure>
+          </div>
+          <div class="services-detail-cont-desc">
+            Con el tiempo, salir de casa se puede convertir en un reto y
+            afectar la calidad de vida en la tercera edad. Nos aseguramos
+            de que el adulto mayor llegue a tiempo a su destino, lo
+            ayudamos a realizar sus actividades y  nalmente nos aseguramos
+            de que llegue a casa a salvo.
+
+          </div>
+          <ul class="services-detail-cont-list">
+            <li class="services-detail-cont-list-item">
+              <figure class="services-detail-cont-list-item-img">
+                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
+              </figure>
+              <span>Taller de juegos de mesa</span>
+            </li>
+            <li class="services-detail-cont-list-item">
+              <figure class="services-detail-cont-list-item-img">
+                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
+              </figure>
+              <span>Taller de discusiones guiadas</span>
+            </li>
+            <li class="services-detail-cont-list-item">
+              <figure class="services-detail-cont-list-item-img">
+                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
+              </figure>
+              <span>Taller de cine casero</span>
+            </li>
+            <li class="services-detail-cont-list-item">
+              <figure class="services-detail-cont-list-item-img">
+                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
+              </figure>
+              <span>Taller de tecnología</span>
+            </li>
+          </ul>
+          <div class="services-detail-cont-note">
+            <p>(*El servicio no incluye el costo de transporte).</p>
+            <p>
+              (*Por el momento, Uber es el medio de transporte que tenemos
+              disponible para realizar el servicio).
+            </p>
+          </div>
+        </div>
+
+      </div>
+      <div class="row text-center">
+        <div class="col-xs-8 col-sm-3 col-md-3 col-lg-3">
+          <a href="date.html"
+             class="emma-btn emma-btn-dark services-detail-btn">
+            Empezar ahora
+          </a>
+        </div>
+      </div>
+  </section>
+{% endblock content %}

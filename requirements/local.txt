@@ -1,0 +1,10 @@
+# Local development dependencies go here
+-r base.txt
+
+# Debugging
+# -----------------------------------------------------------------------------
+django-debug-toolbar
+
+# Your custom requirements go here
+# -----------------------------------------------------------------------------
+django-extensions

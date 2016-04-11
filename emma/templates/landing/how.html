@@ -1,0 +1,248 @@
+{% extends "base.html" %}
+{% load static from staticfiles%}
+{% block content %}
+  <h1 class="how-detail-title">Cómo funciona</h1>
+  <section class="how-detail-sec">
+    <div class="row">
+      <div class="col-xs-10 col-sm-10 col-lg-5 how-detail-col-1">
+        <div class="how-detail-cont">
+          <div class="how-detail-cont-title">
+            <figure class="how-detail-cont-img">
+              <img src="{% static 'img/icons/yellow-phone.png' %}" alt="phone"/>
+            </figure>
+            <span>
+              1. Contáctanos
+            </span>
+          </div>
+          <div class="how-detail-cont-desc">
+            <div class="how-detail-cont-desc-span">
+              Agenda una llamada con uno de nuestros especialistas y te
+              ayudaremos a personalizar el servicio que te interesa.
+              ¡Resolveremos todas tus dudas!
+            </div>
+          </div>
+        </div>
+        <div class="how-detail-cont">
+          <div class="how-detail-cont-title">
+            <figure class="how-detail-cont-img">
+              <img src="{% static 'img/icons/face.png' %}" alt="phone"/>
+            </figure>
+            <span>
+              2. Prueba el servicio sin costo
+            </span>
+          </div>
+          <div class="how-detail-cont-desc">
+            <div class="how-detail-cont-desc-span">
+              En Emma nos contratas hasta que tu ser querido se sienta
+              completamente satisfecho con el servicio que recibe. Ponemos
+              a tu disposición una prueba sin costo la cual te permitirá
+              conocer el servicio de tu interés y la Emma asignada.
+            </div>
+          </div>
+        </div>
+        <div class="how-detail-cont">
+          <div class="how-detail-cont-title">
+            <figure class="how-detail-cont-img">
+              <img src="{% static 'img/icons/hands.png' %}" alt="phone"/>
+            </figure>
+            <span>
+              3. Regresa y contrata el servicio de interés
+            </span>
+          </div>
+          <div class="how-detail-cont-desc">
+            <div class="how-detail-cont-desc-span">
+              ¡Qué gusto que el servicio de prueba fue lo que esperabas!
+              Activaremos tu cuenta y podrás  nalizar el proceso de
+              contratación completando la siguiente información:
+            </div>
+            <ul class="how-detail-cont-desc-list">
+              <li class="how-detail-cont-desc-list-item">
+                <figure class="how-detail-cont-desc-list-item-img">
+                  <img src="{% static 'img/icons/bench.png' %}" alt="check"/>
+                </figure>
+                <span>
+                  Selecciona el servicio y taller que deseas.
+                </span>
+              </li>
+              <li class="how-detail-cont-desc-list-item">
+                <figure class="how-detail-cont-desc-list-item-img">
+                  <img src="{% static 'img/icons/bench.png' %}" alt="check"/>
+                </figure>
+                <span class="how-detail-cont-desc-list-item-span-2">
+                  Proporciónanos información complementaria del adulto
+                  mayor.
+                </span>
+              </li>
+              <li class="how-detail-cont-desc-list-item">
+                <figure class="how-detail-cont-desc-list-item-img">
+                  <img src="{% static 'img/icons/bench.png' %}" alt="check"/>
+                </figure>
+                <span>
+                  Completa tu información de pago.
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="how-detail-cont">
+          <div class="how-detail-cont-title">
+            <figure class="how-detail-cont-img">
+              <img src="{% static 'img/icons/house.png' %}" alt="phone"/>
+            </figure>
+            <span>
+              4. ¡Relájate y espera a tu Emma!
+            </span>
+          </div>
+          <div class="how-detail-cont-desc last">
+            <div class="how-detail-cont-desc-span">
+              Ahora que tu ser querido está bien acompañado, disfruta de
+              nuestros beneficios:
+            </div>
+            <ul class="how-detail-cont-desc-list">
+              <li class="how-detail-cont-desc-list-item">
+                <figure class="how-detail-cont-desc-list-item-img">
+                  <img src="{% static 'img/icons/bench.png' %}" alt="check"/>
+                </figure>
+                <span class="how-detail-cont-desc-list-item-span-2">
+                  Notificaciones en tiempo real de la hora de llegada y
+                  salida de Emma.
+                </span>
+              </li>
+              <li class="how-detail-cont-desc-list-item">
+                <figure class="how-detail-cont-desc-list-item-img">
+                  <img src="{% static 'img/icons/bench.png' %}" alt="check"/>
+                </figure>
+                <span class="how-detail-cont-desc-list-item-span-2">
+                  Reportes quincenales de las actividades realizadas
+                  entre el adulto mayor y la Emma.
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-10  col-lg-5 how-detail-col-quest">
+        <div class="how-detail-quest-cont">
+          <h2 class="how-detail-quest-title">
+            Preguntas Frecuentes
+          </h2>
+          <ul class="how-detail-quest-list">
+            <li class="how-detail-quest-list-item graybg"
+                data-toggle="collapse" data-target="#quest1">
+                <p>
+                  ¿En qué estados de la República puedo encontrar a una
+                  Emma?
+                </p>
+            </li>
+            <div class="how-detail-quest-list-item-desc collapse"
+                 id="quest1">
+              <p>
+                Por el momento únicamente estamos brindando nuestros servicios
+                a los adultos mayores en la Ciudad de México. Sin embargo
+                contamos con planes de expansión futuros para operar en otras
+                áreas de nuestro país. ¡Espéranos pronto!
+
+              </p>
+            </div>
+            <li class="how-detail-quest-list-item"
+                data-toggle="collapse" data-target="#quest2">
+              <p>
+                ¿Quiénes son las Emmas?
+              </p>
+            </li>
+            <div class="how-detail-quest-list-item-desc collapse"
+                 id="quest2">
+              <p>
+                Las Emmas son nuestras compañeras confiables. Son mujeres que
+                tienen entre 35 y 55 años con gustos e intereses diversos,
+                entre ellos la historia, los idiomas, el fútbol, el arte, el
+                cine o bien el tomar una buena taza de café.
+                Son mujeres amorosas, con gran vocación y capacitadas por
+                nuestro equipo para acompañar a los mayores a tener una mejor
+                calidad de vida. Como te darás cuenta, están lejos de ser
+                cuidadoras o enfermeras, por eso las llamamos Emmas.
+              </p>
+            </div>
+            <li class="how-detail-quest-list-item graybg"
+                data-toggle="collapse" data-target="#quest3">
+               <p>
+                 ¿Tienen emmas de género masculino?
+               </p>
+            </li>
+            <div class="how-detail-quest-list-item-desc collapse"
+                 id="quest3">
+              <p>
+                Claro que sí. Como parte de la variedad de perfiles de
+                acompañantes que te ofrecemos, contamos con hombres en nuestro
+                equipo también. Nos gusta llamar a este grupo selecto de
+                acompañantes: Franks. Nuestros Franks son escogidos con el
+                mismo cuidado que las Emmas para acompañar a tu ser querido a
+                hacer esas actividades que tanto disfruta. Muchos de nuestros
+                clientes tienen preferencia por un Frank, si este fuera tu
+                caso, ¡por favor háznoslo saber!
+              </p>
+            </div>
+            <li class="how-detail-quest-list-item"
+                data-toggle="collapse" data-target="#quest4">
+              <p>
+                ¿Cuál es el monto mínimo y máximo de horas que puedo
+                contratar?
+              </p>
+            </li>
+            <div class="how-detail-quest-list-item-desc collapse"
+                 id="quest4">
+              <p>
+                ¡No contamos con un monto mínimo o máximo de horas a contratar!
+              </p>
+              <p>
+                La contratación de nuestro servicio es realizada a tu medida.
+                Nuestros clientes nos pagan mensualmente dependiendo del número
+                de horas de acompañamiento que desean para su ser querido.
+              </p>
+              <p>
+                Por lo general nuestras sesiones tienen una duración de una
+                hora y se solicitan varios días a la semana.
+              </p>
+            </div>
+            <li class="how-detail-quest-list-item graybg"
+                data-toggle="collapse" data-target="#quest5">
+               <p>
+                 ¿Cuáles son sus políticas de pago y cancelación?
+               </p>
+            </li>
+            <div class="how-detail-quest-list-item-desc collapse"
+                 id="quest5">
+              <p>
+               Con el objetivo de que tanto tú como tu ser querido prueben
+               nuestros servicios, tu primera sesión de Emma correrá por
+               nuestra cuenta.
+              </p>
+              <p>
+                Una vez que hayas decidido suscribirte mensualmente, te
+                realizamos una cotización mensual personalizada dependiendo del
+                número de sesiones y horas de Emma que desees para tu ser
+                querido. Durante los primeros cinco días hábiles de cada mes
+                podrás realizar tu pago desde el portal. Por tu seguridad y la
+                de tu Emma, nosotros no manejamos efectivo, te pedimos realizar
+                los pagos únicamente de esta manera.
+              </p>
+              <p class="padding-bottom-30">
+                En caso de que desees cancelar tu sesión, ¡no te preocupes!
+                Entendemos que existen contratiempos, por lo que te ofrecemos
+                la opción de re agendar tu sesión. Lo único que te pedimos es
+                notificarnos con un tiempo de anticipación de dos días.
+              </p>
+            </div>
+          </ul>
+        </div>
+        <div class="row text-center how-detail-row-btn">
+          <div class="col-xs-10 col-sm-5 col-md-4 col-lg-5">
+            <a href="date.html" class="emma-btn emma-btn-dark how-detail-btn">
+              Empezar ahora
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

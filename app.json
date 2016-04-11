@@ -1,0 +1,7 @@
+{
+  "name": "Emma",
+  "description": "Emma Principal plataform",
+  "image": "heroku/python",
+  "repository": "https://github.com/MauricioDinki/emma",
+  "keywords": ["python", "django" ]
+}

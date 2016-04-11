@@ -1,0 +1,18 @@
+# Pro-tip: Try not to put anything here. There should be no dependency in
+#	production that isn't in development.
+-r base.txt
+
+# Storages
+# -----------------------------------------------------------------------------
+django-storages
+
+# Python-PostgreSQL Database Adapter
+# ------------------------------------------------
+psycopg2
+
+
+# WSGI Adapter
+# ------------------------------------------------
+guinicorn
+dj_database_url
+

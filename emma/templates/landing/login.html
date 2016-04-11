@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="login">
+    <h1 class="login-title">
+      Inicio de sesión
+    </h1>
+    <div class="row text-center">
+      <div class="col-md-6">
+        <form class="login-form">
+          <input type="text" class="login-form-input emma-input"
+                 placeholder="Email">
+          <input type="password" class="login-form-input emma-input"
+                placeholder="Contraseña">
+          <div class="row text-center">
+            <div class="col-xs-10 col-sm-8 col-md-5 col-lg-5">
+              <button class="emma-btn emma-btn-dark login-btn">
+                Iniciar sesión
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

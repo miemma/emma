@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% block content %}
+<section class="date">
+    <div class="row text-center join-row-title">
+      <div class="col-xs-10 col-sm-8 col-md-10 col-lg-4">
+        <h1 class="date-title">
+          Agenda una llamada informativa con nuestro equipo
+        </h1>
+      </div>
+    </div>
+    <div class="row  text-center join-row-desc">
+      <div class="col-xs-10 col-sm-8 col-md-4 col-lg-4">
+        <p class="join-desc">
+          Sé parte de nuestra familia y cuéntanos más de ti. Tan pronto como
+          recibamos tu aplicación te contactaremos.
+        </p>
+      </div>
+    </div>
+    <div class="row join-row-form">
+      <div class="col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-8
+                  col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
+        <form class="join-form" action="{% url 'landing:date' %}" method="post">
+	        {% csrf_token %}
+          <div class="row">
+            <div class="col-lg-12">
+              <input id="reservation-name-input" class="emma-input date-input" type="text"
+                     placeholder="Nombre" name="name">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <input id="reservation-email-input" class="emma-input date-input" type="email"
+                     placeholder="Correo electrónico" name="email">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <p class="date-form-desc">
+                Selecciona la fecha y hora en la que puedas recibir una llamada
+                por parte de alguien del equpo de Emma
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div id="datepicker" data-date="04/09/2016"></div>
+              <input type="hidden" id="my_hidden_input" name="date_input">
+            </div>
+            <div class="col-lg-6">
+              <div class="row">
+                <p class="date-form-txt text-center">
+                  Hora
+                </p>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div id="reservation-time-section" class="emma-input date-input">
+                    <input id="reservation-hour-input" name="hour" class="hour-input" type="number" min="1" max="12" placeholder="6" value="06"
+                    >:<input
+                    id="reservation-minute-input" class="minute-input" type="number" min="0" max="59" placeholder="00" value="00" name="minute">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <button id="reservation-time-button" type="button" name="morning" class="emma-input date-input date-input-little">PM
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row margin-top-20">
+            <div class="col-lg-12">
+              <input id="reservation-phone-input" name="number" class="emma-input join-input" type="text" maxlength="10" placeholder="Numero al que te podremos contactar">
+            </div>
+          </div>
+          <div class="row text-center">
+            <div class="col-xs-10 col-sm-6 col-md-9 col-lg-7">
+              <button disabled type="submit" id="reservation-submit-button" class="emma-btn emma-btn-dark join-btn">
+                Reservar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+{% endblock content %}
+
+{% block js %}
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.min.css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker3.min.css" />
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+  <script src="{% static 'js/reservationFormCalendar.js' %}"></script>
+  <script src="{% static "js/reservationFormValidation.js" %}"></script>
+{% endblock js %}
