@@ -13,6 +13,6 @@ psycopg2
 
 # WSGI Adapter
 # ------------------------------------------------
-guinicorn
+gunicorn
 dj_database_url
 
