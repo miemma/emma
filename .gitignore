@@ -67,3 +67,4 @@ emma/media
 .idea/
 
 .DS_store
+emma/staticfiles
