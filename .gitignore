@@ -67,3 +67,4 @@ emma/media
 
 .DS_store
 emma/staticfiles
+emma/static/node_modules

@@ -1,0 +1,26 @@
+{
+  "name": "emma-templates",
+  "version": "1.0.0",
+  "description": "Templates para la plataforma de emma",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MauricioDinki/emma-templates.git"
+  },
+  "author": "Mauricio Ivan Mejia Ramirez",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-cssnano": "^2.1.1",
+    "gulp-nunjucks": "^2.2.0",
+    "gulp-nunjucks-render": "^2.0.0",
+    "gulp-prettify": "^0.4.0",
+    "gulp-stylus": "^2.3.0",
+    "nib": "^1.1.0"
+  },
+  "bugs": {
+    "url": "https://github.com/MauricioDinki/emma-templates/issues"
+  },
+  "homepage": "https://github.com/MauricioDinki/emma-templates#readme"
+}

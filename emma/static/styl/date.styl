@@ -1,0 +1,118 @@
+.hour-input, .minute-input
+  background transparent
+  border none
+  width 44%
+
+  &::-webkit-inner-spin-button, &::-webkit-outer-spin-button
+    appearance none
+
+.hour-input
+  padding-right 8px
+  text-align right
+
+.minute-input
+  padding-left 8px
+  text-align left
+
+
+.date
+  overflow-y auto
+  overflow-x hidden
+  background-color $light_gray
+
+  &-desc
+    font-family "Avenir LT Std Heavy"
+    font-size 18px
+    color $dark_gray
+    text-align left
+
+  &-title
+    font-family "Avenir LT Std Heavy"
+    font-size 27px
+    color #666
+
+  &-form-txt
+    font-size 18px
+    color $dark_gray
+    font-family "Avenir LT Std Medium"
+    text-align center
+
+  &-form-desc
+    margin 2em 0
+    font-size 18px
+    color $dark_gray
+    font-family "Avenir LT Std Heavy"
+    text-align left
+
+  &-input
+    border 2px transparent solid
+    width 100%
+    padding 0.6em 25px
+    font-family "Avenir LT Std Roman"
+    font-size 18px
+    margin 0.4em auto
+    color $dark_gray
+
+    &-little
+      padding 10px 7px
+      text-align center
+
+  &-row-title
+    margin-top $header_height + 90px
+  &-row-desc
+    margin-top 40px
+    margin-bottom 15px
+  &-row-form
+    margin-bottom 100px
+
+#reservation-time-section
+  padding 10px 0px
+  text-align center
+
+.datepicker-inline
+  width 100% !important
+
+.table-condensed
+  background-color white
+  border-radius 5px
+  color $dark_gray
+  width 100%
+
+  .prev
+    border-radius 5px 0 0 0
+
+  .next
+    border-radius 0 5px 0 0
+
+  .datepicker-switch
+    border-radius 0 !important
+
+  .datepicker-switch, .prev, .next, .active
+    background $yellow !important
+    background-image none
+    color white !important
+    visibility visible !important
+
+    &:hover
+      background lightness($yellow, 45%) !important
+      background-image none
+
+  .disabled.focused
+    visibility hidden
+
+  .active.disabled.day
+    background white !important
+    color #bbb !important
+    font-weight normal !important
+
+  .disabled.day, .disabled.month, .disabled.year, .disabled.decade, .disabled.century
+    color #bbb
+
+    &:hover
+      color #bbb
+
+  .old
+    visibility hidden
+
+  .new
+    display none

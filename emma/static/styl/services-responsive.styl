@@ -1,0 +1,63 @@
+/* Móviles en vertical
+   ------------------------------------------------------------------------- */
+@media screen and (max-width: 768px)
+  .services-detail
+    &-col-serv
+      margin 0 !important
+      &:last-child
+        margin-top 70px !important
+    &-cont
+      &-title
+        &-text
+          font-size 19px
+        &-price
+          white-space normal
+          font-size 19px
+        .f-price
+          margin-right 15px
+          margin-top 20px
+          text-align right
+        .text-sp
+          width auto
+          white-space normal
+          margin-right 10px
+      &-desc
+        min-height 180px
+      &-list
+        &-item
+          &-img
+            vertical-align middle
+            img
+              margin-top 0
+
+    &-col-serv
+      &:last-child
+        margin-top 100px
+
+/* Móviles en horizontal o tablets en vertical
+   ------------------------------------------------------------------------- */
+@media (min-width: 768px) and (max-width: 991px)
+  .services-detail
+    &-cont
+      &-desc
+        min-height 180px
+    &-col-serv
+      &:last-child
+        margin-top 100px
+
+/* Tablets en horizonal y escritorios pequeños
+   ------------------------------------------------------------------------- */
+@media (min-width: 992px) and (max-width: 1200px)
+  .services-detail
+    &-cont
+      &-title
+        &-price
+          white-space nowrap
+        .text-sp
+          width auto
+          white-space normal
+          margin-right 10px
+
+/* Escritorios Normales
+   ------------------------------------------------------------------------- */
+//@media (min-width: 1170px)

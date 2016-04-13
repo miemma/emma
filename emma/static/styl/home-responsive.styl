@@ -1,0 +1,368 @@
+/* Móviles en vertical
+   ------------------------------------------------------------------------- */
+@media screen and (max-width: 768px)
+  .info-1
+    background-position right -189px bottom 0px
+    &-title
+      font-size 29px
+      line-height 36px
+    &-subtitle
+      font-size 19px
+    &-btn
+      font-size 19px
+    &-row-title
+      padding-top 180px
+
+
+  .mentions
+    padding-bottom 30px
+    &-1
+      height 20px
+      width auto
+    &-2
+      height 20px
+      width auto
+    &-3
+      height 25px !important
+      width auto
+    &-4
+      height 20px
+      width auto
+    &-title
+      padding 52px 0 0 0
+    &-col
+      margin-top 2em
+      margin-bottom 1.5em
+      &:nth-child(odd)
+        margin-right -7px
+      &:nth-child(even)
+        margin-left -7px
+      &:nth-child(n+3)
+        margin-top 0.5em
+      img
+        margin 0 auto !important
+
+
+  .services
+    &-separator
+      transform: rotate(90deg);
+      margin -70px 0
+      text-align center
+
+    img
+      width 17%
+
+    &-row-content
+      margin-bottom 60px
+
+
+  .info-2
+    background-attachment local
+    min-height 420px
+    &-content
+      font-size 29px
+      line-height 40px
+      margin-top 0.4em
+    &-row
+      margin-top 25px
+
+
+  .how
+    &-title
+      font-size 37px
+    &-desc
+      width 85%
+      padding-top 0
+      margin-bottom 4em
+    &-row-content
+      margin-top 50px
+
+    &-col
+      &:first-child
+        h3
+          min-height auto
+          margin-bottom 10px
+    &-row-btn
+      margin -1em 0 6em 0
+
+
+  .benefits
+    &-row-btn
+      display block
+    &-1
+      margin 0
+    &-2
+      margin 5em 0 0 0
+    &-content-title
+      margin 16px auto
+      text-align center
+
+    &-content-list
+      padding 0
+      width 100%
+      margin 0 auto
+    &-row-content
+       margin 0px 0px 70px
+
+
+  .whois
+    &-desc
+      width 100%
+      margin 0 auto
+      text-align center
+    &-list
+      padding 2rem 0 5rem 2rem
+    &-btn
+      margin 0 auto
+    &-image
+      display none
+    &-img-1
+      height 50px
+      width auto
+      margin 0 auto
+    &-img-2
+      height 35px
+      width auto
+      margin 0 auto
+    &-img-3
+      height 45px
+      width auto
+      margin 0 auto
+    &-img-4
+      height 35px
+      width auto
+      margin 0 auto
+    &-allies-img
+      &:nth-child(n+4)
+        margin-top 3em
+      &:nth-child(n+3)
+        padding 0 !important
+
+
+  .footer
+    text-align center
+    &-col
+      &:nth-child(n+2)
+        margin-top 30px
+    &-join
+      padding 0
+    &-join-principal
+    &-join-second
+      text-align center
+      margin-top 0.5em
+
+    &-join-principal
+      width 100%
+
+    &-btn
+      margin 1em auto
+
+    &-social-terms
+      p
+        display inline-block
+        width 30%
+        font-family "Avenir LT Std Medium"
+        font-size 15px
+        color $gray
+        margin 0 1em
+
+    &-info
+      padding 0
+      &-text
+        margin 1em auto 0 auto
+        text-align center
+        width 80%
+      &-phone
+        text-align center
+        margin-top 2em
+      &-list-item
+        text-align center
+        margin-top 1em
+        display inline-block
+        width 47%
+        vertical-align middle
+
+/* Móviles en horizontal o tablets en vertical
+   ------------------------------------------------------------------------- */
+@media (min-width: 768px) and (max-width: 992px)
+
+  .mentions
+    &-col
+      &:nth-child(n+3)
+        margin-top 4em
+
+  .services
+    &-separator
+      transform: rotate(90deg);
+      margin -90px 0
+      text-align center
+
+    img
+      width 10%
+
+  .info-2
+    background-attachment local
+    min-height 420px
+    &-content
+      font-size 29px
+      margin-top 0.4em
+    &-row
+      margin-top 25px
+
+  .benefits
+    &-1
+      margin 0
+    &-2
+      margin 2em 0 0 0
+
+  .whois
+    &-desc
+      margin 0 auto
+    &-list
+      padding 2rem 0 5rem 6rem
+    &-btn
+      margin 0 auto
+    &-image
+      display none
+    &-allies-img
+      &:nth-child(n+4)
+        margin-top 3em
+
+  .footer
+    text-align center
+    &-join
+      padding 0
+    &-join-principal
+    &-join-second
+      text-align center
+      margin-top 0.5em
+
+    &-join-principal
+      width 100%
+
+    &-btn
+      margin 1em auto
+      width 90%
+
+    &-social-terms
+      align-items center
+      display flex
+      justify-content center
+      p
+        display inline-block
+        width 45%
+        font-family "AvenirLTS Medium"
+        font-size 15px
+        color $gray
+        position relative
+        &:first-child
+          margin-right 5px
+        &:last-child
+          margin-left 5px
+
+    &-info
+      &-text
+        margin 1em auto 0 auto
+        text-align center
+        width 80%
+      &-phone
+        text-align center
+        margin-top 2em
+      &-list-item
+        text-align center
+        margin-top 1em
+
+/* Tablets en horizonal y escritorios pequeños
+   ------------------------------------------------------------------------- */
+@media (min-width: 992px) and (max-width: 1200px)
+
+  .mentions
+    &-col
+      &:nth-child(2)
+        img
+          margin-left 20px
+
+  .how-subtitle
+    &-last
+      width 95%
+    &-third
+      width 100%
+
+  .whois
+    &-list
+      padding 2rem 0 5rem 5rem
+
+    &-allies-img
+      &:nth-child(n+4)
+        margin-top 3em
+
+    &-image
+      margin-top 30px
+
+  .footer
+    text-align center
+    &-join
+      padding 0
+    &-join-principal
+    &-join-second
+      text-align center
+      margin-top 0.5em
+
+    &-join-principal
+      width 100%
+
+    &-btn
+      margin 1em auto
+      width 70%
+
+    &-social-terms
+      align-items center
+      display flex
+      justify-content center
+      p
+        display inline-block
+        width 45%
+        font-family "AvenirLTS Medium"
+        font-size 15px
+        color $gray
+        position relative
+        &:first-child
+          margin-right 5px
+        &:last-child
+          margin-left 5px
+
+    &-info
+      &-text
+        margin 1em auto 0 auto
+        text-align center
+        width 80%
+      &-phone
+        text-align center
+        margin-top 2em
+      &-list-item
+        text-align center
+        margin-top 1em
+
+/* Escritorios Normales
+   ------------------------------------------------------------------------- */
+@media (min-width: 1170px)
+  .mentions
+      &-col
+        &:nth-child(2)
+          img
+            margin-right 15px
+
+  .col-md-p-15
+    width 15%
+
+  .col-md-p-10
+    width 10%
+
+  .col-md-3-half
+    width 28% !important
+
+  .nowrap-lg
+    white-space nowrap
+
+  .align-middle-lg
+    padding-top 2.5px

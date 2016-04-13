@@ -1,0 +1,275 @@
+/**
+  * Header
+**/
+
+button[disabled]
+  background $yellow
+
+input[disabled]
+  background $yellow
+
+input:focus
+  outline none
+
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button
+  appearance none
+
+$header_height = 86px
+
+label[for="navbar-trigger"]
+  display none
+
+.phone
+  background $yellow !important
+  height 100%
+  vertical-align middle
+  color white !important
+  font-size 18.5px !important
+  padding 0 11.5px
+  width 400px
+
+  &-content
+    display flex
+    justify-content center
+    align-items center
+
+  i
+    font-size 35px
+    margin-right 5px
+
+.white
+  background white !important
+
+.header-navbar
+  background rgba(255, 255, 255, 0.9)
+  position fixed
+  width 100%
+  z-index 4
+  display flex
+  align-items center
+
+  &-white
+    background-color white
+
+  &-logo
+    height 48px
+    margin-left 40px
+    padding 5px 20px 5px 0px
+    border-right 2px solid $gray
+    vertical-align middle
+
+  &-list
+    display inline-block
+    height $header_height
+    list-style none
+    padding 0
+    left 0
+    right 0
+    width 100%
+    text-align center
+    display flex
+    justify-content center
+
+    &-item
+      display inline-block
+      margin 0 auto
+      font-family "Avenir LT Std Heavy"
+      font-size 21px
+      height 100%
+      line-height $header_height
+      vertical-align middle
+
+      &-white
+        background-color white
+
+      &:first-child
+        display inline-block !important
+      &:last-child
+        display inline-block !important
+        float right
+        margin 0
+        width 238px
+        padding 0 0.6em
+
+      &-link
+        color $dark_gray !important
+        &-active
+          color #d49b31 !important
+
+        &:hover
+          color #d49b31 !important
+
+#navbar-trigger
+  position absolute
+  clip rect(0, 0, 0, 0)
+
+
+@media screen and (max-width: 1100px)
+
+  label[for="navbar-trigger"]
+    display inline-block
+    transition color 0.3s
+
+  label[for="navbar-trigger"]:hover
+    color $orange
+
+  label[for="navbar-trigger"]::before
+    cursor pointer
+    font-size 30px
+    position absolute
+    right 15px
+    top 20px
+    z-index 3
+
+  .header-navbar
+    height 65px
+    background-color white
+
+    &-logo
+      height 40px
+      margin-left 15px
+      border none
+
+  .header-navbar-list
+    display block
+    height 0
+    position absolute
+    top 65px
+
+    &-item
+      background white
+      display block !important
+      height 0
+      line-height 50px
+      overflow hidden
+      width 100% !important
+
+    .phone
+      background $yellow
+
+  #navbar-trigger
+    &:checked
+      & ~ ul
+        height auto
+
+        li
+          height 50px
+          margin-top -1px
+      & + label
+        color $orange
+    &:not(:checked)
+      & + label
+        color #333
+
+.footer
+  vertical-align middle
+  padding-top  1em
+  background-color #272727
+
+  &-join
+    padding-left 55px
+
+  &-join-principal
+    font-family "Avenir LT Std Medium"
+    font-size 19px
+    text-align left
+    color $white
+    width 120%
+
+  &-join-second
+    font-family "Avenir LT Std Medium"
+    font-size 16px
+    text-align left
+    color $gray
+
+  &-btn
+    font-size 16px
+    width 50%
+    display block
+    margin 1.8rem 0
+    padding 0.7rem 0
+
+  &-social-copyright
+    font-family "Avenir LT Std Medium"
+    font-size 13px
+    color gray
+    margin-top -15px
+
+  &-social-logo
+    margin-top 10px
+
+  &-social-rights
+    font-family "Avenir LT Std Medium"
+    font-size 13px
+    color gray
+
+  &-social-follow
+    margin-top 3rem
+    font-family "Avenir LT Std Roman"
+    font-size 12px
+    color gray
+
+  &-social-img
+    width 70px
+    height 35px
+    margin 0.5rem auto 2rem auto
+    position relative
+
+    img
+      width 100%
+      height 100%
+
+    #facebook
+      position absolute
+      left 0
+      top 0
+      bottom 0
+      width 50%
+
+    #twitter
+      position absolute
+      right 0
+      top 0
+      bottom 0
+      width 50%
+
+  &-social-terms
+    p
+      display inline-block
+      width 45%
+      font-family "Avenir LT Std Medium"
+      font-size 15px
+      color $gray
+
+      a
+        color $gray
+  &-info
+    padding-left 30px
+    padding-right 0
+    padding-top 42px
+  &-info-phone
+    font-family "Avenir LT Std Roman"
+    font-size 19px
+    color #f0f0f1
+    text-align left
+    margin-top 11px
+
+  &-info-text
+    font-family "Avenir LT Std Roman"
+    font-size 12px
+    color $gray
+    text-align left
+    margin 0.5em 0 1.5em 0
+
+  &-info-list
+    list-style none
+    text-align left
+    margin-top 1rem
+    padding 0
+
+  &-info-list-item
+    a
+      text-decoration none
+      color #f0f0f1
+      font-family "Avenir LT Std Medium"
+      font-size 16px
