@@ -44,163 +44,18 @@
   </head>
   <body>
     <div class="container-overflow">
-    <div class="modal emma-modal fade" id="contactModal" role="dialog">
-      <div class="modal-dialog emma-modal-dialog">
-        <div class="modal-content emma-modal-content">
-	        <div class="close glyphicon glyphicon-remove" data-dismiss="modal" data-target="#contactModal"></div>
-          <h2 class="emma-modal-form-title">
-            Contáctanos
-          </h2>
-          <form class="modal-form" action="{% url 'landing:send_contact_mail' %}" method="post">
-            {% csrf_token %}
-            <div class="row text-center">
-              <div class="col-md-5">
-                <input id="contact-name-input" class="emma-modal-form-input emma-input" type="text"
-                       placeholder="Nombre" name="sender">
-              </div>
-              <div class="col-md-5">
-                <input id="contact-email-input" class="emma-modal-form-input emma-input" type="text"
-                       placeholder="Correo electrónico" name="email">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-10 col-md-offset-1">
-                <textarea id="contact-message-textarea" class="emma-modal-form-area emma-input"
-                          placeholder="Mensaje" rows="8" name="message"></textarea>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-10 col-sm-8 col-md-12">
-                <button id="contact-submit-button" disabled type="submit"
-                        class="emma-btn emma-btn-light emma-modal-btn">
-                  Enviar mensaje
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <header class="header-navbar">
-      <input type="checkbox" id="navbar-trigger" />
-      <label class="fa fa-bars" for="navbar-trigger"></label>
-      <a href="{% url 'landing:home' %}">
-        <img class="header-navbar-logo" src="{% static "img/icons/logo_2.png" %}"/>
-      </a>
-      <ul class="header-navbar-list">
-        <li class="header-navbar-list-item" hcolor="white">
-          <a class="header-navbar-list-item-link" href="{% url 'landing:faq' %}">
-            Cómo funciona
-          </a>
-        </li>
-        <li class="header-navbar-list-item" hcolor="white">
-          <a class="header-navbar-list-item-link"
-             href="{% url 'landing:services' %}">
-            Servicios
-          </a>
-        </li>
-        <li class="header-navbar-list-item" hcolor="white">
-          <a class="header-navbar-list-item-link" href="{% url 'landing:about' %}">
-            Acerca de Emma
-          </a>
-        </li>
-        <li class="header-navbar-list-item" hcolor="white">
-          <a class="header-navbar-list-item-link" href="{% url 'landing:login' %}">
-            Inicia sesión
-          </a>
-        </li>
-        <li class="header-navbar-list-item phone">
-          <div class="phone-content">
-            <i class="fa fa-phone"></i>
-            <span>
-              +52 1 55 4544 9350
-            </span>
-          </div>
-        </li>
-      </ul>
-    </header>
+    {% include "base/contact.html" %}
+    {% include "base/header.html" %}
 
     {% block content %}
     {% endblock content %}
 
-    <footer class="footer">
-      <div class="row text-center padding-bottom-40 padding-top-30">
-        <div class="col-xs-10 col-md-3-half col-sm-3 vertical-middle
-                    footer-join footer-col">
-          <p class="footer-join-principal">
-            ¿Quieres ser parte de nuestra familia?
-          </p>
-          <p class="footer-join-second">
-            Envía tu solicitud para ser una <i>Emma</i>
-          </p>
-          <a href="{% url 'landing:join' %}" class="emma-btn emma-btn-light footer-btn">
-            Únete al equipo
-          </a>
-        </div>
-        <div class="col-xs-10 col-md-4 col-sm-3 text-center
-                    vertical-middle footer-col">
-          <figure class="footer-social-logo">
-            <img src="{% static 'img/icons/full_logo_bw.svg' %}" alt="emma"/>
-          </figure>
-          <p class="footer-social-copyright">
-            © 2016 Emma
-          </p>
-          <p class="footer-social-rights">
-            Todos los derechos reservados
-          </p>
-          <p class="footer-social-follow">
-            Síguenos en:
-          </p>
-          <figure class="footer-social-img">
-            <img src="{% static 'img/icons/social.svg' %}" alt="redes sociales"/>
-            <a id="facebook" href="https://www.facebook.com/miemma.mexico/?fref=ts" target="_blank"></a>
-            <a href="https://twitter.com/miemma_" id="twitter" target="_blank"></a>
-          </figure>
-          <i class="footer-social-icons"></i>
-          <div class="footer-social-terms">
-            <p>
-              Términos y condiciones
-            </p>
-            <p>
-              Aviso de privacidad
-            </p>
-          </div>
-        </div>
-        <div class="col-xs-10 col-md-3-half col-sm-3 vertical-middle
-                    footer-info footer-col">
-          <p class="footer-info-phone center">
-            <img src="{% static 'img/icons/phone.svg' %}" height="27px"
-                 style="margin-top: -5px;" alt="telefono">
-            +52 1 55 4544 9350
-          </p>
-          <p class="footer-info-text">
-            Horarios de atención: de lunes a viernes de 9:00 a 20:00 hrs.
-          </p>
-          <ul class="footer-info-list">
-            <li class="footer-info-list-item center">
-              <a href="#" data-toggle="modal" data-target="#contactModal">
-                 Contacto
-               </a>
-            </li>
-            <li class="footer-info-list-item center">
-              <a href="{% url 'landing:who' %}">Quiénes somos</a>
-            </li>
-            <li class="footer-info-list-item center">
-              <a href="https://medium.com/@miemma">Blog e historias</a>
-            </li>
-            <li class="footer-info-list-item center">
-              <a href="{% url 'landing:faq' %}">Preguntas frecuentes</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </footer>
+		{% include "base/footer.html" %}
 
     <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/efects.js' %}"></script>
     <script src="{% static 'js/validators.js' %}"></script>
-    <script src="{% static 'js/contactFormValidation.js' %}"></script>
     {% block js %}
     {% endblock %}
     </div>

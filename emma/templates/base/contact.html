@@ -1,0 +1,42 @@
+{% load static from staticfiles %}
+<div class="modal emma-modal fade" id="contactModal" role="dialog">
+  <div class="modal-dialog emma-modal-dialog">
+    <div class="modal-content emma-modal-content">
+      <div class="close glyphicon glyphicon-remove" data-dismiss="modal"
+           data-target="#contactModal">
+      </div>
+      <h2 class="emma-modal-form-title">
+        Contáctanos
+      </h2>
+      <form class="modal-form" method="post"
+            action="{% url 'landing:send_contact_mail' %}">
+        {% csrf_token %}
+        <div class="row text-center">
+          <div class="col-md-5">
+            <input class="emma-modal-form-input emma-input" type="text"
+                   placeholder="Nombre" name="sender" required>
+          </div>
+          <div class="col-md-5">
+            <input class="emma-modal-form-input emma-input" type="email"
+                   placeholder="Correo electrónico" required name="email">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <textarea class="emma-modal-form-area emma-input"
+                      placeholder="Mensaje" rows="8"
+                      name="message" required></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10 col-sm-8 col-md-12">
+            <button class="emma-btn emma-btn-light emma-modal-btn"
+                    type="submit">
+              Enviar mensaje
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
