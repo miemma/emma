@@ -48,9 +48,6 @@ $(function() {
             )
         });
 
-    input = document.getElementsByName("number");
-    input.addEventListener("mousewheel", function(event){ this.blur() });
-
     $( window ).resize(function() {
         //noinspection JSUnresolvedFunction
         var movile = window.matchMedia( "(max-width: 768px)" );
