@@ -4,7 +4,7 @@ firstValidDate.setMinutes(0)
 firstValidDate.setSeconds(0)
 firstValidDate.setMilliseconds(0);
 (function () {
-	firstValidDate.setDate(firstValidDate.getDate() + 1);
+	firstValidDate.setDate(firstValidDate.getDate());
 	if(firstValidDate.getDay() == 0) {
 	  firstValidDate.setDate(firstValidDate.getDate() + 1);
 	}

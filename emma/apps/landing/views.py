@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*
 
+from __future__ import print_function
+from datetime import date, timedelta
+
 from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render
@@ -132,7 +135,11 @@ class JoinEmailView(View):
 
 class DateEmailView(View):
     def get(self, request):
-        return render(request, 'landing/date.html')
+        today = date.today()
+        context = {
+            'today': today.strftime("%m/%d/%Y")
+        }
+        return render(request, 'landing/date.html', context)
 
     def post(self, request):
         name = request.POST.get('name')
@@ -154,10 +161,9 @@ class DateEmailView(View):
             "<p>Nombre: %s </p>"
             "<p>Correo electronico: %s </p>"
             "<p>Telefono : %s </p>"
-            "<p>Hora: %s </p>"
+            "<p>Hora: %s %s</p>"
             "<p>Fecha: %s </p>" % (
-                name, email, number, time, date,
-
+                name, email, number, time, tempo, date
             ), "text/html"
         )
 

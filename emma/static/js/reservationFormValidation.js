@@ -68,10 +68,6 @@
 	  setZero(this);
 	  validateTime();
 	});
-	$('#reservation-time-button').click(function () {
-	  this.innerText = this.innerText == 'PM' ? 'AM' : 'PM';
-	  validateTime();
-	});
 	$('#reservation-phone-input').change(function () {
 		var validPhone = isValid.mobilePhone(this.value);
 	  paintBorder($(this), validPhone);

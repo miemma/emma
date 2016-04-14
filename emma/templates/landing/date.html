@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static from staticfiles %}
 {% block content %}
-<section class="date">
+	<section class="date">
     <div class="row text-center join-row-title">
       <div class="col-xs-10 col-sm-8 col-md-10 col-lg-4">
         <h1 class="date-title">
@@ -20,17 +20,18 @@
     <div class="row join-row-form">
       <div class="col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-8
                   col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
-        <form class="join-form" action="{% url 'landing:date' %}" method="post">
+        <form class="join-form" method="post"
+              action="{% url 'landing:date' %}">
 	        {% csrf_token %}
           <div class="row">
             <div class="col-lg-12">
-              <input id="reservation-name-input" class="emma-input date-input" type="text"
+              <input class="emma-input date-input" type="text" required
                      placeholder="Nombre" name="name">
             </div>
           </div>
           <div class="row">
             <div class="col-lg-12">
-              <input id="reservation-email-input" class="emma-input date-input" type="email"
+              <input class="emma-input date-input" type="email" required
                      placeholder="Correo electrónico" name="email">
             </div>
           </div>
@@ -44,8 +45,9 @@
           </div>
           <div class="row">
             <div class="col-lg-6">
-              <div id="datepicker" data-date="04/09/2016"></div>
-              <input type="hidden" id="my_hidden_input" name="date_input">
+              <div id="datepicker" data-date="{{ today }}"></div>
+              <input type="hidden"  id="date_input"
+                     name="date_input" value="{{ today }}">
             </div>
             <div class="col-lg-6">
               <div class="row">
@@ -55,27 +57,33 @@
               </div>
               <div class="row">
                 <div class="col-lg-6">
-                  <div id="reservation-time-section" class="emma-input date-input">
-                    <input id="reservation-hour-input" name="hour" class="hour-input" type="number" min="1" max="12" placeholder="6" value="06"
-                    >:<input
-                    id="reservation-minute-input" class="minute-input" type="number" min="0" max="59" placeholder="00" value="00" name="minute">
+                  <div id="reservation-time-section"
+                       class="emma-input date-input">
+                    <input name="hour" class="hour-input" type="number"
+                           placeholder="00" min="1" max="12" required
+                           value="10">:<input
+		                  class="minute-input" type="number" min="0" max="59"
+		                  placeholder="00" value="00" name="minute" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
-                  <button id="reservation-time-button" type="button" name="morning" class="emma-input date-input date-input-little">PM
-                  </button>
+                  <input type="text" name="morning" value="AM"
+                         class="emma-input date-input date-input-little"
+                         id="reservation-time-button" readonly>
                 </div>
               </div>
             </div>
           </div>
           <div class="row margin-top-20">
             <div class="col-lg-12">
-              <input id="reservation-phone-input" name="number" class="emma-input join-input" type="text" maxlength="10" placeholder="Numero al que te podremos contactar">
+              <input name="number" class="emma-input join-input"
+                     type="number" maxlength="10" required
+                     placeholder="Numero al que te podremos contactar">
             </div>
           </div>
           <div class="row text-center">
             <div class="col-xs-10 col-sm-6 col-md-9 col-lg-7">
-              <button disabled type="submit" id="reservation-submit-button" class="emma-btn emma-btn-dark join-btn">
+              <button type="submit" class="emma-btn emma-btn-dark join-btn">
                 Reservar
               </button>
             </div>
@@ -87,9 +95,7 @@
 {% endblock content %}
 
 {% block js %}
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.min.css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker3.min.css" />
-  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
-  <script src="{% static 'js/reservationFormCalendar.js' %}"></script>
-  <script src="{% static "js/reservationFormValidation.js" %}"></script>
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker3.min.css" />
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+	<script src="{% static 'js/reservationFormCalendar.js' %}"></script>
 {% endblock js %}
