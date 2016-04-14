@@ -32,22 +32,6 @@ $(function() {
 			$('li[hcolor="white"]').addClass('white');
 	});
 
-    $('#reservation-time-button').click(function () {
-        button_time = document.getElementById('reservation-time-button');
-        if (button_time.value == 'AM') {
-            button_time.value = 'PM';
-        } else if (button_time.value == 'PM') {
-            button_time.value = 'AM';
-        }
-    });
-
-    $('#datepicker').datepicker()
-        .on('changeDate', function(e) {
-            $('#date_input').val(
-                $('#datepicker').datepicker('getFormattedDate')
-            )
-        });
-
     $( window ).resize(function() {
         //noinspection JSUnresolvedFunction
         var movile = window.matchMedia( "(max-width: 768px)" );
