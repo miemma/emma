@@ -12,8 +12,10 @@ $(function() {
 
 	if (movile.matches) {
 	  $('#benefitscollapse').addClass('collapse');
+      $('#successBtn').text('Inicio')
 	} else {
 	  $('#benefitscollapse').removeClass('collapse');
+        $('#successBtn').text('Regresar a la página principal')
 	}
 
 	if (responsiveMenu.matches) {
