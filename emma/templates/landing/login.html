@@ -5,6 +5,13 @@
     <h1 class="login-title">
       Inicio de sesión
     </h1>
+	  <div class="row text-center">
+		  <div class="col-md-6">
+		    <div class="alert alert-danger login-alert">
+				  <strong>Usuario o contraseña incorrectos</strong>
+				</div>
+	    </div>
+	  </div>
     <div class="row text-center">
       <div class="col-md-6">
         <form class="login-form">
@@ -24,3 +31,12 @@
     </div>
   </section>
 {% endblock content %}
+
+{% block js %}
+	<script>
+		$(".login-form").submit(function(e){
+			$(".login-alert").show();
+			return false;
+		});
+	</script>
+{% endblock %}
