@@ -8,6 +8,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render
 from django.views.generic import View, TemplateView
+from django.conf import settings
 
 from .models import Customer
 
@@ -48,9 +49,10 @@ class ContactEmailView(View):
 
         msg = EmailMultiAlternatives(
             subject="Un cliente requiere mayor información",
-            body="Un cliente necesita saber más de Emma:",
-            from_email="Contacto Emma <devsemma@gmail.com>",
-            to=["devsemma@gmail.com"]
+            from_email="Emma - Contacto <postmaster@%s>" % (
+                settings.MAILGUN_SERVER_NAME
+            ),
+            to=[settings.DEFAULT_EMAIL_TO]
         )
         msg.attach_alternative(
             "<p>Nombre del cliente: %s </p>"
@@ -96,9 +98,10 @@ class JoinEmailView(View):
 
         msg = EmailMultiAlternatives(
             subject="Solicitud para ser Emma",
-            body="Se recibio una solicitud nueva",
-            from_email="Contacto Emma <devsemma@gmail.com>",
-            to=["devsemma@gmail.com"]
+            from_email="Emma - Reclutamiento <postmaster@%s>" % (
+                settings.MAILGUN_SERVER_NAME
+            ),
+            to=[settings.DEFAULT_EMAIL_TO]
         )
         msg.attach_alternative(
             "<p>Nombre: %s %s </p>"
@@ -153,9 +156,10 @@ class DateEmailView(View):
 
         msg = EmailMultiAlternatives(
             subject="Tienes una llamada agendada",
-            body="Un cliente acaba de agendar una llamada con los siguientes datos",
-            from_email="Contacto Emma <devsemma@gmail.com>",
-            to=["devsemma@gmail.com"]
+            from_email="Emma - Ventas <postmaster@%s>" % (
+                settings.MAILGUN_SERVER_NAME
+            ),
+            to=[settings.DEFAULT_EMAIL_TO]
         )
         msg.attach_alternative(
             "<p>Nombre: %s </p>"

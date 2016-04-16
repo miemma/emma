@@ -22,7 +22,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # SITE CONFIGURATION
 # -----------------------------------------------------------------------------
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [".miemma.com"]
 
 # DATABASE
 # -----------------------------------------------------------------------------
@@ -51,3 +51,7 @@ AWS_S3_HOST = env("AWS_S3_HOST")
 MEDIA_ROOT = str(PROJECT_DIR('media'))
 
 MEDIA_URL = '/media/'
+
+# EMAIL CONFIGURATION
+# -----------------------------------------------------------------------------
+DEFAULT_EMAIL_TO = "info@miemma.com"
