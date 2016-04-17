@@ -54,4 +54,4 @@ MEDIA_URL = '/media/'
 
 # EMAIL CONFIGURATION
 # -----------------------------------------------------------------------------
-DEFAULT_EMAIL_TO = "info@miemma.com"
+DEFAULT_EMAIL_TO = "devsemma@gmail.com"
