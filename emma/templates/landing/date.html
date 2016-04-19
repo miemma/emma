@@ -11,7 +11,6 @@
 
 	fbq('init', '497421603784093');
 	fbq('track', "PageView");
-	window._fbq.push(['track', 'Lead']);
 	</script>
 	<noscript><img height="1" width="1" style="display:none"
 	src="https://www.facebook.com/tr?id=497421603784093&ev=PageView&noscript=1"
@@ -39,7 +38,7 @@
     <div class="row join-row-form">
       <div class="col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-8
                   col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
-        <form class="join-form" method="post"
+        <form class="join-form" method="post" id="dateForm"
               action="{% url 'landing:date' %}">
 	        {% csrf_token %}
           <div class="row">
@@ -117,4 +116,10 @@
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker3.min.css" />
 	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
 	<script src="{% static 'js/reservationFormCalendar.js' %}"></script>
+	<script type="text/javascript">
+	  $( "#dateForm" ).submit(function( event ) {
+		  window._fbq.push(['track', 'Lead']);
+	    return true
+		});
+	</script>
 {% endblock js %}
