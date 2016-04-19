@@ -9,7 +9,7 @@
       <h2 class="emma-modal-form-title">
         Contáctanos
       </h2>
-      <form class="modal-form" method="post"
+      <form class="modal-form" method="post" id="contactForm"
             action="{% url 'landing:send_contact_mail' %}">
         {% csrf_token %}
         <div class="row text-center">

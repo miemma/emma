@@ -41,6 +41,8 @@
           media="screen"/>
     <link rel="shortcut icon" type="image/x-icon"
           href="{% static "img/favicon.png" %}"/>
+	  {% block fbpixel %}
+    {% endblock %}
   </head>
   <body>
     <div class="container-overflow">
@@ -55,6 +57,12 @@
     <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/efects.js' %}"></script>
+    <script type="text/javascript">
+	    $( "#contactForm" ).submit(function( event ) {
+			  window._fbq.push(['track', 'Lead']);
+		    return true
+			});
+    </script>
     {% block js %}
     {% endblock %}
     </div>
