@@ -134,8 +134,8 @@ SUIT_CONFIG = {
 }
 
 EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
-MAILGUN_ACCESS_KEY = 'key-59cdcdf4c088c2293af6952e12a48a4e'
-MAILGUN_SERVER_NAME = 'mg.miemma.com'
+MAILGUN_ACCESS_KEY = env("MAILGUN_ACCESS_KEY")
+MAILGUN_SERVER_NAME = env("MAILGUN_SERVER_NAME")
 
 STATICFILES_DIRS = (
     str(PROJECT_DIR.path('static')),
