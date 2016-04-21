@@ -7,7 +7,12 @@ $(document).ready(function () {
         maxlength: 10
       }
     }
-    
+  });
+
+  $('#contactForm').validate({
+    errorClass: "errorWhite",
+    onkeyup: false,
+    onfocusout: false
   });
 
   // Mensajes de error
