@@ -76,10 +76,10 @@
                   <div id="reservation-time-section"
                        class="emma-input date-input">
                     <input name="hour" class="hour-input" type="number"
-                           placeholder="00" min="1" max="12" required
+                           placeholder="00" min="1" max="12"
                            value="10">:<input
 		                  class="minute-input" type="number" min="0" max="59"
-		                  placeholder="00" value="30" name="minute" required>
+		                  placeholder="00" value="30" name="minute">
                   </div>
                 </div>
                 <div class="col-lg-6">
@@ -93,7 +93,7 @@
           <div class="row margin-top-20">
             <div class="col-lg-12">
               <input name="number" class="emma-input join-input"
-                     type="number" maxlength="10" required
+                     type="text" required
                      placeholder="Numero al que te podremos contactar">
             </div>
           </div>
@@ -113,7 +113,9 @@
 {% block js %}
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker3.min.css" />
 	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+	<script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js" ></script>
 	<script src="{% static 'js/reservationFormCalendar.js' %}"></script>
+	<script src="{% static 'js/validationForms.js' %}"></script>
 	<script type="text/javascript">
 	  $( "#dateForm" ).submit(function( event ) {
 		  window._fbq.push(['track', 'Lead']);
