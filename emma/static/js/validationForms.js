@@ -6,13 +6,39 @@ $(document).ready(function () {
         number: true,
         maxlength: 10
       }
+    },
+    highlight: function(element, errorClass) {
+        $(element).removeClass(errorClass);
     }
   });
 
   $('#contactForm').validate({
     errorClass: "errorWhite",
     onkeyup: false,
-    onfocusout: false
+    onfocusout: false,
+    highlight: function(element, errorClass) {
+        $(element).removeClass(errorClass);
+    }
+  });
+
+  $('#joinForm').validate({
+    rules: {
+      age: {
+        number: true,
+        maxlength: 2
+      },
+      phone_movile: {
+        number: true,
+        maxlength: 10
+      },
+      phone: {
+        number: true,
+        maxlength: 10
+      }
+    },
+    highlight: function(element, errorClass) {
+        $(element).removeClass(errorClass);
+    }
   });
 
   // Mensajes de error
