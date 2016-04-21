@@ -19,411 +19,407 @@
 	<!-- End Facebook Pixel Code -->
 {% endblock %}
 {% block content %}
-<section class="info-1">
-  <div class="row text-center info-1-row-title">
-    <div class="col-xs-11 col-sm-10 col-md-10 col-lg-8">
-      <p class="info-1-title">
-        ¿Preocupado de que tus seres queridos pasen tiempo solos en casa?
-      </p>
-    </div>
-  </div>
-  <div class="row text-center info-1-row-subtitle">
-    <div class="col-xs-11 col-sm-9 col-md-6 col-lg-5">
-      <p class="text-center info-1-subtitle">
-        En menos de 12 horas puedes contar con una de nuestras
-        compañeras confiables
-      </p>
-    </div>
-  </div>
-  <div class="row text-center info-1-row-btn">
-    <div class="col-xs-10 col-sm-5 col-md-4 col-lg-3">
-      <a href="{% url 'landing:date' %}" class="emma-btn-dark info-1-btn">
-        Empieza ahora
-      </a>
-    </div>
-  </div>
-</section>
-<section class="mentions">
-  <h2 class="mentions-title">
-    Ellos hablan de Emma:
-  </h2>
-  <div class="container">
-    <div class="row text-center">
-	    <div class="col-xs-10 col-sm-10 col-md-3 col-lg-2 mentions-col">
-		    <a href="https://m.youtube.com/watch?v=tDdfj_b-TKU" target="_blank">
-			    <img src="{% static 'img/icons/radio-21.png' %}"
-               class="img-responsive mentions-0">
-		    </a>
-      </div>
-      <div class="col-xs-6 col-sm-5 col-md-3 col-lg-2 mentions-col">
-        <img src="{% static 'img/icons/iconos-12.png' %}"
-               class="img-responsive mentions-1">
-      </div>
-      <div class="col-xs-6 col-sm-5 col-md-3 col-lg-2 mentions-col">
-        <a href="http://www.excelsior.com.mx/opinion/rafael-alvarez-cordero/2016/03/12/1080417" target="_blank">
-          <img src="{% static 'img/icons/iconos-13.png' %}"
-               class="img-responsive mentions-2">
-        </a>
-      </div>
-      <div class="col-xs-6 col-sm-5 col-md-3 col-lg-2 mentions-col">
-        <a href="http://www.soyentrepreneur.com/30283-emma-gana-el-premio-al-estudiante-emprendedor.html" target="_blank">
-          <img src="{% static 'img/icons/icono-14-nuevo.png' %}"
-               class="img-responsive mentions-3">
-        </a>
-      </div>
-      <div class="col-xs-6 col-sm-5 col-md-3 col-lg-2 mentions-col">
-        <a href="http://www.elfinanciero.com.mx/economia/emma-la-startup-ganadora-del-premio-al-estudiante-emprendedor.html" target="_blank">
-          <img src="{% static 'img/icons/iconos-15.png' %}"
-               class="img-responsive mentions-4">
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="services">
-  <div class="row text-center services-row-title-icon">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-      <img src="{% static 'img/icons/bench.png' %}" alt="banca"
-           class="img-bench center-block img-responsive"/>
-    </div>
-  </div>
-  <div class="row text-center services-row-title">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <h2 class="services-title">Servicios</h2>
-    </div>
-  </div>
-  <div class="row text-center services-row-content">
-    <div class="col-xs-10 col-sm-11 col-md-4 vertical-top">
-      <div class="services-cont-title">
-        <p>ACOMPAÑAMIENTO <br> EN CASA</p>
-      </div>
-      <p class="services-cont-description">
-        Los motivamos a recuperar intereses y hobbies a través de talleres
-				impartidos en casa (Ej. uso del iPad, juegos de mesa, talleres de
-	      lectura, cine casero).
-      </p>
-    </div>
-    <div class="col-xs-3 col-sm-3 col-md-1 services-separator">
-      <img src="{% static 'img/icons/separator.png' %}" alt="separador"/>
-    </div>
-    <div class="col-xs-10 col-sm-10 col-md-4 vertical-top">
-      <div class="services-cont-title">
-        <p>ASISTENCIA <br> FUERA DE CASA </p>
-      </div>
-      <p class="services-cont-description">
-       Los acompañamos a realizar actividades fuera del hogar (Ej.
-       Compras en el súper, citas al doctor, funciones de teatro o cine).
-      </p>
-    </div>
-  </div>
-</section>
-<section class="info-2">
-  <div class="row text-center info-2-row">
-    <div class="col-xs-11 col-md-9 col-lg-9">
-      <p class="info-2-content">
-         En Emma, redefinimos el “cuidado en casa” para los adultos mayores
-         a través de la práctica del envejecimiento exitoso.
-      </p>
-    </div>
-  </div>
-</section>
-<section class="how">
-  <div class="row text-center how-row-title">
-    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-        <h2 class="how-title">Cómo funciona</h2>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row how-row-content">
-      <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1
-                  col-md-3 col-md-offset-0 how-col">
-        <img src="{% static 'img/icons/yellow-phone.png' %}" class="how-img"/>
-        <h3 class="how-subtitle">
-          1. CONTÁCTANOS
-        </h3>
-        <p class="how-desc">
-          Agenda una llamada con uno de nuestros especialistas y te
-	        ayudaremos a personalizar el servicio que te interesa.
-        </p>
-      </div>
-      <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1
-                  col-md-3 col-md-offset-0 how-col">
-        <img src="{% static 'img/icons/face.png' %}" class="how-img"/>
-        <h3 class="how-subtitle how-subtitle-second">
-          2. PRUEBA EL SERVICIO SIN COSTO
-        </h3>
-        <p class="how-desc">
-          Antes de contratarnos, ¡prueba el servicio y conoce a tu <i>Emma!</i>
-        </p>
-      </div>
-      <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1
-                  col-md-3 col-md-offset-0 how-col">
-        <img src="{% static 'img/icons/hands.png' %}" class="how-img"/>
-        <h3 class="how-subtitle how-subtitle-third">
-          3. REGRESA Y CONTRATA EL SERVICIO DE INTERÉS
-        </h3>
-        <p class="how-desc">
-          Activaremos tu cuenta y podrás finalizar la contratación
-          en línea.
-        </p>
-      </div>
-      <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1
-                  col-md-3 col-md-offset-0 how-col">
-        <img src="{% static 'img/icons/house.png' %}" class="how-img"/>
-        <h3 class="how-subtitle how-subtitle-last">
-          4. ¡RELÁJATE Y ESPERA A TU <div class="italic-text">EMMA!</div>
-        </h3>
-        <p class="how-desc how-desc-last">
-          Ahora que tu ser querido está bien acompañado, disfruta de
-          nuestros beneficios.
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="row text-center how-row-btn">
-    <div class="col-xs-10 col-sm-5 col-md-4 col-lg-3">
-      <a href="{% url 'landing:faq' %}" class="emma-btn emma-btn-light how-btn">
-        Conocer más
-      </a>
-    </div>
-  </div>
-</section>
-<section class="benefits">
-  <div class="row text-center benefits-row-title-icon">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-      <img src="{% static 'img/icons/bench.png' %}" alt="banca"
-           class="img-bench center-block img-responsive"/>
-    </div>
-  </div>
-  <div class="row text-center benefits-row-title">
-    <div class="col-xs-10 col-sm-12 col-md-12">
-      <h2 class="benefits-title">
-        Nuestros beneficios
-      </h2>
-    </div>
-  </div>
+	<section class="info-1">
+	  <div class="row text-center info-1-row-title">
+	    <div class="col-xs-11 col-sm-10 col-md-10 col-lg-8">
+	      <p class="info-1-title">
+	        ¿Preocupado de que tus seres queridos pasen tiempo solos en casa?
+	      </p>
+	    </div>
+	  </div>
+	  <div class="row text-center info-1-row-subtitle">
+	    <div class="col-xs-11 col-sm-9 col-md-6 col-lg-5">
+	      <p class="text-center info-1-subtitle">
+	        En menos de 12 horas puedes contar con una de nuestras
+	        compañeras confiables
+	      </p>
+	    </div>
+	  </div>
+	  <div class="row text-center info-1-row-btn">
+	    <div class="col-xs-10 col-sm-5 col-md-4 col-lg-3">
+	      <a href="{% url 'landing:date' %}" class="emma-btn-dark info-1-btn">
+	        Empieza ahora
+	      </a>
+	    </div>
+	  </div>
+	</section>
+	<section class="mentions">
+	  <h2 class="mentions-title">
+	    Ellos hablan de Emma:
+	  </h2>
+	  <div class="container">
+	    <div class="row text-center">
+		    <div class="col-xs-5 col-sm-10 col-md-3 col-lg-2 mentions-col">
+			    <a href="https://m.youtube.com/watch?v=tDdfj_b-TKU" target="_blank">
+				    <img src="{% static 'img/icons/radio-21.png' %}"
+	               class="img-responsive mentions-0">
+			    </a>
+	      </div>
+	      <div class="col-xs-5 col-sm-5 col-md-3 col-lg-2 mentions-col">
+	        <a href="http://www.excelsior.com.mx/opinion/rafael-alvarez-cordero/2016/03/12/1080417" target="_blank">
+	          <img src="{% static 'img/icons/iconos-13.png' %}"
+	               class="img-responsive mentions-1">
+	        </a>
+	      </div>
+	      <div class="col-xs-5 col-sm-5 col-md-3 col-lg-2 mentions-col">
+	        <a href="http://www.soyentrepreneur.com/30283-emma-gana-el-premio-al-estudiante-emprendedor.html" target="_blank">
+	          <img src="{% static 'img/icons/icono-14-nuevo.png' %}"
+	               class="img-responsive mentions-2">
+	        </a>
+	      </div>
+	      <div class="col-xs-5 col-sm-5 col-md-3 col-lg-2 mentions-col">
+	        <a href="http://www.elfinanciero.com.mx/economia/emma-la-startup-ganadora-del-premio-al-estudiante-emprendedor.html" target="_blank">
+	          <img src="{% static 'img/icons/iconos-15.png' %}"
+	               class="img-responsive mentions-3">
+	        </a>
+	      </div>
+	    </div>
+	  </div>
+	</section>
+	<section class="services">
+	  <div class="row text-center services-row-title-icon">
+	    <div class="col-xs-12 col-sm-12 col-md-12">
+	      <img src="{% static 'img/icons/bench.png' %}" alt="banca"
+	           class="img-bench center-block img-responsive"/>
+	    </div>
+	  </div>
+	  <div class="row text-center services-row-title">
+	    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	      <h2 class="services-title">Servicios</h2>
+	    </div>
+	  </div>
+	  <div class="row text-center services-row-content">
+	    <div class="col-xs-10 col-sm-11 col-md-4 vertical-top">
+	      <div class="services-cont-title">
+	        <p>ACOMPAÑAMIENTO <br> EN CASA</p>
+	      </div>
+	      <p class="services-cont-description">
+	        Los motivamos a recuperar intereses y hobbies a través de talleres
+					impartidos en casa (Ej. uso del iPad, juegos de mesa, talleres de
+		      lectura, cine casero).
+	      </p>
+	    </div>
+	    <div class="col-xs-3 col-sm-3 col-md-1 services-separator">
+	      <img src="{% static 'img/icons/separator.png' %}" alt="separador"/>
+	    </div>
+	    <div class="col-xs-10 col-sm-10 col-md-4 vertical-top">
+	      <div class="services-cont-title">
+	        <p>ASISTENCIA <br> FUERA DE CASA </p>
+	      </div>
+	      <p class="services-cont-description">
+	       Los acompañamos a realizar actividades fuera del hogar (Ej.
+	       Compras en el súper, citas al doctor, funciones de teatro o cine).
+	      </p>
+	    </div>
+	  </div>
+	</section>
+	<section class="info-2">
+	  <div class="row text-center info-2-row">
+	    <div class="col-xs-11 col-md-9 col-lg-9">
+	      <p class="info-2-content">
+	         En Emma, redefinimos el “cuidado en casa” para los adultos mayores
+	         a través de la práctica del envejecimiento exitoso.
+	      </p>
+	    </div>
+	  </div>
+	</section>
+	<section class="how">
+	  <div class="row text-center how-row-title">
+	    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+	        <h2 class="how-title">Cómo funciona</h2>
+	    </div>
+	  </div>
+	  <div class="container">
+	    <div class="row how-row-content">
+	      <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1
+	                  col-md-3 col-md-offset-0 how-col">
+	        <img src="{% static 'img/icons/yellow-phone.png' %}" class="how-img"/>
+	        <h3 class="how-subtitle">
+	          1. CONTÁCTANOS
+	        </h3>
+	        <p class="how-desc">
+	          Agenda una llamada con uno de nuestros especialistas y te
+		        ayudaremos a personalizar el servicio que te interesa.
+	        </p>
+	      </div>
+	      <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1
+	                  col-md-3 col-md-offset-0 how-col">
+	        <img src="{% static 'img/icons/face.png' %}" class="how-img"/>
+	        <h3 class="how-subtitle how-subtitle-second">
+	          2. PRUEBA EL SERVICIO SIN COSTO
+	        </h3>
+	        <p class="how-desc">
+	          Antes de contratarnos, ¡prueba el servicio y conoce a tu <i>Emma!</i>
+	        </p>
+	      </div>
+	      <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1
+	                  col-md-3 col-md-offset-0 how-col">
+	        <img src="{% static 'img/icons/hands.png' %}" class="how-img"/>
+	        <h3 class="how-subtitle how-subtitle-third">
+	          3. REGRESA Y CONTRATA EL SERVICIO DE INTERÉS
+	        </h3>
+	        <p class="how-desc">
+	          Activaremos tu cuenta y podrás finalizar la contratación
+	          en línea.
+	        </p>
+	      </div>
+	      <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1
+	                  col-md-3 col-md-offset-0 how-col">
+	        <img src="{% static 'img/icons/house.png' %}" class="how-img"/>
+	        <h3 class="how-subtitle how-subtitle-last">
+	          4. ¡RELÁJATE Y ESPERA A TU <div class="italic-text">EMMA!</div>
+	        </h3>
+	        <p class="how-desc how-desc-last">
+	          Ahora que tu ser querido está bien acompañado, disfruta de
+	          nuestros beneficios.
+	        </p>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="row text-center how-row-btn">
+	    <div class="col-xs-10 col-sm-5 col-md-4 col-lg-3">
+	      <a href="{% url 'landing:faq' %}" class="emma-btn emma-btn-light how-btn">
+	        Conocer más
+	      </a>
+	    </div>
+	  </div>
+	</section>
+	<section class="benefits">
+	  <div class="row text-center benefits-row-title-icon">
+	    <div class="col-xs-12 col-sm-12 col-md-12">
+	      <img src="{% static 'img/icons/bench.png' %}" alt="banca"
+	           class="img-bench center-block img-responsive"/>
+	    </div>
+	  </div>
+	  <div class="row text-center benefits-row-title">
+	    <div class="col-xs-10 col-sm-12 col-md-12">
+	      <h2 class="benefits-title">
+	        Nuestros beneficios
+	      </h2>
+	    </div>
+	  </div>
 
-  <div class="row text-center benefits-row-btn">
-    <div class="col-xs-9 col-sm-4 col-md-4 col-lg-4">
-      <a data-toggle="collapse" data-target="#benefitscollapse"
-         class="emma-btn emma-btn-light benefits-btn">
-        Conocer más
-      </a>
-    </div>
-  </div>
+	  <div class="row text-center benefits-row-btn">
+	    <div class="col-xs-9 col-sm-4 col-md-4 col-lg-4">
+	      <a data-toggle="collapse" data-target="#benefitscollapse"
+	         class="emma-btn emma-btn-light benefits-btn">
+	        Conocer más
+	      </a>
+	    </div>
+	  </div>
 
-  <div class="collapse" id="benefitscollapse">
-    <div class="row text-center benefits-row-content">
-      <div class="col-xs-10 col-sm-8 col-md-4 benefits-1 vertical-top">
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-12 padding-bottom-20">
-            <h2 class="benefits-content-title">
-              Para tu ser querido:
-            </h2>
-          </div>
-        </div>
-        <div class="row">
-          <ul class="benefits-content-list">
-            <li class="benefits-content-list-item">
-              <figure class="benefits-content-list-item-img">
-                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
-              </figure>
-              <span>
-                Estimulación de la memoria y actividad cognitiva.
-              </span>
-            </li>
-            <li class="benefits-content-list-item">
-              <figure class="benefits-content-list-item-img">
-                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
-              </figure>
-              <span class="align-middle-lg">
-                Actividades recreativas y socialización.
-              </span>
-            </li>
-            <li class="benefits-content-list-item">
-              <figure class="benefits-content-list-item-img">
-                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
-              </figure>
-              <span>
-                Aprendizaje del uso de herramientas tecnológicas.
-              </span>
-            </li>
-            <li class="benefits-content-list-item">
-              <figure class="benefits-content-list-item-img">
-                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
-              </figure>
-              <span class="align-middle-lg">
-                Recupera hobbies perdidos.
-              </span>
-            </li>
-            <li class="benefits-content-list-item">
-              <figure class="benefits-content-list-item-img">
-                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
-              </figure>
-              <span>Recupera la motivación para aprender cosas nuevas.</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-xs-10 col-sm-8 col-md-4 benefits-2">
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-12 padding-bottom-20">
-            <h2 class="benefits-content-title">
-              Para tí:
-            </h2>
-          </div>
-        </div>
-        <div class="row">
-          <ul class="benefits-content-list">
-            <li class="benefits-content-list-item">
-              <figure class="benefits-content-list-item-img">
-                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
-              </figure>
-              <span>
-                Calidad en el servicio y en la selección de
-                las compañeras.
-              </span>
-            </li>
-            <li class="benefits-content-list-item">
-              <figure class="benefits-content-list-item-img">
-                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
-              </figure>
-              <span>
-                Notificaciones con respecto al inicio y fin de la sesión.
-              </span>
-            </li>
-            <li class="benefits-content-list-item">
-              <figure class="benefits-content-list-item-img">
-                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
-              </figure>
-              <span>
-                Reportes quincenales sobre el estado de tu ser querido y
-                sus necesidades.
-              </span>
-            </li>
-            <li class="benefits-content-list-item">
-              <figure class="benefits-content-list-item-img">
-                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
-              </figure>
-              <span class="align-middle-lg">
-                Confianza y seguridad.
-              </span>
-            </li>
-            <li class="benefits-content-list-item">
-              <figure class="benefits-content-list-item-img">
-                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
-              </figure>
-              <span class="nowrap-lg align-middle-lg">
-                Apoyo en el seguimiento de medicamentos.
-              </span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="whois">
-  <div class="row text-center whois-row-title">
-    <div class="col-xs-10 col-sm-12 col-md-12 col-lg-12">
-      <h2 class="whois-title">¿Quién es mi <i>Emma</i>?</h2>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1
-                col-md-6 col-md-offset-1">
-      <p class="whois-desc">
-        Las <i>Emmas</i> son nuestras compañeras confiables. Mujeres con
-        vocación que están capacitadas, y son seleccionadas para ti
-        con gran cuidado:
-      </p>
-      <ul class="whois-list">
-        <li class="whois-list-item">
-          <figure class="whois-list-item-img">
-            <img src="{% static 'img/icons/ribbon.svg' %}" alt="liston"/>
-          </figure>
-          <span>
-            Entrevistas personales con nuestros especialistas.
-          </span>
-        </li>
-        <li class="whois-list-item">
-          <figure class="whois-list-item-img">
-            <img src="{% static 'img/icons/ribbon.svg' %}" alt="liston"/>
-          </figure>
-          <span>
-            Examen psicométrico.
-          </span>
-        </li>
-        <li class="whois-list-item">
-          <figure class="whois-list-item-img">
-            <img src="{% static 'img/icons/ribbon.svg' %}" alt="liston"/>
-          </figure>
-          <span>
-            Examen neurobiológico.
-          </span>
-        </li>
-        <li class="whois-list-item">
-          <figure class="whois-list-item-img">
-            <img src="{% static 'img/icons/ribbon.svg' %}" alt="liston"/>
-          </figure>
-          <span>
-            Revisión de incidencias legales.
-          </span>
-        </li>
-        <li class="whois-list-item">
-          <figure class="whois-list-item-img">
-            <img src="{% static 'img/icons/ribbon.svg' %}" alt="liston"/>
-          </figure>
-          <span>
-            Referencias de clientes.
-          </span>
-        </li>
-      </ul>
-      <div class="row text-center padding-top-10 margin-bottom-50">
-        <div class="col-xs-9 col-sm-4 col-md-4 col-lg-4">
-          <a href="{% url 'landing:date' %}" class="emma-btn emma-btn-light whois-btn">
-            Empezar ahora
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <figure class="whois-image">
-        <img src="{% static 'img/cuidadora.png' %}" alt="Mariana"
-             class="img-responsive whois-image-img"/>
-        <figcaption>Mariana, Ciudad de México.</figcaption>
-      </figure>
-    </div>
-  </div>
-  <div class="row margin-top-100 text-center">
-    <div class="col-xs-10 col-sm-10 col-md-9 col-lg-9">
-      <h2 class="whois-allies-title">
-        Algunos de nuestros aliados:
-      </h2>
-    </div>
-  </div>
-  <div class="row text-center padding-top-20 padding-bottom-70
-              whois-row-allies">
-    <div class="col-md-p-10 col-sm-3 whois-allies-img col-xs-5">
-        <img src="{% static 'img/epic-lab.png' %}" class="img-responsive whois-img-1"
-             alt="epic lab"/>
-    </div>
-    <div class="col-md-p-15 col-sm-3 whois-allies-img col-xs-5">
-        <img src="{% static 'img/mit.png' %}" class="img-responsive whois-img-2"
-             alt="mit"/>
-    </div>
-    <div class="col-md-p-10 col-sm-3 whois-allies-img col-xs-5">
-        <img src="{% static 'img/ThePool.png' %}" class="img-responsive whois-img-3"
-             alt="teatro la capilla">
-    </div>
-    <div class="col-md-p-15 col-sm-3 whois-allies-img col-xs-5">
-        <img src="{% static 'img/teatro.png' %}" class="img-responsive whois-img-4"
-             alt="teatro la capilla">
-    </div>
-    <div class="col-md-p-15 col-sm-3 whois-allies-img col-xs-5">
-        <img src="{% static 'img/eo-logo.png' %}" class="img-responsive whois-img-5"
-             alt=eo>
-    </div>
-  </div>
-</section>
+	  <div class="collapse" id="benefitscollapse">
+	    <div class="row text-center benefits-row-content">
+	      <div class="col-xs-10 col-sm-8 col-md-4 benefits-1 vertical-top">
+	        <div class="row">
+	          <div class="col-xs-12 col-sm-12 col-md-12 padding-bottom-20">
+	            <h2 class="benefits-content-title">
+	              Para tu ser querido:
+	            </h2>
+	          </div>
+	        </div>
+	        <div class="row">
+	          <ul class="benefits-content-list">
+	            <li class="benefits-content-list-item">
+	              <figure class="benefits-content-list-item-img">
+	                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
+	              </figure>
+	              <span>
+	                Estimulación de la memoria y actividad cognitiva.
+	              </span>
+	            </li>
+	            <li class="benefits-content-list-item">
+	              <figure class="benefits-content-list-item-img">
+	                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
+	              </figure>
+	              <span class="align-middle-lg">
+	                Actividades recreativas y socialización.
+	              </span>
+	            </li>
+	            <li class="benefits-content-list-item">
+	              <figure class="benefits-content-list-item-img">
+	                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
+	              </figure>
+	              <span>
+	                Aprendizaje del uso de herramientas tecnológicas.
+	              </span>
+	            </li>
+	            <li class="benefits-content-list-item">
+	              <figure class="benefits-content-list-item-img">
+	                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
+	              </figure>
+	              <span class="align-middle-lg">
+	                Recupera hobbies perdidos.
+	              </span>
+	            </li>
+	            <li class="benefits-content-list-item">
+	              <figure class="benefits-content-list-item-img">
+	                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
+	              </figure>
+	              <span>Recupera la motivación para aprender cosas nuevas.</span>
+	            </li>
+	          </ul>
+	        </div>
+	      </div>
+	      <div class="col-xs-10 col-sm-8 col-md-4 benefits-2">
+	        <div class="row">
+	          <div class="col-xs-12 col-sm-12 col-md-12 padding-bottom-20">
+	            <h2 class="benefits-content-title">
+	              Para tí:
+	            </h2>
+	          </div>
+	        </div>
+	        <div class="row">
+	          <ul class="benefits-content-list">
+	            <li class="benefits-content-list-item">
+	              <figure class="benefits-content-list-item-img">
+	                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
+	              </figure>
+	              <span>
+	                Calidad en el servicio y en la selección de
+	                las compañeras.
+	              </span>
+	            </li>
+	            <li class="benefits-content-list-item">
+	              <figure class="benefits-content-list-item-img">
+	                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
+	              </figure>
+	              <span>
+	                Notificaciones con respecto al inicio y fin de la sesión.
+	              </span>
+	            </li>
+	            <li class="benefits-content-list-item">
+	              <figure class="benefits-content-list-item-img">
+	                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
+	              </figure>
+	              <span>
+	                Reportes quincenales sobre el estado de tu ser querido y
+	                sus necesidades.
+	              </span>
+	            </li>
+	            <li class="benefits-content-list-item">
+	              <figure class="benefits-content-list-item-img">
+	                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
+	              </figure>
+	              <span class="align-middle-lg">
+	                Confianza y seguridad.
+	              </span>
+	            </li>
+	            <li class="benefits-content-list-item">
+	              <figure class="benefits-content-list-item-img">
+	                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
+	              </figure>
+	              <span class="nowrap-lg align-middle-lg">
+	                Apoyo en el seguimiento de medicamentos.
+	              </span>
+	            </li>
+	          </ul>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</section>
+	<section class="whois">
+	  <div class="row text-center whois-row-title">
+	    <div class="col-xs-10 col-sm-12 col-md-12 col-lg-12">
+	      <h2 class="whois-title">¿Quién es mi <i>Emma</i>?</h2>
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1
+	                col-md-6 col-md-offset-1">
+	      <p class="whois-desc">
+	        Las <i>Emmas</i> son nuestras compañeras confiables. Mujeres con
+	        vocación que están capacitadas, y son seleccionadas para ti
+	        con gran cuidado:
+	      </p>
+	      <ul class="whois-list">
+	        <li class="whois-list-item">
+	          <figure class="whois-list-item-img">
+	            <img src="{% static 'img/icons/ribbon.svg' %}" alt="liston"/>
+	          </figure>
+	          <span>
+	            Entrevistas personales con nuestros especialistas.
+	          </span>
+	        </li>
+	        <li class="whois-list-item">
+	          <figure class="whois-list-item-img">
+	            <img src="{% static 'img/icons/ribbon.svg' %}" alt="liston"/>
+	          </figure>
+	          <span>
+	            Examen psicométrico.
+	          </span>
+	        </li>
+	        <li class="whois-list-item">
+	          <figure class="whois-list-item-img">
+	            <img src="{% static 'img/icons/ribbon.svg' %}" alt="liston"/>
+	          </figure>
+	          <span>
+	            Examen neurobiológico.
+	          </span>
+	        </li>
+	        <li class="whois-list-item">
+	          <figure class="whois-list-item-img">
+	            <img src="{% static 'img/icons/ribbon.svg' %}" alt="liston"/>
+	          </figure>
+	          <span>
+	            Revisión de incidencias legales.
+	          </span>
+	        </li>
+	        <li class="whois-list-item">
+	          <figure class="whois-list-item-img">
+	            <img src="{% static 'img/icons/ribbon.svg' %}" alt="liston"/>
+	          </figure>
+	          <span>
+	            Referencias de clientes.
+	          </span>
+	        </li>
+	      </ul>
+	      <div class="row text-center padding-top-10 margin-bottom-50">
+	        <div class="col-xs-9 col-sm-4 col-md-4 col-lg-4">
+	          <a href="{% url 'landing:date' %}" class="emma-btn emma-btn-light whois-btn">
+	            Empezar ahora
+	          </a>
+	        </div>
+	      </div>
+	    </div>
+	    <div class="col-sm-4">
+	      <figure class="whois-image">
+	        <img src="{% static 'img/cuidadora.png' %}" alt="Mariana"
+	             class="img-responsive whois-image-img"/>
+	        <figcaption>Mariana, Ciudad de México.</figcaption>
+	      </figure>
+	    </div>
+	  </div>
+	  <div class="row margin-top-100 text-center">
+	    <div class="col-xs-10 col-sm-10 col-md-9 col-lg-9">
+	      <h2 class="whois-allies-title">
+	        Algunos de nuestros aliados:
+	      </h2>
+	    </div>
+	  </div>
+	  <div class="row text-center padding-top-20 padding-bottom-70
+	              whois-row-allies">
+	    <div class="col-md-p-10 col-sm-3 whois-allies-img col-xs-5">
+	        <img src="{% static 'img/epic-lab.png' %}" class="img-responsive whois-img-1"
+	             alt="epic lab"/>
+	    </div>
+	    <div class="col-md-p-15 col-sm-3 whois-allies-img col-xs-5">
+	        <img src="{% static 'img/mit.png' %}" class="img-responsive whois-img-2"
+	             alt="mit"/>
+	    </div>
+	    <div class="col-md-p-10 col-sm-3 whois-allies-img col-xs-5">
+	        <img src="{% static 'img/ThePool.png' %}" class="img-responsive whois-img-3"
+	             alt="teatro la capilla">
+	    </div>
+	    <div class="col-md-p-15 col-sm-3 whois-allies-img col-xs-5">
+	        <img src="{% static 'img/teatro.png' %}" class="img-responsive whois-img-4"
+	             alt="teatro la capilla">
+	    </div>
+	    <div class="col-md-p-15 col-sm-3 whois-allies-img col-xs-5">
+	        <img src="{% static 'img/eo-logo.png' %}" class="img-responsive whois-img-5"
+	             alt=eo>
+	    </div>
+	  </div>
+	</section>
 {% endblock content %}
