@@ -1,4 +1,4 @@
-work    # Local development dependencies go here
+# Local development dependencies go here
 -r base.txt
 
 # Debugging
