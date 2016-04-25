@@ -101,7 +101,7 @@ class JoinEmailView(View):
             from_email="Emma - Reclutamiento <postmaster@%s>" % (
                 settings.MAILGUN_SERVER_NAME
             ),
-            to=[settings.DEFAULT_EMAIL_TO]
+            to=[settings.DEFAULT_EMAIL_TO, 'fernanda@miemma.com']
         )
         msg.attach_alternative(
             "<p>Nombre: %s %s </p>"
