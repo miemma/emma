@@ -44,6 +44,8 @@ THIRD_PARTY_APPS = (
 # Apps specific for this project go here.
 LOCAL_APPS = (
     'emma.apps.landing',
+    'emma.apps.emmas',
+    'emma.apps.suscriptions',
 )
 
 INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS + LOCAL_APPS
@@ -77,13 +79,13 @@ FIXTURE_DIRS = (
 # -----------------------------------------------------------------------------
 TIME_ZONE = 'America/Mexico_City'
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 SITE_ID = 1
 
-USE_I18N = True
+USE_I18N = False
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
