@@ -48,6 +48,7 @@ LOCAL_APPS = (
     'emma.apps.suscriptions',
     'emma.apps.services',
     'emma.apps.customers',
+    'emma.apps.users',
 )
 
 INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS + LOCAL_APPS

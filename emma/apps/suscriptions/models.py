@@ -2,12 +2,13 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
-from django.contrib.auth.models import User
+
+from emma.apps.users.models import Client
 
 
 class Suscription(models.Model):
     user = models.ForeignKey(
-        User,
+        Client,
         related_name='suscriptions'
     )
     date = models.DateTimeField(auto_now_add=True)

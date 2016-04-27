@@ -4,6 +4,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from emma.apps.users.models import Address
+
 
 class Emma(models.Model):
     user = models.OneToOneField(User)
@@ -25,7 +27,7 @@ class Emma(models.Model):
         blank=False,
     )
 
-    #direction = models.ForeignKey(Address)
+    direction = models.ForeignKey(Address)
 
     how_met_emma = models.CharField(
         max_length=15,
