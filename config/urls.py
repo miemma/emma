@@ -10,6 +10,7 @@ from django.contrib import admin
 from django.views import defaults as error_views
 
 from emma.apps.landing import urls as landing_urls
+from emma.apps.users import urls as users_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -17,6 +18,7 @@ urlpatterns = [
     # Custom urls
     # url(r'', include(module_urls, namespace='module')),
     url(r'', include(landing_urls, namespace='landing')),
+    url(r'', include(users_urls, namespace='users')),
 ]
 
 if settings.DEBUG:

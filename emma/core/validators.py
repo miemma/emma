@@ -5,7 +5,7 @@ from __future__ import absolute_import, unicode_literals
 
 from django import forms
 
-from .messages import custom_error_messages
+from .messages import error_messages
 
 
 def eval_blank(data):

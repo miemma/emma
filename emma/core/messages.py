@@ -1,17 +1,18 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- coding: utf8 -*-
 
 from __future__ import absolute_import, unicode_literals
 
 from django.utils.translation import ugettext_lazy as _
 
 error_messages = {
-    'blank': _('This field can not be blank'),
-    'unique': _("There is a %(model_name)s with this %(field_label)s already registred"),
-    'mismatch': _('The data do not match'),
-    'invalid_login': _('The username or password are incorrect'),
-    'inactive_account': _('This account is inactive'),
-    'incorrect_password': _('The password is incorrect'),
+    'blank': _('El campo no puede estar en blanco'),
+    'required': _('Este campo es requerido'),
+    'unique': _("Este contenido ya esta registrado"),
+    'mismatch': _('La información no coincide'),
+    'invalid_login': _('El usuario o la contraseña son incorrectas'),
+    'inactive_account': _('Esta cuenta esta inactiva'),
+    'incorrect_password': _('La contraseña es incorrecta'),
 }
 
 confirmation_messages = {
