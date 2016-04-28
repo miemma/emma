@@ -130,6 +130,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # AUTHENTICATION CONFIGURATION
 # -----------------------------------------------------------------------------
 AUTHENTICATION_BACKENDS = (
+    'emma.core.backends.EmailBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 

@@ -25,18 +25,29 @@
     </h1>
 	  <div class="row text-center">
 		  <div class="col-md-6">
-		    <div class="alert alert-danger login-alert">
-				  <strong>Usuario o contraseña incorrectos</strong>
-				</div>
-	    </div>
+				{% if form.non_field_errors %}
+					<div class="alert alert-danger passwd-alert" role="alert">
+						{{ form.non_field_errors.as_text|cut:"*" }}
+					</div>
+				{% endif %}
+			</div>
 	  </div>
     <div class="row text-center">
       <div class="col-md-6">
-        <form class="login-form">
-          <input type="text" class="login-form-input emma-input"
-                 placeholder="Email" required>
-          <input type="password" class="login-form-input emma-input"
-                placeholder="Contraseña" required>
+        <form class="login-form" action="." method="post">
+          {% csrf_token %}
+	        {{ form.username }}
+	        {% if form.username.errors %}
+            <div class="alert alert-danger passwd-alert" role="alert">
+              {{ form.username.errors.as_text|cut:"*" }}
+            </div>
+          {% endif %}
+          {{ form.password}}
+	        {% if form.password.errors %}
+            <div class="alert alert-danger passwd-alert" role="alert">
+              {{ form.password.errors.as_text|cut:"*" }}
+            </div>
+          {% endif %}
           <div class="row text-center">
             <div class="col-xs-10 col-sm-8 col-md-5 col-lg-5">
               <button class="emma-btn emma-btn-dark login-btn">
@@ -49,12 +60,3 @@
     </div>
   </section>
 {% endblock content %}
-
-{% block js %}
-	<script>
-		$(".login-form").submit(function(e){
-			$(".login-alert").show();
-			return false;
-		});
-	</script>
-{% endblock %}

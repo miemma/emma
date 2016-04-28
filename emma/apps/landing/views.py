@@ -33,10 +33,6 @@ class WhoTemplateView(TemplateView):
     template_name = 'landing/who.html'
 
 
-class LoginTemplateView(TemplateView):
-    template_name = 'landing/login.html'
-
-
 class SuccessTemplateView(TemplateView):
     template_name = 'landing/success.html'
 

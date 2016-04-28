@@ -17,8 +17,6 @@ urlpatterns = [
     url(regex=r'^acerca',
         view=views.AboutTemplateView.as_view(), name='about'),
 
-    url(regex=r'^login', view=views.LoginTemplateView.as_view(), name='login'),
-
     url(regex=r'^hecho',
         view=views.SuccessTemplateView.as_view(), name='success'),
 
