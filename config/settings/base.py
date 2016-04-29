@@ -14,6 +14,8 @@ import environ
 
 # DIRS
 # -----------------------------------------------------------------------------
+from django.core.urlresolvers import reverse_lazy
+
 ROOT_DIR = environ.Path(__file__) - 3  # (/a/b/myfile.py - 3 = /)
 PROJECT_DIR = ROOT_DIR.path('emma')
 APPS_DIR = ROOT_DIR.path('emma/apps')
@@ -152,3 +154,5 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
+
+LOGIN_URL = reverse_lazy('users:login')
