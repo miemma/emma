@@ -16,7 +16,6 @@ $('#pay-button').on('click', function(event) {
 	var success_callbak = function(response) {
 		var token_id = response.data.id;
 		$('#token_id').val(token_id);
-		console.log($('#token_id').val());
 		$('#addcard-form').submit();
 		console.log("Bien Hecho");
 	};

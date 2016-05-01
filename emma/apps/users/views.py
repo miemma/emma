@@ -18,6 +18,43 @@ from emma.core.mixins import RequestFormMixin, AuthRedirectMixin, \
 from emma.apps.users.forms import ChangePasswordForm, LoginForm
 
 
+class SelectCardView(View):
+    template_name = 'users/select_card.html'
+
+    def get(self, request):
+        client = Client.objects.get(user=request.user)
+        suscription = Suscription.objects.get(user=client)
+        customer = openpay.Customer.retrieve(suscription.id_customer)
+        cards = customer.cards.all()
+
+        ctx = {
+            'cards': cards.data
+        }
+        return render(request, self.template_name, ctx)
+
+    def post(self, request):
+        suscription = Suscription.objects.get(user=request.user.client)
+        customer = openpay.Customer.retrieve(suscription.id_customer)
+        card = customer.cards.retrieve(request.POST['customer-card'])
+        openpay_charge = openpay.Charge.create(
+            source_id=card.id,
+            method="card",
+            amount=request.POST['service_ammount'],
+            currency="MXN",
+            description="Charge for Emma service",
+            customer=customer.id,
+            device_session_id=request.POST['devsessionid']
+        )
+        charge = Charge.objects.create(
+            suscription=suscription,
+            amount=openpay_charge.amount,
+            status=openpay_charge.status,
+            descripcion=openpay_charge.description
+        )
+        charge.save()
+        return  HttpResponse('yeah')
+
+
 class AddCardView(View):
     template_name = 'users/add_card.html'
 
