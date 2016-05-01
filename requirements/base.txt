@@ -19,3 +19,4 @@ django-suit==0.2.18
 # Your custom requirements go here
 # -----------------------------------------------------------------------------
 django-mailgun==0.8.0
+openpay==0.3

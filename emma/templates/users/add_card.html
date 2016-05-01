@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles  %}
+
+{% block content %}
+	<section class="addcard">
+		<h1 class="addcard-title">
+      Agrega una nueva tarjeta
+    </h1>
+		<div class="row text-center">
+      <div class="col-lg-5">
+        <form class="addcard-form" action="." method="post" id="addcard-form">
+          {% csrf_token %}
+	        <input type="hidden" name="token_id" id="token_id" />
+	        <div class="row text-center">
+		        <div class="col-lg-10">
+			         <input type="text" autocomplete="off" name="customer_name"
+			                data-openpay-card="holder_name"
+			                value="{{request.user.get_full_name}}"
+			                placeholder="Titular de la tarjeta"
+			                class='emma-input addcard-form-input' />
+		        </div>
+	        </div>
+	        <div class="row text-center">
+		        <div class="col-lg-10">
+			         <input type="text" autocomplete="off" name="card_number"
+			                data-openpay-card="card_number"
+			                placeholder="Numero de la tarjeta"
+			                class='emma-input addcard-form-input' />
+		        </div>
+	        </div>
+	        <div class="row">
+		        <div class="col-lg-3 col-lg-offset-1">
+			        <input type="text" autocomplete="off" name="card_cvc"
+			               data-openpay-card="cvv2" required
+			               placeholder="CVC" class='emma-input addcard-form-input' />
+		        </div>
+	        </div>
+	        <div class="row">
+		        <div class="col-lg-11 col-lg-offset-1">
+			        <p class="addcard-form-desc">
+				        Fecha de Expiración
+			        </p>
+		        </div>
+	        </div>
+	        <div class="row">
+		        <div class="col-lg-3 col-lg-offset-1">
+			        <input type="text" autocomplete="off" name="card_month"
+			               data-openpay-card="expiration_month"
+			               placeholder="MM"
+			               size="2" maxlength='2'
+			               class='emma-input addcard-form-input text-center' />
+		        </div>
+		        <div class="col-lg-3">
+			        <input type="text" autocomplete="off" name="card_year"
+			               data-openpay-card="expiration_year"
+			               placeholder="AA"
+			               size="2" maxlength='2'
+			               class='emma-input addcard-form-input text-center' />
+		        </div>
+	        </div>
+					<div class="row text-center">
+		        <div class="col-lg-10">
+			         <input type="text" autocomplete="off" name="service_ammount"
+			                placeholder="Monto a pagar (MXN)"
+			                class='emma-input addcard-form-input' />
+		        </div>
+	        </div>
+	        <div class="row text-center">
+						<div class="col-lg-10">
+							<div class="alert alert-danger addcard-alert" role="alert">
+								La tarjeta fue declinada, revisa la información e
+								intenta de nuevo.
+			        </div>
+						</div>
+					</div>
+	        <input type='hidden' name='devsessionid' id='devsessionid'>
+          <div class="row text-center">
+            <div class="col-xs-10 col-sm-8 col-md-5 col-lg-3">
+              <input type="submit" id="pay-button" value="Pagar"
+                     class="emma-btn emma-btn-dark addcard-btn" />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+	</section>
+{% endblock %}
+
+{% block js %}
+	<script type="text/javascript" src="https://openpay.s3.amazonaws.com/openpay.v1.min.js"></script>
+	<script type='text/javascript' src="https://openpay.s3.amazonaws.com/openpay-data.v1.min.js"></script>
+	<script src="{% static "js/payment.js" %}"></script>
+{% endblock %}

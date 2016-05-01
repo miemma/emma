@@ -56,9 +56,12 @@ class Address(models.Model):
 
 class Client(models.Model):
     user = models.OneToOneField(User)
-    address = models.ForeignKey(Address)
+    address = models.ForeignKey(
+        Address,
+        blank=True,
+        null=True
+    )
 
     class Meta:
         verbose_name = 'Client'
         verbose_name_plural = 'Clients'
-

@@ -1,17 +1,94 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import redirect
-from django.utils.encoding import force_text
-from django.views.generic import FormView
-from django.views.generic.edit import FormMixin
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
+from django.views.generic import FormView, View
 
+import openpay
+
+from emma.apps.suscriptions.models import Suscription, History, Charge
+from emma.apps.users.models import Client
 from emma.core.mixins import RequestFormMixin, AuthRedirectMixin, \
     LoginRequiredMixin, NextUrlMixin
 
 from emma.apps.users.forms import ChangePasswordForm, LoginForm
+
+
+class AddCardView(View):
+    template_name = 'users/add_card.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
+        client = Client.objects.get(user=request.user)
+        try:
+            suscription = Suscription.objects.get(user=client)
+            customer = openpay.Customer.retrieve(suscription.id_customer)
+            card = customer.cards.create(
+                token_id=request.POST['token_id'],
+                device_session_id=request.POST['devsessionid']
+            )
+            openpay_charge = openpay.Charge.create(
+                source_id=card.id,
+                method="card",
+                amount=100,
+                currency="MXN",
+                description="Charge for Emma service",
+                customer=customer.id,
+                device_session_id=request.POST['devsessionid']
+            )
+            charge = Charge.objects.create(
+                suscription=suscription,
+                amount=openpay_charge.amount,
+                status=openpay_charge.status,
+                descripcion=openpay_charge.description
+            )
+            charge.save()
+        except Suscription.DoesNotExist:
+            customer = openpay.Customer.create(
+                name=request.user.get_full_name(),
+                email=request.user.email,
+                requires_account=False,
+                status='active',
+            )
+            card = customer.cards.create(
+                token_id=request.POST['token_id'],
+                device_session_id=request.POST['devsessionid']
+            )
+            suscription = Suscription(
+                user=client,
+                id_customer=customer.id,
+                status='active',
+                active=True
+            )
+            suscription.save()
+            history = History(
+                suscription=suscription,
+                movement="Suscription Created"
+            )
+            history.save()
+            openpay_charge = openpay.Charge.create(
+                source_id=card.id,
+                method="card",
+                amount=3600,
+                currency="MXN",
+                description="Charge for paid Emma service",
+                customer=customer.id,
+                device_session_id=request.POST['devsessionid']
+            )
+            charge = Charge.objects.create(
+                suscription=suscription,
+                amount=openpay_charge.amount,
+                status=openpay_charge.status,
+                descripcion=openpay_charge.description
+            )
+            charge.save()
+        return HttpResponse('Yeah')
 
 
 class ChangePasswordView(LoginRequiredMixin, RequestFormMixin, FormView):
