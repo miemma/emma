@@ -3,18 +3,18 @@
 {% load static from staticfiles  %}
 
 {% block content %}
-	<section class="addcard">
-		<h1 class="addcard-title">
+	<section class="pay">
+		<h1 class="pay-title">
       Paga tu servicio
     </h1>
 		<div class="row text-center">
       <div class="col-lg-5">
-        <form class="addcard-form" action="." method="post" id="pay-form">
+        <form class="pay-form" action="." method="post" id="pay-form">
           {% csrf_token %}
-					<div class="row text-center">
-		        <div class="col-lg-10">
+					<div class="row">
+		        <div class="col-lg-10 col-lg-offset-1">
 							{% for card in cards %}
-								<span class="join-input-label">
+								<span class="pay-input-label">
 	                <input id="{{ card.id }}" class="radio-check-button"
 	                       type="radio" value="{{ card.id }}"
 	                       name="customer-card">
@@ -30,27 +30,20 @@
 		        <div class="col-lg-10">
 			         <input type="text" autocomplete="off" name="service_ammount"
 			                placeholder="Monto a pagar (MXN)"
-			                class='emma-input addcard-form-input' />
+			                class='emma-input pay-form-input' />
 		        </div>
 	        </div>
-	        <div class="row text-center">
-						<div class="col-lg-10">
-							<div class="alert alert-danger addcard-alert" role="alert">
-								Algo a salido mal, intenta otra tarjeta o ingresa una nueva
-			        </div>
-						</div>
-					</div>
 	        <input type='hidden' name='devsessionid' id='devsessionid'>
           <div class="row text-center">
 	          <div class="col-xs-10 col-sm-8 col-md-5 col-lg-6">
 	            <a href="{% url 'users:add_card' %}"
-	               class="emma-btn emma-btn-dark addcard-btn">
+	               class="emma-btn emma-btn-dark pay-btn">
 		            Agregar otra tarjeta
 	            </a>
             </div>
             <div class="col-xs-10 col-sm-8 col-md-5 col-lg-3">
               <input type="submit" id="pay-button" value="Pagar"
-                     class="emma-btn emma-btn-dark addcard-btn" />
+                     class="emma-btn emma-btn-dark pay-btn" />
             </div>
           </div>
         </form>
