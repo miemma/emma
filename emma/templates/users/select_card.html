@@ -20,7 +20,7 @@
 	                       name="customer-card">
 	                <label class="radio-check-label"
 	                       for="{{ card.id }}">
-		                {{ card.card_number }} {{ card.brand }}
+		                {{ card.card_number }} {{ card.brand | upper }}
 	                </label>
 	              </span>
 							{% endfor %}
@@ -42,6 +42,12 @@
 					</div>
 	        <input type='hidden' name='devsessionid' id='devsessionid'>
           <div class="row text-center">
+	          <div class="col-xs-10 col-sm-8 col-md-5 col-lg-6">
+	            <a href="{% url 'users:add_card' %}"
+	               class="emma-btn emma-btn-dark addcard-btn">
+		            Agregar otra tarjeta
+	            </a>
+            </div>
             <div class="col-xs-10 col-sm-8 col-md-5 col-lg-3">
               <input type="submit" id="pay-button" value="Pagar"
                      class="emma-btn emma-btn-dark addcard-btn" />

@@ -52,7 +52,7 @@ class SelectCardView(View):
             descripcion=openpay_charge.description
         )
         charge.save()
-        return  HttpResponse('yeah')
+        return  redirect(reverse_lazy('landing:success_pay'))
 
 
 class AddCardView(View):
@@ -125,7 +125,7 @@ class AddCardView(View):
                 descripcion=openpay_charge.description
             )
             charge.save()
-        return HttpResponse('Yeah')
+            return redirect(reverse_lazy('landing:success_pay'))
 
 
 class ChangePasswordView(LoginRequiredMixin, RequestFormMixin, FormView):

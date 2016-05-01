@@ -37,6 +37,11 @@ class SuccessTemplateView(TemplateView):
     template_name = 'landing/success.html'
 
 
+class SuccessPayTemplateView(TemplateView):
+    template_name = 'landing/success_pay.html'
+
+
+
 class ContactEmailView(View):
     def post(self, request):
         email = request.POST.get('email')

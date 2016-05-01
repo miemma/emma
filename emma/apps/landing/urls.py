@@ -20,6 +20,10 @@ urlpatterns = [
     url(regex=r'^hecho',
         view=views.SuccessTemplateView.as_view(), name='success'),
 
+    url(regex=r'^pago-completado',
+        view=views.SuccessPayTemplateView.as_view(),
+        name='success_pay'),
+
     url(regex=r'^unete', view=views.JoinEmailView.as_view(), name='join'),
 
     url(regex=r'^agendar', view=views.DateEmailView.as_view(), name='date'),
