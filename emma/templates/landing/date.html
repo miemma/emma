@@ -40,16 +40,18 @@
         <form class="join-form" method="post" id="dateForm"
               action="{% url 'landing:date' %}">
 	        {% csrf_token %}
+	        {% if not user.is_authenticated %}
+	          <div class="row">
+	            <div class="col-lg-12">
+	              <input class="emma-input date-input" type="email" required
+	                     placeholder="Correo electrónico" name="email">
+	            </div>
+	          </div>
+          {% endif %}
           <div class="row">
             <div class="col-lg-12">
               <input class="emma-input date-input" type="text" required
                      placeholder="Nombre" name="name">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <input class="emma-input date-input" type="email" required
-                     placeholder="Correo electrónico" name="email">
             </div>
           </div>
           <div class="row">
