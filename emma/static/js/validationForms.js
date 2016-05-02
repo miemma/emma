@@ -11,6 +11,11 @@ $(document).ready(function () {
         $(element).removeClass(errorClass);
     }
   });
+  $('#pay-form').validate({
+    highlight: function(element, errorClass) {
+        $(element).removeClass(errorClass);
+    }
+  });
 
   $('#contactForm').validate({
     errorClass: "errorWhite",

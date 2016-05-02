@@ -29,7 +29,7 @@
           <div class="row text-center">
 		        <div class="col-lg-10">
 			         <input type="text" autocomplete="off" name="service_ammount"
-			                placeholder="Monto a pagar (MXN)"
+			                placeholder="Monto a pagar (MXN)" required
 			                class='emma-input pay-form-input' />
 		        </div>
 	        </div>
@@ -56,4 +56,8 @@
 	<script type="text/javascript" src="https://openpay.s3.amazonaws.com/openpay.v1.min.js"></script>
 	<script type='text/javascript' src="https://openpay.s3.amazonaws.com/openpay-data.v1.min.js"></script>
 	<script src="{% static "js/payment_2.js" %}"></script>
+	<script src="//cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js" ></script>
+	<script src="{% static 'js/validationForms.js' %}"></script>
+
+
 {% endblock %}
