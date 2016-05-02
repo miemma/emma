@@ -3,10 +3,13 @@
 
 from django import forms
 from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 
+from emma.apps.users.models import Client
 from emma.core import validators
 from emma.core.messages import error_messages
+from emma.core.utils import generate_random_username
 
 
 class ChangePasswordForm(forms.Form):
@@ -96,3 +99,65 @@ class LoginForm(forms.Form):
                     error_messages['inactive_account']
                 )
         return self.cleaned_data
+
+
+class SignupForm(forms.Form):
+    email = forms.EmailField(
+        widget=forms.EmailInput(
+            attrs={
+                'class': 'login-form-input emma-input',
+                'placeholder': 'Email'
+            }
+        ),
+    )
+    password_1 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'login-form-input emma-input',
+                'placeholder': 'Contraseña'
+            }
+        ),
+    )
+    password_2 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'login-form-input emma-input',
+                'placeholder': 'Confirmar Contraseña'
+            }
+        ),
+    )
+
+    def __init__(self, *args, **kwargs):
+        self.user_cache = None
+        super(SignupForm, self).__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].required = True
+            self.fields[field].error_messages = error_messages
+            self.fields[field].validators = [validators.eval_blank]
+
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        return validators.eval_unique(email, User, 'email', 'email')
+
+    def clean_password_2(self):
+        password_1 = self.cleaned_data.get('password_1')
+        password_2 = self.cleaned_data.get('password_2')
+        return validators.eval_matching(password_1, password_2)
+
+    def save(self):
+        cleaned_data = super(SignupForm, self).clean()
+
+        user = User.objects.create_user(
+            username=generate_random_username(),
+            email=cleaned_data.get('email'),
+            password=cleaned_data.get('password_2'),
+        )
+
+        client = Client(user=user, change_password=True)
+        client.save()
+
+        self.user_cache = authenticate(
+            username=cleaned_data.get('email'),
+            password=cleaned_data.get("password_2")
+        )

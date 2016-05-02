@@ -4,6 +4,8 @@
 from __future__ import absolute_import, unicode_literals
 
 from django import forms
+from django.contrib.auth import authenticate
+from django.utils.text import slugify
 
 from .messages import error_messages
 

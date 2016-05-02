@@ -8,7 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 error_messages = {
     'blank': _('El campo no puede estar en blanco'),
     'required': _('Este campo es requerido'),
-    'unique': _("Este contenido ya esta registrado"),
+    'unique': _("Este registro ya existe"),
     'mismatch': _('La información no coincide'),
     'invalid_login': _('El usuario o la contraseña son incorrectas'),
     'inactive_account': _('Esta cuenta esta inactiva'),

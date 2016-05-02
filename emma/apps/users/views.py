@@ -14,7 +14,7 @@ from emma.apps.users.models import Client
 from emma.core.mixins import RequestFormMixin, AuthRedirectMixin, \
     LoginRequiredMixin, NextUrlMixin, ClientRequiredMixin
 
-from emma.apps.users.forms import ChangePasswordForm, LoginForm
+from emma.apps.users.forms import ChangePasswordForm, LoginForm, SignupForm
 
 
 class SelectCardView(ClientRequiredMixin, View):
@@ -178,3 +178,14 @@ class LoginView(NextUrlMixin, AuthRedirectMixin, FormView):
 def logout_view(request):
     logout(request)
     return redirect(reverse_lazy('landing:home'))
+
+
+class SignupView(FormView):
+    template_name = 'users/signup.html'
+    form_class = SignupForm
+    success_url = reverse_lazy('users:select_card')
+
+    def form_valid(self, form):
+        form.save()
+        login(self.request, form.user_cache)
+        return super(SignupView, self).form_valid(form)

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+
+{% block content %}
+  <section class="login">
+    <h1 class="login-title">
+      Registrate
+    </h1>
+	  <div class="row text-center">
+		  <div class="col-md-6">
+				{% if form.non_field_errors %}
+					<div class="alert alert-danger passwd-alert" role="alert">
+						{{ form.non_field_errors.as_text|cut:"*" }}
+					</div>
+				{% endif %}
+			</div>
+	  </div>
+    <div class="row text-center">
+      <div class="col-md-6">
+        <form class="login-form" action="." method="post">
+          {% csrf_token %}
+	        {{ form.email }}
+	        {% if form.email.errors %}
+            <div class="alert alert-danger passwd-alert" role="alert">
+              {{ form.email.errors.as_text|cut:"*" }}
+            </div>
+          {% endif %}
+          {{ form.password_1}}
+	        {% if form.password_1.errors %}
+            <div class="alert alert-danger passwd-alert" role="alert">
+              {{ form.password_1.errors.as_text|cut:"*" }}
+            </div>
+          {% endif %}
+          {{ form.password_2}}
+	        {% if form.password_2.errors %}
+            <div class="alert alert-danger passwd-alert" role="alert">
+              {{ form.password_2.errors.as_text|cut:"*" }}
+            </div>
+          {% endif %}
+          <div class="row text-center">
+            <div class="col-xs-10 col-sm-8 col-md-5 col-lg-5">
+              <button class="emma-btn emma-btn-dark login-btn">
+                Registrar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+{% endblock content %}
