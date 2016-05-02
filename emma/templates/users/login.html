@@ -51,6 +51,13 @@
               {{ form.password.errors.as_text|cut:"*" }}
             </div>
           {% endif %}
+        <div class="row text-center">
+            <div class="col-xs-10 col-sm-8 col-md-5 col-lg-10">
+              <a class="login-link" href="{% url 'users:signup' %}">
+	              ¿Aun tienes una cuenta? Registrate
+              </a>
+            </div>
+          </div>
           <div class="row text-center">
             <div class="col-xs-10 col-sm-8 col-md-5 col-lg-5">
               <button class="emma-btn emma-btn-dark login-btn">
