@@ -1,4 +1,15 @@
 $(document).ready(function () {
+  
+  $('#login-form').validate({
+    rules: {
+      username: {
+        email: true
+      }
+    },
+    highlight: function(element, errorClass) {
+        $(element).removeClass(errorClass);
+    }
+  });
 
   $('#dateForm').validate({
     rules: {
@@ -11,6 +22,7 @@ $(document).ready(function () {
         $(element).removeClass(errorClass);
     }
   });
+  
   $('#pay-form').validate({
     highlight: function(element, errorClass) {
         $(element).removeClass(errorClass);

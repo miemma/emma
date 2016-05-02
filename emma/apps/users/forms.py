@@ -62,6 +62,7 @@ class LoginForm(forms.Form):
             attrs={
                 'class': 'login-form-input emma-input',
                 'placeholder': 'Correo',
+                'required': 'true',
             }
         ),
     )
@@ -72,6 +73,7 @@ class LoginForm(forms.Form):
             attrs={
                 'class': 'login-form-input emma-input',
                 'placeholder': 'Contraseña',
+                'required': 'true',
             }
         ),
     )
