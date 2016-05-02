@@ -8,6 +8,8 @@ from django.shortcuts import redirect
 from django.core.urlresolvers import reverse_lazy
 from django.utils.decorators import method_decorator
 
+from emma.apps.users.models import Client
+
 
 class AuthRedirectMixin(object):
     """
@@ -53,3 +55,14 @@ class NextUrlMixin(object):
         else:
             url = self.success_url
         return url
+
+
+class ClientRequiredMixin(object):
+    @method_decorator(login_required(login_url=reverse_lazy('users:login')))
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            Client.objects.get(user=request.user)
+            return super(ClientRequiredMixin, self).dispatch(request, *args,
+                                                        **kwargs)
+        except Client.DoesNotExist:
+            return redirect('/')

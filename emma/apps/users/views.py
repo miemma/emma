@@ -13,12 +13,12 @@ import openpay
 from emma.apps.suscriptions.models import Suscription, History, Charge
 from emma.apps.users.models import Client
 from emma.core.mixins import RequestFormMixin, AuthRedirectMixin, \
-    LoginRequiredMixin, NextUrlMixin
+    LoginRequiredMixin, NextUrlMixin, ClientRequiredMixin
 
 from emma.apps.users.forms import ChangePasswordForm, LoginForm
 
 
-class SelectCardView(View):
+class SelectCardView(ClientRequiredMixin, View):
     template_name = 'users/select_card.html'
 
     def get(self, request):
@@ -55,7 +55,7 @@ class SelectCardView(View):
         return  redirect(reverse_lazy('landing:success_pay'))
 
 
-class AddCardView(View):
+class AddCardView(ClientRequiredMixin, View):
     template_name = 'users/add_card.html'
 
     def get(self, request):
