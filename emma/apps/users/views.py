@@ -183,9 +183,18 @@ def logout_view(request):
 class SignupView(FormView):
     template_name = 'users/signup.html'
     form_class = SignupForm
-    success_url = reverse_lazy('users:select_card')
+    success_url = reverse_lazy('landing:home')
 
     def form_valid(self, form):
         form.save()
         login(self.request, form.user_cache)
         return super(SignupView, self).form_valid(form)
+
+    def get_success_url(self):
+        if 'submit_btn_1' in self.request.POST:
+            url = reverse_lazy('landing:home')
+        elif 'submit_btn_2' in self.request.POST:
+            url = reverse_lazy('landing:date')
+        else:
+            url = self.success_url
+        return url
