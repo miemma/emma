@@ -4,7 +4,6 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
-from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.views.generic import FormView, View
 
@@ -23,14 +22,17 @@ class SelectCardView(ClientRequiredMixin, View):
 
     def get(self, request):
         client = Client.objects.get(user=request.user)
-        suscription = Suscription.objects.get(user=client)
-        customer = openpay.Customer.retrieve(suscription.id_customer)
-        cards = customer.cards.all()
+        try:
+            suscription = Suscription.objects.get(user=client)
+            customer = openpay.Customer.retrieve(suscription.id_customer)
+            cards = customer.cards.all()
 
-        ctx = {
-            'cards': cards.data
-        }
-        return render(request, self.template_name, ctx)
+            ctx = {
+                'cards': cards.data
+            }
+            return render(request, self.template_name, ctx)
+        except Suscription.DoesNotExist:
+            return redirect(reverse_lazy('users:add_card'))
 
     def post(self, request):
         suscription = Suscription.objects.get(user=request.user.client)
@@ -52,6 +54,11 @@ class SelectCardView(ClientRequiredMixin, View):
             descripcion=openpay_charge.description
         )
         charge.save()
+        history = History(
+            suscription=suscription,
+            movement="Cargo por servicio de Emma"
+        )
+        history.save()
         return  redirect(reverse_lazy('landing:success_pay'))
 
 
@@ -73,7 +80,7 @@ class AddCardView(ClientRequiredMixin, View):
             openpay_charge = openpay.Charge.create(
                 source_id=card.id,
                 method="card",
-                amount=100,
+                amount=request.POST['service_ammount'],
                 currency="MXN",
                 description="Charge for Emma service",
                 customer=customer.id,
@@ -86,6 +93,11 @@ class AddCardView(ClientRequiredMixin, View):
                 descripcion=openpay_charge.description
             )
             charge.save()
+            history = History(
+                suscription=suscription,
+                movement="Cargo por servicio de Emma"
+            )
+            history.save()
         except Suscription.DoesNotExist:
             customer = openpay.Customer.create(
                 name=request.user.get_full_name(),
@@ -106,13 +118,13 @@ class AddCardView(ClientRequiredMixin, View):
             suscription.save()
             history = History(
                 suscription=suscription,
-                movement="Suscription Created"
+                movement="Suscripcion Creada"
             )
             history.save()
             openpay_charge = openpay.Charge.create(
                 source_id=card.id,
                 method="card",
-                amount=3600,
+                amount=request.POST['service_ammount'],
                 currency="MXN",
                 description="Charge for paid Emma service",
                 customer=customer.id,
@@ -125,13 +137,18 @@ class AddCardView(ClientRequiredMixin, View):
                 descripcion=openpay_charge.description
             )
             charge.save()
+            history = History(
+                suscription=suscription,
+                movement="Cargo por servicio de Emma"
+            )
+            history.save()
             return redirect(reverse_lazy('landing:success_pay'))
 
 
 class ChangePasswordView(LoginRequiredMixin, RequestFormMixin, FormView):
     template_name = 'users/change_password.html'
     form_class = ChangePasswordForm
-    success_url = reverse_lazy('landing:home')
+    success_url = reverse_lazy('users:select_card')
 
     def form_valid(self, form):
         form.save()
@@ -141,7 +158,7 @@ class ChangePasswordView(LoginRequiredMixin, RequestFormMixin, FormView):
 class LoginView(NextUrlMixin, AuthRedirectMixin, FormView):
     template_name = 'users/login.html'
     form_class = LoginForm
-    success_url = reverse_lazy('landing:home')
+    success_url = reverse_lazy('users:select_card')
 
     def form_valid(self, form):
         login(self.request, form.user_cache)
