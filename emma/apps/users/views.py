@@ -152,6 +152,9 @@ class ChangePasswordView(LoginRequiredMixin, RequestFormMixin, FormView):
 
     def form_valid(self, form):
         form.save()
+        client = self.request.user.client
+        client.change_password = True
+        client.save()
         return super(ChangePasswordView, self).form_valid(form)
 
 
@@ -162,7 +165,10 @@ class LoginView(NextUrlMixin, AuthRedirectMixin, FormView):
 
     def form_valid(self, form):
         login(self.request, form.user_cache)
-        return super(LoginView, self).form_valid(form)
+        if not form.user_cache.client.change_password:
+            return redirect(reverse_lazy('users:change_password'))
+        else:
+            return super(LoginView, self).form_valid(form)
 
     def form_invalid(self, form):
         return self.render_to_response(self.get_context_data())
