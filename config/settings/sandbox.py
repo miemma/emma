@@ -7,7 +7,9 @@ Production settings
 """
 
 from .base import *
+
 import dj_database_url
+import openpay
 
 # DEBUG
 # -----------------------------------------------------------------------------
@@ -55,3 +57,8 @@ MEDIA_URL = '/media/'
 # EMAIL CONFIGURATION
 # -----------------------------------------------------------------------------
 DEFAULT_EMAIL_TO = "devsemma@gmail.com"
+
+openpay.api_key = env("OPENPAY_API_KEY")
+openpay.verify_ssl_certs = env("OPENPAY_VERIFY_SSL")
+openpay.merchant_id = env("OPENPAY_MERCHANT_ID")
+openpay.production = env("OPENPAY_PRODUCTION")
