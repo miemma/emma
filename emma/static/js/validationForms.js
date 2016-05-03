@@ -11,7 +11,7 @@ $(document).ready(function () {
       },
       password_2: {
         required:true,
-        equalTo: 'password_1'
+        equalTo: "#id_password_1"
       }
     },
 
