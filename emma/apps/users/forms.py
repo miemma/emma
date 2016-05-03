@@ -61,7 +61,7 @@ class LoginForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'login-form-input emma-input',
-                'placeholder': 'Correo',
+                'placeholder': 'Correo electrónico',
                 'required': 'true',
             }
         ),
@@ -124,7 +124,7 @@ class SignupForm(forms.Form):
         widget=forms.EmailInput(
             attrs={
                 'class': 'login-form-input emma-input',
-                'placeholder': 'Email'
+                'placeholder': 'Correo electrónico',
             }
         ),
     )
