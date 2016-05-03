@@ -8,9 +8,9 @@ from . import models
 
 @admin.register(models.ScheduledCall)
 class ScheduledCallAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'email', 'date_time', 'number')
 
 
 @admin.register(models.PotentialClient)
 class PotentialClientAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'email', 'source')

@@ -29,6 +29,9 @@ class ScheduledCall(models.Model):
         verbose_name = 'Scheduled call'
         verbose_name_plural = 'Scheduled calls'
 
+    def __unicode__(self):
+        return ('%s - %s') % (self.name, self.email)
+
 
 class PotentialClient(models.Model):
     name = models.CharField(
@@ -50,3 +53,6 @@ class PotentialClient(models.Model):
     class Meta:
         verbose_name = 'Potential client'
         verbose_name_plural = 'Potential clients'
+
+    def __unicode__(self):
+        return ('%s - %s') % (self.name, self.email)
