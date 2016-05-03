@@ -26,10 +26,18 @@ class Adult(models.Model):
         blank=False,
         null=False
     )
-    address = models.ForeignKey(Address)
+    address = models.ForeignKey(
+        Address,
+        blank=True,
+        null=True,
+
+    )
     responsable = models.ForeignKey(Client)
-    is_candidate = models.BooleanField()
+    is_candidate = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Adult'
         verbose_name_plural = 'Adults'
+
+    def __unicode__(self):
+        return ('%s %s') % (self.name, self.last_name)

@@ -8,4 +8,4 @@ from . import models
 
 @admin.register(models.Adult)
 class AdultAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'last_name', 'responsable')
