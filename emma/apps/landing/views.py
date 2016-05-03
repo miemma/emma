@@ -149,9 +149,10 @@ class DateEmailView(View):
     def post(self, request):
         if request.user.is_authenticated():
             email = request.user.email
+            name = request.user.get_full_name()
         else:
             email = request.POST.get('email')
-        name = request.POST.get('name')
+            name = request.POST.get('name')
         number = request.POST.get('number')
         minute = request.POST.get('minute')
         hour = request.POST.get('hour')
