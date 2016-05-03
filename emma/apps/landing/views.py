@@ -10,6 +10,7 @@ from django.shortcuts import redirect, render
 from django.views.generic import View, TemplateView
 from django.conf import settings
 
+from emma.apps.customers.models import PotentialClient, ScheduledCall
 from .models import Customer
 
 
@@ -63,7 +64,7 @@ class ContactEmailView(View):
         )
         msg.send()
 
-        customer = Customer (
+        customer = PotentialClient (
             name=sender,
             email=email,
             source='Contacto'
@@ -127,7 +128,7 @@ class JoinEmailView(View):
 
         msg.send()
 
-        customer = Customer(
+        customer = PotentialClient(
             name=('%s %s') % (name, last_name),
             email=email,
             source='Unete a emma'
@@ -177,7 +178,17 @@ class DateEmailView(View):
 
         msg.send()
 
-        customer = Customer(
+        call = ScheduledCall(
+            name=name,
+            email=email,
+            date_time="%s %s:%s" %(date, hour, minute),
+            number=number
+
+        )
+
+        call.save()
+
+        customer = PotentialClient(
             name=name,
             email=email,
             source='Agendar una Cita'

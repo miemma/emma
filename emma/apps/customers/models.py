@@ -15,7 +15,8 @@ class ScheduledCall(models.Model):
         blank=False,
         null=False,
     )
-    date_time = models.DateTimeField(
+    date_time = models.CharField(
+        max_length=20,
         blank=False,
         null=False,
     )
