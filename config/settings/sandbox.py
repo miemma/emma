@@ -58,7 +58,7 @@ MEDIA_URL = '/media/'
 # -----------------------------------------------------------------------------
 DEFAULT_EMAIL_TO = "devsemma@gmail.com"
 
-openpay.api_key = env("OPENPAY_API_KEY")
-openpay.verify_ssl_certs = env("OPENPAY_VERIFY_SSL")
-openpay.merchant_id = env("OPENPAY_MERCHANT_ID")
-openpay.production = env("OPENPAY_PRODUCTION")
+openpay.api_key = "sk_2ed3e30960384907a0c73444ce6ea1a4"
+openpay.verify_ssl_certs = False
+openpay.merchant_id = "mg0kzdwsiduimlfaudun"
+openpay.production = False

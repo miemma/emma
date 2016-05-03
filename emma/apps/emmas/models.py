@@ -35,11 +35,18 @@ class Emma(models.Model):
         blank=False,
     )
 
-    has_facebook = models.BooleanField()
+    has_facebook = models.BooleanField(
+        default=False
+    )
 
-    has_smathphone = models.BooleanField()
+    has_smathphone = models.BooleanField(
+        default=False
+    )
 
     class Meta:
         verbose_name = 'Emma'
         verbose_name_plural = 'Emmas'
+
+    def __unicode__(self):
+        return ('%s - Emma') % self.user.get_full_name()
 
