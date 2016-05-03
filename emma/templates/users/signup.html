@@ -2,49 +2,49 @@
 {% load static from staticfiles %}
 
 {% block content %}
-  <section class="login">
-    <h1 class="login-title">
+  <section class="signup">
+    <h1 class="signup-title">
       Registrate
     </h1>
 	  <div class="row text-center">
-		  <div class="col-md-6">
+		  <div class="col-lg-5 col-md-6 col-sm-8 col-xs-10">
 				{% if form.non_field_errors %}
-					<div class="alert alert-danger passwd-alert" role="alert">
+					<div class="alert alert-danger signup-alert" role="alert">
 						{{ form.non_field_errors.as_text|cut:"*" }}
 					</div>
 				{% endif %}
 			</div>
 	  </div>
     <div class="row text-center">
-      <div class="col-md-6">
-        <form class="login-form" action="." method="post">
+      <div class="col-lg-5 col-md-6 col-sm-8 col-xs-10">
+        <form class="signup-form" action="." method="post" id="signup-form">
           {% csrf_token %}
 	        {{ form.email }}
 	        {% if form.email.errors %}
-            <div class="alert alert-danger passwd-alert" role="alert">
+            <div class="alert alert-danger signup-alert" role="alert">
               {{ form.email.errors.as_text|cut:"*" }}
             </div>
           {% endif %}
           {{ form.password_1}}
 	        {% if form.password_1.errors %}
-            <div class="alert alert-danger passwd-alert" role="alert">
+            <div class="alert alert-danger signup-alert" role="alert">
               {{ form.password_1.errors.as_text|cut:"*" }}
             </div>
           {% endif %}
           {{ form.password_2}}
 	        {% if form.password_2.errors %}
-            <div class="alert alert-danger passwd-alert" role="alert">
+            <div class="alert alert-danger signup-alert" role="alert">
               {{ form.password_2.errors.as_text|cut:"*" }}
             </div>
           {% endif %}
           <div class="row text-center">
-            <div class="col-xs-10 col-sm-8 col-md-5 col-lg-5">
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
 	            <input type="submit" value="Guardar datos" name="submit_btn_1"
-	                   class="emma-btn emma-btn-dark login-btn">
+	                   class="emma-btn-dark signup-btn">
             </div>
-	          <div class="col-xs-10 col-sm-8 col-md-5 col-lg-5">
+	          <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
 	            <input type="submit" value="Agendar una cita" name="submit_btn_2"
-	                   class="emma-btn emma-btn-dark login-btn">
+	                   class="emma-btn-dark signup-btn-2">
             </div>
           </div>
         </form>

@@ -1,4 +1,24 @@
 $(document).ready(function () {
+
+  $('#signup-form').validate({
+    rules: {
+      email: {
+        email: true,
+        required:true
+      },
+      password_1: {
+        required:true
+      },
+      password_2: {
+        required:true,
+        equalTo: 'password_1'
+      }
+    },
+
+    highlight: function(element, errorClass) {
+        $(element).removeClass(errorClass);
+    }
+  });
   
   $('#login-form').validate({
     rules: {
@@ -70,7 +90,7 @@ $(document).ready(function () {
     number: "Ingresa un numero valido",
     digits: "Please enter only digits.",
     creditcard: "Please enter a valid credit card number.",
-    equalTo: "Please enter the same value again.",
+    equalTo: "Los valores deben coincidir.",
     accept: "Please enter a value with a valid extension.",
     maxlength: jQuery.validator.format("No ingreses mas de {0} caracteres."),
     minlength: jQuery.validator.format("Ingresa al menos {0} caracter."),
