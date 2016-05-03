@@ -19,6 +19,18 @@
       <div class="col-lg-5 col-md-6 col-sm-8 col-xs-10">
         <form class="signup-form" action="." method="post" id="signup-form">
           {% csrf_token %}
+	        {{ form.name }}
+	        {% if form.name.errors %}
+            <div class="alert alert-danger signup-alert" role="alert">
+              {{ form.name.errors.as_text|cut:"*" }}
+            </div>
+          {% endif %}
+          {{ form.last_name }}
+	        {% if form.last_name.errors %}
+            <div class="alert alert-danger signup-alert" role="alert">
+              {{ form.last_name.errors.as_text|cut:"*" }}
+            </div>
+          {% endif %}
 	        {{ form.email }}
 	        {% if form.email.errors %}
             <div class="alert alert-danger signup-alert" role="alert">
@@ -37,6 +49,16 @@
               {{ form.password_2.errors.as_text|cut:"*" }}
             </div>
           {% endif %}
+        <div class="row text-center">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <a class="login-link" href="{% url 'users:login' %}">
+	              ¿Ya tienes una cuenta?
+	              <span class="color-yellow">
+                  Inicia sesión
+	              </span>
+              </a>
+            </div>
+          </div>
           <div class="row text-center">
             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
 	            <input type="submit" value="Guardar datos" name="submit_btn_1"

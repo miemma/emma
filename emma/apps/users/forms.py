@@ -104,6 +104,22 @@ class LoginForm(forms.Form):
 
 
 class SignupForm(forms.Form):
+    name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'login-form-input emma-input',
+                'placeholder': 'Nombre'
+            }
+        ),
+    )
+    last_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'login-form-input emma-input',
+                'placeholder': 'Apellidos'
+            }
+        ),
+    )
     email = forms.EmailField(
         widget=forms.EmailInput(
             attrs={
@@ -155,6 +171,10 @@ class SignupForm(forms.Form):
             email=cleaned_data.get('email'),
             password=cleaned_data.get('password_2'),
         )
+        user.first_name = cleaned_data.get('name')
+        user.last_name = cleaned_data.get('last_name')
+
+        user.save()
 
         client = Client(user=user, change_password=True)
         client.save()
