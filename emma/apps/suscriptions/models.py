@@ -54,7 +54,8 @@ class Charge(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     amount = models.FloatField(
         blank=False,
-        null=False
+        null=False,
+        max_length=100000
     )
     status = models.CharField(
         max_length=25,
