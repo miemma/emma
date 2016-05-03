@@ -1,0 +1,75 @@
+.pay
+  background-color $light_gray
+  overflow-y hidden
+  overflow-x hidden
+
+  &-radio-check-button
+    color transparent
+    opacity 0
+
+  &-radio-check-label
+    float left
+    margin-left 20px
+
+  &-radio-check-label::before
+    background white
+    border solid 2px $light_gray
+    border-radius 3px
+    box-sizing border-box !important
+    color green
+    content ' '
+    display inline-block
+    line-height 18px
+    margin 1px 10px 0 0
+    text-align center
+    vertical-align top
+    width 18px
+    height 18px
+
+  &-radio-check-button:focus + .pay-radio-check-label::before
+    box-shadow 0 0 5px #1481D0
+
+  &-radio-check-button:checked + .pay-radio-check-label::before
+    border-color green
+    content '\2714'
+
+  &-input-label
+    font-family "Avenir LT Std Roman"
+    font-size 19px
+    color #808080
+    float left
+    width 100%
+
+  &-btn
+    font-size 21px
+    display inline-block
+    padding 6px 21px
+    margin 3em auto 6.5em auto
+
+  &-btn-2
+    font-size 21px
+    display inline-block
+    padding 6px 21px
+    margin 3em auto 6.5em auto
+
+  &-title
+    font-family "Avenir LT Std Roman"
+    font-size 35px
+    font-weight bold
+    text-align center
+    color $dark_gray
+    margin 6em 0 2em 0
+
+  &-form
+    &-desc
+      font-family "Avenir LT Std Heavy"
+      font-size 16px
+      color $dark_gray
+      margin 1.5em 0 0.5em 0
+      text-align left
+    &-input
+      font-size 19px
+      padding 0.7em
+      width 100%
+      margin 0.5em 0
+      display inline-block
