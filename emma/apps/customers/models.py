@@ -20,7 +20,7 @@ class ScheduledCall(models.Model):
         blank=False,
         null=False,
     )
-    number = models.PositiveIntegerField(
+    number = models.BigIntegerField(
         blank=False,
         null=False
     )
