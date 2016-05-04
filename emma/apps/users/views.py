@@ -22,17 +22,20 @@ class SelectCardView(ClientRequiredMixin, View):
 
     def get(self, request):
         client = Client.objects.get(user=request.user)
-        try:
-            suscription = Suscription.objects.get(user=client)
-            customer = openpay.Customer.retrieve(suscription.id_customer)
-            cards = customer.cards.all()
+        if client.active_client:
+            try:
+                suscription = Suscription.objects.get(user=client)
+                customer = openpay.Customer.retrieve(suscription.id_customer)
+                cards = customer.cards.all()
 
-            ctx = {
-                'cards': cards.data
-            }
-            return render(request, self.template_name, ctx)
-        except Suscription.DoesNotExist:
-            return redirect(reverse_lazy('users:add_card'))
+                ctx = {
+                    'cards': cards.data
+                }
+                return render(request, self.template_name, ctx)
+            except Suscription.DoesNotExist:
+                return redirect(reverse_lazy('users:add_card'))
+        else:
+            return redirect(reverse_lazy('landing:date'))
 
     def post(self, request):
         suscription = Suscription.objects.get(user=request.user.client)
@@ -66,7 +69,12 @@ class AddCardView(ClientRequiredMixin, View):
     template_name = 'users/add_card.html'
 
     def get(self, request):
-        return render(request, self.template_name)
+        client = self.request.user.client
+        if client.active_client:
+            return render(request, self.template_name)
+        else:
+            return redirect(reverse_lazy('landing:date'))
+
 
     def post(self, request):
         client = Client.objects.get(user=request.user)

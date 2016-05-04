@@ -62,6 +62,7 @@ class Client(models.Model):
         null=True
     )
     change_password = models.BooleanField(default=False)
+    active_client = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Client'
