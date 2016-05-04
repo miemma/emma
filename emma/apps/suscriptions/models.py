@@ -36,7 +36,7 @@ class History(models.Model):
     )
     date = models.DateTimeField(auto_now_add=True)
     movement = models.CharField(
-        max_length=25,
+        max_length=200,
         blank=False,
         null=False
     )
