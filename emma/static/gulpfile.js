@@ -19,7 +19,7 @@ gulp.task('build:css', function () {
       use: nib(),
       'include css': true
     }))
-    .pipe(nanoCSS())
+    //.pipe(nanoCSS())
     .pipe(gulp.dest(config.styles.output));
 })
 
