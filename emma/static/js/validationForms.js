@@ -12,6 +12,12 @@ $(document).ready(function () {
       password_2: {
         required:true,
         equalTo: "#id_password_1"
+      },
+      name: {
+        required:true
+      },
+      last_name: {
+        required:true
       }
     },
 
