@@ -142,7 +142,7 @@ class AddCardView(ClientRequiredMixin, View):
                 movement="Cargo por servicio de Emma"
             )
             history.save()
-            return redirect(reverse_lazy('landing:success_pay'))
+        return redirect(reverse_lazy('landing:success_pay'))
 
 
 class ChangePasswordView(LoginRequiredMixin, RequestFormMixin, FormView):
