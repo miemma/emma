@@ -258,9 +258,15 @@
         </div>
         <div class="row text-center how-detail-row-btn">
           <div class="col-xs-10 col-sm-5 col-md-4 col-lg-5">
-            <a href="{% url 'landing:date' %}" class="emma-btn emma-btn-dark how-detail-btn">
-              Empezar ahora
-            </a>
+	          {% if request.user.client.active_client %}
+					    <a href="{% url 'users:select_card' %}" class="emma-btn-dark how-detail-btn">
+				        Pagar
+				      </a>
+				    {% else %}
+					    <a href="{% url 'landing:date' %}" class="emma-btn-dark how-detail-btn">
+				        Empieza ahora
+				      </a>
+				    {% endif %}
           </div>
         </div>
       </div>

@@ -37,9 +37,15 @@
 	  </div>
 	  <div class="row text-center info-1-row-btn">
 	    <div class="col-xs-10 col-sm-5 col-md-4 col-lg-3">
-	      <a href="{% url 'landing:date' %}" class="emma-btn-dark info-1-btn">
-	        Empieza ahora
-	      </a>
+		    {% if request.user.client.active_client %}
+			    <a href="{% url 'users:select_card' %}" class="emma-btn-dark info-1-btn">
+		        Pagar
+		      </a>
+		    {% else %}
+			    <a href="{% url 'landing:date' %}" class="emma-btn-dark info-1-btn">
+		        Empieza ahora
+		      </a>
+		    {% endif %}
 	    </div>
 	  </div>
 	</section>
@@ -377,9 +383,15 @@
 	      </ul>
 	      <div class="row text-center padding-top-10 margin-bottom-50">
 	        <div class="col-xs-9 col-sm-4 col-md-4 col-lg-4">
-	          <a href="{% url 'landing:date' %}" class="emma-btn emma-btn-light whois-btn">
-	            Empezar ahora
-	          </a>
+		        {% if request.user.client.active_client %}
+					    <a href="{% url 'users:select_card' %}" class="emma-btn-dark whois-btn">
+				        Pagar
+				      </a>
+				    {% else %}
+					    <a href="{% url 'landing:date' %}" class="emma-btn-dark whois-btn">
+				        Empieza ahora
+				      </a>
+				    {% endif %}
 	        </div>
 	      </div>
 	    </div>
