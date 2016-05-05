@@ -46,7 +46,7 @@ class SelectCardView(ClientRequiredMixin, View):
             method="card",
             amount=request.POST['service_ammount'],
             currency="MXN",
-            description="Charge for Emma service",
+            description="Cargo por servicio de emma con tarjeta actual",
             customer=customer.id,
             device_session_id=request.POST['devsessionid']
         )
@@ -100,7 +100,7 @@ class AddCardView(ClientRequiredMixin, View):
                 method="card",
                 amount=request.POST['service_ammount'],
                 currency="MXN",
-                description="Charge for Emma service",
+                description="Cargo por servicio de emma con nueva tarjeta",
                 customer=customer.id,
                 device_session_id=request.POST['devsessionid']
             )
@@ -144,7 +144,7 @@ class AddCardView(ClientRequiredMixin, View):
                 method="card",
                 amount=request.POST['service_ammount'],
                 currency="MXN",
-                description="Charge for paid Emma service",
+                description="Cargo por servicio de emma con nueva tarjeta",
                 customer=customer.id,
                 device_session_id=request.POST['devsessionid']
             )
