@@ -68,9 +68,17 @@
 					</div>
 	        <input type='hidden' name='devsessionid' id='devsessionid'>
           <div class="row text-center">
-            <div class="col-xs-10 col-sm-8 col-md-5 col-lg-3">
+	          {% if has_suscription %}
+	            <div class="col-xs-10 col-sm-5 col-md-5 col-lg-3">
+		            <a href="{% url 'users:select_card' %}"
+	                 class="emma-btn-dark addcard-btn">
+			            Volver
+		            </a>
+	            </div>
+            {% endif %}
+	          <div class="col-xs-10 col-sm-5 col-md-5 col-lg-3">
               <input type="submit" id="pay-button" value="Pagar"
-                     class="emma-btn-dark addcard-btn" />
+                     class="emma-btn-dark addcard-btn-2" />
             </div>
           </div>
         </form>

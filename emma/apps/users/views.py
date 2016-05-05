@@ -70,8 +70,18 @@ class AddCardView(ClientRequiredMixin, View):
 
     def get(self, request):
         client = self.request.user.client
+        try:
+            Suscription.objects.get(user=client)
+            has_suscription = True
+        except Suscription.DoesNotExist:
+            has_suscription = False
+
+        ctx = {
+            'has_suscription': has_suscription
+        }
+
         if client.active_client:
-            return render(request, self.template_name)
+            return render(request, self.template_name, ctx)
         else:
             return redirect(reverse_lazy('landing:date'))
 
