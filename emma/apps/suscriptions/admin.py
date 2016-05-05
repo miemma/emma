@@ -8,14 +8,14 @@ from . import models
 
 @admin.register(models.Suscription)
 class SuscriptionAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('user', 'date', 'id_customer', 'status', 'active')
 
 
 @admin.register(models.History)
 class HistoryAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('suscription', 'date', 'movement')
 
 
 @admin.register(models.Charge)
 class ChargeAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('suscription', 'date', 'amount', 'status')

@@ -22,6 +22,9 @@ class Service(models.Model):
         verbose_name = 'Service'
         verbose_name_plural = 'Services'
 
+    def __unicode__(self):
+        return "%s - %s" % (self.name, self.price)
+
 
 class Workshop(models.Model):
     service = models.ForeignKey(Service)
@@ -34,6 +37,9 @@ class Workshop(models.Model):
     class Meta:
         verbose_name = 'Workshop'
         verbose_name_plural = 'Workshops'
+
+    def __unicode__(self):
+        return "%s - %s" % (self.service.name, self.name)
 
 
 class HiredService(models.Model):

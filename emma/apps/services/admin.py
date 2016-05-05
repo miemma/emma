@@ -8,12 +8,12 @@ from . import models
 
 @admin.register(models.Service)
 class ServiceAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'price')
 
 
 @admin.register(models.Workshop)
 class WorkshopAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('service', 'name')
 
 
 @admin.register(models.HiredService)

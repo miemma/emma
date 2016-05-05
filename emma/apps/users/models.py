@@ -67,3 +67,6 @@ class Client(models.Model):
     class Meta:
         verbose_name = 'Client'
         verbose_name_plural = 'Clients'
+
+    def __unicode__(self):
+        return self.user.get_full_name()

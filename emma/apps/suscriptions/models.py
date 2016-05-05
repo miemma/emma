@@ -28,6 +28,9 @@ class Suscription(models.Model):
         verbose_name = 'Suscription'
         verbose_name_plural = 'Suscriptions'
 
+    def __unicode__(self):
+        return "%s - %s" % (self.user, self.status)
+
 
 class History(models.Model):
     suscription = models.ForeignKey(
@@ -45,6 +48,8 @@ class History(models.Model):
         verbose_name = 'History'
         verbose_name_plural = 'Histories'
 
+    def __unicode__(self):
+        return "%s - %s" % (self.suscription, self.movement)
 
 class Charge(models.Model):
     suscription = models.ForeignKey(
@@ -71,3 +76,6 @@ class Charge(models.Model):
     class Meta:
         verbose_name = 'Charge'
         verbose_name_plural = "Charges"
+
+    def __unicode__(self):
+        return "%s - %s" % (self.suscription, self.amount)
