@@ -149,10 +149,12 @@ class DateEmailView(View):
     def post(self, request):
         if request.user.is_authenticated():
             email = request.user.email
-            name = request.user.get_full_name()
+            name = request.user.first_name
+            last_name = request.user.last_name
         else:
             email = request.POST.get('email')
             name = request.POST.get('name')
+            last_name = request.POST.get('last_name')
         number = request.POST.get('number')
         minute = request.POST.get('minute')
         hour = request.POST.get('hour')
@@ -168,19 +170,20 @@ class DateEmailView(View):
             to=[settings.DEFAULT_EMAIL_TO]
         )
         msg.attach_alternative(
-            "<p>Nombre: %s </p>"
+            "<p>Nombre: %s</p>"
+            "<p>Apellidos: %s </p>"
             "<p>Correo electronico: %s </p>"
             "<p>Telefono : %s </p>"
             "<p>Hora: %s %s</p>"
             "<p>Fecha: %s </p>" % (
-                name, email, number, time, tempo, date
+                name, last_name, email, number, time, tempo, date
             ), "text/html"
         )
 
         msg.send()
 
         call = ScheduledCall(
-            name=name,
+            name="%s %s" % (name, last_name),
             email=email,
             date_time="%s %s:%s" %(date, hour, minute),
             number=number
@@ -190,7 +193,7 @@ class DateEmailView(View):
         call.save()
 
         customer = PotentialClient(
-            name=name,
+            name="%s %s" % (name, last_name),
             email=email,
             source='Agendar una Cita'
         )
