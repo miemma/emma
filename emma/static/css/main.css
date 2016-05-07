@@ -2720,6 +2720,9 @@ label[for="navbar-trigger"] {
   overflow-y: hidden;
   overflow-x: hidden;
 }
+.pay-loader {
+  display: none;
+}
 .pay-radio-check-button {
   color: transparent;
   opacity: 0;

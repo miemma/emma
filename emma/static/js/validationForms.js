@@ -73,10 +73,18 @@ $(document).ready(function () {
       form.submit();
     }
   });
-  
-  $('#pay-form').validate({
+
+
+  /* Pay Form
+  ---------------------------------------------------------------------------*/
+  var $payForm = $('#pay-form');
+  $payForm.validate({
     highlight: function(element, errorClass) {
         $(element).removeClass(errorClass);
+    },
+    submitHandler: function(form)  {
+      $('.pay-loader').show();
+      form.submit();
     }
   });
 
