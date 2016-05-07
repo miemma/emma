@@ -2354,6 +2354,9 @@ label[for="navbar-trigger"] {
   overflow-y: auto;
   overflow-x: hidden;
 }
+.join-loader {
+  display: none;
+}
 .join-btn {
   font-size: 21px;
   display: block;

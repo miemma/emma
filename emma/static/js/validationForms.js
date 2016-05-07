@@ -91,7 +91,8 @@ $(document).ready(function () {
 
   /* Contact Form
   ---------------------------------------------------------------------------*/
-  $('#contactForm').validate({
+  var $contactForm = $('#contactForm');
+  $contactForm.validate({
     errorClass: "errorWhite",
     onkeyup: false,
     onfocusout: false,
@@ -104,7 +105,10 @@ $(document).ready(function () {
     }
   });
 
-  $('#joinForm').validate({
+  /* Contact Form
+  ---------------------------------------------------------------------------*/
+  var $joinForm = $('#joinForm');
+  $joinForm.validate({
     rules: {
       age: {
         number: true,
@@ -121,6 +125,10 @@ $(document).ready(function () {
     },
     highlight: function(element, errorClass) {
         $(element).removeClass(errorClass);
+    },
+    submitHandler: function(form)  {
+      $('.join-loader').show();
+      form.submit();
     }
   });
 
