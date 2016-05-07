@@ -2819,6 +2819,9 @@ label[for="navbar-trigger"] {
   overflow-y: hidden;
   overflow-x: hidden;
 }
+.signup-loader {
+  display: none;
+}
 .signup-link {
   font-family: "Avenir LT Std Medium";
   color: #575656;

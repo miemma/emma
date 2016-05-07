@@ -49,26 +49,34 @@
               {{ form.password_2.errors.as_text|cut:"*" }}
             </div>
           {% endif %}
-        <div class="row text-center">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <a class="login-link" href="{% url 'users:login' %}">
+	        <div class="row text-center">
+	          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	            <a class="login-link" href="{% url 'users:login' %}">
 	              ¿Ya tienes una cuenta?
 	              <span class="color-yellow">
-                  Inicia sesión
+	                Inicia sesión
 	              </span>
-              </a>
+	            </a>
+	          </div>
+	        </div>
+          <div class="row text-center padding-top-30 signup-loader">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div id="movingBallG">
+								<div class="movingBallLineG"></div>
+								<div id="movingBallG_1" class="movingBallG"></div>
+						</div>
             </div>
           </div>
-          <div class="row text-center">
-            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+	        <div class="row text-center">
+	          <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
 	            <input type="submit" value="Guardar datos" name="submit_btn_1"
 	                   class="emma-btn-dark signup-btn">
-            </div>
+	          </div>
 	          <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
 	            <input type="submit" value="Agendar una cita" name="submit_btn_2"
 	                   class="emma-btn-dark signup-btn-2">
-            </div>
-          </div>
+	          </div>
+	        </div>
         </form>
       </div>
     </div>

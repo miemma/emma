@@ -1,6 +1,9 @@
 $(document).ready(function () {
 
-  $('#signup-form').validate({
+  /* Signup Form
+  ---------------------------------------------------------------------------*/
+  var $signupForm = $('#signup-form');
+  $signupForm.validate({
     rules: {
       email: {
         email: true,
@@ -23,6 +26,11 @@ $(document).ready(function () {
 
     highlight: function(element, errorClass) {
         $(element).removeClass(errorClass);
+    },
+    submitHandler: function(form)  {
+      $('.signup-alert').hide();
+      $('.signup-loader').show();
+      form.submit();
     }
   });
 
