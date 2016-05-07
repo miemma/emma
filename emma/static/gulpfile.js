@@ -21,19 +21,10 @@ gulp.task('build:css', function () {
     }))
     //.pipe(nanoCSS())
     .pipe(gulp.dest(config.styles.output));
-})
-
-gulp.task('nunjucks', function () {
-  return gulp.src('templates/*.html')
-    .pipe(nunjucksRender({
-      path: ['templates/']
-    }))
-    .pipe(gulp.dest('.'));
 });
 
 gulp.task('watch', function () {
   gulp.watch(config.styles.root, ['build:css']);
-  gulp.watch('./templates/**/*', ['nunjucks']);
-})
+});
 
-gulp.task('default', ['watch', 'build:css', 'nunjucks'])
+gulp.task('default', ['watch', 'build:css'])
