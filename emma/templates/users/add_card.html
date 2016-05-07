@@ -13,11 +13,11 @@
           {% csrf_token %}
 	        <input type="hidden" name="token_id" id="token_id" />
 	        <input type="text" autocomplete="off" name="customer_name"
-	               data-openpay-card="holder_name"
+	               data-openpay-card="holder_name" required
 	               placeholder="Titular de la tarjeta"
 	               class='emma-input addcard-form-input' />
 	        <input type="text" autocomplete="off" name="card_number"
-	               data-openpay-card="card_number"
+	               data-openpay-card="card_number" required
 	               placeholder="Numero de la tarjeta"
 	               class='emma-input addcard-form-input' />
 	        <div class="row">
@@ -39,22 +39,22 @@
 		        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 			        <input type="text" autocomplete="off" name="card_month"
 			               data-openpay-card="expiration_month"
-			               placeholder="MM"
+			               placeholder="MM" required
 			               size="2" maxlength='2'
-			               class='emma-input addcard-form-input text-center' />
+			               class='emma-input addcard-form-input text-center little-inp' />
 		        </div>
 		        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 			        <input type="text" autocomplete="off" name="card_year"
 			               data-openpay-card="expiration_year"
-			               placeholder="AA"
+			               placeholder="AA" required
 			               size="2" maxlength='2'
-			               class='emma-input addcard-form-input text-center' />
+			               class='emma-input addcard-form-input text-center little-inp' />
 		        </div>
 	        </div>
 					<div class="row text-center">
 		        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			         <input type="text" autocomplete="off" name="service_ammount"
-			                placeholder="Monto a pagar (MXN)"
+			                placeholder="Monto a pagar (MXN)" required
 			                class='emma-input addcard-form-input' />
 		        </div>
 	        </div>
@@ -66,6 +66,14 @@
 			        </div>
 						</div>
 					</div>
+          <div class="row text-center padding-top-30 addcard-loader">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div id="movingBallG">
+								<div class="movingBallLineG"></div>
+								<div id="movingBallG_1" class="movingBallG"></div>
+						</div>
+            </div>
+          </div>
 	        <input type='hidden' name='devsessionid' id='devsessionid'>
           <div class="row text-center">
 	          {% if has_suscription %}
@@ -77,7 +85,7 @@
 	            </div>
             {% endif %}
 	          <div class="col-xs-10 col-sm-5 col-md-5 col-lg-3">
-              <input type="submit" id="pay-button" value="Pagar"
+              <input type="button" id="pay-button" value="Pagar"
                      class="emma-btn-dark addcard-btn-2" />
             </div>
           </div>
