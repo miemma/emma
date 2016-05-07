@@ -34,9 +34,9 @@ $(document).ready(function () {
     }
   });
 
+  
   /* Login Form
   ---------------------------------------------------------------------------*/
-
   var $loginForm = $('#login-form');
   $loginForm.validate({
     rules: {
@@ -53,8 +53,12 @@ $(document).ready(function () {
       form.submit();
     }
  });
-
-  $('#dateForm').validate({
+  
+  
+  /* Date Form
+  ---------------------------------------------------------------------------*/
+  var $dateForm = $('#dateForm');
+  $dateForm.validate({
     rules: {
       number: {
         number: true,
@@ -63,6 +67,10 @@ $(document).ready(function () {
     },
     highlight: function(element, errorClass) {
         $(element).removeClass(errorClass);
+    },
+    submitHandler: function(form)  {
+      $('.date-loader').show();
+      form.submit();
     }
   });
   

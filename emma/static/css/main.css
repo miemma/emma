@@ -279,6 +279,7 @@ a:hover {
   display: inline-flex;
 }
 .error {
+  text-align: center;
   display: block;
   padding: 0.5em;
   font-family: 'Avenir LT Std Roman';
@@ -2468,6 +2469,9 @@ label[for="navbar-trigger"] {
   overflow-y: auto;
   overflow-x: hidden;
   background-color: #ececed;
+}
+.date-loader {
+  display: none;
 }
 .date-desc {
   font-family: "Avenir LT Std Heavy";
