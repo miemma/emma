@@ -2185,6 +2185,9 @@ label[for="navbar-trigger"] {
 .emma-modal {
   background-color: rgba(0,0,0,0.65);
 }
+.emma-modal-loader {
+  display: none;
+}
 .emma-modal-close {
   font-family: 'Avenir LT Std Roman';
   position: absolute;

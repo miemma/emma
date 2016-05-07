@@ -88,12 +88,19 @@ $(document).ready(function () {
     }
   });
 
+
+  /* Contact Form
+  ---------------------------------------------------------------------------*/
   $('#contactForm').validate({
     errorClass: "errorWhite",
     onkeyup: false,
     onfocusout: false,
     highlight: function(element, errorClass) {
         $(element).removeClass(errorClass);
+    },
+    submitHandler: function(form)  {
+      $('.emma-modal-loader').show();
+      form.submit();
     }
   });
 
