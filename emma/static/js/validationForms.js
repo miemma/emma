@@ -25,7 +25,26 @@ $(document).ready(function () {
         $(element).removeClass(errorClass);
     }
   });
-  
+
+  /* Login Form
+  ---------------------------------------------------------------------------*/
+
+  var $loginForm = $('#login-form');
+  $loginForm.validate({
+    rules: {
+      username: {
+        email: true
+      }
+    },
+    highlight: function(element, errorClass) {
+      $(element).removeClass(errorClass);
+    },
+    submitHandler: function(form)  {
+      $('.login-alert').hide();
+      $('.login-loader').show();
+      form.submit();
+    }
+ });
 
   $('#dateForm').validate({
     rules: {
