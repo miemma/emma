@@ -26,16 +26,6 @@ $(document).ready(function () {
     }
   });
   
-  $('#login-form').validate({
-    rules: {
-      username: {
-        email: true
-      }
-    },
-    highlight: function(element, errorClass) {
-        $(element).removeClass(errorClass);
-    }
-  });
 
   $('#dateForm').validate({
     rules: {

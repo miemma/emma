@@ -59,6 +59,14 @@
               </a>
             </div>
           </div>
+          <div class="row text-center padding-top-30 login-loader">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div id="movingBallG">
+								<div class="movingBallLineG"></div>
+								<div id="movingBallG_1" class="movingBallG"></div>
+						</div>
+            </div>
+          </div>
           <div class="row text-center">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <button class="emma-btn-dark login-btn">
@@ -66,8 +74,29 @@
               </button>
             </div>
           </div>
+
         </form>
       </div>
     </div>
   </section>
 {% endblock content %}
+
+{% block js %}
+	<script type="text/javascript">
+		var $loginForm = $('#login-form');
+		$loginForm.validate({
+			rules: {
+	      username: {
+	        email: true
+	      }
+	    },
+	    highlight: function(element, errorClass) {
+		    $(element).removeClass(errorClass);
+	    },
+		  submitHandler: function(form) {
+			  $('.login-loader').show();
+		    form.submit();
+		  }
+	 });
+  </script>
+{% endblock %}
