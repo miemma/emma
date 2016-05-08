@@ -7,11 +7,19 @@ from . import views
 
 urlpatterns = [
 
-    url(regex='^reset/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$',
+    url(regex='^recuperar-password/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$',
         view=views.PasswordResetView.as_view(),
         name='reset_password'),
 
-    url(regex=r'^recuperar-password/',
+    url(regex=r'^recuperar-password/enviado/$',
+        view=views.PasswordResetRequestDone.as_view(),
+        name='reset_password_request_done'),
+
+    url(regex=r'^recuperar-password/hecho/$',
+        view=views.PasswordResetRequestDone.as_view(),
+        name='reset_password_request_done'),
+
+    url(regex=r'^recuperar-password/$',
         view=views.RequestPasswordResetForm.as_view(),
         name='reset_password_form'),
 

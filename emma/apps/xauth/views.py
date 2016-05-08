@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth.tokens import default_token_generator
 from django.core.urlresolvers import reverse_lazy
@@ -8,11 +9,19 @@ from django.template.response import TemplateResponse
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
 
-from django.views.generic import View
+from django.views.generic import View, TemplateView
 from django.conf import settings
 
 
 from .forms import PasswordResetForm, SetPasswordForm
+
+
+class PasswordResetRequestDone(TemplateView):
+    template_name = 'xauth/password_reset_request_done.html'
+
+
+class PasswordResetRequestDone(TemplateView):
+    template_name = 'xauth/password_reset_done.html'
 
 
 class PasswordResetView(View):
