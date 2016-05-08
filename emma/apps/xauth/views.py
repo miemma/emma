@@ -20,7 +20,7 @@ class PasswordResetRequestDone(TemplateView):
     template_name = 'xauth/password_reset_request_done.html'
 
 
-class PasswordResetRequestDone(TemplateView):
+class PasswordResetDone(TemplateView):
     template_name = 'xauth/password_reset_done.html'
 
 
@@ -28,7 +28,7 @@ class PasswordResetView(View):
     template_name = 'xauth/password_reset.html'
     token_generator = default_token_generator
     set_password_form = SetPasswordForm
-    post_reset_redirect = reverse_lazy('landing:home')
+    post_reset_redirect = reverse_lazy('xauth:reset_password_done')
     extra_context = None
     User = None
 
@@ -81,7 +81,7 @@ class RequestPasswordResetForm(View):
     email_subject = 'email/subjects/password_reset_mail_subject.txt',
     form = PasswordResetForm
     token_generator = default_token_generator
-    success_url = reverse_lazy('landing:home')
+    success_url = reverse_lazy('xauth:reset_password_request_done')
     html_email_template_name = None
     extra_email_context = None
 

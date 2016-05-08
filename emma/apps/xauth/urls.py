@@ -16,8 +16,8 @@ urlpatterns = [
         name='reset_password_request_done'),
 
     url(regex=r'^recuperar-password/hecho/$',
-        view=views.PasswordResetRequestDone.as_view(),
-        name='reset_password_request_done'),
+        view=views.PasswordResetDone.as_view(),
+        name='reset_password_done'),
 
     url(regex=r'^recuperar-password/$',
         view=views.RequestPasswordResetForm.as_view(),
