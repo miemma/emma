@@ -8,7 +8,7 @@ from . import views
 urlpatterns = [
 
     url(regex='^recuperar-password/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$',
-        view=views.PasswordResetView.as_view(),
+        view=views.PasswordReset.as_view(),
         name='reset_password'),
 
     url(regex=r'^recuperar-password/enviado/$',
@@ -20,7 +20,7 @@ urlpatterns = [
         name='reset_password_done'),
 
     url(regex=r'^recuperar-password/$',
-        view=views.RequestPasswordResetForm.as_view(),
+        view=views.PasswordResetRequest.as_view(),
         name='reset_password_form'),
 
 ]

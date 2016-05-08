@@ -24,7 +24,7 @@ class PasswordResetDone(TemplateView):
     template_name = 'xauth/password_reset_done.html'
 
 
-class PasswordResetView(View):
+class PasswordReset(View):
     template_name = 'xauth/password_reset.html'
     token_generator = default_token_generator
     set_password_form = SetPasswordForm
@@ -72,7 +72,7 @@ class PasswordResetView(View):
             form.save()
             return redirect(self.post_reset_redirect)
 
-class RequestPasswordResetForm(View):
+class PasswordResetRequest(View):
     template_name = 'xauth/password_reset_form.html'
     from_email = "Notificaciones - Emma <postmaster@%s>" % (
         settings.MAILGUN_SERVER_NAME
