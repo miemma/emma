@@ -72,6 +72,7 @@ class PasswordReset(View):
             form.save()
             return redirect(self.post_reset_redirect)
 
+
 class PasswordResetRequest(View):
     template_name = 'xauth/password_reset_request.html'
     from_email = "Notificaciones - Emma <postmaster@%s>" % (
