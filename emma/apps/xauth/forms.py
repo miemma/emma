@@ -6,8 +6,7 @@ from django.contrib.auth.forms import PasswordResetForm as PasswdForm
 from django.contrib.auth.forms import SetPasswordForm as SetPasswdForm
 
 
-
-class PasswordResetForm(PasswdForm):
+class PasswordResetRequestForm(PasswdForm):
     email = forms.CharField(
         widget=forms.TextInput(
             attrs={
@@ -18,10 +17,10 @@ class PasswordResetForm(PasswdForm):
     )
 
     def __init__(self, *args, **kwargs):
-        super(PasswordResetForm, self).__init__(*args, **kwargs)
+        super(PasswordResetRequestForm, self).__init__(*args, **kwargs)
 
 
-class SetPasswordForm(SetPasswdForm):
+class PasswordResetForm(SetPasswdForm):
     error_messages = {
         'password_mismatch': "Las contraseñas no coinciden.",
     }
@@ -45,4 +44,4 @@ class SetPasswordForm(SetPasswdForm):
     )
 
     def __init__(self, *args, **kwargs):
-        super(SetPasswordForm, self).__init__(*args, **kwargs)
+        super(PasswordResetForm, self).__init__(*args, **kwargs)

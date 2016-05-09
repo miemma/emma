@@ -13,7 +13,7 @@ from django.views.generic import View, TemplateView
 from django.conf import settings
 
 
-from .forms import PasswordResetForm, SetPasswordForm
+from .forms import PasswordResetRequestForm, PasswordResetForm
 
 
 class PasswordResetRequestDone(TemplateView):
@@ -27,7 +27,7 @@ class PasswordResetDone(TemplateView):
 class PasswordReset(View):
     template_name = 'xauth/password_reset.html'
     token_generator = default_token_generator
-    set_password_form = SetPasswordForm
+    set_password_form = PasswordResetForm
     post_reset_redirect = reverse_lazy('xauth:reset_password_done')
     extra_context = None
     User = None
@@ -79,14 +79,14 @@ class PasswordResetRequest(View):
     )
     email_template_name = 'email/password_reset_email.html'
     email_subject = 'email/subjects/password_reset_mail_subject.txt',
-    form = PasswordResetForm
+    form = PasswordResetRequestForm
     token_generator = default_token_generator
     success_url = reverse_lazy('xauth:reset_password_request_done')
     html_email_template_name = None
     extra_email_context = None
 
     def get(self, request):
-        form = PasswordResetForm()
+        form = self.form()
         ctx = {
             'form': form,
         }
