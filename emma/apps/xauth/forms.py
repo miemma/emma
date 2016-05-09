@@ -11,7 +11,7 @@ class PasswordResetForm(PasswdForm):
     email = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': 'passwd-form-input emma-input',
+                'class': 'passwd-reset-req-form-input emma-input',
                 'placeholder': 'Correo electrónico'
             }
         ),

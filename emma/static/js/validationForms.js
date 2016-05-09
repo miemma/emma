@@ -1,5 +1,25 @@
 $(document).ready(function () {
 
+  /* Request Password Form
+  ---------------------------------------------------------------------------*/
+  var $passwdResetReq = $('#passwd-reset-req-form');
+  $passwdResetReq.validate({
+    rules: {
+      email: {
+        email: true,
+        required: true
+      }
+    },
+    highlight: function(element, errorClass) {
+      $(element).removeClass(errorClass);
+    },
+    submitHandler: function(form)  {
+      $('.passwd-reset-req-alert').hide();
+      $('.passwd-reset-req-loader').show();
+      form.submit();
+    }
+ });
+
   /* Signup Form
   ---------------------------------------------------------------------------*/
   var $signupForm = $('#signup-form');
