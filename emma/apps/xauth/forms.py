@@ -29,7 +29,7 @@ class SetPasswordForm(SetPasswdForm):
         strip=False,
         widget=forms.TextInput(
             attrs={
-                'class': 'passwd-form-input emma-input',
+                'class': 'passwd-reset-form-input emma-input',
                 'placeholder': 'Nueva Contraseña'
             }
         ),
@@ -38,7 +38,7 @@ class SetPasswordForm(SetPasswdForm):
         strip=False,
         widget=forms.TextInput(
             attrs={
-                'class': 'passwd-form-input emma-input',
+                'class': 'passwd-reset-form-input emma-input',
                 'placeholder': 'Confirmar Contraseña'
             }
         ),

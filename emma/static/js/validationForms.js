@@ -2,6 +2,29 @@ $(document).ready(function () {
 
   /* Request Password Form
   ---------------------------------------------------------------------------*/
+  var $passwdReset = $('#passwd-reset-form');
+  $passwdReset.validate({
+    rules: {
+      new_password1: {
+        required: true
+      },
+      new_password2: {
+        required: true,
+        equalTo: "#id_new_password1"
+      }
+    },
+    highlight: function(element, errorClass) {
+      $(element).removeClass(errorClass);
+    },
+    submitHandler: function(form)  {
+      $('.passwd-reset-alert').hide();
+      $('.passwd-reset-loader').show();
+      form.submit();
+    }
+ });
+
+  /* Request Password Request Form
+  ---------------------------------------------------------------------------*/
   var $passwdResetReq = $('#passwd-reset-req-form');
   $passwdResetReq.validate({
     rules: {
