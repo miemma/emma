@@ -3,9 +3,12 @@
 
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect, render
+from django.template import loader
 from django.views.generic import FormView, View
+from django.conf import settings
 
 import openpay
 
@@ -62,6 +65,39 @@ class SelectCardView(ClientRequiredMixin, View):
             movement="Cargo por servicio de Emma"
         )
         history.save()
+
+        ctx = {
+            'amount': request.POST['service_ammount'],
+            'card': card.card_number
+        }
+
+        subject = loader.render_to_string(
+            'email/subjects/notification_payment_email_subject.txt'
+        )
+
+        # Email subject *must not* contain newlines
+        subject = ''.join(subject.splitlines())
+
+        body = loader.render_to_string(
+            'email/payment_notification_email.html', ctx
+        )
+
+        from_email = "Emma - Notificaciones <postmaster@%s>" % (
+            settings.MAILGUN_SERVER_NAME
+        )
+
+        to_email = [request.user.email]
+
+        msg = EmailMultiAlternatives(
+            subject=subject,
+            from_email=from_email,
+            body=body,
+            to=to_email
+        )
+
+        msg.send()
+
+
         return  redirect(reverse_lazy('landing:success_pay'))
 
 

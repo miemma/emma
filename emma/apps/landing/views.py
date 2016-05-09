@@ -11,7 +11,6 @@ from django.views.generic import View, TemplateView
 from django.conf import settings
 
 from emma.apps.customers.models import PotentialClient, ScheduledCall
-from .models import Customer
 
 
 class HomeTemplateView(TemplateView):
