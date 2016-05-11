@@ -97,38 +97,36 @@ class JoinEmailView(View):
         xknow = ''
         for x in know:
             xknow += '%s, ' % str(x)
+        xknow = xknow[:-1]
         facebook = request.POST.get('join-facebook-value')
         smartphone = request.POST.get('join-smartphone-value')
 
-        msg = EmailMultiAlternatives(
-            subject="Solicitud para ser Emma",
+        ctx = {
+            'name': name,
+            'last_name': last_name,
+            'age': age,
+            'phone_movile': phone_movile,
+            'phone': phone,
+            'education': education,
+            'city': city,
+            'state': state,
+            'litte_city': litte_city,
+            'colony': colony,
+            'postal_code': postal_code,
+            'xknow': xknow,
+            'facebook': facebook,
+            'smartphone': smartphone,
+        }
+
+        send_email(
+            subject='email/subjects/join_emma.txt',
+            body='email/join_emma.html',
             from_email="Emma - Reclutamiento <postmaster@%s>" % (
                 settings.MAILGUN_SERVER_NAME
             ),
-            to=[settings.DEFAULT_EMAIL_TO, 'fernanda@miemma.com']
+            to_email=[settings.DEFAULT_EMAIL_TO, 'fernanda@miemma.com'],
+            context=ctx
         )
-        msg.attach_alternative(
-            "<p>Nombre: %s %s </p>"
-            "<p>Edad: %s </p>"
-            "<p>Correo electronico: %s </p>"
-            "<p>Telefono movil: %s </p>"
-            "<p>Telefono fijo: %s </p>"
-            "<p>Escolaridad: %s </p>"
-            "<p>Ciudad: %s </p>"
-            "<p>Estado: %s </p>"
-            "<p>Delegacion/Municipio: %s </p>"
-            "<p>Colonia: %s </p>"
-            "<p>Codigo Postal: %s </p>"
-            "<p>Como conocio a emma: %s </p>"
-            "<p>Tiene facebook: %s </p>"
-            "<p>Tiene Smartphone?: %s </p>" % (
-                name, last_name, age, email, phone_movile,
-                phone, education, city, state, litte_city, colony, postal_code,
-                xknow, facebook, smartphone
-            ), "text/html"
-        )
-
-        msg.send()
 
         customer = PotentialClient(
             name=('%s %s') % (name, last_name),
