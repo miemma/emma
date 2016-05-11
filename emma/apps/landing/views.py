@@ -12,6 +12,7 @@ from django.views.generic import View, TemplateView
 from django.conf import settings
 
 from emma.apps.customers.models import PotentialClient, ScheduledCall
+from emma.core.utils import send_email
 
 
 class HomeTemplateView(TemplateView):
@@ -49,20 +50,21 @@ class ContactEmailView(View):
         sender = request.POST.get('sender')
         message = request.POST.get('message')
 
-        msg = EmailMultiAlternatives(
-            subject="Un cliente requiere mayor información",
+        ctx = {
+            'sender': sender,
+            'email': email,
+            'message': message
+        }
+
+        send_email(
+            subject='email/subjects/contact.txt',
+            body='email/contact.html',
             from_email="Emma - Contacto <postmaster@%s>" % (
                 settings.MAILGUN_SERVER_NAME
             ),
-            to=[settings.DEFAULT_EMAIL_TO]
+            to_email=[settings.DEFAULT_EMAIL_TO],
+            context=ctx
         )
-        msg.attach_alternative(
-            "<p>Nombre del cliente: %s </p>"
-            "<p>Correo electronico: %s </p>"
-            "<p>Mensaje: %s </p>" % (sender, email, message),
-            "text/html"
-        )
-        msg.send()
 
         customer = PotentialClient (
             name=sender,

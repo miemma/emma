@@ -15,12 +15,15 @@ DEFAULT_NOTIFICATION_EMAIL_FROM = "Emma - Notificaciones <postmaster@%s>" % (
 )
 
 
-def send_email(subject, body, to_email, context):
+def send_email(subject, body, to_email, context, from_email=None):
+    if from_email is None:
+        from_email = DEFAULT_NOTIFICATION_EMAIL_FROM
+
     subject = loader.render_to_string(subject, context)
     subject = ''.join(subject.splitlines())
     body = loader.render_to_string(body, context)
     email_message = EmailMultiAlternatives(
-        subject, body, DEFAULT_NOTIFICATION_EMAIL_FROM, to_email
+        subject, body, from_email, to_email
     )
     email_message.send()
 
