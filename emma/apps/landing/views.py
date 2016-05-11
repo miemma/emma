@@ -7,6 +7,7 @@ from datetime import date, timedelta
 from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render
+from django.template import loader
 from django.views.generic import View, TemplateView
 from django.conf import settings
 
@@ -179,6 +180,38 @@ class DateEmailView(View):
             ), "text/html"
         )
 
+        msg.send()
+
+
+
+        subject = loader.render_to_string(
+            'email/subjects/notification_call.txt'
+        )
+
+        # Email subject *must not* contain newlines
+        subject = ''.join(subject.splitlines())
+
+        ctx = {
+            'day': date,
+            'hour':time
+        }
+
+        body = loader.render_to_string(
+            'email/notification_call.html', ctx
+        )
+
+        from_email = "Emma - Notificaciones <postmaster@%s>" % (
+            settings.MAILGUN_SERVER_NAME
+        )
+
+        to_email = [email]
+
+        msg = EmailMultiAlternatives(
+            subject=subject,
+            from_email=from_email,
+            body=body,
+            to=to_email
+        )
         msg.send()
 
         call = ScheduledCall(

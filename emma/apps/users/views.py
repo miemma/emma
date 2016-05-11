@@ -97,7 +97,6 @@ class SelectCardView(ClientRequiredMixin, View):
 
         msg.send()
 
-
         return  redirect(reverse_lazy('landing:success_pay'))
 
 
@@ -131,6 +130,34 @@ class AddCardView(ClientRequiredMixin, View):
                 token_id=request.POST['token_id'],
                 device_session_id=request.POST['devsessionid']
             )
+            ctx = {
+                'card': card.card_number
+            }
+
+            subject = loader.render_to_string(
+                'email/subjects/notification_add_card.txt'
+            )
+
+            # Email subject *must not* contain newlines
+            subject = ''.join(subject.splitlines())
+
+            body = loader.render_to_string(
+                'email/notification_add_card.html', ctx
+            )
+
+            from_email = "Emma - Notificaciones <postmaster@%s>" % (
+                settings.MAILGUN_SERVER_NAME
+            )
+
+            to_email = [request.user.email]
+
+            msg = EmailMultiAlternatives(
+                subject=subject,
+                from_email=from_email,
+                body=body,
+                to=to_email
+            )
+            msg.send()
             openpay_charge = openpay.Charge.create(
                 source_id=card.id,
                 method="card",
@@ -152,6 +179,36 @@ class AddCardView(ClientRequiredMixin, View):
                 movement="Cargo por servicio de Emma"
             )
             history.save()
+
+            ctx = {
+                'amount': request.POST['service_ammount'],
+                'card': card.card_number
+            }
+
+            subject = loader.render_to_string(
+                'email/subjects/notification_payment_email_subject.txt'
+            )
+
+            # Email subject *must not* contain newlines
+            subject = ''.join(subject.splitlines())
+
+            body = loader.render_to_string(
+                'email/payment_notification_email.html', ctx
+            )
+
+            from_email = "Emma - Notificaciones <postmaster@%s>" % (
+                settings.MAILGUN_SERVER_NAME
+            )
+
+            to_email = [request.user.email]
+
+            msg = EmailMultiAlternatives(
+                subject=subject,
+                from_email=from_email,
+                body=body,
+                to=to_email
+            )
+            msg.send()
         except Suscription.DoesNotExist:
             customer = openpay.Customer.create(
                 name=request.user.get_full_name(),
@@ -195,6 +252,36 @@ class AddCardView(ClientRequiredMixin, View):
                 suscription=suscription,
                 movement="Cargo por servicio de Emma"
             )
+            ctx = {
+                'amount': request.POST['service_ammount'],
+                'card': card.card_number
+            }
+
+            subject = loader.render_to_string(
+                'email/subjects/notification_payment_email_subject.txt'
+            )
+
+            # Email subject *must not* contain newlines
+            subject = ''.join(subject.splitlines())
+
+            body = loader.render_to_string(
+                'email/payment_notification_email.html', ctx
+            )
+
+            from_email = "Emma - Notificaciones <postmaster@%s>" % (
+                settings.MAILGUN_SERVER_NAME
+            )
+
+            to_email = [request.user.email]
+
+            msg = EmailMultiAlternatives(
+                subject=subject,
+                from_email=from_email,
+                body=body,
+                to=to_email
+            )
+
+            msg.send()
             history.save()
         return redirect(reverse_lazy('landing:success_pay'))
 
@@ -254,4 +341,31 @@ class SignupView(FormView):
             url = reverse_lazy('landing:date')
         else:
             url = self.success_url
+
+        subject = loader.render_to_string(
+            'email/subjects/notification_welcome.txt'
+        )
+
+        # Email subject *must not* contain newlines
+        subject = ''.join(subject.splitlines())
+
+        body = loader.render_to_string(
+            'email/notification_welcome.html'
+        )
+
+        from_email = "Emma - Notificaciones <postmaster@%s>" % (
+            settings.MAILGUN_SERVER_NAME
+        )
+
+        to_email = [self.request.user.email]
+
+        msg = EmailMultiAlternatives(
+            subject=subject,
+            from_email=from_email,
+            body=body,
+            to=to_email
+        )
+
+        msg.send()
+
         return url
