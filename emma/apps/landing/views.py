@@ -157,6 +157,7 @@ class DateEmailView(View):
             email = request.POST.get('email')
             name = request.POST.get('name')
             last_name = request.POST.get('last_name')
+
         number = request.POST.get('number')
         minute = request.POST.get('minute')
         hour = request.POST.get('hour')
@@ -165,57 +166,40 @@ class DateEmailView(View):
         date = request.POST.get('date_input')
         tz = request.POST.get('timezone')
 
-        msg = EmailMultiAlternatives(
-            subject="Tienes una llamada agendada",
+        ctx = {
+            'name': name,
+            'last_name': last_name,
+            'email': email,
+            'number': number,
+            'tempo': tempo,
+            'time': time,
+            'date': date,
+            'tz': tz,
+
+        }
+
+        send_email(
+            subject='email/subjects/call_schedule.txt',
+            body='email/call_schedule.html',
             from_email="Emma - Ventas <postmaster@%s>" % (
                 settings.MAILGUN_SERVER_NAME
             ),
-            to=[settings.DEFAULT_EMAIL_TO]
+            to_email=[settings.DEFAULT_EMAIL_TO],
+            context=ctx
         )
-        msg.attach_alternative(
-            "<p>Nombre: %s</p>"
-            "<p>Apellidos: %s </p>"
-            "<p>Correo electronico: %s </p>"
-            "<p>Telefono : %s </p>"
-            "<p>Hora: %s %s, %s</p>"
-            "<p>Fecha: %s </p>" % (
-                name, last_name, email, number, time, tempo, tz, date
-            ), "text/html"
-        )
-
-        msg.send()
-
-
-
-        subject = loader.render_to_string(
-            'email/subjects/notification_call.txt'
-        )
-
-        # Email subject *must not* contain newlines
-        subject = ''.join(subject.splitlines())
 
         ctx = {
             'day': date,
-            'hour':time
+            'hour': time,
+            'tz': tz,
         }
 
-        body = loader.render_to_string(
-            'email/notification_call.html', ctx
+        send_email(
+            subject='email/subjects/notification_call.txt',
+            body='email/notification_call.html',
+            to_email=[email],
+            context=ctx
         )
-
-        from_email = "Emma - Notificaciones <postmaster@%s>" % (
-            settings.MAILGUN_SERVER_NAME
-        )
-
-        to_email = [email]
-
-        msg = EmailMultiAlternatives(
-            subject=subject,
-            from_email=from_email,
-            body=body,
-            to=to_email
-        )
-        msg.send()
 
         call = ScheduledCall(
             name="%s %s" % (name, last_name),
@@ -224,7 +208,6 @@ class DateEmailView(View):
             number=number
 
         )
-
         call.save()
 
         customer = PotentialClient(
