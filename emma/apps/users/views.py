@@ -12,11 +12,11 @@ from django.conf import settings
 
 import openpay
 
+from emma.core.utils import send_email
 from emma.apps.suscriptions.models import Suscription, History, Charge
 from emma.apps.users.models import Client
 from emma.core.mixins import RequestFormMixin, AuthRedirectMixin, \
     LoginRequiredMixin, NextUrlMixin, ClientRequiredMixin
-
 from emma.apps.users.forms import ChangePasswordForm, LoginForm, SignupForm
 
 
@@ -44,6 +44,7 @@ class SelectCardView(ClientRequiredMixin, View):
         suscription = Suscription.objects.get(user=request.user.client)
         customer = openpay.Customer.retrieve(suscription.id_customer)
         card = customer.cards.retrieve(request.POST['customer-card'])
+
         openpay_charge = openpay.Charge.create(
             source_id=card.id,
             method="card",
@@ -53,6 +54,7 @@ class SelectCardView(ClientRequiredMixin, View):
             customer=customer.id,
             device_session_id=request.POST['devsessionid']
         )
+
         charge = Charge.objects.create(
             suscription=suscription,
             amount=openpay_charge.amount,
@@ -60,6 +62,7 @@ class SelectCardView(ClientRequiredMixin, View):
             descripcion=openpay_charge.description
         )
         charge.save()
+
         history = History(
             suscription=suscription,
             movement="Cargo por servicio de Emma"
@@ -71,33 +74,14 @@ class SelectCardView(ClientRequiredMixin, View):
             'card': card.card_number
         }
 
-        subject = loader.render_to_string(
-            'email/subjects/notification_payment_email_subject.txt'
+        send_email(
+            subject='email/subjects/notification_payment_email_subject.txt',
+            body='email/payment_notification_email.html',
+            to_email=[request.user.email],
+            context=ctx
         )
 
-        # Email subject *must not* contain newlines
-        subject = ''.join(subject.splitlines())
-
-        body = loader.render_to_string(
-            'email/payment_notification_email.html', ctx
-        )
-
-        from_email = "Emma - Notificaciones <postmaster@%s>" % (
-            settings.MAILGUN_SERVER_NAME
-        )
-
-        to_email = [request.user.email]
-
-        msg = EmailMultiAlternatives(
-            subject=subject,
-            from_email=from_email,
-            body=body,
-            to=to_email
-        )
-
-        msg.send()
-
-        return  redirect(reverse_lazy('landing:success_pay'))
+        return redirect(reverse_lazy('landing:success_pay'))
 
 
 class AddCardView(ClientRequiredMixin, View):
@@ -105,6 +89,7 @@ class AddCardView(ClientRequiredMixin, View):
 
     def get(self, request):
         client = self.request.user.client
+
         try:
             Suscription.objects.get(user=client)
             has_suscription = True
@@ -120,137 +105,23 @@ class AddCardView(ClientRequiredMixin, View):
         else:
             return redirect(reverse_lazy('landing:date'))
 
-
     def post(self, request):
         client = Client.objects.get(user=request.user)
+
         try:
             suscription = Suscription.objects.get(user=client)
-            customer = openpay.Customer.retrieve(suscription.id_customer)
-            card = customer.cards.create(
-                token_id=request.POST['token_id'],
-                device_session_id=request.POST['devsessionid']
-            )
-            ctx = {
-                'card': card.card_number
-            }
-
-            subject = loader.render_to_string(
-                'email/subjects/notification_add_card.txt'
-            )
-
-            # Email subject *must not* contain newlines
-            subject = ''.join(subject.splitlines())
-
-            body = loader.render_to_string(
-                'email/notification_add_card.html', ctx
-            )
-
-            from_email = "Emma - Notificaciones <postmaster@%s>" % (
-                settings.MAILGUN_SERVER_NAME
-            )
-
-            to_email = [request.user.email]
-
-            msg = EmailMultiAlternatives(
-                subject=subject,
-                from_email=from_email,
-                body=body,
-                to=to_email
-            )
-            msg.send()
-
-            openpay_charge = openpay.Charge.create(
-                source_id=card.id,
-                method="card",
-                amount=request.POST['service_ammount'],
-                currency="MXN",
-                description="Cargo por servicio de emma con nueva tarjeta",
-                customer=customer.id,
-                device_session_id=request.POST['devsessionid']
-            )
-            charge = Charge.objects.create(
-                suscription=suscription,
-                amount=openpay_charge.amount,
-                status=openpay_charge.status,
-                descripcion=openpay_charge.description
-            )
-            charge.save()
-            history = History(
-                suscription=suscription,
-                movement="Cargo por servicio de Emma"
-            )
-            history.save()
-
-            ctx = {
-                'amount': request.POST['service_ammount'],
-                'card': card.card_number
-            }
-
-            subject = loader.render_to_string(
-                'email/subjects/notification_payment_email_subject.txt'
-            )
-
-            # Email subject *must not* contain newlines
-            subject = ''.join(subject.splitlines())
-
-            body = loader.render_to_string(
-                'email/payment_notification_email.html', ctx
-            )
-
-            from_email = "Emma - Notificaciones <postmaster@%s>" % (
-                settings.MAILGUN_SERVER_NAME
-            )
-
-            to_email = [request.user.email]
-
-            msg = EmailMultiAlternatives(
-                subject=subject,
-                from_email=from_email,
-                body=body,
-                to=to_email
-            )
-
-            msg.send()
         except Suscription.DoesNotExist:
+            suscription = None
+
+        if suscription is not None:
+            customer = openpay.Customer.retrieve(suscription.id_customer)
+        else:
             customer = openpay.Customer.create(
                 name=request.user.get_full_name(),
                 email=request.user.email,
                 requires_account=False,
                 status='active',
             )
-            card = customer.cards.create(
-                token_id=request.POST['token_id'],
-                device_session_id=request.POST['devsessionid']
-            )
-
-            ctx = {
-                'card': card.card_number
-            }
-
-            subject = loader.render_to_string(
-                'email/subjects/notification_add_card.txt'
-            )
-
-            # Email subject *must not* contain newlines
-            subject = ''.join(subject.splitlines())
-
-            body = loader.render_to_string(
-                'email/notification_add_card.html', ctx
-            )
-
-            from_email = "Emma - Notificaciones <postmaster@%s>" % (
-                settings.MAILGUN_SERVER_NAME
-            )
-
-            to_email = [request.user.email]
-
-            msg = EmailMultiAlternatives(
-                subject=subject,
-                from_email=from_email,
-                body=body,
-                to=to_email
-            )
-            msg.send()
 
             suscription = Suscription(
                 user=client,
@@ -259,62 +130,62 @@ class AddCardView(ClientRequiredMixin, View):
                 active=True
             )
             suscription.save()
+
             history = History(
                 suscription=suscription,
                 movement="Suscripcion Creada"
             )
             history.save()
-            openpay_charge = openpay.Charge.create(
-                source_id=card.id,
-                method="card",
-                amount=request.POST['service_ammount'],
-                currency="MXN",
-                description="Cargo por servicio de emma con nueva tarjeta",
-                customer=customer.id,
-                device_session_id=request.POST['devsessionid']
-            )
-            charge = Charge.objects.create(
-                suscription=suscription,
-                amount=openpay_charge.amount,
-                status=openpay_charge.status,
-                descripcion=openpay_charge.description
-            )
-            charge.save()
-            history = History(
-                suscription=suscription,
-                movement="Cargo por servicio de Emma"
-            )
-            ctx = {
-                'amount': request.POST['service_ammount'],
-                'card': card.card_number
-            }
 
-            subject = loader.render_to_string(
-                'email/subjects/notification_payment_email_subject.txt'
-            )
+        card = customer.cards.create(
+            token_id=request.POST['token_id'],
+            device_session_id=request.POST['devsessionid']
+        )
 
-            # Email subject *must not* contain newlines
-            subject = ''.join(subject.splitlines())
+        ctx = {
+            'card': card.card_number
+        }
 
-            body = loader.render_to_string(
-                'email/payment_notification_email.html', ctx
-            )
+        send_email(
+            subject='email/subjects/notification_add_card.txt',
+            body='email/notification_add_card.html',
+            to_email=[request.user.email],
+            context=ctx
+        )
 
-            from_email = "Emma - Notificaciones <postmaster@%s>" % (
-                settings.MAILGUN_SERVER_NAME
-            )
+        openpay_charge = openpay.Charge.create(
+            source_id=card.id,
+            method="card",
+            amount=request.POST['service_ammount'],
+            currency="MXN",
+            description="Cargo por servicio de emma con nueva tarjeta",
+            customer=customer.id,
+            device_session_id=request.POST['devsessionid']
+        )
 
-            to_email = [request.user.email]
+        ctx.update({'amount': request.POST['service_ammount']})
 
-            msg = EmailMultiAlternatives(
-                subject=subject,
-                from_email=from_email,
-                body=body,
-                to=to_email
-            )
+        send_email(
+            subject='email/subjects/notification_payment_email_subject.txt',
+            body='email/payment_notification_email.html',
+            to_email=[request.user.email],
+            context=ctx
+        )
 
-            msg.send()
-            history.save()
+        charge = Charge.objects.create(
+            suscription=suscription,
+            amount=openpay_charge.amount,
+            status=openpay_charge.status,
+            descripcion=openpay_charge.description
+        )
+        charge.save()
+
+        history = History(
+            suscription=suscription,
+            movement="Cargo por servicio de Emma"
+        )
+        history.save()
+
         return redirect(reverse_lazy('landing:success_pay'))
 
 
