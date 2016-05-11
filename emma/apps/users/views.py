@@ -28,6 +28,10 @@ class SelectCardView(ClientRequiredMixin, View):
         if client.active_client:
             try:
                 suscription = Suscription.objects.get(user=client)
+            except Suscription.DoesNotExist:
+                suscription = None
+
+            if suscription is not None:
                 customer = openpay.Customer.retrieve(suscription.id_customer)
                 cards = customer.cards.all()
 
@@ -35,8 +39,9 @@ class SelectCardView(ClientRequiredMixin, View):
                     'cards': cards.data
                 }
                 return render(request, self.template_name, ctx)
-            except Suscription.DoesNotExist:
+            else:
                 return redirect(reverse_lazy('users:add_card'))
+
         else:
             return redirect(reverse_lazy('landing:date'))
 
