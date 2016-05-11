@@ -158,6 +158,7 @@ class AddCardView(ClientRequiredMixin, View):
                 to=to_email
             )
             msg.send()
+
             openpay_charge = openpay.Charge.create(
                 source_id=card.id,
                 method="card",
@@ -208,6 +209,7 @@ class AddCardView(ClientRequiredMixin, View):
                 body=body,
                 to=to_email
             )
+
             msg.send()
         except Suscription.DoesNotExist:
             customer = openpay.Customer.create(
@@ -220,6 +222,36 @@ class AddCardView(ClientRequiredMixin, View):
                 token_id=request.POST['token_id'],
                 device_session_id=request.POST['devsessionid']
             )
+
+            ctx = {
+                'card': card.card_number
+            }
+
+            subject = loader.render_to_string(
+                'email/subjects/notification_add_card.txt'
+            )
+
+            # Email subject *must not* contain newlines
+            subject = ''.join(subject.splitlines())
+
+            body = loader.render_to_string(
+                'email/notification_add_card.html', ctx
+            )
+
+            from_email = "Emma - Notificaciones <postmaster@%s>" % (
+                settings.MAILGUN_SERVER_NAME
+            )
+
+            to_email = [request.user.email]
+
+            msg = EmailMultiAlternatives(
+                subject=subject,
+                from_email=from_email,
+                body=body,
+                to=to_email
+            )
+            msg.send()
+
             suscription = Suscription(
                 user=client,
                 id_customer=customer.id,
