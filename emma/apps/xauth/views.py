@@ -41,8 +41,8 @@ class PasswordReset(View):
         except (TypeError, ValueError, OverflowError, UserModel.DoesNotExist):
             self.User = None
 
-        if self.User is not None and self.token_generator.check_token(self.User,
-                                                                      token):
+        if self.User is not None and \
+                self.token_generator.check_token(self.User, token):
             validlink = True
             title = 'Enter new password'
             form = self.set_password_form(self.User)
@@ -78,8 +78,8 @@ class PasswordResetRequest(View):
     from_email = "Notificaciones - Emma <postmaster@%s>" % (
         settings.MAILGUN_SERVER_NAME
     )
-    email_template_name = 'email/password_reset_email.html'
-    email_subject = 'email/subjects/password_reset_mail_subject.txt',
+    email_template_name = 'email/password_reset_request.html'
+    email_subject = 'email/subjects/password_reset_request.txt',
     form = PasswordResetRequestForm
     token_generator = default_token_generator
     success_url = reverse_lazy('xauth:reset_password_request_done')

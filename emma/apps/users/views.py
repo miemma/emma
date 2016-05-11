@@ -80,8 +80,8 @@ class SelectCardView(ClientRequiredMixin, View):
         }
 
         send_email(
-            subject='email/subjects/notification_payment_email_subject.txt',
-            body='email/payment_notification_email.html',
+            subject='email/subjects/notification_payment.txt',
+            body='email/notification_payment.html',
             to_email=[request.user.email],
             context=ctx
         )
@@ -171,8 +171,8 @@ class AddCardView(ClientRequiredMixin, View):
         ctx.update({'amount': request.POST['service_ammount']})
 
         send_email(
-            subject='email/subjects/notification_payment_email_subject.txt',
-            body='email/payment_notification_email.html',
+            subject='email/subjects/notification_payment.txt',
+            body='email/notification_payment.html',
             to_email=[request.user.email],
             context=ctx
         )
