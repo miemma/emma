@@ -161,6 +161,7 @@ class DateEmailView(View):
         tempo = request.POST.get('morning')
         time = '%s:%s' % (hour, minute)
         date = request.POST.get('date_input')
+        tz = request.POST.get('timezone')
 
         msg = EmailMultiAlternatives(
             subject="Tienes una llamada agendada",
@@ -174,9 +175,9 @@ class DateEmailView(View):
             "<p>Apellidos: %s </p>"
             "<p>Correo electronico: %s </p>"
             "<p>Telefono : %s </p>"
-            "<p>Hora: %s %s</p>"
+            "<p>Hora: %s %s, %s</p>"
             "<p>Fecha: %s </p>" % (
-                name, last_name, email, number, time, tempo, date
+                name, last_name, email, number, time, tempo, tz, date
             ), "text/html"
         )
 

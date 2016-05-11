@@ -113,6 +113,7 @@
 						</div>
             </div>
           </div>
+	        <input type="hidden" id="timezone" name="timezone">
           <div class="row text-center">
             <div class="col-xs-10 col-sm-6 col-md-9 col-lg-7">
               <button type="submit" class="emma-btn emma-btn-dark join-btn">
@@ -130,7 +131,12 @@
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker3.min.css" />
 	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
 	<script src="{% static 'js/reservationFormCalendar.js' %}"></script>
+	<script src="{% static 'lib/jstz/jstz.min.js' %}"></script>
 	<script type="text/javascript">
+		$(function() {
+			var tz = jstz.determine();
+			$('#timezone').val(tz.name());
+		});
 	  $( "#dateForm" ).submit(function( event ) {
 		  window._fbq.push(['track', 'Lead']);
 	    return true
