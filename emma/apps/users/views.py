@@ -1,23 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from django.contrib.auth import login, logout
-from django.contrib.auth.decorators import login_required
-from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect, render
-from django.template import loader
 from django.views.generic import FormView, View
-from django.conf import settings
 
 import openpay
 
 from emma.core.utils import send_email
 from emma.apps.suscriptions.models import Suscription, History, Charge
 from emma.apps.users.models import Client
-from emma.core.mixins import RequestFormMixin, AuthRedirectMixin, \
-    LoginRequiredMixin, NextUrlMixin, ClientRequiredMixin
-from emma.apps.users.forms import ChangePasswordForm, LoginForm, SignupForm
+from emma.core.mixins import RequestFormMixin, \
+    LoginRequiredMixin, ClientRequiredMixin
+from emma.apps.users.forms import ChangePasswordForm
 
 
 class SelectCardView(ClientRequiredMixin, View):
@@ -206,74 +201,3 @@ class ChangePasswordView(LoginRequiredMixin, RequestFormMixin, FormView):
         client.save()
         return super(ChangePasswordView, self).form_valid(form)
 
-
-class LoginView(NextUrlMixin, AuthRedirectMixin, FormView):
-    template_name = 'users/login.html'
-    form_class = LoginForm
-    success_url = reverse_lazy('users:select_card')
-
-    def form_valid(self, form):
-        login(self.request, form.user_cache)
-        if not form.user_cache.client.active_client:
-            return redirect(reverse_lazy('landing:date'))
-
-        elif not form.user_cache.client.change_password:
-            return redirect(reverse_lazy('users:change_password'))
-        else:
-            return super(LoginView, self).form_valid(form)
-
-    def form_invalid(self, form):
-        return self.render_to_response(self.get_context_data())
-
-
-@login_required(login_url=reverse_lazy('users:login'))
-def logout_view(request):
-    logout(request)
-    return redirect(reverse_lazy('landing:home'))
-
-
-class SignupView(FormView):
-    template_name = 'users/signup.html'
-    form_class = SignupForm
-    success_url = reverse_lazy('landing:home')
-
-    def form_valid(self, form):
-        form.save()
-        login(self.request, form.user_cache)
-        return super(SignupView, self).form_valid(form)
-
-    def get_success_url(self):
-        if 'submit_btn_1' in self.request.POST:
-            url = reverse_lazy('landing:home')
-        elif 'submit_btn_2' in self.request.POST:
-            url = reverse_lazy('landing:date')
-        else:
-            url = self.success_url
-
-        subject = loader.render_to_string(
-            'email/subjects/notification_welcome.txt'
-        )
-
-        # Email subject *must not* contain newlines
-        subject = ''.join(subject.splitlines())
-
-        body = loader.render_to_string(
-            'email/notification_welcome.html'
-        )
-
-        from_email = "Emma - Notificaciones <postmaster@%s>" % (
-            settings.MAILGUN_SERVER_NAME
-        )
-
-        to_email = [self.request.user.email]
-
-        msg = EmailMultiAlternatives(
-            subject=subject,
-            from_email=from_email,
-            body=body,
-            to=to_email
-        )
-
-        msg.send()
-
-        return url

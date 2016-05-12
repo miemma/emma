@@ -10,17 +10,19 @@ from . import models
 
 
 def user_unicode(self):
-    return  u'%s, %s' % (self.last_name, self.first_name)
+    return u'%s, %s' % (self.last_name, self.first_name)
 
 
 class CustomUserAdmin(UserAdmin):
-    # as an example, this custom user admin orders users by email address
     ordering = ('-date_joined',)
-    list_display = ('email', 'first_name', 'last_name', 'is_staff', 'is_active')
+    list_display = ('email', 'first_name', 'last_name', 'is_staff',
+                    'is_active')
+
 
 User.__unicode__ = user_unicode
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
+
 
 @admin.register(models.Address)
 class AddresseAdmin(admin.ModelAdmin):

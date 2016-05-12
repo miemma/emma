@@ -24,11 +24,11 @@
     </li>
     <li class="header-navbar-list-item" hcolor="white">
 	    {% if user.is_authenticated %}
-		    <a class="header-navbar-list-item-link" href="{% url 'users:logout' %}">
+		    <a class="header-navbar-list-item-link" href="{% url 'xauth:logout' %}">
 	        Cerrar sesión
 	      </a>
 	    {% else %}
-		    <a class="header-navbar-list-item-link" href="{% url 'users:login' %}">
+		    <a class="header-navbar-list-item-link" href="{% url 'xauth:login' %}">
 	        Inicia sesión
 	      </a>
 	    {% endif %}

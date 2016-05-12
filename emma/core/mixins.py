@@ -33,7 +33,7 @@ class RequestFormMixin(object):
 
 class LoginRequiredMixin(object):
     """ Login required in class based views """
-    @method_decorator(login_required(login_url=reverse_lazy('users:login')))
+    @method_decorator(login_required(login_url=reverse_lazy('xauth:login')))
     def dispatch(self, request, *args, **kwargs):
         return super(LoginRequiredMixin, self).dispatch(request, *args,
                                                         **kwargs)
@@ -58,7 +58,7 @@ class NextUrlMixin(object):
 
 
 class ClientRequiredMixin(object):
-    @method_decorator(login_required(login_url=reverse_lazy('users:login')))
+    @method_decorator(login_required(login_url=reverse_lazy('xauth:login')))
     def dispatch(self, request, *args, **kwargs):
         try:
             Client.objects.get(user=request.user)

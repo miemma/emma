@@ -23,4 +23,16 @@ urlpatterns = [
         view=views.PasswordResetRequest.as_view(),
         name='reset_password_form'),
 
+    url(regex=r'^login/$',
+        view=views.LoginView.as_view(),
+        name='login'),
+
+    url(regex=r'^logout/$',
+        view=views.logout_view,
+        name='logout'),
+
+    url(regex=r'^signup/$',
+        view=views.SignupView.as_view(),
+        name='signup'),
+
 ]

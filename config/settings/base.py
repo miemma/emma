@@ -156,4 +156,4 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
-LOGIN_URL = reverse_lazy('users:login')
+LOGIN_URL = reverse_lazy('xauth:login')

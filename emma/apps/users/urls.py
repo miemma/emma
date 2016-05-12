@@ -15,7 +15,4 @@ urlpatterns = [
     url(regex=r'^pagar-servicio/', view=views.SelectCardView.as_view(),
         name='select_card'),
 
-    url(regex=r'^login/', view=views.LoginView.as_view(), name='login'),
-    url(regex=r'^logout/', view=views.logout_view, name='logout'),
-    url(regex=r'^signup/', view=views.SignupView.as_view(), name='signup'),
 ]
