@@ -26,6 +26,7 @@ admin.site.register(User, CustomUserAdmin)
 
 @admin.register(models.Address)
 class AddresseAdmin(admin.ModelAdmin):
+    list_display = ('user', 'street', 'postal_code')
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
 

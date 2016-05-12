@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 
 class Address(models.Model):
+    user = models.ForeignKey(User)
     street = models.CharField(
         max_length=25,
         blank=False,
@@ -52,6 +53,9 @@ class Address(models.Model):
     class Meta:
         verbose_name = 'Address'
         verbose_name_plural = 'Addresses'
+
+    def __unicode__(self):
+        return ('%s %s') % (self.user.get_full_name(), self.postal_code)
 
 
 class Client(models.Model):
