@@ -74,8 +74,8 @@ def export_as_xls(modeladmin, request, queryset):
             col = col + 1
         row = row + 1
 
-    wb.save('%s/output.xls' % settings.MEDIA_ROOT)
-    response = HttpResponse(open('%s/output.xls' % (settings.MEDIA_ROOT),'r').read(),
+    wb.save('/tmp/output.xls')
+    response = HttpResponse(open('/tmp/output.xls','r').read(),
                             content_type='application/ms-excel')
     response['Content-Disposition'] = 'attachment; filename=%s.xls' % unicode(opts).replace('.', '_')
     return response
