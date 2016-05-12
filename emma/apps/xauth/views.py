@@ -17,6 +17,7 @@ from django.conf import settings
 
 from emma.apps.users.forms import LoginForm, SignupForm
 from emma.core.mixins import NextUrlMixin, AuthRedirectMixin
+from emma.core.utils import send_email
 from .forms import PasswordResetRequestForm, PasswordResetForm
 
 
@@ -147,6 +148,12 @@ class SignupView(FormView):
     def form_valid(self, form):
         form.save()
         login(self.request, form.user_cache)
+        send_email(
+            subject='email/subjects/notification_welcome.txt',
+            body='email/notification_welcome.html',
+            context={},
+            to_email=[form.user_cache.email],
+        )
         return super(SignupView, self).form_valid(form)
 
     def get_success_url(self):
@@ -156,31 +163,5 @@ class SignupView(FormView):
             url = reverse_lazy('landing:date')
         else:
             url = self.success_url
-
-        subject = loader.render_to_string(
-            'email/subjects/notification_welcome.txt'
-        )
-
-        # Email subject *must not* contain newlines
-        subject = ''.join(subject.splitlines())
-
-        body = loader.render_to_string(
-            'email/notification_welcome.html'
-        )
-
-        from_email = "Emma - Notificaciones <postmaster@%s>" % (
-            settings.MAILGUN_SERVER_NAME
-        )
-
-        to_email = [self.request.user.email]
-
-        msg = EmailMultiAlternatives(
-            subject=subject,
-            from_email=from_email,
-            body=body,
-            to=to_email
-        )
-
-        msg.send()
 
         return url
