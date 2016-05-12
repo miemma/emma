@@ -4,6 +4,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 
+from emma.core.utils import export_as_xls
 from . import models
 
 
@@ -26,9 +27,12 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(models.Address)
 class AddresseAdmin(admin.ModelAdmin):
-    pass
+    actions = [export_as_xls]
+    export_as_xls.short_description = "Export selected objects to XLS"
 
 
 @admin.register(models.Client)
 class ClientAdmin(admin.ModelAdmin):
     list_display = ('user', 'active_client', 'change_password')
+    actions = [export_as_xls]
+    export_as_xls.short_description = "Export selected objects to XLS"
