@@ -35,10 +35,16 @@
     </li>
     <li class="header-navbar-list-item phone">
       <div class="phone-content">
-        <i class="fa fa-phone"></i>
-        <span>
-          +52 1 55 4544 9350
-        </span>
+	      {% if request.user.client.active_client %}
+			    <a href="{% url 'users:select_card' %}" class="header-navbar-pay">
+		        PAGAR
+		      </a>
+		    {% else %}
+		      <i class="fa fa-phone"></i>
+	        <span>
+	          +52 1 55 4544 9350
+	        </span>
+		    {% endif %}
       </div>
     </li>
   </ul>

@@ -33,9 +33,9 @@
           {% endif %}
 	        {{ form.email }}
 	        {% if form.email.errors %}
-            <div class="alert alert-danger signup-alert" role="alert">
+            <label class="error" role="alert">
               {{ form.email.errors.as_text|cut:"*" }}
-            </div>
+            </label>
           {% endif %}
           {{ form.password_1}}
 	        {% if form.password_1.errors %}

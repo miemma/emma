@@ -21,10 +21,19 @@
 	               placeholder="Numero de la tarjeta"
 	               class='emma-input addcard-form-input' />
 	        <div class="row">
-		        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+		        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-9">
 			        <input type="text" autocomplete="off" name="card_cvc"
 	               data-openpay-card="cvv2" required
 	               placeholder="CVC" class='emma-input addcard-form-input' />
+		        </div>
+		        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 addcard-row-tooltip">
+			        <i class="fa fa-question-circle addcard-tooltip"
+			           data-toggle="tooltip"
+			           title="El código de seguridad son
+			                  los 3 últimos números de la
+			                  parte posterior de tu tarjeta
+			                  (o 4 números al frente si es
+			                  Amex)"></i>
 		        </div>
 	        </div>
 
@@ -99,4 +108,13 @@
 	<script type="text/javascript" src="https://openpay.s3.amazonaws.com/openpay.v1.min.js"></script>
 	<script type='text/javascript' src="https://openpay.s3.amazonaws.com/openpay-data.v1.min.js"></script>
 	<script src="{% static "js/payment.js" %}"></script>
+	<script>
+		$(document).ready(function(){
+		    $("i").tooltip({
+			    'selector': '',
+			    'placement': 'top',
+			    'container':'body'
+			  });
+		});
+	</script>
 {% endblock %}

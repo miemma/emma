@@ -38,8 +38,9 @@
 	  <div class="row text-center info-1-row-btn">
 	    <div class="col-xs-10 col-sm-5 col-md-4 col-lg-3">
 		    {% if request.user.client.active_client %}
-			    <a href="{% url 'users:select_card' %}" class="emma-btn-dark info-1-btn">
-		        Pagar
+			    <a href="{% url 'users:select_card' %}"
+			       class="emma-btn-dark info-1-btn-pay">
+		        PAGAR
 		      </a>
 		    {% else %}
 			    <a href="{% url 'landing:date' %}" class="emma-btn-dark info-1-btn">
