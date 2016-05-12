@@ -17,7 +17,8 @@ class CustomUserAdmin(UserAdmin):
     ordering = ('-date_joined',)
     list_display = ('email', 'first_name', 'last_name', 'is_staff',
                     'is_active')
-
+    actions = [export_as_xls]
+    export_as_xls.short_description = "Export selected objects to XLS"
 
 User.__unicode__ = user_unicode
 admin.site.unregister(User)
