@@ -3,6 +3,7 @@
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.conf import settings
 
 from emma.apps.emmas.models import Emma
 
@@ -43,7 +44,9 @@ class Workshop(models.Model):
 
 
 class HiredService(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,)
     #old_man = models.ForeignKey(OldMan)
     service = models.ForeignKey(Service)
     workshop = models.ForeignKey(Workshop)

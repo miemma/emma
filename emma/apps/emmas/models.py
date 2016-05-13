@@ -3,12 +3,16 @@
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 
 from emma.apps.users.models import Address
 
 
 class Emma(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
     birthday = models.DateField(
         null=False,
         blank=False,

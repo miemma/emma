@@ -1,29 +1,93 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from django import forms
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.models import User
+from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from django.contrib.auth.models import Group
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from emma.core.utils import export_as_xls
+from emma.apps.users.models import CoolUser
+
 from . import models
 
 
-def user_unicode(self):
-    return u'%s, %s' % (self.last_name, self.first_name)
+class UserCreationForm(forms.ModelForm):
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+
+    class Meta:
+        model = CoolUser
+        fields = ('email', 'first_name', 'last_name', 'user_type')
+
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError("Passwords don't match")
+        return password2
+
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        user = super(UserCreationForm, self).save(commit=False)
+        user.set_password(self.cleaned_data["password1"])
+        if commit:
+            user.save()
+        return user
 
 
-class CustomUserAdmin(UserAdmin):
-    ordering = ('-date_joined',)
-    list_display = ('email', 'first_name', 'last_name', 'is_staff',
-                    'is_active')
-    actions = [export_as_xls]
-    export_as_xls.short_description = "Export selected objects to XLS"
+class UserChangeForm(forms.ModelForm):
+    password = ReadOnlyPasswordHashField()
 
-User.__unicode__ = user_unicode
-admin.site.unregister(User)
-admin.site.register(User, CustomUserAdmin)
+    class Meta:
+        model = CoolUser
+        fields = ('email', 'first_name', 'last_name', 'user_type')
 
+    def clean_password(self):
+        # Regardless of what the user provides, return the initial value.
+        # This is done here, rather than on the field, because the
+        # field does not have access to the initial value
+        return self.initial["password"]
+
+
+
+@admin.register(CoolUser)
+class UserAdmin(BaseUserAdmin):
+    # The forms to add and change user instances
+    form = UserChangeForm
+    add_form = UserCreationForm
+
+    # The fields to be used in displaying the User model.
+    # These override the definitions on the base UserAdmin
+    # that reference specific fields on auth.User.
+    list_display = ('email', 'first_name', 'last_name', 'user_type')
+    list_filter = ('user_type',)
+    fieldsets = (
+        (None, {
+            'fields': ('email', 'password', 'user_type')
+        }),
+        ('Personal info', {
+            'fields': ('first_name', 'last_name')
+        }),
+        ('Permissions', {
+            'fields': ('is_superuser',)
+        }),
+    )
+    # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
+    # overrides get_fieldsets to use this attribute when creating a user.
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('email', 'first_name', 'last_name', 'user_type',
+                       'password1', 'password2')}
+        ),
+    )
+    search_fields = ('email',)
+    ordering = ('email',)
+    filter_horizontal = ()
+
+admin.site.unregister(Group)
 
 @admin.register(models.Address)
 class AddresseAdmin(admin.ModelAdmin):
@@ -31,14 +95,3 @@ class AddresseAdmin(admin.ModelAdmin):
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
 
-
-@admin.register(models.Client)
-class ClientAdmin(admin.ModelAdmin):
-    list_display = ('user', 'get_email', 'active_client', 'change_password')
-    actions = [export_as_xls]
-    export_as_xls.short_description = "Export selected objects to XLS"
-
-    def get_email(self, obj):
-        return obj.user.email
-
-    get_email.short_description = 'Email'

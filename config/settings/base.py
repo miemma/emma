@@ -12,6 +12,7 @@ from __future__ import absolute_import, unicode_literals
 
 import environ
 
+
 # DIRS
 # -----------------------------------------------------------------------------
 from django.core.urlresolvers import reverse_lazy
@@ -21,6 +22,10 @@ PROJECT_DIR = ROOT_DIR.path('emma')
 APPS_DIR = ROOT_DIR.path('emma/apps')
 
 env = environ.Env()
+
+# SECRET CONFIGURATION
+# -----------------------------------------------------------------------------
+SECRET_KEY = env("DJANGO_SECRET_KEY", default='CHANGEME!!!')
 
 # PROJECT APPS
 # -----------------------------------------------------------------------------
@@ -133,14 +138,13 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # AUTHENTICATION CONFIGURATION
 # -----------------------------------------------------------------------------
 AUTHENTICATION_BACKENDS = (
-    'emma.core.backends.EmailBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 
 # SUIT CONFIGURATION
 # -----------------------------------------------------------------------------
 SUIT_CONFIG = {
-    'ADMIN_NAME': 'emma',
+    'ADMIN_NAME': 'Emma',
 }
 
 EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
@@ -157,3 +161,5 @@ STATICFILES_FINDERS = (
 )
 
 LOGIN_URL = reverse_lazy('xauth:login')
+
+AUTH_USER_MODEL = "users.CoolUser"
