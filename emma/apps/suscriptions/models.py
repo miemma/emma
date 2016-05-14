@@ -76,6 +76,7 @@ class History(models.Model):
     def __unicode__(self):
         return "%s - %s" % (self.suscription, self.movement)
 
+
 class Charge(models.Model):
     suscription = models.ForeignKey(
         Suscription,
