@@ -3,16 +3,14 @@
 
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect, render
-from django.views.generic import FormView, View
+from django.views.generic import View
 
 import openpay
 
 from emma.core.utils import send_email
 from emma.apps.suscriptions.models import Suscription, History, Charge
 from emma.apps.clients.models import Client
-from emma.core.mixins import RequestFormMixin, \
-    LoginRequiredMixin, ClientRequiredMixin
-from emma.apps.users.forms import ChangePasswordForm
+from emma.core.mixins import ClientRequiredMixin
 
 
 class SelectCardView(ClientRequiredMixin, View):
@@ -188,16 +186,4 @@ class AddCardView(ClientRequiredMixin, View):
 
         return redirect(reverse_lazy('landing:success_pay'))
 
-
-class ChangePasswordView(LoginRequiredMixin, RequestFormMixin, FormView):
-    template_name = 'users/change_password.html'
-    form_class = ChangePasswordForm
-    success_url = reverse_lazy('users:select_card')
-
-    def form_valid(self, form):
-        form.save()
-        client = self.request.user.client
-        client.change_password = True
-        client.save()
-        return super(ChangePasswordView, self).form_valid(form)
 

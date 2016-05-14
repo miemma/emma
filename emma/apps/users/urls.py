@@ -6,8 +6,6 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(regex=r'^cambiar-password/', view=views.ChangePasswordView.as_view(),
-        name='change_password'),
 
     url(regex=r'^agregar-tarjeta/', view=views.AddCardView.as_view(),
         name='add_card'),

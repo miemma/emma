@@ -4,10 +4,8 @@
 from django.contrib.auth import get_user_model, logout, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.tokens import default_token_generator
-from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
-from django.template import loader
 from django.template.response import TemplateResponse
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
@@ -15,10 +13,11 @@ from django.utils.http import urlsafe_base64_decode
 from django.views.generic import View, TemplateView, FormView
 from django.conf import settings
 
-from emma.apps.users.forms import LoginForm, SignupForm
-from emma.core.mixins import NextUrlMixin, AuthRedirectMixin
+from emma.core.mixins import NextUrlMixin, AuthRedirectMixin, \
+    LoginRequiredMixin, RequestFormMixin
 from emma.core.utils import send_email
-from .forms import PasswordResetRequestForm, PasswordResetForm
+from .forms import PasswordResetRequestForm, PasswordResetForm, \
+    ChangePasswordForm, SignupForm, LoginForm
 
 
 class PasswordReset(View):
@@ -125,7 +124,7 @@ class LoginView(NextUrlMixin, AuthRedirectMixin, FormView):
         if not form.user_cache.client.active_client:
             return redirect(reverse_lazy('landing:date'))
         elif not form.user_cache.client.change_password:
-            return redirect(reverse_lazy('users:change_password'))
+            return redirect(reverse_lazy('xauth:change_password'))
         else:
             return super(LoginView, self).form_valid(form)
 
@@ -164,3 +163,16 @@ class SignupView(FormView):
             url = self.success_url
 
         return url
+
+
+class ChangePasswordView(LoginRequiredMixin, RequestFormMixin, FormView):
+    template_name = 'users/change_password.html'
+    form_class = ChangePasswordForm
+    success_url = reverse_lazy('users:select_card')
+
+    def form_valid(self, form):
+        form.save()
+        client = self.request.user.client
+        client.change_password = True
+        client.save()
+        return super(ChangePasswordView, self).form_valid(form)
