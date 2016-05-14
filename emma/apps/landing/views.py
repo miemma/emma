@@ -2,12 +2,10 @@
 # -*- coding: utf-8 -*
 
 from __future__ import print_function
-from datetime import date, timedelta
+from datetime import date
 
-from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render
-from django.template import loader
 from django.views.generic import View, TemplateView
 from django.conf import settings
 
@@ -44,9 +42,9 @@ class SuccessPayTemplateView(TemplateView):
     template_name = 'landing/success_pay.html'
 
 
-
 class ContactEmailView(View):
-    def post(self, request):
+    @staticmethod
+    def post(request):
         email = request.POST.get('email')
         sender = request.POST.get('sender')
         message = request.POST.get('message')
@@ -67,7 +65,7 @@ class ContactEmailView(View):
             context=ctx
         )
 
-        customer = PotentialClient (
+        customer = PotentialClient(
             name=sender,
             email=email,
             source='Contacto'
@@ -78,13 +76,15 @@ class ContactEmailView(View):
 
 
 class JoinEmailView(View):
-    def get(self, request):
+    @staticmethod
+    def get(request):
         return render(request, 'landing/join.html')
 
-    def post(self, request):
+    @staticmethod
+    def post(request):
         last_name = request.POST.get('last_name')
         name = request.POST.get('name')
-        age =request.POST.get('age')
+        age = request.POST.get('age')
         email = request.POST.get('email')
         phone_movile = request.POST.get('phone_movile')
         phone = request.POST.get('phone')
@@ -130,7 +130,7 @@ class JoinEmailView(View):
         )
 
         customer = PotentialClient(
-            name=('%s %s') % (name, last_name),
+            name='%s %s' % (name, last_name),
             email=email,
             source='Unete a emma'
         )
@@ -140,14 +140,16 @@ class JoinEmailView(View):
 
 
 class DateEmailView(View):
-    def get(self, request):
+    @staticmethod
+    def get(request):
         today = date.today()
         context = {
             'today': today.strftime("%m/%d/%Y")
         }
         return render(request, 'landing/date.html', context)
 
-    def post(self, request):
+    @staticmethod
+    def post(request):
         if request.user.is_authenticated():
             email = request.user.email
             name = request.user.first_name
@@ -162,7 +164,7 @@ class DateEmailView(View):
         hour = request.POST.get('hour')
         tempo = request.POST.get('morning')
         time = '%s:%s' % (hour, minute)
-        date = request.POST.get('date_input')
+        datet = request.POST.get('date_input')
         tz = request.POST.get('timezone')
 
         ctx = {
@@ -172,7 +174,7 @@ class DateEmailView(View):
             'number': number,
             'tempo': tempo,
             'time': time,
-            'date': date,
+            'date': datet,
             'tz': tz,
 
         }
@@ -188,7 +190,7 @@ class DateEmailView(View):
         )
 
         ctx = {
-            'day': date,
+            'day': datet,
             'hour': time,
             'tz': tz,
         }
@@ -203,7 +205,7 @@ class DateEmailView(View):
         call = ScheduledCall(
             name="%s %s" % (name, last_name),
             email=email,
-            date_time="%s %s:%s" %(date, hour, minute),
+            date_time="%s %s:%s" % (datet, hour, minute),
             number=number
 
         )
