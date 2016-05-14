@@ -215,3 +215,42 @@ a
 div.tooltip-inner {
     max-width: 200px;
 }
+
+
+.radio-container
+	font-family "Avenir LT Std Roman"
+	font-size 19px
+	color #808080
+	float left
+
+.radio-input
+	color transparent
+	opacity 0
+
+.radio-label
+	float left
+	//margin-left 20px
+
+.radio-label::before
+	background white
+	//border solid 2px $light_gray
+	border-radius 3px
+	box-sizing border-box !important
+	color green
+	content ' '
+	display inline-block
+	//optional
+	//line-height 18px
+	margin 1px 10px 0 0
+	text-align center
+	vertical-align top
+	//width 18px
+	//height 18px
+	//font-size 18px
+
+.radio-input:focus + radio-label::before
+	box-shadow 0 0 5px #1481D0
+
+.radio-input:checked + .radio-label::before
+	border-color green
+	content '\2714'
