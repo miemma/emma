@@ -151,11 +151,18 @@ class CoolUser(PermissionsMixin, AbstractBaseUser):
     def is_staff(self):
         return self.is_admin
 
+    def __unicode__(self):
+        return "%s - %s" % (self.get_full_name(), self.email)
 
 class Client(models.Model):
+    id = models.BigIntegerField(
+        'ID',
+        auto_created=True
+    )
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
+        primary_key=True
     )
     address = models.ForeignKey(
         Address,
@@ -171,3 +178,8 @@ class Client(models.Model):
 
     def __unicode__(self):
         return self.user.get_full_name()
+
+    def save(self, *args, **kwargs):
+        parent_id = self.user.id
+        self.id = parent_id
+        super(Client, self).save(*args, **kwargs)

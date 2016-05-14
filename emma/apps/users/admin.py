@@ -86,6 +86,8 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ('email',)
     ordering = ('email',)
     filter_horizontal = ()
+    actions = [export_as_xls]
+    export_as_xls.short_description = "Export selected objects to XLS"
 
 admin.site.unregister(Group)
 
@@ -95,3 +97,15 @@ class AddresseAdmin(admin.ModelAdmin):
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
 
+
+@admin.register(models.Client)
+class ClientAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'get_email', 'active_client', 'change_password')
+    actions = [export_as_xls]
+    export_as_xls.short_description = "Export selected objects to XLS"
+    exclude = ['id']
+
+    def get_email(self, obj):
+        return obj.user.email
+
+    get_email.short_description = 'Email'
