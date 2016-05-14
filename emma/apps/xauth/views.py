@@ -115,7 +115,7 @@ class PasswordResetRequestDone(TemplateView):
 
 
 class LoginView(NextUrlMixin, AuthRedirectMixin, FormView):
-    template_name = 'users/login.html'
+    template_name = 'xauth/login.html'
     form_class = LoginForm
     success_url = reverse_lazy('users:select_card')
 
@@ -139,7 +139,7 @@ def logout_view(request):
 
 
 class SignupView(FormView):
-    template_name = 'users/signup.html'
+    template_name = 'xauth/signup.html'
     form_class = SignupForm
     success_url = reverse_lazy('landing:home')
 
@@ -166,7 +166,7 @@ class SignupView(FormView):
 
 
 class ChangePasswordView(LoginRequiredMixin, RequestFormMixin, FormView):
-    template_name = 'users/change_password.html'
+    template_name = 'xauth/change_password.html'
     form_class = ChangePasswordForm
     success_url = reverse_lazy('users:select_card')
 
