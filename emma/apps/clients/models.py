@@ -39,7 +39,7 @@ class Client(models.Model):
         verbose_name_plural = 'Clients'
 
     def __unicode__(self):
-        return self.user.get_full_name()
+        return '%s - %s' % (self.user.email, self.user.get_full_name())
 
     def save(self, *args, **kwargs):
         parent_id = self.user.id

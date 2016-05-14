@@ -9,9 +9,10 @@ from . import models
 
 @admin.register(models.Suscription)
 class SuscriptionAdmin(admin.ModelAdmin):
-    list_display = ('user', 'date', 'id_customer', 'status', 'active')
+    list_display = ('client', 'date', 'id_customer', 'status', 'is_active')
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
+    exclude = ['id']
 
 
 @admin.register(models.History)

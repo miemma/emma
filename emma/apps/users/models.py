@@ -159,4 +159,4 @@ class CoolUser(PermissionsMixin, AbstractBaseUser):
         return self.is_admin
 
     def __unicode__(self):
-        return "%s - %s" % (self.get_full_name(), self.email)
+        return "%s - %s" % (self.email, self.get_full_name())
