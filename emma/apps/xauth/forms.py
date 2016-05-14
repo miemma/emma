@@ -11,7 +11,6 @@ from emma.apps.clients.models import Client
 from emma.apps.users.models import CoolUser
 from emma.core import validators
 from emma.core.messages import error_messages
-from emma.core.utils import generate_random_username
 
 
 class PasswordResetRequestForm(PasswdForm):
@@ -210,19 +209,17 @@ class SignupForm(forms.Form):
         cleaned_data = super(SignupForm, self).clean()
 
         user = CoolUser.objects.create_user(
-            username=generate_random_username(),
             email=cleaned_data.get('email'),
             password=cleaned_data.get('password_2'),
+            first_name=cleaned_data.get('name'),
+            last_name=cleaned_data.get('last_name'),
+            user_type='client',
         )
-        user.first_name = cleaned_data.get('name')
-        user.last_name = cleaned_data.get('last_name')
-
-        user.save()
 
         client = Client(user=user, change_password=True)
         client.save()
 
         self.user_cache = authenticate(
-            username=cleaned_data.get('email'),
+            email=cleaned_data.get('email'),
             password=cleaned_data.get("password_2")
         )

@@ -9,13 +9,13 @@ from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
-
 from django.views.generic import View, TemplateView, FormView
 from django.conf import settings
 
 from emma.core.mixins import NextUrlMixin, AuthRedirectMixin, \
     LoginRequiredMixin, RequestFormMixin
 from emma.core.utils import send_email
+
 from .forms import PasswordResetRequestForm, PasswordResetForm, \
     ChangePasswordForm, SignupForm, LoginForm
 

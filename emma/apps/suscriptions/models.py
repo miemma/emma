@@ -44,7 +44,7 @@ class Suscription(models.Model):
         verbose_name_plural = _('Suscriptions')
 
     def __unicode__(self):
-        return "%s - %s" % (self.client.user.email, self.client)
+        return '%s' % self.client
 
     def save(self, *args, **kwargs):
         parent_id = self.client.id
