@@ -124,7 +124,6 @@ class LoginView(NextUrlMixin, AuthRedirectMixin, FormView):
         login(self.request, form.user_cache)
         if not form.user_cache.client.active_client:
             return redirect(reverse_lazy('landing:date'))
-
         elif not form.user_cache.client.change_password:
             return redirect(reverse_lazy('users:change_password'))
         else:

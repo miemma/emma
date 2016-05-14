@@ -70,7 +70,8 @@ class Address(models.Model):
 
 
 class CoolUserManager(BaseUserManager):
-    def _create_user(self, email, password, first_name, last_name, user_type, is_admin, is_superuser):
+    def _create_user(self, email, password, first_name, last_name, user_type,
+                     is_admin, is_superuser):
         if not email:
             raise ValueError('The given email must be set')
         if not first_name:
@@ -92,15 +93,17 @@ class CoolUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, first_name, last_name, user_type, password):
+    def create_superuser(self, email, password, first_name, last_name,
+                         user_type):
 
-        return self._create_user(email, first_name, last_name, user_type,
-                                 password, is_admin=True, is_superuser=True)
+        return self._create_user(email, password, first_name, last_name,
+                                 user_type, is_admin=True, is_superuser=True)
 
-    def create_user(self, email, first_name, last_name, user_type, password=None):
+    def create_user(self, email, first_name, last_name, user_type,
+                    password=None):
 
-        return self._create_user(email, first_name, last_name, user_type,
-                                 password, is_admin=True, is_superuser=True)
+        return self._create_user(email, password, first_name, last_name,
+                                 user_type, is_admin=False, is_superuser=False)
 
 
 class CoolUser(PermissionsMixin, AbstractBaseUser):
@@ -129,6 +132,10 @@ class CoolUser(PermissionsMixin, AbstractBaseUser):
     is_admin = models.BooleanField(
         _('staff status'),
         default=False,
+    )
+    is_active= models.BooleanField(
+        _('staff status'),
+        default=True,
     )
 
     objects = CoolUserManager()
