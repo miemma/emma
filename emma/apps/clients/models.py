@@ -35,8 +35,8 @@ class Client(models.Model):
     )
 
     class Meta:
-        verbose_name = 'Client'
-        verbose_name_plural = 'Clients'
+        verbose_name = _('Client')
+        verbose_name_plural = _('Clients')
 
     def __unicode__(self):
         return '%s - %s' % (self.user.email, self.user.get_full_name())
@@ -49,24 +49,26 @@ class Client(models.Model):
 
 class PotentialClient(models.Model):
     name = models.CharField(
+        _('Name'),
         max_length=55,
         blank=False,
         null=False,
     )
     email = models.EmailField(
+        _('Email'),
         blank=False,
         null=False
     )
-
     source = models.CharField(
+        _('Source'),
         max_length=55,
         blank=False,
         null=False,
     )
 
     class Meta:
-        verbose_name = 'Potential client'
-        verbose_name_plural = 'Potential clients'
+        verbose_name = _('Potential client')
+        verbose_name_plural = _('Potential clients')
 
     def __unicode__(self):
-        return ('%s - %s') % (self.name, self.email)
+        return '%s - %s' % (self.name, self.email)
