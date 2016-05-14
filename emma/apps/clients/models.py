@@ -45,3 +45,28 @@ class Client(models.Model):
         parent_id = self.user.id
         self.id = parent_id
         super(Client, self).save(*args, **kwargs)
+
+
+class PotentialClient(models.Model):
+    name = models.CharField(
+        max_length=55,
+        blank=False,
+        null=False,
+    )
+    email = models.EmailField(
+        blank=False,
+        null=False
+    )
+
+    source = models.CharField(
+        max_length=55,
+        blank=False,
+        null=False,
+    )
+
+    class Meta:
+        verbose_name = 'Potential client'
+        verbose_name_plural = 'Potential clients'
+
+    def __unicode__(self):
+        return ('%s - %s') % (self.name, self.email)

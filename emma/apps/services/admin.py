@@ -25,3 +25,10 @@ class WorkshopAdmin(admin.ModelAdmin):
 class HiredServiceAdmin(admin.ModelAdmin):
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
+
+
+@admin.register(models.ScheduledCall)
+class ScheduledCallAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'date_time', 'number')
+    actions = [export_as_xls]
+    export_as_xls.short_description = "Export selected objects to XLS"

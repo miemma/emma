@@ -89,3 +89,32 @@ class HiredService(models.Model):
     class Meta:
         verbose_name = 'Hired service'
         verbose_name_plural = 'Hired services'
+
+
+class ScheduledCall(models.Model):
+    name = models.CharField(
+        max_length=100,
+        blank=False,
+        null=False,
+    )
+    email = models.EmailField(
+        max_length=100,
+        blank=False,
+        null=False,
+    )
+    date_time = models.CharField(
+        max_length=20,
+        blank=False,
+        null=False,
+    )
+    number = models.BigIntegerField(
+        blank=False,
+        null=False
+    )
+
+    class Meta:
+        verbose_name = 'Scheduled call'
+        verbose_name_plural = 'Scheduled calls'
+
+    def __unicode__(self):
+        return '%s - %s' % (self.name, self.email)

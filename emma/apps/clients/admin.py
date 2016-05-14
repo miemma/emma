@@ -19,3 +19,10 @@ class ClientAdmin(admin.ModelAdmin):
         return obj.user.email
 
     get_email.short_description = 'Email'
+
+
+@admin.register(models.PotentialClient)
+class PotentialClientAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'source')
+    actions = [export_as_xls]
+    export_as_xls.short_description = "Export selected objects to XLS"

@@ -11,7 +11,8 @@ from django.template import loader
 from django.views.generic import View, TemplateView
 from django.conf import settings
 
-from emma.apps.customers.models import PotentialClient, ScheduledCall
+from emma.apps.clients.models import PotentialClient
+from emma.apps.services.models import ScheduledCall
 from emma.core.utils import send_email
 
 
