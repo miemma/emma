@@ -9,7 +9,7 @@ import openpay
 
 from emma.core.utils import send_email
 from emma.apps.suscriptions.models import Suscription, History, Charge
-from emma.apps.users.models import Client
+from emma.apps.clients.models import Client
 from emma.core.mixins import RequestFormMixin, \
     LoginRequiredMixin, ClientRequiredMixin
 from emma.apps.users.forms import ChangePasswordForm

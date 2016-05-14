@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 
-from emma.apps.users.models import Client
+from emma.apps.clients.models import Client
 from emma.core import validators
 from emma.core.messages import error_messages
 from emma.core.utils import generate_random_username

@@ -52,6 +52,7 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'emma.apps.landing',
     'emma.apps.emmas',
+    'emma.apps.clients',
     'emma.apps.suscriptions',
     'emma.apps.services',
     'emma.apps.customers',

@@ -8,7 +8,7 @@ from django.shortcuts import redirect
 from django.core.urlresolvers import reverse_lazy
 from django.utils.decorators import method_decorator
 
-from emma.apps.users.models import Client
+from emma.apps.clients.models import Client
 
 
 class AuthRedirectMixin(object):

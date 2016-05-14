@@ -3,7 +3,7 @@
 
 from django.db import models
 
-from emma.apps.users.models import Client
+from emma.apps.clients.models import Client
 
 
 class Suscription(models.Model):

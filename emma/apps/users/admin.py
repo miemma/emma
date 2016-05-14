@@ -96,16 +96,3 @@ class AddresseAdmin(admin.ModelAdmin):
     list_display = ('user', 'street', 'postal_code')
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
-
-
-@admin.register(models.Client)
-class ClientAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'get_email', 'active_client', 'change_password')
-    actions = [export_as_xls]
-    export_as_xls.short_description = "Export selected objects to XLS"
-    exclude = ['id']
-
-    def get_email(self, obj):
-        return obj.user.email
-
-    get_email.short_description = 'Email'

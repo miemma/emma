@@ -3,7 +3,8 @@
 
 from django.db import models
 
-from emma.apps.users.models import Address, Client
+from emma.apps.clients.models import Client
+from emma.apps.users.models import Address
 
 
 class Adult(models.Model):
