@@ -29,12 +29,12 @@ class PasswordReset(View):
     User = None
 
     def get(self, request, uidb64, token):
-        UserModel = get_user_model()
+        usermodel = get_user_model()
         assert uidb64 is not None and token is not None
         try:
             uid = force_text(urlsafe_base64_decode(uidb64))
-            self.User = UserModel._default_manager.get(pk=uid)
-        except (TypeError, ValueError, OverflowError, UserModel.DoesNotExist):
+            self.User = usermodel._default_manager.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, usermodel.DoesNotExist):
             self.User = None
 
         if self.User is not None and \
@@ -56,12 +56,12 @@ class PasswordReset(View):
         return TemplateResponse(request, self.template_name, context)
 
     def post(self, request, uidb64, token):
-        UserModel = get_user_model()
+        usermodel = get_user_model()
         assert uidb64 is not None and token is not None
         try:
             uid = force_text(urlsafe_base64_decode(uidb64))
-            self.User = UserModel._default_manager.get(pk=uid)
-        except (TypeError, ValueError, OverflowError, UserModel.DoesNotExist):
+            self.User = usermodel._default_manager.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, usermodel.DoesNotExist):
             self.User = None
         form = self.set_password_form(self.User, request.POST)
         if form.is_valid():

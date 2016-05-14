@@ -195,7 +195,6 @@ class SignupForm(forms.Form):
             self.fields[field].error_messages = error_messages
             self.fields[field].validators = [validators.eval_blank]
 
-
     def clean_email(self):
         email = self.cleaned_data.get('email')
         return validators.eval_unique(email, CoolUser, 'email', 'email')
