@@ -34,7 +34,7 @@
 	  </div>
     <div class="row text-center">
       <div class="col-lg-5 col-md-6 col-sm-8 col-xs-10">
-        <form class="login-form" action="../users" method="post" id="login-form">
+        <form class="login-form" action="." method="post" id="login-form">
           {% csrf_token %}
           {% if next %}
 	          <input type="hidden" name="next" value="{{ next }}">
