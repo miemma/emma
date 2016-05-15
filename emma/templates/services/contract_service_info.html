@@ -1,8 +1,15 @@
 {% extends 'base.html' %}
 
+{% load static from staticfiles %}
+
 {% block content %}
 
 	<section class="contract">
+		<div class="row text-center contract-row-img">
+			<div class="col-lg-8">
+				<img src="{% static "img/pasos.png" %}">
+			</div>
+		</div>
 		<div class="row contract-row-title">
 			<div class="col-lg-10 col-lg-offset-2">
 				<p class="contract-title">
