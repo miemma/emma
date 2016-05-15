@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% load static from staticfiles %}
+
+{% block content %}
+
+	<section class="contract-signup">
+		<div class="row text-center contract-row-img">
+			<div class="col-lg-8">
+				<img src="{% static "img/pasos_2.png" %}">
+			</div>
+		</div>
+    <div class="row contract-signup-row-title">
+			<div class="col-lg-4 col-lg-offset-4">
+				<p class="contract-title">
+					Ingreso de datos
+				</p>
+				<p class="contract-subtitle">
+					Ingresa tus datos en el siguiente formulario:
+				</p>
+			</div>
+		</div>
+	  <div class="row text-center">
+		  <div class="col-lg-4 col-lg-offset-4 col-md-6 col-sm-8 col-xs-10">
+				{% if form.non_field_errors %}
+					<label class="error">
+            {{ form.non_field_errors.as_text|cut:"*" }}
+          </label>
+				{% endif %}
+			</div>
+	  </div>
+    <div class="row text-center">
+      <div class="col-lg-4 col-md-6 col-sm-8 col-xs-10">
+        <form class="contract-signup-form" action="."
+              method="post" id="contract-signup-form">
+          {% csrf_token %}
+	        {{ form.name }}
+	        {% if form.name.errors %}
+						<label class="error">
+							{{ form.name.errors.as_text|cut:"*" }}
+						</label>
+          {% endif %}
+          {{ form.last_name }}
+	        {% if form.last_name.errors %}
+						<label class="error">
+							{{ form.last_name.errors.as_text|cut:"*" }}
+						</label>
+          {% endif %}
+          {{ form.email }}
+	        {% if form.email.errors %}
+						<label class="error">
+							{{ form.email.errors.as_text|cut:"*" }}
+						</label>
+          {% endif %}
+          {{ form.password_1 }}
+	        {% if form.password_1.errors %}
+						<label class="error">
+							{{ form.password_1.errors.as_text|cut:"*" }}
+						</label>
+          {% endif %}
+          {{ form.password_2 }}
+	        {% if form.password_2.errors %}
+						<label class="error">
+							{{ form.password_2.errors.as_text|cut:"*" }}
+						</label>
+          {% endif %}
+          <div class="row text-center padding-top-30 contract-signup-loader">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div id="movingBallG">
+								<div class="movingBallLineG"></div>
+								<div id="movingBallG_1" class="movingBallG"></div>
+						</div>
+            </div>
+          </div>
+	        <div class="row text-center">
+			      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			        <button class="emma-btn-dark contract-signup-btn">
+			           Registrarme
+			        </button>
+			      </div>
+			    </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

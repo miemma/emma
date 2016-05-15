@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% block content %}
+
+	<section class="contract-location">
+		<div class="row text-center contract-row-img">
+			<div class="col-lg-8">
+				<img src="{% static "img/pasos_3.png" %}">
+			</div>
+		</div>
+		<div class="row text-center contract-row-title">
+			<div class="col-lg-6">
+				<p class="contract-title">
+					Datos del servicio
+				</p>
+				<p class="contract-subtitle">
+					Ingresa tus datos en el siguiente formulario:
+				</p>
+			</div>
+		</div>
+		<div class="row text-center">
+			<div class="col-lg-7">
+				<form class="contract-location-form" action="."
+              method="post" id="contract-location-form">
+					<div class="row">
+						<div class="col-lg-6">
+							<input type="text" placeholder="Servicio"
+							       class="emma-input contract-location-form-input">
+						</div>
+						<div class="col-lg-6">
+							<input type="text" placeholder="Taller"
+							       class="emma-input contract-location-form-input">
+						</div>
+					</div>
+					<div class="row">
+		        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			        <p class="contract-location-form-desc">
+				        Datos de dirección:
+			        </p>
+		        </div>
+	        </div>
+					<div class="row">
+						<div class="col-lg-6">
+							<input type="text" placeholder="Calle"
+							       class="emma-input contract-location-form-input">
+						</div>
+						<div class="col-lg-3">
+							<input type="text" placeholder="Num. Ext"
+							       class="emma-input contract-location-form-input">
+						</div>
+						<div class="col-lg-3">
+							<input type="text" placeholder="Num. Int"
+							       class="emma-input contract-location-form-input">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-4">
+							<input type="text" placeholder="Colonia"
+							       class="emma-input contract-location-form-input">
+						</div>
+						<div class="col-lg-5">
+							<input type="text" placeholder="Delegación"
+							       class="emma-input contract-location-form-input">
+						</div>
+						<div class="col-lg-3">
+							<input type="text" placeholder="C.P"
+							       class="emma-input contract-location-form-input">
+						</div>
+					</div>
+					<div class="row">
+		        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			        <p class="contract-location-form-desc">
+				        Información del servicio:
+			        </p>
+		        </div>
+	        </div>
+					<div class="row">
+						<div class="col-lg-6">
+							<input type="text" placeholder="Referencia"
+							       class="emma-input contract-location-form-input">
+						</div>
+						<div class="col-lg-6">
+							<input type="text" placeholder="Días"
+							       class="emma-input contract-location-form-input">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-7">
+							<input type="text" placeholder="Frecuencia"
+							       class="emma-input contract-location-form-input">
+						</div>
+						<div class="col-lg-1">
+							<span>Inicio</span>
+						</div>
+						<div class="col-lg-2">
+							<select class="emma-input">
+							  <option>Día</option>
+							  <option>1</option>
+							  <option>2</option>
+							  <option>3</option>
+							  <option>4</option>
+							  <option>5</option>
+							</select>
+						</div>
+						<div class="col-lg-2">
+							<select class="emma-input">
+							  <option>Hora</option>
+							  <option>1</option>
+							  <option>2</option>
+							  <option>3</option>
+							  <option>4</option>
+							  <option>5</option>
+							</select>
+						</div>
+					</div>
+					<div class="row text-center">
+			      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			        <button class="emma-btn-dark contract-signup-btn">
+			           Continuar
+			        </button>
+			      </div>
+			    </div>
+				</form>
+			</div>
+		</div>
+	</section>
+
+{% endblock %}

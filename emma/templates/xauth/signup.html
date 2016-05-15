@@ -33,7 +33,7 @@
           {% endif %}
 	        {{ form.email }}
 	        {% if form.email.errors %}
-            <label class="error" role="alert">
+            <label class="error">
               {{ form.email.errors.as_text|cut:"*" }}
             </label>
           {% endif %}
