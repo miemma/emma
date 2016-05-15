@@ -19,4 +19,8 @@ urlpatterns = [
         view=views.ContractLocation.as_view(),
         name='contract_ubication'),
 
+    url(regex='^contratar/adulto/$',
+        view=views.ContractAdult.as_view(),
+        name='contract_adult'),
+
 ]

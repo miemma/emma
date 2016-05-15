@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% block content %}
+
+	<section class="contract-adult">
+		<div class="row text-center contract-row-img">
+			<div class="col-lg-8">
+				<img src="{% static "img/pasos_4.png" %}">
+			</div>
+		</div>
+		<div class="row text-center contract-row-title">
+			<div class="col-lg-6">
+				<p class="contract-title">
+					Información del adulto mayor
+				</p>
+				<p class="contract-subtitle">
+					Ingresa los datos en el siguiente formulario:
+				</p>
+			</div>
+		</div>
+		<div class="row text-center">
+			<div class="col-lg-7">
+				<form class="contract-adult-form" action="."
+              method="post" id="contract-adult-form">
+					<div class="row">
+						<div class="col-lg-6">
+							<input type="text" placeholder="Nombre"
+							       class="emma-input contract-adult-form-input">
+						</div>
+						<div class="col-lg-6">
+							<input type="text" placeholder="Apellidos"
+							       class="emma-input contract-adult-form-input">
+						</div>
+					</div>
+					<div class="row">
+		        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			        <p class="contract-adult-form-desc">
+				        Fecha de Nacimiento
+			        </p>
+		        </div>
+	        </div>
+					<div class="row">
+						<div class="col-lg-5">
+							<input type="text" placeholder="DD/MM/AAAA"
+							       class="emma-input contract-adult-form-input">
+						</div>
+					</div>
+					<div class="row">
+		        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			        <p class="contract-adult-form-desc">
+				        *En caso de no contestar se contactará al médico de cabecera
+			        </p>
+		        </div>
+	        </div>
+					<div class="row">
+						<div class="col-lg-5">
+							<input type="text" placeholder="Nombre del médico"
+							       class="emma-input contract-adult-form-input">
+						</div>
+						<div class="col-lg-4">
+							<input type="text" placeholder="Teléfono del médico"
+							       class="emma-input contract-adult-form-input">
+						</div>
+						<div class="col-lg-3">
+							<input type="text" placeholder="C.P."
+							       class="emma-input contract-adult-form-input">
+						</div>
+					</div>
+					<div class="row">
+		        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			        <p class="contract-adult-form-desc">
+				        Háblanos del adulto mayor:
+			        </p>
+		        </div>
+	        </div>
+					<div class="row">
+          <div class="col-lg-12">
+            <textarea class="emma-input contract-adult-form-area"
+                      placeholder="Descripción" rows="8"
+                      name="message" required></textarea>
+          </div>
+        </div>
+					<div class="row text-center">
+			      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			        <button class="emma-btn-dark contract-signup-btn">
+			           Continuar
+			        </button>
+			      </div>
+			    </div>
+				</form>
+			</div>
+		</div>
+	</section>
+
+{% endblock %}

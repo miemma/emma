@@ -16,3 +16,7 @@ class ContractSignup(SignupView):
 
 class ContractLocation(TemplateView):
     template_name = 'services/contract_location.html'
+
+
+class ContractAdult(TemplateView):
+    template_name = 'services/contract_adult.html'
