@@ -13,7 +13,7 @@ from emma.apps.emmas.models import Emma
 class Service(models.Model):
     name = models.CharField(
         _('Name'),
-        max_length=25,
+        max_length=40,
         blank=False,
         null=False
     )
@@ -38,7 +38,7 @@ class Workshop(models.Model):
     )
     name = models.CharField(
         _('Name'),
-        max_length=25,
+        max_length=40,
         blank=False,
         null=False
     )
