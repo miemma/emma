@@ -20,3 +20,6 @@ class ContractLocation(TemplateView):
 
 class ContractAdult(TemplateView):
     template_name = 'services/contract_adult.html'
+
+class ContractPay(TemplateView):
+    template_name = 'services/contract_payment.html'
