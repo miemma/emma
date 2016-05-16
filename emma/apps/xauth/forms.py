@@ -82,8 +82,8 @@ class ChangePasswordForm(forms.Form):
 
     def clean(self):
         cleaned_data = super(ChangePasswordForm, self).clean()
-        new_password_1 = cleaned_data.get('new_password_1', '')
-        new_password_2 = cleaned_data.get('new_password_2', '')
+        new_password_1 = cleaned_data.get('new_password_1')
+        new_password_2 = cleaned_data.get('new_password_2')
         if new_password_1 and new_password_2:
             return validators.eval_matching(new_password_1, new_password_2)
 

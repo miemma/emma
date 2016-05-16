@@ -38,7 +38,7 @@ def generate_random_username(length=16, chars=ascii_lowercase+digits,
     if split:
         username = delimiter.join([username[start:start+split] for start in range(0, len(username), split)])
     try:
-        User.objects.get(username=username)
+        User.objects.get(request=username)
         return generate_random_username(
             length=length, chars=chars, split=split, delimiter=delimiter
         )

@@ -33,7 +33,7 @@ class PasswordReset(View):
         assert uidb64 is not None and token is not None
         try:
             uid = force_text(urlsafe_base64_decode(uidb64))
-            self.User = usermodel._default_manager.get(pk=uid)
+            self.User = usermodel._default_manager.get(request=uid)
         except (TypeError, ValueError, OverflowError, usermodel.DoesNotExist):
             self.User = None
 
@@ -60,7 +60,7 @@ class PasswordReset(View):
         assert uidb64 is not None and token is not None
         try:
             uid = force_text(urlsafe_base64_decode(uidb64))
-            self.User = usermodel._default_manager.get(pk=uid)
+            self.User = usermodel._default_manager.get(request=uid)
         except (TypeError, ValueError, OverflowError, usermodel.DoesNotExist):
             self.User = None
         form = self.set_password_form(self.User, request.POST)

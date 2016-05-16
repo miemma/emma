@@ -50,6 +50,14 @@ class ContractServiceInfo(View):
 
 class ContractSignup(SignupView):
     template_name = 'services/contract_signup.html'
+    success_url = reverse_lazy('services:contract_ubication')
+
+    def get(self, request, **kwargs):
+        if not 'id_service' in request.session or \
+                not 'id_workshop' in request.session :
+            return redirect('services:contract_service_info')
+        else:
+            return super(ContractSignup, self).get(self, request, **kwargs)
 
 
 class ContractLocation(TemplateView):
