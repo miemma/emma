@@ -22,18 +22,26 @@
 		</div>
 		<div class="row text-center">
 			<div class="col-lg-7">
+				<div class="row margin-top-30">
+					<div class="col-lg-6">
+						<input type="text" placeholder="Servicio"
+						       value="{{ service.name }}" disabled
+						       class="emma-input contract-location-form-input">
+					</div>
+					<div class="col-lg-6">
+						<input type="text" placeholder="Taller"
+						       value="{{ workshop.name }}" disabled
+						       class="emma-input contract-location-form-input">
+					</div>
+				</div>
+				{% if form.non_field_errors %}
+					<label class="error">
+            {{ form.non_field_errors.as_text|cut:"*" }}
+          </label>
+				{% endif %}
 				<form class="contract-location-form" action="."
               method="post" id="contract-location-form">
-					<div class="row">
-						<div class="col-lg-6">
-							<input type="text" placeholder="Servicio"
-							       class="emma-input contract-location-form-input">
-						</div>
-						<div class="col-lg-6">
-							<input type="text" placeholder="Taller"
-							       class="emma-input contract-location-form-input">
-						</div>
-					</div>
+					{% csrf_token %}
 					<div class="row">
 		        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			        <p class="contract-location-form-desc">
@@ -43,32 +51,66 @@
 	        </div>
 					<div class="row">
 						<div class="col-lg-6">
-							<input type="text" placeholder="Calle"
-							       class="emma-input contract-location-form-input">
+							{{ form.street }}
+							{% if form.street.errors %}
+								<label class="error nowrap-lg">
+									{{ form.street.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
 						</div>
 						<div class="col-lg-3">
-							<input type="text" placeholder="Num. Ext"
-							       class="emma-input contract-location-form-input">
+							{{ form.num_ext }}
+							{% if form.num_ext.errors %}
+								<label class="error nowrap-lg">
+									{{ form.num_ext.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
 						</div>
 						<div class="col-lg-3">
-							<input type="text" placeholder="Num. Int"
-							       class="emma-input contract-location-form-input">
+							{{ form.num_int }}
+							{% if form.num_int.errors %}
+								<label class="error nowrap-lg">
+									{{ form.num_int.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-lg-4">
-							<input type="text" placeholder="Colonia"
-							       class="emma-input contract-location-form-input">
+							{{ form.colony }}
+							{% if form.colony.errors %}
+								<label class="error nowrap-lg">
+									{{ form.colony.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
 						</div>
 						<div class="col-lg-5">
-							<input type="text" placeholder="Delegación"
-							       class="emma-input contract-location-form-input">
+							{{ form.delegation }}
+							{% if form.delegation.errors %}
+								<label class="error nowrap-lg">
+									{{ form.delegation.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
 						</div>
 						<div class="col-lg-3">
-							<input type="text" placeholder="C.P"
-							       class="emma-input contract-location-form-input">
+							{{ form.cp }}
+							{% if form.cp.errors %}
+								<label class="error nowrap-lg">
+									{{ form.cp.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
 						</div>
 					</div>
+					<div class="row">
+	          <div class="col-lg-12">
+	            {{ form.address_reference }}
+		          {% if form.address_reference.errors %}
+								<label class="error nowrap-lg">
+									{{ form.address_reference.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
+	          </div>
+	        </div>
 					<div class="row">
 		        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			        <p class="contract-location-form-desc">
@@ -78,53 +120,96 @@
 	        </div>
 					<div class="row">
 						<div class="col-lg-6">
-							<input type="text" placeholder="Referencia"
-							       class="emma-input contract-location-form-input">
+							{{ form.hours_per_week }}
+							{% if form.hours_per_week.errors %}
+								<label class="error nowrap-lg">
+									{{ form.hours_per_week.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
 						</div>
 						<div class="col-lg-6">
-							<input type="text" placeholder="Días"
-							       class="emma-input contract-location-form-input">
+							{{ form.services_days }}
+							{% if form.services_days.errors %}
+								<label class="error nowrap-lg">
+									{{ form.services_days.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-lg-7">
-							<input type="text" placeholder="Frecuencia"
-							       class="emma-input contract-location-form-input">
+						<div class="col-lg-6">
+							{{ form.frecuency }}
+							{% if form.frecuency.errors %}
+								<label class="error nowrap-lg">
+									{{ form.frecuency.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
 						</div>
-						<div class="col-lg-1">
-							<span>Inicio</span>
+						<div class="col-lg-6">
+							{{ form.service_reference }}
+							{% if form.service_reference.errors %}
+								<label class="error nowrap-lg">
+									{{ form.service_reference.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
+						</div>
+					</div>
+					<div class="row">
+		        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			        <p class="contract-location-form-desc">
+				        Fecha de inicio del servicio
+			        </p>
+		        </div>
+	        </div>
+					<div class="row">
+						<div class="col-lg-4">
+							{{ form.start_date }}
+							{% if form.start_date.errors %}
+								<label class="error nowrap-lg">
+									{{ form.start_date.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
+						</div>
+						<div class="col-lg-4">
+							{{ form.start_time }}
+							{% if form.start_time.errors %}
+								<label class="error nowrap-lg">
+									{{ form.start_time.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
 						</div>
 						<div class="col-lg-2">
-							<select class="emma-input">
-							  <option>Día</option>
-							  <option>1</option>
-							  <option>2</option>
-							  <option>3</option>
-							  <option>4</option>
-							  <option>5</option>
-							</select>
-						</div>
-						<div class="col-lg-2">
-							<select class="emma-input">
-							  <option>Hora</option>
-							  <option>1</option>
-							  <option>2</option>
-							  <option>3</option>
-							  <option>4</option>
-							  <option>5</option>
-							</select>
+							{{ form.morning }}
+							{% if form.morning.errors %}
+								<label class="error nowrap-lg">
+									{{ form.morning.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
 						</div>
 					</div>
 					<div class="row text-center">
-			      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			        <button class="emma-btn-dark contract-signup-btn">
-			           Continuar
-			        </button>
-			      </div>
-			    </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <button class="emma-btn-dark login-btn">
+                Continuar
+              </button>
+            </div>
+          </div>
 				</form>
 			</div>
 		</div>
 	</section>
 
+{% endblock %}
+
+{% block js %}
+	<script type="text/javascript">
+		$('#id_morning').click(function () {
+				button_time = document.getElementById('id_morning');
+				if (button_time.value == 'AM') {
+						button_time.value = 'PM';
+				} else if (button_time.value == 'PM') {
+						button_time.value = 'AM';
+				}
+		});
+	</script>
 {% endblock %}

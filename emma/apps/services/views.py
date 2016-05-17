@@ -4,10 +4,12 @@
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render, redirect
 from django.template.response import TemplateResponse
-from django.views.generic import TemplateView, View
+from django.views.generic import TemplateView, View, FormView
 
+from emma.apps.services.forms import ServiceData
 from emma.apps.services.models import Service, Workshop
 from emma.apps.xauth.views import SignupView
+from emma.core.mixins import RequestFormMixin
 
 
 class ContractServiceInfo(View):
@@ -60,8 +62,22 @@ class ContractSignup(SignupView):
             return super(ContractSignup, self).get(self, request, **kwargs)
 
 
-class ContractLocation(TemplateView):
+class ContractLocation(RequestFormMixin, FormView):
     template_name = 'services/contract_location.html'
+    form_class = ServiceData
+    success_url = reverse_lazy('services:contract_adult')
+
+    def form_valid(self, form):
+        form.save()
+        return super(ContractLocation, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(ContractLocation, self).get_context_data(**kwargs)
+        service = Service.objects.get(id=self.request.session['id_service'])
+        workshop = Workshop.objects.get(id=self.request.session['id_workshop'])
+        context['service'] = service
+        context['workshop'] = workshop
+        return context
 
 
 class ContractAdult(TemplateView):

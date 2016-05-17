@@ -30,8 +30,8 @@ class Address(models.Model):
         null=False
     )
     interior_number = models.PositiveSmallIntegerField(
-        blank=False,
-        null=False
+        blank=True,
+        null=True
     )
     colony = models.CharField(
         max_length=25,

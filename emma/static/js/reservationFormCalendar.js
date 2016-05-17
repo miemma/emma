@@ -31,13 +31,13 @@ firstValidDate.setMilliseconds(0);
 	$('#datepicker .next').text('>');
 
 	$('#reservation-time-button').click(function () {
-        button_time = document.getElementById('reservation-time-button');
-        if (button_time.value == 'AM') {
-            button_time.value = 'PM';
-        } else if (button_time.value == 'PM') {
-            button_time.value = 'AM';
-        }
-    });
+			button_time = document.getElementById('reservation-time-button');
+			if (button_time.value == 'AM') {
+					button_time.value = 'PM';
+			} else if (button_time.value == 'PM') {
+					button_time.value = 'AM';
+			}
+	});
 
     $('#datepicker').datepicker()
         .on('changeDate', function(e) {
