@@ -1,4 +1,27 @@
 $(document).ready(function () {
+  
+  /* Request Password Form
+  ---------------------------------------------------------------------------*/
+  var $passwdForm = $('#passwd-form');
+  $passwdForm.validate({
+    rules: {
+      new_password_1: {
+        required: true
+      },
+      new_password_2: {
+        required: true,
+        equalTo: "#id_new_password_1"
+      }
+    },
+    highlight: function(element, errorClass) {
+      $(element).removeClass(errorClass);
+    },
+    submitHandler: function(form)  {
+      $('.passwd-alert').hide();
+      $('.passwd-loader').show();
+      form.submit();
+    }
+ });
 
   /* Request Password Form
   ---------------------------------------------------------------------------*/
@@ -76,7 +99,6 @@ $(document).ready(function () {
       form.submit();
     }
   });
-
   
   /* Login Form
   ---------------------------------------------------------------------------*/
@@ -97,7 +119,6 @@ $(document).ready(function () {
     }
  });
   
-  
   /* Date Form
   ---------------------------------------------------------------------------*/
   var $dateForm = $('#dateForm');
@@ -116,8 +137,7 @@ $(document).ready(function () {
       form.submit();
     }
   });
-
-
+  
   /* Pay Form
   ---------------------------------------------------------------------------*/
   var $payForm = $('#pay-form');
@@ -130,8 +150,7 @@ $(document).ready(function () {
       form.submit();
     }
   });
-
-
+  
   /* Contact Form
   ---------------------------------------------------------------------------*/
   var $contactForm = $('#contactForm');
