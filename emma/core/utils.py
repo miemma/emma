@@ -32,20 +32,6 @@ def send_email(subject, body, to_email, context, from_email=None):
     email_message.send()
 
 
-def generate_random_username(length=16, chars=ascii_lowercase+digits,
-                             split=4, delimiter='-'):
-    username = ''.join([choice(chars) for i in range(length)])
-    if split:
-        username = delimiter.join([username[start:start+split] for start in range(0, len(username), split)])
-    try:
-        User.objects.get(request=username)
-        return generate_random_username(
-            length=length, chars=chars, split=split, delimiter=delimiter
-        )
-    except User.DoesNotExist:
-        return username
-
-
 def export_as_xls(modeladmin, request, queryset):
     """
     Generic xls export admin action.

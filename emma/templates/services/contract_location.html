@@ -29,9 +29,9 @@
 						       class="emma-input contract-location-form-input">
 					</div>
 					<div class="col-lg-6">
-						<input type="text" placeholder="Taller"
-						       value="{{ workshop.name }}" disabled
-						       class="emma-input contract-location-form-input">
+						<div class="contract-location-workshops">
+							{{ workshop }}
+						</div>
 					</div>
 				</div>
 				{% if form.non_field_errors %}

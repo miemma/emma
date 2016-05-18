@@ -18,6 +18,7 @@ class ContractServiceInfo(View):
     success_url = reverse_lazy('services:contract_signup')
 
     def get(self, request):
+        '''
         if 'id_service' in request.session:
             del request.session['id_service']
         if 'id_workshop' in request.session:
@@ -25,6 +26,7 @@ class ContractServiceInfo(View):
 
         if 'workshop_list' in request.session:
             del request.session['workshop_list']
+        '''
 
         ctx = {
             'services': self.services
@@ -82,10 +84,18 @@ class ContractLocation(RequestFormMixin, FormView):
 
     def get_context_data(self, **kwargs):
         context = super(ContractLocation, self).get_context_data(**kwargs)
-        service = Service.objects.get(id=self.request.session['id_service'])
-        workshop = Workshop.objects.get(id=self.request.session['id_workshop'])
+        service = Service.objects.get(
+            id=self.request.session['id_service']
+        )
+
+        workshop_list = self.request.session['workshop_list']
+        workshops = ''
+        for workshop in workshop_list:
+            work = Workshop.objects.get(id=workshop, service=service)
+            workshops += '%s, ' % str(work.name)
+        workshops = workshops[:-2]
         context['service'] = service
-        context['workshop'] = workshop
+        context['workshop'] = workshops
         return context
 
 
