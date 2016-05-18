@@ -1,8 +1,40 @@
 $(document).ready(function () {
 
+  /* Contract Signup Form
+  ---------------------------------------------------------------------------*/
+  var $contractSignupForm = $('#contract-signup-form');
+  $contractSignupForm.validate({
+	    rules: {
+        email: {
+          email: true,
+          required:true
+        },
+        password_1: {
+          required:true
+        },
+        password_2: {
+          required:true,
+          equalTo: "#id_password_1"
+        },
+        name: {
+          required:true
+        },
+        last_name: {
+          required:true
+        }
+      },
+      highlight: function(element, errorClass) {
+        $(element).removeClass(errorClass);
+      },
+      submitHandler: function(form)  {
+	      $('.contract-signup-alert').hide();
+	      $('.contract-signup-loader').show();
+	      form.submit();
+	    }
+		});
+
   /* Contract Form
   ---------------------------------------------------------------------------*/
-
   var $contractForm = $('#contract-form');
   $contractForm.validate({
 	    rules: {
