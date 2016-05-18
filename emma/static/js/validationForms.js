@@ -1,4 +1,33 @@
 $(document).ready(function () {
+
+  /* Contract Form
+  ---------------------------------------------------------------------------*/
+
+  var $contractForm = $('#contract-form');
+  $contractForm.validate({
+	    rules: {
+        "contract-service-workshop": {
+          required: true,
+          minlength: 1
+        },
+		    "contract-service": {
+          required: true,
+          minlength: 1
+        }
+	    },
+	    messages: {
+        "contract-service-workshop": "Selecciona al menos 1 Taller",
+		    "contract-service": "Selecciona 1 Servicio"
+	    },
+			highlight: function(element, errorClass) {
+	      $(element).removeClass(errorClass);
+	    },
+			submitHandler: function(form)  {
+	      $('.contract-alert').hide();
+	      $('.contract-loader').show();
+	      form.submit();
+	    }
+		});
   
   /* Request Password Form
   ---------------------------------------------------------------------------*/

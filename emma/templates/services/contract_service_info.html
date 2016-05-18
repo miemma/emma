@@ -20,37 +20,39 @@
 				</p>
 			</div>
 		</div>
+
 		<form action="." method="post" id="contract-form" class="row text-center">
       {% csrf_token %}
 			{% if error %}
-				<label class="error margin-top-30">
+				<label class="error margin-top-30" id="contract-alert">
 					{{ error }}
 				</label>
 			{% endif %}
+
 			{% for service in services %}
-				<div class="col-lg-4">
+				<div class="col-lg-4 contract-row-content">
 					<div class="contract-header">
-					<span class="radio-container">
-            <input id="service_{{ service.id }}" class="radio-input"
-                   type="radio" value="{{ service.id }}"
-                   name="contract-service" required>
-             <label class="radio-label contract-header-radio-label"
-                    for="service_{{ service.id }}">
-             </label>
-          </span>
-					<span class="contract-header-title">
-            {{ service.name }}
-          </span>
-          <span class="contract-header-price">
-            ${{ service.price }} <br> por hora
-          </span>
-				</div>
+						<span class="radio-container">
+	            <input id="service_{{ service.id }}" class="radio-input"
+	                   type="radio" value="{{ service.id }}"
+	                   name="contract-service" required>
+	             <label class="radio-label contract-header-radio-label"
+	                    for="service_{{ service.id }}">
+	             </label>
+	          </span>
+						<span class="contract-header-title">
+	            {{ service.name }}
+	          </span>
+	          <span class="contract-header-price">
+	            ${{ service.price }} <br> por hora
+	          </span>
+					</div>
 					<div class="contract-body">
 						{% for workshop in service.workshop_set.all %}
 							<span class="radio-container contract-body-radio-cont">
 		            <input id="workshop_{{ workshop.id }}" class="radio-input"
-		                   type="radio" value="{{ workshop.id }}"
-		                   name="contract-service-workshop" required
+		                   type="checkbox" value="{{ workshop.id }}"
+		                   name="contract-service-workshop"
 		                   data-service="{{ workshop.service.id }}">
 		             <label class="radio-label contract-body-radio-label"
 		                    for="workshop_{{ workshop.id }}">
@@ -61,6 +63,14 @@
 					</div>
 				</div>
 			{% endfor %}
+			<label for="contract-service-workshop" class="error"></label>
+			<label for="contract-service" class="error"></label>
+      <div class="col-lg-8">
+        <div id="movingBallG" class="contract-loader">
+					<div class="movingBallLineG"></div>
+					<div id="movingBallG_1" class="movingBallG"></div>
+				</div>
+      </div>
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <button class="emma-btn-dark contract-btn">
           Continuar
@@ -70,3 +80,10 @@
 	</section>
 
 {% endblock %}
+
+{% block js %}
+	<script type="text/javascript">
+
+	</script>
+{% endblock %}
+
