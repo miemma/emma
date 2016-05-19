@@ -184,12 +184,29 @@ $(document).ready(function () {
   ---------------------------------------------------------------------------*/
   var $dateForm = $('#dateForm');
   $dateForm.validate({
+    groups: {
+        timeGroup: "hour minute"
+    },
     rules: {
+      hour: {
+        number: true,
+        maxlength: 12,
+        minlength: 1,
+        required: true
+      },
+      minute: {
+        checkDateTime: true,
+        number: true,
+        maxlength: 59,
+        minlength: 0,
+        required: true
+      },
       number: {
         number: true,
         maxlength: 10
       }
     },
+
     highlight: function(element, errorClass) {
         $(element).removeClass(errorClass);
     },
@@ -272,9 +289,22 @@ $(document).ready(function () {
     maxlength: jQuery.validator.format("No ingreses mas de {0} caracteres."),
     minlength: jQuery.validator.format("Ingresa al menos {0} caracter."),
     rangelength: jQuery.validator.format("Please enter a value between {0} and {1} characters long."),
-    range: jQuery.validator.format("Please enter a value between {0} and {1}."),
-    max: jQuery.validator.format("Please enter a value less than or equal to {0}."),
-    min: jQuery.validator.format("Please enter a value greater than or equal to {0}.")
+    range: jQuery.validator.format("Inserte un valor entre {0} y {1}."),
+    max: jQuery.validator.format("Inserte un valor menor o igual que {0}."),
+    min: jQuery.validator.format("Inserte un valor mayor o igual que {0}.")
   });
+
+  jQuery.validator.addMethod("checkDateTime", function(value, element) {
+    var hours = parseInt($('#hourInput').val());
+    var minutes = parseInt($('#timeInput').val());
+    var time = $('#reservation-time-button').val();
+    var total_minutes = (hours * 60) + minutes;
+    console.log(total_minutes);
+    if (time == 'PM') {
+      total_minutes += 720;
+    }
+    return !(total_minutes > 1200 || total_minutes < 540);
+
+  }, "La hora no es valida");
   
 });

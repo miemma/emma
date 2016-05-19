@@ -83,11 +83,11 @@
                 <div class="col-lg-6">
                   <div id="reservation-time-section"
                        class="emma-input date-input">
-                    <input name="hour" class="hour-input" type="number"
-                           placeholder="00" min="1" max="12"
-                           value="10">:<input
-		                  class="minute-input" type="number" min="0" max="59"
-		                  placeholder="00" value="30" name="minute">
+                    <input name="hour" class="hour-input" type="text"
+                           placeholder="00" max="12" min="1"
+                           value="10" id="hourInput">:<input
+		                  class="minute-input" type="text" max="59" min="0"
+		                  placeholder="00" value="30" name="minute" id="timeInput">
                   </div>
                 </div>
                 <div class="col-lg-6">
@@ -96,6 +96,9 @@
                          id="reservation-time-button" readonly>
                 </div>
               </div>
+	            <div class="row">
+		            <label for="timeGroup" class="error"></label>
+	            </div>
             </div>
           </div>
           <div class="row margin-top-20">
