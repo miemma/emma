@@ -14,4 +14,8 @@ urlpatterns = [
     url(regex=r'^usuarios/historial/$',
         view=views.HistoryList.as_view(),
         name='history_list'),
+
+    url(regex=r'^usuarios/informacion-pago/$',
+        view=views.PaymentInfo.as_view(),
+        name='payment_info'),
 ]

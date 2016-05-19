@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Payment Info</title>
+</head>
+<body>
+	<ul>
+	  {{ request.user.client }}
+		{% for card in cards %}
+			<li>
+				<p>
+					{{ card.card_number }}
+				</p>
+				<p>
+					{{ card.brand }}
+				</p>
+			</li>
+		{% endfor %}
+
+	</ul>
+</body>
+</html>

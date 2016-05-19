@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+import openpay
+from django.template.response import TemplateResponse
 from django.views.generic import ListView, View
 
 from emma.apps.suscriptions.models import Charge, Suscription, History
@@ -29,4 +30,15 @@ class HistoryList(ClientRequiredMixin, ListView):
         return queryset
 
 
+class PaymentInfo(ClientRequiredMixin, View):
+    template_name = 'suscriptions/payment_info.html'
 
+    def get(self, request):
+        suscription = Suscription.objects.get(client=self.request.user.client)
+        customer = openpay.Customer.retrieve(suscription.id_customer)
+        cards = customer.cards.all()
+
+        ctx = {
+            'cards': cards.data
+        }
+        return TemplateResponse(request, self.template_name, ctx)
