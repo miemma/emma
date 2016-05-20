@@ -9,29 +9,28 @@ from django.views.generic import TemplateView, View, FormView
 from emma.apps.services.forms import ServiceData
 from emma.apps.services.models import Service, Workshop
 from emma.apps.xauth.views import SignupView
-from emma.core.mixins import RequestFormMixin
+from emma.core.mixins import RequestFormMixin, AuthRedirectMixin
 
 
-class ContractServiceInfo(View):
+class ContractServiceInfo(AuthRedirectMixin, View):
     template_name = 'services/contract_service_info.html'
     services = Service.objects.all()
     success_url = reverse_lazy('services:contract_signup')
 
-    def get(self, request):
-        '''
-        if 'id_service' in request.session:
-            del request.session['id_service']
-        if 'id_workshop' in request.session:
-            del request.session['id_workshop']
+    def get(self, request, **kwargs):
 
-        if 'workshop_list' in request.session:
-            del request.session['workshop_list']
-        '''
+        # if 'id_service' in request.session:
+            # del request.session['id_service']
 
+        # if 'workshop_list' in request.session:
+            # del request.session['workshop_list']
         ctx = {
             'services': self.services
         }
-        return TemplateResponse(request, self.template_name, ctx)
+        if request.user.is_authenticated():
+            return redirect('/')
+        else:
+            return TemplateResponse(request, self.template_name, ctx)
 
     def post(self, request):
         service_id = request.POST.get('contract-service')
