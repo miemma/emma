@@ -295,16 +295,32 @@ $(document).ready(function () {
   });
 
   jQuery.validator.addMethod("checkDateTime", function(value, element) {
+
+    var date = new Date();
+    var actual_time = (date.getHours() *60) + date.getMinutes();
+    console.log("El timepo en minutos actuales son: " + actual_time);
+
     var hours = parseInt($('#hourInput').val());
     var minutes = parseInt($('#timeInput').val());
     var time = $('#reservation-time-button').val();
     var total_minutes = (hours * 60) + minutes;
-    console.log(total_minutes);
     if (time == 'PM') {
       total_minutes += 720;
     }
-    return !(total_minutes > 1200 || total_minutes < 540);
+    console.log("Los minutos en la hora de la cita son: " + total_minutes);
 
+    // Validamos que este dentro del horario de servicio
+    if (total_minutes > 1200 || total_minutes < 540) {
+      console.log("No esta en el horario de atención");
+      return false; // No esta dentro del horario
+    } else { // Si esta dentro del horario
+      if ((actual_time + 45) <  total_minutes) {
+        return true
+      } else {
+        console.log("Esta en un tiempo invalido");
+        return false
+      }
+    }
   }, "La hora no es valida");
   
 });
