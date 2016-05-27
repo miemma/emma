@@ -118,6 +118,7 @@
 			        </p>
 		        </div>
 	        </div>
+					<!--
 					<div class="row">
 						<div class="col-lg-6">
 							{{ form.hours_per_week }}
@@ -127,31 +128,120 @@
 								</label>
 		          {% endif %}
 						</div>
-						<div class="col-lg-6">
-							{{ form.services_days }}
-							{% if form.services_days.errors %}
-								<label class="error nowrap-lg">
-									{{ form.services_days.errors.as_text|cut:"*" }}
-								</label>
-		          {% endif %}
+					</div>
+					-->
+					<div class="row">
+						<div class="col-lg-4">
+							{{ form.day_1 }}
+						</div>
+						<div class="col-lg-4">
+							{{ form.day_1_hour }}
+						</div>
+						<div class="col-lg-2">
+							{{ form.day_1_morning }}
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-lg-6">
-							{{ form.frecuency }}
-							{% if form.frecuency.errors %}
-								<label class="error nowrap-lg">
-									{{ form.frecuency.errors.as_text|cut:"*" }}
-								</label>
-		          {% endif %}
+					{% if request.session.days_per_service > 1 %}
+						<div class="row">
+							<div class="col-lg-4">
+								{{ form.day_2 }}
+							</div>
+							<div class="col-lg-4">
+								{{ form.day_2_hour }}
+							</div>
+							<div class="col-lg-2">
+								{{ form.day_2_morning }}
+							</div>
 						</div>
-						<div class="col-lg-6">
-							{{ form.service_reference }}
-							{% if form.service_reference.errors %}
-								<label class="error nowrap-lg">
-									{{ form.service_reference.errors.as_text|cut:"*" }}
-								</label>
-		          {% endif %}
+					{% endif %}
+					{% if request.session.days_per_service > 2 %}
+						<div class="row">
+							<div class="col-lg-4">
+								{{ form.day_3 }}
+							</div>
+							<div class="col-lg-4">
+								{{ form.day_3_hour }}
+							</div>
+							<div class="col-lg-2">
+								{{ form.day_3_morning }}
+							</div>
+						</div>
+					{% endif %}
+					{% if request.session.days_per_service > 3 %}
+						<div class="row">
+							<div class="col-lg-4">
+								{{ form.day_4 }}
+							</div>
+							<div class="col-lg-4">
+								{{ form.day_4_hour }}
+							</div>
+							<div class="col-lg-2">
+								{{ form.day_4_morning }}
+							</div>
+						</div>
+					{% endif %}
+					{% if request.session.days_per_service > 4 %}
+						<div class="row">
+							<div class="col-lg-4">
+								{{ form.day_5 }}
+							</div>
+							<div class="col-lg-4">
+								{{ form.day_5_hour }}
+							</div>
+							<div class="col-lg-2">
+								{{ form.day_5_morning }}
+							</div>
+						</div>
+					{% endif %}
+					{% if request.session.days_per_service > 5 %}
+						<div class="row">
+							<div class="col-lg-4">
+								{{ form.day_6 }}
+							</div>
+							<div class="col-lg-4">
+								{{ form.day_6_hour }}
+							</div>
+							<div class="col-lg-2">
+								{{ form.day_6_morning }}
+							</div>
+						</div>
+					{% endif %}
+					{% if request.session.days_per_service > 6 %}
+						<div class="row">
+							<div class="col-lg-4">
+								{{ form.day_7 }}
+							</div>
+							<div class="col-lg-4">
+								{{ form.day_7_hour }}
+							</div>
+							<div class="col-lg-2">
+								{{ form.day_7_morning }}
+							</div>
+						</div>
+					{% endif %}
+					<div class="row">
+            <div class="col-lg-3 contract-location-row-day-btn">
+              <button class="emma-btn-dark contract-location-day-btn"
+                      type="button" id="add_day">
+	              <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                Agregar un dia
+              </button>
+            </div>
+						{% if request.session.days_per_service > 1 %}
+							<div class="col-lg-3 contract-location-row-day-btn">
+	              <button class="emma-btn-dark contract-location-day-btn"
+	                      type="button" id="remove_day">
+		              <i class="fa fa-minus-circle" aria-hidden="true"></i>
+	                Quitar un dia
+	              </button>
+	            </div>
+						{% endif %}
+          </div>
+					<div class="row contract-location-row-days-error">
+						<div class="col-lg-3">
+							<label class="error">
+								No puedes agregar mas dias
+							</label>
 						</div>
 					</div>
 					<div class="row">
@@ -203,12 +293,225 @@
 
 {% block js %}
 	<script type="text/javascript">
+
+		window.onload = function() {
+			// sessionStorage.clear();
+      var day_1 = sessionStorage.getItem('day_1');
+      if (day_1 !== null) $('#id_day_1').val(day_1);
+
+			var day_1_hour = sessionStorage.getItem('day_1_hour');
+      if (day_1_hour !== null) $('#id_day_1_hour').val(day_1_hour);
+
+			var day_1_morning = sessionStorage.getItem('day_1_morning');
+      if (day_1_morning !== null) $('#id_day_1_morning').val(day_1_morning);
+
+			{% if request.session.days_per_service > 1 %}
+				var day_2 = sessionStorage.getItem('day_2');
+	      if (day_2 !== null) $('#id_day_2').val(day_2);
+
+				var day_2_hour = sessionStorage.getItem('day_2_hour');
+	      if (day_2_hour !== null) $('#id_day_2_hour').val(day_2_hour);
+
+				var day_2_morning = sessionStorage.getItem('day_2_morning');
+	      if (day_2_morning !== null) $('#id_day_2_morning').val(day_2_morning);
+			{% endif %}
+
+			{% if request.session.days_per_service > 2 %}
+				var day_3 = sessionStorage.getItem('day_3');
+	      if (day_3 !== null) $('#id_day_3').val(day_3);
+
+				var day_3_hour = sessionStorage.getItem('day_3_hour');
+	      if (day_3_hour !== null) $('#id_day_3_hour').val(day_3_hour);
+
+				var day_3_morning = sessionStorage.getItem('day_3_morning');
+	      if (day_3_morning !== null) $('#id_day_3_morning').val(day_3_morning);
+			{% endif %}
+
+			{% if request.session.days_per_service > 3 %}
+				var day_4 = sessionStorage.getItem('day_4');
+	      if (day_4 !== null) $('#id_day_4').val(day_4);
+
+				var day_4_hour = sessionStorage.getItem('day_4_hour');
+	      if (day_4_hour !== null) $('#id_day_4_hour').val(day_4_hour);
+
+				var day_4_morning = sessionStorage.getItem('day_4_morning');
+	      if (day_4_morning !== null) $('#id_day_4_morning').val(day_4_morning);
+			{% endif %}
+
+			{% if request.session.days_per_service > 4 %}
+				var day_5 = sessionStorage.getItem('day_5');
+	      if (day_5 !== null) $('#id_day_5').val(day_5);
+
+				var day_5_hour = sessionStorage.getItem('day_5_hour');
+	      if (day_5_hour !== null) $('#id_day_5_hour').val(day_5_hour);
+
+				var day_5_morning = sessionStorage.getItem('day_5_morning');
+	      if (day_5_morning !== null) $('#id_day_5_morning').val(day_5_morning);
+			{% endif %}
+
+			{% if request.session.days_per_service > 5 %}
+				var day_6 = sessionStorage.getItem('day_6');
+	      if (day_6 !== null) $('#id_day_6').val(day_6);
+
+				var day_6_hour = sessionStorage.getItem('day_6_hour');
+	      if (day_6_hour !== null) $('#id_day_6_hour').val(day_6_hour);
+
+				var day_6_morning = sessionStorage.getItem('day_6_morning');
+	      if (day_6_morning !== null) $('#id_day_6_morning').val(day_6_morning);
+			{% endif %}
+
+			{% if request.session.days_per_service > 6 %}
+				var day_7 = sessionStorage.getItem('day_7');
+	      if (day_7 !== null) $('#id_day_7').val(day_7);
+
+				var day_7_hour = sessionStorage.getItem('day_7_hour');
+	      if (day_7_hour !== null) $('#id_day_7_hour').val(day_7_hour);
+
+				var day_7_morning = sessionStorage.getItem('day_7_morning');
+	      if (day_7_morning !== null) $('#id_day_7_morning').val(day_7_morning);
+			{% endif %}
+    };
+
+		window.onbeforeunload = function() {
+      sessionStorage.setItem("day_1", $('#id_day_1').val());
+      sessionStorage.setItem("day_1_hour", $('#id_day_1_hour').val());
+      sessionStorage.setItem("day_1_morning", $('#id_day_1_morning').val());
+
+			{% if request.session.days_per_service > 1 %}
+				sessionStorage.setItem("day_2", $('#id_day_2').val());
+        sessionStorage.setItem("day_2_hour", $('#id_day_2_hour').val());
+        sessionStorage.setItem("day_2_morning", $('#id_day_2_morning').val());
+			{% endif %}
+
+			{% if request.session.days_per_service > 2 %}
+				sessionStorage.setItem("day_3", $('#id_day_3').val());
+        sessionStorage.setItem("day_3_hour", $('#id_day_3_hour').val());
+        sessionStorage.setItem("day_3_morning", $('#id_day_3_morning').val());
+			{% endif %}
+
+			{% if request.session.days_per_service > 3 %}
+				sessionStorage.setItem("day_4", $('#id_day_4').val());
+        sessionStorage.setItem("day_4_hour", $('#id_day_4_hour').val());
+        sessionStorage.setItem("day_4_morning", $('#id_day_4_morning').val());
+			{% endif %}
+
+			{% if request.session.days_per_service > 4 %}
+				sessionStorage.setItem("day_5", $('#id_day_5').val());
+        sessionStorage.setItem("day_5_hour", $('#id_day_5_hour').val());
+        sessionStorage.setItem("day_5_morning", $('#id_day_5_morning').val());
+			{% endif %}
+
+			{% if request.session.days_per_service > 5 %}
+				sessionStorage.setItem("day_6", $('#id_day_6').val());
+        sessionStorage.setItem("day_6_hour", $('#id_day_6_hour').val());
+        sessionStorage.setItem("day_6_morning", $('#id_day_6_morning').val());
+			{% endif %}
+
+			{% if request.session.days_per_service > 6 %}
+				sessionStorage.setItem("day_7", $('#id_day_7').val());
+        sessionStorage.setItem("day_7_hour", $('#id_day_7_hour').val());
+        sessionStorage.setItem("day_7_morning", $('#id_day_7_morning').val());
+			{% endif %}
+    };
+
+    $('#add_day').on("click", function () {
+
+	    var days = {{ request.session.days_per_service }};
+
+	    if (days >= 7) {
+		    $('.contract-location-row-days-error').show()
+	    } else {
+		    $.ajax({
+	        url: '/contratar/agregar-dia/',
+	        type: 'POST',
+	        data: {
+	          csrfmiddlewaretoken: '{{ csrf_token }}'
+	        }
+	      })
+	      .done(function (data) {
+	        location.reload();
+	      })
+	      .fail(function (data) {
+	      })
+	    }
+    });
+
+		$('#remove_day').on("click", function () {
+      $.ajax({
+        url: '/contratar/remover-dia/',
+        type: 'POST',
+        data: {
+          csrfmiddlewaretoken: '{{ csrf_token }}'
+        }
+      })
+      .done(function (data) {
+        location.reload();
+      })
+      .fail(function (data) {
+      })
+    });
+
 		$('#id_morning').click(function () {
-				button_time = document.getElementById('id_morning');
-				if (button_time.value == 'AM') {
-						button_time.value = 'PM';
-				} else if (button_time.value == 'PM') {
-						button_time.value = 'AM';
+				if ($(this).val() == 'AM') {
+						$(this).val('PM');
+				} else if ($(this).val() == 'PM') {
+						$(this).val('AM');
+				}
+		});
+
+		$('#id_day_1_morning').click(function () {
+				if ($(this).val() == 'AM') {
+						$(this).val('PM');
+				} else if ($(this).val() == 'PM') {
+						$(this).val('AM');
+				}
+		});
+
+		$('#id_day_2_morning').click(function () {
+				if ($(this).val() == 'AM') {
+						$(this).val('PM');
+				} else if ($(this).val() == 'PM') {
+						$(this).val('AM');
+				}
+		});
+
+		$('#id_day_3_morning').click(function () {
+				if ($(this).val() == 'AM') {
+						$(this).val('PM');
+				} else if ($(this).val() == 'PM') {
+						$(this).val('AM');
+				}
+		});
+
+		$('#id_day_4_morning').click(function () {
+				if ($(this).val() == 'AM') {
+						$(this).val('PM');
+				} else if ($(this).val() == 'PM') {
+						$(this).val('AM');
+				}
+		});
+
+		$('#id_day_5_morning').click(function () {
+				if ($(this).val() == 'AM') {
+						$(this).val('PM');
+				} else if ($(this).val() == 'PM') {
+						$(this).val('AM');
+				}
+		});
+
+		$('#id_day_6_morning').click(function () {
+				if ($(this).val() == 'AM') {
+						$(this).val('PM');
+				} else if ($(this).val() == 'PM') {
+						$(this).val('AM');
+				}
+		});
+
+		$('#id_day_7_morning').click(function () {
+				if ($(this).val() == 'AM') {
+						$(this).val('PM');
+				} else if ($(this).val() == 'PM') {
+						$(this).val('AM');
 				}
 		});
 	</script>
