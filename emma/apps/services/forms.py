@@ -75,27 +75,192 @@ class ServiceData(forms.Form):
             }
         ),
     )
-    services_days = forms.CharField(
+    day_1 = forms.CharField(
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Días'
+                'placeholder': 'Dia (Ej: Lunes)'
             }
         ),
     )
-    frecuency = forms.CharField(
+    day_1_hour = forms.CharField(
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Frecuencia'
+                'placeholder': 'Hora (Ej: 12:00)'
             }
         ),
     )
-    service_reference = forms.CharField(
+    day_1_morning = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-location-form-input '
+                         'contract-location-form-input-morning',
+                'placeholder': 'Hora (Ej: 12:00)',
+                'value': 'AM',
+                'readonly': 'true'
+            }
+        ),
+    )
+    day_2 = forms.CharField(
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Referencia'
+                'placeholder': 'Dia (Ej: Martes)'
+            }
+        ),
+    )
+    day_2_hour = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-location-form-input',
+                'placeholder': 'Hora (Ej: 12:00)'
+            }
+        ),
+    )
+    day_2_morning = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-location-form-input '
+                         'contract-location-form-input-morning',
+                'placeholder': 'Hora (Ej: 12:00)',
+                'value': 'AM',
+                'readonly': 'true'
+            }
+        ),
+    )
+    day_3 = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-location-form-input',
+                'placeholder': 'Dia (Ej: Miércoles)'
+            }
+        ),
+    )
+    day_3_hour = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-location-form-input',
+                'placeholder': 'Hora (Ej: 12:00)'
+            }
+        ),
+    )
+    day_3_morning = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-location-form-input '
+                         'contract-location-form-input-morning',
+                'placeholder': 'Hora (Ej: 12:00)',
+                'value': 'AM',
+                'readonly': 'true'
+            }
+        ),
+    )
+    day_4 = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-location-form-input',
+                'placeholder': 'Dia (Ej: Jueves)'
+            }
+        ),
+    )
+    day_4_hour = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-location-form-input',
+                'placeholder': 'Hora (Ej: 12:00)'
+            }
+        ),
+    )
+    day_4_morning = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-location-form-input '
+                         'contract-location-form-input-morning',
+                'placeholder': 'Hora (Ej: 12:00)',
+                'value': 'AM',
+                'readonly': 'true'
+            }
+        ),
+    )
+    day_5 = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-location-form-input',
+                'placeholder': 'Dia (Ej: Viernes)'
+            }
+        ),
+    )
+    day_5_hour = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-location-form-input',
+                'placeholder': 'Hora (Ej: 12:00)'
+            }
+        ),
+    )
+    day_5_morning = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-location-form-input '
+                         'contract-location-form-input-morning',
+                'placeholder': 'Hora (Ej: 12:00)',
+                'value': 'AM',
+                'readonly': 'true'
+            }
+        ),
+    )
+    day_6 = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-location-form-input',
+                'placeholder': 'Dia (Ej: Sábado)'
+            }
+        ),
+    )
+    day_6_hour = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-location-form-input',
+                'placeholder': 'Hora (Ej: 12:00)'
+            }
+        ),
+    )
+    day_6_morning = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-location-form-input '
+                         'contract-location-form-input-morning',
+                'placeholder': 'Hora (Ej: 12:00)',
+                'value': 'AM',
+                'readonly': 'true'
+            }
+        ),
+    )
+    day_7 = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-location-form-input',
+                'placeholder': 'Dia (Ej: Domingo)'
+            }
+        ),
+    )
+    day_7_hour = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-location-form-input',
+                'placeholder': 'Hora (Ej: 12:00)'
+            }
+        ),
+    )
+    day_7_morning = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-location-form-input '
+                         'contract-location-form-input-morning',
+                'placeholder': 'Hora (Ej: 12:00)',
+                'value': 'AM',
+                'readonly': 'true'
             }
         ),
     )
@@ -107,6 +272,7 @@ class ServiceData(forms.Form):
             }
         ),
     )
+
     start_time = forms.CharField(
         widget=forms.TextInput(
             attrs={
@@ -134,8 +300,6 @@ class ServiceData(forms.Form):
             self.fields[field].required = False
             self.fields[field].error_messages = error_messages
             self.fields[field].validators = [validators.eval_blank]
-            if field == 'num_int':
-                self.fields[field].required = False
 
     def save(self):
         cleaned_data = super(ServiceData, self).clean()
@@ -154,16 +318,94 @@ class ServiceData(forms.Form):
         if cleaned_data.get('num_ext'):
             service_address.interior_number = cleaned_data.get('num_ext')
 
+        service_address.save()
+
+        service = Service.objects.get(
+            id=self.request.session['id_service']
+        )
+
+        workshop_list = self.request.session['workshop_list']
+        workshops = ''
+        num_workshops = 0
+        for workshop in workshop_list:
+            work = Workshop.objects.get(id=workshop, service=service)
+            workshops += '%s, ' % str(work.name)
+            num_workshops += 1
+        workshops = workshops[:-2]
+
+        day_1 = '%s %s %s' % (
+            self.cleaned_data.get('day_1'),
+            self.cleaned_data.get('day_1_hour'),
+            self.cleaned_data.get('day_1_morning'),
+        )
+
+
+        start_date = self.cleaned_data.get('start_date')
+
         hired_service = HiredService(
             client=self.request.user.client,
             service=Service.objects.get(
                 id=self.request.session['id_service']
             ),
-            workshop=Workshop.objects.get(
-                id=self.request.session['id_service']
-            ),
-            hours_per_week= cleaned_data.get('hours_per_week')
+            workshops=workshops,
+            num_workshops=num_workshops,
+            start_date=start_date,
+            service_day_1 = day_1,
+
         )
 
-        service_address.save()
+        if self.cleaned_data.get('day_2'):
+            day_2 = '%s %s %s' % (
+                self.cleaned_data.get('day_2'),
+                self.cleaned_data.get('day_2_hour'),
+                self.cleaned_data.get('day_2_morning'),
+            )
 
+            hired_service.service_day_2 = day_2
+
+        if self.cleaned_data.get('day_3'):
+            day_3 = '%s %s %s' % (
+                self.cleaned_data.get('day_3'),
+                self.cleaned_data.get('day_3_hour'),
+                self.cleaned_data.get('day_3_morning'),
+            )
+
+            hired_service.service_day_3 = day_3
+
+        if self.cleaned_data.get('day_4'):
+            day_4 = '%s %s %s' % (
+                self.cleaned_data.get('day_4'),
+                self.cleaned_data.get('day_4_hour'),
+                self.cleaned_data.get('day_4_morning'),
+            )
+
+            hired_service.service_day_4 = day_4
+
+        if self.cleaned_data.get('day_5'):
+            day_5 = '%s %s %s' % (
+                self.cleaned_data.get('day_5'),
+                self.cleaned_data.get('day_5_hour'),
+                self.cleaned_data.get('day_5_morning'),
+            )
+
+            hired_service.service_day_4 = day_5
+
+        if self.cleaned_data.get('day_6'):
+            day_6 = '%s %s %s' % (
+                self.cleaned_data.get('day_6'),
+                self.cleaned_data.get('day_6_hour'),
+                self.cleaned_data.get('day_6_morning'),
+            )
+
+            hired_service.service_day_6 = day_6
+
+        if self.cleaned_data.get('day_7'):
+            day_7 = '%s %s %s' % (
+                self.cleaned_data.get('day_7'),
+                self.cleaned_data.get('day_7_hour'),
+                self.cleaned_data.get('day_7_morning'),
+            )
+
+            hired_service.service_day_7 = day_7
+
+        hired_service.save()
