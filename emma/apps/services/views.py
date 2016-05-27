@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from django.core.urlresolvers import reverse_lazy
+from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.template.response import TemplateResponse
 from django.views.generic import TemplateView, View, FormView
@@ -18,7 +19,6 @@ class ContractServiceInfo(AuthRedirectMixin, View):
     success_url = reverse_lazy('services:contract_signup')
 
     def get(self, request, **kwargs):
-
         # if 'id_service' in request.session:
             # del request.session['id_service']
 
@@ -77,8 +77,14 @@ class ContractLocation(RequestFormMixin, FormView):
     form_class = ServiceData
     success_url = reverse_lazy('services:contract_adult')
 
+    def get(self, request, **kwargs):
+        if not 'days_per_service' in request.session:
+            request.session['days_per_service'] = 1
+        return super(ContractLocation, self).get(self, request, **kwargs)
+
     def form_valid(self, form):
         form.save()
+        self.request.session['service_setup'] = True
         return super(ContractLocation, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -103,3 +109,25 @@ class ContractAdult(TemplateView):
 
 class ContractPay(TemplateView):
     template_name = 'services/contract_payment.html'
+
+
+class ContractAddDay(View):
+    @staticmethod
+    def get(request):
+        raise Http404("Page not found")
+
+    @staticmethod
+    def post(request):
+        request.session['days_per_service'] +=1
+        return HttpResponse('Add Day')
+
+class ContractRemoveDay(View):
+    @staticmethod
+    def get(request):
+        raise Http404("Page not found")
+
+    @staticmethod
+    def post(request):
+        request.session['days_per_service'] -=1
+        # del request.session['days_per_service']
+        return HttpResponse('Remove Day')
