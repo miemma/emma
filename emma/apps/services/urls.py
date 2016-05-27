@@ -23,6 +23,10 @@ urlpatterns = [
         view=views.ContractAdult.as_view(),
         name='contract_adult'),
 
+    url(regex='^contratar/comprobacion/$',
+        view=views.ContractComprobation.as_view(),
+        name='contract_comprobation'),
+
     url(regex='^contratar/pago/$',
         view=views.ContractPay.as_view(),
         name='contract_payment'),
