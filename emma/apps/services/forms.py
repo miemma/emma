@@ -3,6 +3,7 @@
 
 from django import forms
 
+from emma.apps.adults.models import Adult, Doctor
 from emma.apps.services.models import HiredService, Service, Workshop
 from emma.apps.users.models import Address
 from emma.core import validators
@@ -409,3 +410,98 @@ class ServiceData(forms.Form):
             hired_service.service_day_7 = day_7
 
         hired_service.save()
+
+class ContractAdultInfo(forms.Form):
+    name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-adult-form-input',
+                'placeholder': 'Nombre'
+            }
+        ),
+    )
+    last_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-adult-form-input',
+                'placeholder': 'Apellidos'
+            }
+        ),
+    )
+    birthday = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-adult-form-input',
+                'placeholder': 'DD/MM/AAAA'
+            }
+        ),
+    )
+    description = forms.CharField(
+        widget=forms.Textarea(
+            attrs={
+                'class': 'emma-input contract-adult-form-area',
+                'placeholder': 'Descripción',
+                'rows': '8'
+            }
+        ),
+    )
+    doctor_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-adult-form-input',
+                'placeholder': 'Nombre del médico'
+            }
+        ),
+    )
+    doctor_phone = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-adult-form-input',
+                'placeholder': 'Teléfono del médico'
+            }
+        ),
+    )
+    doctor_cp = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-adult-form-input',
+                'placeholder': 'C.P'
+            }
+        ),
+    )
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super(ContractAdultInfo, self).__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].required = False
+            self.fields[field].error_messages = error_messages
+            self.fields[field].validators = [validators.eval_blank]
+
+    def save(self):
+        cleaned_data = super(ContractAdultInfo, self).clean()
+
+        adult = Adult(
+            first_name=cleaned_data.get('name'),
+            last_name=cleaned_data.get('last_name'),
+            birthday=cleaned_data.get('birthday'),
+            responsable=self.request.user.client,
+        )
+
+        doctor = Doctor(
+            name=cleaned_data.get('doctor_name'),
+            phone=cleaned_data.get('doctor_phone'),
+            cp=cleaned_data.get('doctor_cp')
+        )
+
+        adult.save()
+
+        doctor.save()
+
+        service = HiredService.objects.filter(
+            client=self.request.user.client
+        )[0]
+
+        service.adult = adult
+
+        service.save()
