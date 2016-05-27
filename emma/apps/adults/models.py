@@ -30,16 +30,17 @@ class Adult(models.Model):
         blank=False,
         null=False,
     )
-    birthday = models.DateField(
+    birthday = models.CharField(
         _('Birthday'),
+        max_length=20,
         blank=False,
         null=False,
     )
     marital_status = models.CharField(
         _('Marital status'),
         max_length=25,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
         choices=MARITAL_CHOICES
     )
     address = models.ForeignKey(
