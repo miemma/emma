@@ -8,7 +8,8 @@ from django.template.response import TemplateResponse
 from django.views.generic import TemplateView, View, FormView
 
 from emma.apps.services.forms import ServiceData, ContractAdultInfo
-from emma.apps.services.models import Service, Workshop
+from emma.apps.services.models import Service, Workshop, HiredService
+from emma.apps.users.models import Address
 from emma.apps.xauth.views import SignupView
 from emma.core.mixins import RequestFormMixin, AuthRedirectMixin
 
@@ -118,6 +119,39 @@ class ContractAdult(RequestFormMixin, FormView):
         form.save()
         self.request.session['adult_setup'] = True
         return super(ContractAdult, self).form_valid(form)
+
+
+class ContractComprobation(View):
+    template_name = 'services/contract_confirmation.html'
+
+    def get(self, request, **kwargs):
+        # if not 'adult_setup' in request.session:
+            # return redirect('services:contract_adult')
+
+        service = HiredService.objects.filter(
+            client=self.request.user.client
+        )[0]
+
+
+        address = Address.objects.filter(user=self.request.user)[0]
+
+        ctx = {
+            'name': self.request.user.first_name,
+            'last_name': self.request.user.last_name,
+            'service': service.service.name,
+            'workshops': service.workshops,
+            'street': address.street,
+            'outdoor_number': address.outdoor_number,
+            'colony': address.colony,
+            'municipality': address.municipality,
+            'postal_code': address.postal_code,
+            'city': address.city,
+            'state': address.state,
+            'reference': address.reference,
+
+
+        }
+        return TemplateResponse(request, self.template_name, ctx)
 
 
 class ContractPay(TemplateView):
