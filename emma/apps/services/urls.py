@@ -25,6 +25,14 @@ urlpatterns = [
 
     url(regex='^contratar/pago/$',
         view=views.ContractPay.as_view(),
-        name='contract_adult'),
+        name='contract_payment'),
+
+    url(regex='^contratar/agregar-dia/$',
+        view=views.ContractAddDay.as_view(),
+        name='contract_add_day'),
+
+    url(regex='^contratar/remover-dia/$',
+        view=views.ContractRemoveDay.as_view(),
+        name='contract_remove_day'),
 
 ]
