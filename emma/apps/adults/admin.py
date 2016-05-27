@@ -13,3 +13,10 @@ class AdultAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'responsable')
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
+
+
+@admin.register(models.Doctor)
+class DoctorAdmin(admin.ModelAdmin):
+    list_display = ('name', 'phone', 'cp')
+    actions = [export_as_xls]
+    export_as_xls.short_description = "Export selected objects to XLS"

@@ -65,3 +65,31 @@ class Adult(models.Model):
 
     def __unicode__(self):
         return '%s %s' % (self.first_name, self.last_name)
+
+
+
+class Doctor(models.Model):
+    name = models.CharField(
+        _('Name'),
+        max_length=25,
+        blank=False,
+        null=False,
+    )
+    phone = models.CharField(
+        _('Phone'),
+        max_length=25,
+        blank=False,
+        null=False,
+    )
+    cp = models.CharField(
+        _('Professional card'),
+        max_length=25,
+        blank=False,
+        null=False,
+    )
+    class Meta:
+        verbose_name = _('Doctor')
+        verbose_name_plural = _('Doctors')
+
+    def __unicode__(self):
+        return '%s' % self.name
