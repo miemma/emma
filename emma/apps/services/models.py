@@ -60,29 +60,34 @@ class HiredService(models.Model):
     adult = models.ForeignKey(
         Adult,
         verbose_name=_('Adult'),
+        blank=True,
+        null=True
     )
     service = models.ForeignKey(
         Service,
         verbose_name=_('Hired Service'),
     )
-    workshop = models.ForeignKey(
-        Workshop,
-        verbose_name=_('Workshop'),
-    )
-    hours_per_week = models.PositiveSmallIntegerField(
-        _('Hours per week'),
+    workshops = models.CharField(
+        _('Workshops'),
+        max_length=100,
         blank=False,
-        null=False
+        null=False,
     )
-    start_date = models.DateField(
+    num_workshops = models.IntegerField(
+        _('Number of Workshops'),
+        blank=False,
+        null=False,
+    )
+    start_date = models.CharField(
         _('Start date'),
+        max_length=25,
         blank=False,
         null=False,
     )
     end_date = models.DateField(
         _('End date'),
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
     reference = models.CharField(
         _('Reference'),
@@ -90,26 +95,68 @@ class HiredService(models.Model):
         blank=False,
         null=False
     )
-    frequency = models.CharField(
-        _('Frecuency'),
+    service_day_1 = models.CharField(
+        _('Day 1 of service'),
         max_length=25,
         blank=False,
         null=False
     )
+    service_day_2 = models.CharField(
+        _('Day 2 of service'),
+        max_length=25,
+        blank=True,
+        null=True
+    )
+    service_day_3 = models.CharField(
+        _('Day 3 of service'),
+        max_length=25,
+        blank=True,
+        null=True
+    )
+    service_day_4 = models.CharField(
+        _('Day 4 of service'),
+        max_length=25,
+        blank=True,
+        null=True
+    )
+    service_day_5 = models.CharField(
+        _('Day 5 of service'),
+        max_length=25,
+        blank=True,
+        null=True
+    )
+    service_day_6 = models.CharField(
+        _('Day 6 of service'),
+        max_length=25,
+        blank=True,
+        null=True
+    )
+    service_day_7 = models.CharField(
+        _('Day 7 of service'),
+        max_length=25,
+        blank=True,
+        null=True
+    )
     emma_assigned = models.ForeignKey(
         Emma,
         verbose_name=_('Emma assigned'),
-        related_name='emma_assigned'
+        related_name='emma_assigned',
+        blank=True,
+        null=True
     )
     emma_alternate = models.ForeignKey(
         Emma,
         verbose_name=_('Alternative Emma'),
-        related_name='emma_alternate'
+        related_name='emma_alternate',
+        blank=True,
+        null=True
     )
     emma_cordinator = models.ForeignKey(
         Emma,
         verbose_name=_('Cordinator'),
-        related_name='cordinator'
+        related_name='cordinator',
+        blank=True,
+        null=True
     )
 
     class Meta:
