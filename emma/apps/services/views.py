@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 from django.template.response import TemplateResponse
 from django.views.generic import TemplateView, View, FormView
 
-from emma.apps.services.forms import ServiceData
+from emma.apps.services.forms import ServiceData, ContractAdultInfo
 from emma.apps.services.models import Service, Workshop
 from emma.apps.xauth.views import SignupView
 from emma.core.mixins import RequestFormMixin, AuthRedirectMixin
@@ -104,8 +104,21 @@ class ContractLocation(RequestFormMixin, FormView):
         return context
 
 
-class ContractAdult(TemplateView):
+class ContractAdult(RequestFormMixin, FormView):
     template_name = 'services/contract_adult.html'
+    form_class = ContractAdultInfo
+    success_url = reverse_lazy('services:contract_comprobation')
+
+    def get(self, request, **kwargs):
+        if not 'service_setup' in request.session:
+            return redirect('services:contract_ubication')
+        return super(ContractAdult, self).get(self, request, **kwargs)
+
+    def form_valid(self, form):
+        form.save()
+        self.request.session['adult_setup'] = True
+        return super(ContractAdult, self).form_valid(form)
+
 
 class ContractPay(TemplateView):
     template_name = 'services/contract_payment.html'
@@ -120,6 +133,7 @@ class ContractAddDay(View):
     def post(request):
         request.session['days_per_service'] +=1
         return HttpResponse('Add Day')
+
 
 class ContractRemoveDay(View):
     @staticmethod
