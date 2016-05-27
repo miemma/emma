@@ -16,7 +16,7 @@ TYPE_CHOICES = (
 
 
 class Address(models.Model):
-    user = models.OneToOneField(
+    user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
