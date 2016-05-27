@@ -23,7 +23,7 @@ class WorkshopAdmin(admin.ModelAdmin):
 
 @admin.register(models.HiredService)
 class HiredServiceAdmin(admin.ModelAdmin):
-    list_display = ('adult', 'client', 'service', 'workshop')
+    list_display = ('adult', 'client', 'service', 'workshops')
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
 
