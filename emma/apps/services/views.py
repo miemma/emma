@@ -11,20 +11,15 @@ from emma.apps.services.forms import ServiceData, ContractAdultInfo
 from emma.apps.services.models import Service, Workshop, HiredService
 from emma.apps.users.models import Address
 from emma.apps.xauth.views import SignupView
-from emma.core.mixins import RequestFormMixin, AuthRedirectMixin
+from emma.core.mixins import RequestFormMixin, ActiveClientRequiredMixin
 
 
-class ContractServiceInfo(AuthRedirectMixin, View):
+class ContractServiceInfo(ActiveClientRequiredMixin, View):
     template_name = 'services/contract_service_info.html'
     services = Service.objects.all()
     success_url = reverse_lazy('services:contract_signup')
 
     def get(self, request, **kwargs):
-        # if 'id_service' in request.session:
-            # del request.session['id_service']
-
-        # if 'workshop_list' in request.session:
-            # del request.session['workshop_list']
         ctx = {
             'services': self.services
         }
