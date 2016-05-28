@@ -4,6 +4,8 @@
 from __future__ import absolute_import, unicode_literals
 
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
+from django.http import HttpResponseForbidden
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse_lazy
 from django.utils.decorators import method_decorator
@@ -66,3 +68,14 @@ class ClientRequiredMixin(object):
                                                         **kwargs)
         except Client.DoesNotExist:
             return redirect('/')
+
+
+class ActiveClientRequiredMixin(object):
+    @method_decorator(login_required(login_url=reverse_lazy('xauth:login')))
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            Client.objects.get(user=request.user, active_client=True)
+            return super(ActiveClientRequiredMixin, self).dispatch(request, *args,
+                                                        **kwargs)
+        except Client.DoesNotExist:
+            raise PermissionDenied
