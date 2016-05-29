@@ -22,16 +22,35 @@
 		</div>
 		<div class="row text-center">
 			<div class="col-lg-7">
-				<div class="row margin-top-30">
-					<div class="col-lg-6">
-						<input type="text" placeholder="Servicio"
-						       value="{{ service.name }}" disabled
-						       class="emma-input contract-location-form-input">
+				<div class="col-lg-8 col-lg-offset-2 contract-location-row-content">
+					<div class="contract-location-header">
+						<span class="radio-container">
+	            <input class="radio-input"
+	                   type="radio" checked readonly
+	                   name="contract-service" required>
+	             <label class="radio-label contract-location-header-radio-label">
+	             </label>
+	          </span>
+						<span class="contract-location-header-title">
+							{{ service }}
+	          </span>
+	          <span class="contract-location-header-price">
+	            ${{ service.price }} <br> por hora
+	          </span>
 					</div>
-					<div class="col-lg-6">
-						<div class="contract-location-workshops">
-							{{ workshop }}
-						</div>
+					<div class="contract-location-body">
+						{% for workshop in workshops %}
+							<span class="radio-container contract-location-body-radio-cont">
+		            <input id="workshop_{{ workshop.id }}" class="radio-input"
+		                   type="checkbox" value="{{ workshop.id }}"
+		                   name="contract-service-workshop" checked disabled
+		                   data-service="{{ workshop.service.id }}">
+		             <label class="radio-label contract-location-body-radio-label"
+		                    for="workshop_{{ workshop.id }}">
+			             {{ workshop.name }}
+		             </label>
+		          </span>
+						{% endfor %}
 					</div>
 				</div>
 				{% if form.non_field_errors %}
