@@ -110,13 +110,26 @@
 		          {% endif %}
 	          </div>
 	        </div>
-					<div class="row text-center">
-			      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			        <button type="submit" class="emma-btn-dark contract-signup-btn">
-			           Continuar
-			        </button>
+					<div class="row contract-adult-loader">
+						<div class="col-lg-12">
+			        <div id="movingBallG">
+								<div class="movingBallLineG"></div>
+								<div id="movingBallG_1" class="movingBallG"></div>
+							</div>
 			      </div>
-			    </div>
+					</div>
+					<div class="row text-center">
+	          <div class="col-xs-10 col-sm-6 col-md-6 col-lg-3">
+	            <a href="{% url 'services:contract_location' %}"
+	               class="emma-btn-dark contract-location-btn">
+		            Regresar
+	            </a>
+            </div>
+	          <div class="col-xs-10 col-sm-3 col-md-3 col-lg-3">
+              <input type="submit" value="Continuar"
+                     class="emma-btn-dark contract-location-btn-2" />
+            </div>
+          </div>
 				</form>
 			</div>
 		</div>
