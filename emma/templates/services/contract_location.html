@@ -152,24 +152,54 @@
 					<div class="row">
 						<div class="col-lg-4">
 							{{ form.day_1 }}
+							{% if form.day_1.errors %}
+								<label class="error nowrap-lg">
+									{{ form.day_1.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
 						</div>
 						<div class="col-lg-4">
 							{{ form.day_1_hour }}
+							{% if form.day_1_hour.errors %}
+								<label class="error nowrap-lg">
+									{{ form.day_1_hour.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
 						</div>
 						<div class="col-lg-2">
 							{{ form.day_1_morning }}
+							{% if form.day_1_morning.errors %}
+								<label class="error nowrap-lg">
+									{{ form.day_1_morning.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
 						</div>
 					</div>
 					{% if request.session.days_per_service > 1 %}
 						<div class="row">
 							<div class="col-lg-4">
 								{{ form.day_2 }}
+								{% if form.day_2.errors %}
+									<label class="error nowrap-lg">
+										{{ form.day_2.errors.as_text|cut:"*" }}
+									</label>
+			          {% endif %}
 							</div>
 							<div class="col-lg-4">
 								{{ form.day_2_hour }}
+								{% if form.day_2_hour.errors %}
+									<label class="error nowrap-lg">
+										{{ form.day_2_hour.errors.as_text|cut:"*" }}
+									</label>
+			          {% endif %}
 							</div>
 							<div class="col-lg-2">
 								{{ form.day_2_morning }}
+								{% if form.day_2_morning.errors %}
+									<label class="error nowrap-lg">
+										{{ form.day_2_morning.errors.as_text|cut:"*" }}
+									</label>
+			          {% endif %}
 							</div>
 						</div>
 					{% endif %}
@@ -177,12 +207,27 @@
 						<div class="row">
 							<div class="col-lg-4">
 								{{ form.day_3 }}
+								{% if form.day_3.errors %}
+									<label class="error nowrap-lg">
+										{{ form.day_3.errors.as_text|cut:"*" }}
+									</label>
+			          {% endif %}
 							</div>
 							<div class="col-lg-4">
 								{{ form.day_3_hour }}
+								{% if form.day_3_hour.errors %}
+									<label class="error nowrap-lg">
+										{{ form.day_3_hour.errors.as_text|cut:"*" }}
+									</label>
+			          {% endif %}
 							</div>
 							<div class="col-lg-2">
 								{{ form.day_3_morning }}
+								{% if form.day_3_morning.errors %}
+									<label class="error nowrap-lg">
+										{{ form.day_3_morning.errors.as_text|cut:"*" }}
+									</label>
+			          {% endif %}
 							</div>
 						</div>
 					{% endif %}
@@ -190,12 +235,27 @@
 						<div class="row">
 							<div class="col-lg-4">
 								{{ form.day_4 }}
+								{% if form.day_4.errors %}
+									<label class="error nowrap-lg">
+										{{ form.day_4.errors.as_text|cut:"*" }}
+									</label>
+			          {% endif %}
 							</div>
 							<div class="col-lg-4">
 								{{ form.day_4_hour }}
+								{% if form.day_4_hour.errors %}
+									<label class="error nowrap-lg">
+										{{ form.day_4_hour.errors.as_text|cut:"*" }}
+									</label>
+			          {% endif %}
 							</div>
 							<div class="col-lg-2">
 								{{ form.day_4_morning }}
+								{% if form.day_4_morning.errors %}
+									<label class="error nowrap-lg">
+										{{ form.day_4_morning.errors.as_text|cut:"*" }}
+									</label>
+			          {% endif %}
 							</div>
 						</div>
 					{% endif %}
@@ -203,12 +263,27 @@
 						<div class="row">
 							<div class="col-lg-4">
 								{{ form.day_5 }}
+								{% if form.day_5.errors %}
+									<label class="error nowrap-lg">
+										{{ form.day_5.errors.as_text|cut:"*" }}
+									</label>
+			          {% endif %}
 							</div>
 							<div class="col-lg-4">
 								{{ form.day_5_hour }}
+								{% if form.day_5_hour.errors %}
+									<label class="error nowrap-lg">
+										{{ form.day_5_hour.errors.as_text|cut:"*" }}
+									</label>
+			          {% endif %}
 							</div>
 							<div class="col-lg-2">
 								{{ form.day_5_morning }}
+								{% if form.day_5_morning.errors %}
+									<label class="error nowrap-lg">
+										{{ form.5_morning.errors.as_text|cut:"*" }}
+									</label>
+			          {% endif %}
 							</div>
 						</div>
 					{% endif %}
@@ -216,12 +291,27 @@
 						<div class="row">
 							<div class="col-lg-4">
 								{{ form.day_6 }}
+								{% if form.day_6.errors %}
+									<label class="error nowrap-lg">
+										{{ form.day_6.errors.as_text|cut:"*" }}
+									</label>
+			          {% endif %}
 							</div>
 							<div class="col-lg-4">
 								{{ form.day_6_hour }}
+								{% if form.day_6_hour.errors %}
+									<label class="error nowrap-lg">
+										{{ form.day_6_hour.errors.as_text|cut:"*" }}
+									</label>
+			          {% endif %}
 							</div>
 							<div class="col-lg-2">
 								{{ form.day_6_morning }}
+								{% if form.day_6_morning.errors %}
+									<label class="error nowrap-lg">
+										{{ form.day_6_morning.errors.as_text|cut:"*" }}
+									</label>
+			          {% endif %}
 							</div>
 						</div>
 					{% endif %}
@@ -229,12 +319,27 @@
 						<div class="row">
 							<div class="col-lg-4">
 								{{ form.day_7 }}
+								{% if form.day_7.errors %}
+									<label class="error nowrap-lg">
+										{{ form.day_7.errors.as_text|cut:"*" }}
+									</label>
+			          {% endif %}
 							</div>
 							<div class="col-lg-4">
 								{{ form.day_7_hour }}
+								{% if form.day_7_hour.errors %}
+									<label class="error nowrap-lg">
+										{{ form.day_7_hour.errors.as_text|cut:"*" }}
+									</label>
+			          {% endif %}
 							</div>
 							<div class="col-lg-2">
 								{{ form.day_7_morning }}
+								{% if form.day_7_morning.errors %}
+									<label class="error nowrap-lg">
+										{{ form.day_7_morning.errors.as_text|cut:"*" }}
+									</label>
+			          {% endif %}
 							</div>
 						</div>
 					{% endif %}
@@ -256,6 +361,14 @@
 	            </div>
 						{% endif %}
           </div>
+					<div class="row contract-location-1-loader">
+						<div class="col-lg-10">
+			        <div id="movingBallG">
+								<div class="movingBallLineG"></div>
+								<div id="movingBallG_1" class="movingBallG"></div>
+							</div>
+			      </div>
+					</div>
 					<div class="row contract-location-row-days-error">
 						<div class="col-lg-3">
 							<label class="error">
@@ -296,6 +409,19 @@
 		          {% endif %}
 						</div>
 					</div>
+					<div class="row contract-location-2-loader">
+						<div class="col-lg-12">
+			        <div id="movingBallG">
+								<div class="movingBallLineG"></div>
+								<div id="movingBallG_1" class="movingBallG"></div>
+							</div>
+			      </div>
+					</div>
+					{% if form.non_field_errors %}
+						<div class="alert alert-danger login-alert" role="alert">
+							{{ form.non_field_errors.as_text|cut:"*" }}
+						</div>
+					{% endif %}
 					<div class="row text-center">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <button class="emma-btn-dark login-btn">
@@ -440,6 +566,7 @@
 	    if (days >= 7) {
 		    $('.contract-location-row-days-error').show()
 	    } else {
+		    $('.contract-location-1-loader').show();
 		    $.ajax({
 	        url: '/contratar/agregar-dia/',
 	        type: 'POST',
@@ -456,6 +583,7 @@
     });
 
 		$('#remove_day').on("click", function () {
+			$('.contract-location-1-loader').show();
       $.ajax({
         url: '/contratar/remover-dia/',
         type: 'POST',
