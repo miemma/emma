@@ -11,13 +11,9 @@ urlpatterns = [
         view=views.ContractServiceInfo.as_view(),
         name='contract_service_info'),
 
-    url(regex='^contratar/registro/$',
-        view=views.ContractSignup.as_view(),
-        name='contract_signup'),
-
     url(regex='^contratar/ubicacion/$',
         view=views.ContractLocation.as_view(),
-        name='contract_ubication'),
+        name='contract_location'),
 
     url(regex='^contratar/adulto/$',
         view=views.ContractAdult.as_view(),

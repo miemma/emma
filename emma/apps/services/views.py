@@ -17,16 +17,13 @@ from emma.core.mixins import RequestFormMixin, ActiveClientRequiredMixin
 class ContractServiceInfo(ActiveClientRequiredMixin, View):
     template_name = 'services/contract_service_info.html'
     services = Service.objects.all()
-    success_url = reverse_lazy('services:contract_signup')
+    success_url = reverse_lazy('services:contract_location')
 
     def get(self, request, **kwargs):
         ctx = {
             'services': self.services
         }
-        if request.user.is_authenticated():
-            return redirect('/')
-        else:
-            return TemplateResponse(request, self.template_name, ctx)
+        return TemplateResponse(request, self.template_name, ctx)
 
     def post(self, request):
         service_id = request.POST.get('contract-service')
@@ -56,19 +53,7 @@ class ContractServiceInfo(ActiveClientRequiredMixin, View):
             return render(request, self.template_name, ctx)
 
 
-class ContractSignup(SignupView):
-    template_name = 'services/contract_signup.html'
-    success_url = reverse_lazy('services:contract_ubication')
-
-    def get(self, request, **kwargs):
-        if not 'id_service' in request.session or \
-                not 'workshop_list' in request.session :
-            return redirect('services:contract_service_info')
-        else:
-            return super(ContractSignup, self).get(self, request, **kwargs)
-
-
-class ContractLocation(RequestFormMixin, FormView):
+class ContractLocation(ActiveClientRequiredMixin, RequestFormMixin, FormView):
     template_name = 'services/contract_location.html'
     form_class = ServiceData
     success_url = reverse_lazy('services:contract_adult')
@@ -88,7 +73,6 @@ class ContractLocation(RequestFormMixin, FormView):
         service = Service.objects.get(
             id=self.request.session['id_service']
         )
-
         workshop_list = self.request.session['workshop_list']
         workshops = ''
         for workshop in workshop_list:
