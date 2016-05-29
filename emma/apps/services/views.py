@@ -10,7 +10,6 @@ from django.views.generic import TemplateView, View, FormView
 from emma.apps.services.forms import ServiceData, ContractAdultInfo
 from emma.apps.services.models import Service, Workshop, HiredService
 from emma.apps.users.models import Address
-from emma.apps.xauth.views import SignupView
 from emma.core.mixins import RequestFormMixin, ActiveClientRequiredMixin
 
 
