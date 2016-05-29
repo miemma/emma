@@ -137,6 +137,9 @@ class HiredService(models.Model):
         blank=True,
         null=True
     )
+    active = models.BooleanField(
+        default=False
+    )
     emma_assigned = models.ForeignKey(
         Emma,
         verbose_name=_('Emma assigned'),
