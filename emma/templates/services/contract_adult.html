@@ -28,9 +28,19 @@
 					<div class="row">
 						<div class="col-lg-6">
 							{{ form.name }}
+							{% if form.name.errors %}
+								<label class="error nowrap-lg">
+									{{ form.name.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
 						</div>
 						<div class="col-lg-6">
 							{{ form.last_name }}
+							{% if form.last_name.errors %}
+								<label class="error nowrap-lg">
+									{{ form.last_name.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
 						</div>
 					</div>
 					<div class="row">
@@ -43,6 +53,11 @@
 					<div class="row">
 						<div class="col-lg-5">
 							{{ form.birthday }}
+							{% if form.birthday.errors %}
+								<label class="error nowrap-lg">
+									{{ form.birthday.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
 						</div>
 					</div>
 					<div class="row">
@@ -55,12 +70,27 @@
 					<div class="row">
 						<div class="col-lg-5">
 							{{ form.doctor_name }}
+							{% if form.doctor_name.errors %}
+								<label class="error nowrap-lg">
+									{{ form.doctor_name.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
 						</div>
 						<div class="col-lg-4">
 							{{ form.doctor_phone }}
+							{% if form.doctor_phone.errors %}
+								<label class="error nowrap-lg">
+									{{ form.doctor_phone.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
 						</div>
 						<div class="col-lg-3">
 							{{ form.doctor_cp }}
+							{% if form.doctor_cp.errors %}
+								<label class="error nowrap-lg">
+									{{ form.doctor_cp.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
 						</div>
 					</div>
 					<div class="row">
@@ -73,6 +103,11 @@
 					<div class="row">
 	          <div class="col-lg-12">
 	            {{ form.description }}
+		          {% if form.description.errors %}
+								<label class="error nowrap-lg">
+									{{ form.description.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
 	          </div>
 	        </div>
 					<div class="row text-center">

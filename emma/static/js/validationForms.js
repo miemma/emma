@@ -1,4 +1,44 @@
 $(document).ready(function () {
+
+  /* Contract Adult Form
+  ---------------------------------------------------------------------------*/
+  var $contractAdultForm = $('#contract-adult-form');
+  $contractAdultForm.validate({
+      rules: {
+        name: {
+          required:true
+        },
+        last_name: {
+          required:true
+        },
+        birthday: {
+          required:true
+        },
+        description: {
+          required:true
+        },
+        doctor_name: {
+          required:true
+        },
+        doctor_phone: {
+          required:true,
+          number:true
+        },
+        doctor_cp: {
+          required:true
+        }
+      },
+      highlight: function(element, errorClass) {
+        $(element).removeClass(errorClass);
+      },
+      submitHandler: function(form)  {
+        $('.contract-adult-loader').show();
+        form.submit();
+      }
+    });
+
+  /* Contract Location Form
+  ---------------------------------------------------------------------------*/
   var $contractLocationForm = $('#contract-location-form');
   $contractLocationForm.validate({
       rules: {
