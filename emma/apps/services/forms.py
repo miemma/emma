@@ -545,30 +545,47 @@ class ContractAdultInfo(forms.Form):
             self.fields[field].required = True
             self.fields[field].error_messages = error_messages
             self.fields[field].validators = [validators.eval_blank]
+            if field == 'birthday':
+                self.fields[field].validators = [validators.eval_blank,
+                                                 validators.eval_date]
 
     def save(self):
         cleaned_data = super(ContractAdultInfo, self).clean()
 
-        adult = Adult(
-            first_name=cleaned_data.get('name'),
-            last_name=cleaned_data.get('last_name'),
-            birthday=cleaned_data.get('birthday'),
-            responsable=self.request.user.client,
-        )
+        try:
+            adult = Adult.objects.get(responsable=self.request.user.client)
+            adult.first_name = cleaned_data.get('name')
+            adult.last_name = cleaned_data.get('last_name')
+            adult.birthday = cleaned_data.get('birthday')
+        except Adult.DoesNotExist:
+            adult = Adult(
+                first_name=cleaned_data.get('name'),
+                last_name=cleaned_data.get('last_name'),
+                birthday=cleaned_data.get('birthday'),
+                responsable=self.request.user.client,
+            )
 
-        doctor = Doctor(
-            name=cleaned_data.get('doctor_name'),
-            phone=cleaned_data.get('doctor_phone'),
-            cp=cleaned_data.get('doctor_cp')
-        )
+        try:
+            doctor = Doctor.objects.get(adult=adult)
+            doctor.name = cleaned_data.get('doctor_name')
+            doctor.phone = cleaned_data.get('doctor_phone')
+            doctor.cp = cleaned_data.get('doctor_cp')
+        except Doctor.DoesNotExist:
+            doctor = Doctor(
+                adult=adult,
+                name=cleaned_data.get('doctor_name'),
+                phone=cleaned_data.get('doctor_phone'),
+                cp=cleaned_data.get('doctor_cp')
+            )
+
 
         adult.save()
 
         doctor.save()
 
-        service = HiredService.objects.filter(
+        service = HiredService.objects.get(
             client=self.request.user.client
-        )[0]
+        )
 
         service.adult = adult
 
