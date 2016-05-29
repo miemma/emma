@@ -13,6 +13,7 @@ error_messages = {
     'invalid_login': _('El usuario o la contraseña son incorrectas'),
     'inactive_account': _('Esta cuenta esta inactiva'),
     'incorrect_password': _('La contraseña es incorrecta'),
+    'invalid': _('El contenido no es valido'),
 }
 
 confirmation_messages = {
