@@ -69,6 +69,10 @@ class Adult(models.Model):
 
 
 class Doctor(models.Model):
+    adult = models.ForeignKey(
+        Adult,
+        verbose_name=_('Adult')
+    )
     name = models.CharField(
         _('Name'),
         max_length=25,
