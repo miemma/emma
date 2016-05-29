@@ -542,7 +542,7 @@ class ContractAdultInfo(forms.Form):
         self.request = kwargs.pop('request', None)
         super(ContractAdultInfo, self).__init__(*args, **kwargs)
         for field in self.fields:
-            self.fields[field].required = False
+            self.fields[field].required = True
             self.fields[field].error_messages = error_messages
             self.fields[field].validators = [validators.eval_blank]
 
