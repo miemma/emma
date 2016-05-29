@@ -74,13 +74,12 @@ class ContractLocation(ActiveClientRequiredMixin, RequestFormMixin, FormView):
             id=self.request.session['id_service']
         )
         workshop_list = self.request.session['workshop_list']
-        workshops = ''
+        workshops = []
         for workshop in workshop_list:
             work = Workshop.objects.get(id=workshop, service=service)
-            workshops += '%s, ' % str(work.name)
-        workshops = workshops[:-2]
+            workshops.append(work)
         context['service'] = service
-        context['workshop'] = workshops
+        context['workshops'] = workshops
         return context
 
 
