@@ -1,25 +1,41 @@
 $(document).ready(function () {
-
-  /* Contract Signup Form
-  ---------------------------------------------------------------------------*/
-  var $contractSignupForm = $('#contract-signup-form');
-  $contractSignupForm.validate({
-	    rules: {
-        email: {
-          email: true,
+  var $contractLocationForm = $('#contract-location-form');
+  $contractLocationForm.validate({
+      rules: {
+        street: {
           required:true
         },
-        password_1: {
-          required:true
-        },
-        password_2: {
+        num_ext: {
           required:true,
-          equalTo: "#id_password_1"
+          number:true
         },
-        name: {
+        num_int: {
+          required:false,
+          number:true
+        },
+        colony: {
           required:true
         },
-        last_name: {
+        delegation: {
+          required:true
+        },
+        cp: {
+          required:true,
+          number:true
+        },
+        address_reference: {
+          required:true
+        },
+        day_1: {
+          required:true
+        },
+        day_1_hour: {
+          required:true
+        },
+        start_date: {
+          required:true
+        },
+        start_time: {
           required:true
         }
       },
@@ -27,11 +43,10 @@ $(document).ready(function () {
         $(element).removeClass(errorClass);
       },
       submitHandler: function(form)  {
-	      $('.contract-signup-alert').hide();
-	      $('.contract-signup-loader').show();
-	      form.submit();
-	    }
-		});
+        $('.contract-location-2-loader').show();
+        form.submit();
+      }
+    });
 
   /* Contract Form
   ---------------------------------------------------------------------------*/
