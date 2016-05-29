@@ -9,6 +9,8 @@ from django.utils.text import slugify
 
 from .messages import error_messages
 
+import time
+
 
 def eval_blank(data):
     """
@@ -16,6 +18,22 @@ def eval_blank(data):
     """
     if str(data).isspace():
         raise forms.ValidationError(error_messages['blank'])
+    return data
+
+
+def eval_time(data):
+    try:
+        time.strptime(data, '%I:%M')
+    except ValueError:
+        raise forms.ValidationError('Esta hora es invalida')
+    return data
+
+
+def eval_date(data):
+    try:
+        time.strptime(data, '%d/%m/%Y')
+    except ValueError:
+        raise forms.ValidationError('La fecha es invalida')
     return data
 
 
@@ -44,8 +62,8 @@ def eval_unique(data, model, field, label):
     usernames etc.
     """
     original = data
-    model_name = (model._meta.verbose_name).lower()
-    field_label = (model._meta.get_field(label).verbose_name).lower()
+    model_name = model._meta.verbose_name.lower()
+    field_label = model._meta.get_field(label).verbose_name.lower()
     lookup = '%s__iexact' % field
     if field == 'slug':
         data = slugify(data)
