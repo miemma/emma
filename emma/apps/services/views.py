@@ -1,18 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import openpay
 from django.core.urlresolvers import reverse_lazy
 from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.template.response import TemplateResponse
-from django.views.generic import TemplateView, View, FormView
+from django.views.generic import View, FormView
 
 from emma.apps.adults.models import Adult, Doctor
+from emma.apps.clients.models import Client
 from emma.apps.services.forms import ServiceData, ContractAdultInfo
 from emma.apps.services.models import Service, Workshop, HiredService
+from emma.apps.suscriptions.models import Suscription, History
 from emma.apps.users.models import Address
 from emma.core.mixins import RequestFormMixin, ActiveClientRequiredMixin
 
 from datetime import datetime, date
+
+from emma.core.utils import send_email
 
 
 class ContractServiceInfo(ActiveClientRequiredMixin, View):
@@ -104,6 +109,8 @@ class ContractComprobation(ActiveClientRequiredMixin, View):
     template_name = 'services/contract_confirmation.html'
 
     def get(self, request, **kwargs):
+        if not 'adult_setup' in request.session:
+            return redirect('services:contract_adult')
         service = HiredService.objects.get(
             client=self.request.user.client
         )
@@ -161,8 +168,51 @@ class ContractComprobation(ActiveClientRequiredMixin, View):
         return TemplateResponse(request, self.template_name, ctx)
 
 
-class ContractPay(TemplateView):
+class ContractPay(ActiveClientRequiredMixin, View):
     template_name = 'services/contract_payment.html'
+
+    def get(self, request):
+        if not 'service_setup' in request.session:
+            return redirect('services:contract_ubication')
+        return render(request, self.template_name)
+
+    def post(self, request):
+        client = Client.objects.get(user=request.user)
+
+        customer = openpay.Customer.create(
+            name=request.user.get_full_name(),
+            email=request.user.email,
+            requires_account=False,
+            status='active',
+        )
+
+        suscription = Suscription(
+            client=client,
+            id_customer=customer.id,
+            status='active',
+            is_active=True,
+            date=datetime.today()
+        )
+
+        suscription.save()
+
+        history = History(
+            suscription=suscription,
+            movement="Suscripcion Creada"
+        )
+        history.save()
+
+        card = customer.cards.create(
+            token_id=request.POST['token_id'],
+            device_session_id=request.POST['devsessionid']
+        )
+
+        del request.session['adult_setup']
+        del request.session['days_per_service']
+        del request.session['id_service']
+        del request.session['workshop_list']
+
+        return redirect(reverse_lazy('landing:success_contract'))
 
 
 class ContractAddDay(View):
