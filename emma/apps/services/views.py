@@ -1,16 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 from django.core.urlresolvers import reverse_lazy
 from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.template.response import TemplateResponse
 from django.views.generic import TemplateView, View, FormView
 
+from emma.apps.adults.models import Adult, Doctor
 from emma.apps.services.forms import ServiceData, ContractAdultInfo
 from emma.apps.services.models import Service, Workshop, HiredService
 from emma.apps.users.models import Address
 from emma.core.mixins import RequestFormMixin, ActiveClientRequiredMixin
+
+from datetime import datetime, date
 
 
 class ContractServiceInfo(ActiveClientRequiredMixin, View):
@@ -105,16 +107,35 @@ class ContractComprobation(View):
         # if not 'adult_setup' in request.session:
             # return redirect('services:contract_adult')
 
-        service = HiredService.objects.filter(
+        service = HiredService.objects.get(
             client=self.request.user.client
-        )[0]
+        )
 
+        address = Address.objects.get(user=self.request.user)
 
-        address = Address.objects.filter(user=self.request.user)[0]
+        adult = Adult.objects.get(responsable=self.request.user.client)
+
+        doctor = Doctor.objects.get(adult=adult)
+
+        def calculate_age(born):
+            today = date.today()
+            try:
+                birthday = born.replace(year=today.year)
+            except ValueError:  # raised when birth date is February 29 and the current year is not a leap year
+                birthday = born.replace(year=today.year, day=born.day - 1)
+            if birthday > today:
+                return today.year - born.year - 1
+            else:
+                return today.year - born.year
+
+        day, month, year = [int(x) for x in adult.birthday.split("/")]
+        born = date(year, month, day)
+
 
         ctx = {
             'name': self.request.user.first_name,
             'last_name': self.request.user.last_name,
+            'email': self.request.user.email,
             'service': service.service.name,
             'workshops': service.workshops,
             'street': address.street,
@@ -125,9 +146,22 @@ class ContractComprobation(View):
             'city': address.city,
             'state': address.state,
             'reference': address.reference,
-
-
+            'day_1': service.service_day_1,
+            'day_2': service.service_day_2,
+            'day_3': service.service_day_3,
+            'day_4': service.service_day_4,
+            'day_5': service.service_day_5,
+            'day_6': service.service_day_6,
+            'day_7': service.service_day_7,
+            'adult_first_name': adult.first_name,
+            'adult_last_name': adult.last_name,
+            'adult_phone': adult.phone,
+            'adult_emergency': adult.emergency_phone,
+            'age': calculate_age(born),
+            'doctor_name': doctor.name,
+            'doctor_phone': doctor.phone,
         }
+
         return TemplateResponse(request, self.template_name, ctx)
 
 
