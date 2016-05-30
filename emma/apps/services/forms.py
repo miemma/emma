@@ -504,6 +504,22 @@ class ContractAdultInfo(forms.Form):
             }
         ),
     )
+    phone = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-adult-form-input',
+                'placeholder': 'Teléfono fijo'
+            }
+        ),
+    )
+    emergency = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input contract-adult-form-input',
+                'placeholder': 'Teléfono de emergencia'
+            }
+        ),
+    )
     description = forms.CharField(
         widget=forms.Textarea(
             attrs={
@@ -557,12 +573,16 @@ class ContractAdultInfo(forms.Form):
             adult.first_name = cleaned_data.get('name')
             adult.last_name = cleaned_data.get('last_name')
             adult.birthday = cleaned_data.get('birthday')
+            adult.phone = cleaned_data.get('phone')
+            adult.emergency_phone = cleaned_data.get('emergency')
         except Adult.DoesNotExist:
             adult = Adult(
                 first_name=cleaned_data.get('name'),
                 last_name=cleaned_data.get('last_name'),
                 birthday=cleaned_data.get('birthday'),
                 responsable=self.request.user.client,
+                phone=cleaned_data.get('phone'),
+                emergency_phone = cleaned_data.get('emergency')
             )
 
         try:
