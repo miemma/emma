@@ -30,6 +30,10 @@ urlpatterns = [
         view=views.SuccessPayTemplateView.as_view(),
         name='success_pay'),
 
+    url(regex=r'^contratacion-completada/$',
+        view=views.SuccessContractTemplateView.as_view(),
+        name='success_contract'),
+
     url(regex=r'^unete/$', view=views.JoinEmailView.as_view(),
         name='join'),
 

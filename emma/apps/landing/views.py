@@ -42,6 +42,10 @@ class SuccessPayTemplateView(TemplateView):
     template_name = 'landing/success_pay.html'
 
 
+class SuccessContractTemplateView(TemplateView):
+    template_name = 'landing/success_contract.html'
+
+
 class ContactEmailView(View):
     @staticmethod
     def post(request):
