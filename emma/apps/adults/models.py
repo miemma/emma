@@ -58,6 +58,18 @@ class Adult(models.Model):
         _('Candidate'),
         default=False,
     )
+    phone = models.CharField(
+        _('Phone'),
+        max_length=25,
+        blank=False,
+        null=False,
+    )
+    emergency_phone = models.CharField(
+        _('Emergency Phone'),
+        max_length=25,
+        blank=False,
+        null=False,
+    )
 
     class Meta:
         verbose_name = _('Adult')
