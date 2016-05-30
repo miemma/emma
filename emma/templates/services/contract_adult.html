@@ -61,6 +61,24 @@
 						</div>
 					</div>
 					<div class="row">
+						<div class="col-lg-6">
+							{{ form.phone }}
+							{% if form.phone.errors %}
+								<label class="error nowrap-lg">
+									{{ form.phone.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
+						</div>
+						<div class="col-lg-6">
+							{{ form.emergency }}
+							{% if form.emergency.errors %}
+								<label class="error nowrap-lg">
+									{{ form.emergency.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
+						</div>
+					</div>
+					<div class="row">
 		        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			        <p class="contract-adult-form-desc">
 				        *En caso de no contestar se contactará al médico de cabecera
