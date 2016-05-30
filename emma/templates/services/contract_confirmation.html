@@ -22,7 +22,7 @@
 					</div>
 					<div class="col-lg-6 text-left">
 						<span class="contract-comprobation-content">
-							Carlos López
+							{{ name }} {{ last_name }}
 						</span>
 					</div>
 				</div>
@@ -34,7 +34,7 @@
 					</div>
 					<div class="col-lg-6 text-left">
 						<span class="contract-comprobation-content">
-							carloslopez@gmail.com
+							{{ email }}
 						</span>
 					</div>
 				</div>
@@ -46,7 +46,7 @@
 					</div>
 					<div class="col-lg-6 text-left">
 						<span class="contract-comprobation-content">
-							Vamos Juntos
+							{{ service }}
 						</span>
 					</div>
 				</div>
@@ -58,7 +58,7 @@
 					</div>
 					<div class="col-lg-6 text-left">
 						<span class="contract-comprobation-content">
-							Citas en el doctor
+							{{ workshops }}
 						</span>
 					</div>
 				</div>
@@ -70,8 +70,8 @@
 					</div>
 					<div class="col-lg-6 text-left">
 						<span class="contract-comprobation-content">
-							Plaza Villa de Madrid 22, Col. Roma, delegación
-							Cuauhtémoc, Ciudad de México. C.P. 07600
+							{{ street }} {{ outdoor_number }}, {{ colony }},
+							{{ municipality }} {{ city }}. C.P. {{ postal_code }}
 						</span>
 					</div>
 				</div>
@@ -84,7 +84,7 @@
 					</div>
 					<div class="col-lg-6 text-left">
 						<span class="contract-comprobation-content">
-							Lorem Ipsum
+							{{ reference }}
 						</span>
 					</div>
 				</div>
@@ -96,10 +96,29 @@
 					</div>
 					<div class="col-lg-6 text-left">
 						<span class="contract-comprobation-content">
-							simply dummy text of the printing and typesetting
+							{{ day_1 }} <br>
+							{% if day_2 %}
+								{{ day_2 }} <br>
+							{% endif %}
+							{% if day_3 %}
+								{{ day_3 }} <br>
+							{% endif %}
+							{% if day_4 %}
+								{{ day_4 }} <br>
+							{% endif %}
+							{% if day_5 %}
+								{{ day_5 }} <br>
+							{% endif %}
+							{% if day_6 %}
+								{{ day_6 }} <br>
+							{% endif %}
+							{% if day_7 %}
+								{{ day_7 }} <br>
+							{% endif %}
 						</span>
 					</div>
 				</div>
+				<!--
 				<div class="row contract-comprobation-row-item">
 					<div class="col-lg-5 text-left">
 						<span class="contract-comprobation-label">
@@ -112,6 +131,7 @@
 						</span>
 					</div>
 				</div>
+				-->
 				<div class="row contract-comprobation-row-item margin-top-40">
 					<div class="col-lg-5 text-left">
 						<span class="contract-comprobation-content-title">
@@ -127,7 +147,7 @@
 					</div>
 					<div class="col-lg-6 text-left">
 						<span class="contract-comprobation-content">
-							standard dummy text ever since the 1500s, when
+							{{ adult_first_name }}
 						</span>
 					</div>
 				</div>
@@ -139,7 +159,7 @@
 					</div>
 					<div class="col-lg-6 text-left">
 						<span class="contract-comprobation-content">
-							an unknown printer took a galley of type and
+							{{ adult_last_name }}
 						</span>
 					</div>
 				</div>
@@ -151,7 +171,7 @@
 					</div>
 					<div class="col-lg-6 text-left">
 						<span class="contract-comprobation-content">
-							scrambled it to make a type specimen book. It has
+							{{ age }}
 						</span>
 					</div>
 				</div>
@@ -163,7 +183,7 @@
 					</div>
 					<div class="col-lg-6 text-left">
 						<span class="contract-comprobation-content">
-							into electronic typesetting, remaining essentially
+							{{ adult_phone }}
 						</span>
 					</div>
 				</div>
@@ -175,7 +195,7 @@
 					</div>
 					<div class="col-lg-6 text-left">
 						<span class="contract-comprobation-content">
-							survived not only  ve centuries, but also the leap
+							{{ adult_emergency }}
 						</span>
 					</div>
 				</div>
@@ -187,7 +207,7 @@
 					</div>
 					<div class="col-lg-6 text-left">
 						<span class="contract-comprobation-content">
-							unchanged. It was popularised in the 1960s with
+							{{ doctor_name }}
 						</span>
 					</div>
 				</div>
@@ -199,12 +219,18 @@
 					</div>
 					<div class="col-lg-6 text-left">
 						<span class="contract-comprobation-content">
-							the release of Letraset sheets containing Lorem
+							{{ doctor_phone }}
 						</span>
 					</div>
 				</div>
 				<div class="row text-center">
-          <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+          <div class="col-xs-10 col-sm-6 col-md-6 col-lg-3">
+            <a href="{% url 'services:contract_adult' %}"
+               class="emma-btn-dark contract-location-btn">
+	            Regresar
+            </a>
+          </div>
+          <div class="col-xs-10 col-sm-3 col-md-3 col-lg-3">
             <a href="{% url 'services:contract_payment' %}"
                class="emma-btn-dark login-btn">
               Continuar
