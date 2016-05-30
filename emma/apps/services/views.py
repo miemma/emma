@@ -84,7 +84,7 @@ class ContractLocation(ActiveClientRequiredMixin, RequestFormMixin, FormView):
         return context
 
 
-class ContractAdult(RequestFormMixin, FormView):
+class ContractAdult(ActiveClientRequiredMixin, RequestFormMixin, FormView):
     template_name = 'services/contract_adult.html'
     form_class = ContractAdultInfo
     success_url = reverse_lazy('services:contract_comprobation')
@@ -100,13 +100,10 @@ class ContractAdult(RequestFormMixin, FormView):
         return super(ContractAdult, self).form_valid(form)
 
 
-class ContractComprobation(View):
+class ContractComprobation(ActiveClientRequiredMixin, View):
     template_name = 'services/contract_confirmation.html'
 
     def get(self, request, **kwargs):
-        # if not 'adult_setup' in request.session:
-            # return redirect('services:contract_adult')
-
         service = HiredService.objects.get(
             client=self.request.user.client
         )
@@ -130,7 +127,6 @@ class ContractComprobation(View):
 
         day, month, year = [int(x) for x in adult.birthday.split("/")]
         born = date(year, month, day)
-
 
         ctx = {
             'name': self.request.user.first_name,
