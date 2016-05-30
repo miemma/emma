@@ -21,7 +21,8 @@
 		</div>
 		<div class="row text-center">
       <div class="col-lg-5 col-md-6 col-sm-8 col-xs-10">
-        <form class="contract-pay-form" action="." method="post" id="contract-pay-form">
+        <form class="contract-pay-form" action="." method="post"
+              id="contract-pay-form" name="contract-pay-form">
           {% csrf_token %}
 	        <input type="hidden" name="token_id" id="token_id" />
 	        <input type="text" autocomplete="off" name="customer_name"
@@ -72,13 +73,6 @@
 			               class='emma-input contract-pay-form-input text-center little-inp' />
 		        </div>
 	        </div>
-					<div class="row text-center">
-		        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			         <input type="text" autocomplete="off" name="service_ammount"
-			                placeholder="Monto a pagar (MXN)" required
-			                class='emma-input contract-pay-form-input' />
-		        </div>
-	        </div>
 	        <div class="row text-center">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="alert alert-danger contract-pay-alert" role="alert">
@@ -97,10 +91,15 @@
           </div>
 	        <input type='hidden' name='devsessionid' id='devsessionid'>
           <div class="row text-center">
-			      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			        <button class="emma-btn-dark contract-signup-btn">
-			           Pagar
-			        </button>
+	          <div class="col-xs-10 col-sm-6 col-md-6 col-lg-3">
+	            <a href="{% url 'services:contract_comprobation' %}"
+	               class="emma-btn-dark contract-location-btn">
+		            Regresar
+	            </a>
+            </div>
+			      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+				      <input type="button" id="contract-pay-button" value="Pagar"
+                     class="emma-btn-dark contract-signup-btn" />
 			      </div>
 			    </div>
         </form>
@@ -110,6 +109,9 @@
 {% endblock %}
 
 {% block js %}
+	<script type="text/javascript" src="https://openpay.s3.amazonaws.com/openpay.v1.min.js"></script>
+	<script type='text/javascript' src="https://openpay.s3.amazonaws.com/openpay-data.v1.min.js"></script>
+	<script src="{% static "js/payment_3.js" %}"></script>
 	<script>
 		$(document).ready(function(){
 		    $("i").tooltip({
