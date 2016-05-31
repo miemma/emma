@@ -25,11 +25,11 @@ class Address(models.Model):
         blank=False,
         null=False
     )
-    outdoor_number = models.PositiveSmallIntegerField(
+    outdoor_number = models.PositiveIntegerField(
         blank=False,
         null=False
     )
-    interior_number = models.PositiveSmallIntegerField(
+    interior_number = models.PositiveIntegerField(
         blank=True,
         null=True
     )
@@ -38,7 +38,7 @@ class Address(models.Model):
         blank=False,
         null=False
     )
-    postal_code = models.PositiveSmallIntegerField(
+    postal_code = models.PositiveIntegerField(
         blank=False,
         null=False
     )
