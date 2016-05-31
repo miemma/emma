@@ -585,6 +585,8 @@ class ContractAdultInfo(forms.Form):
                 emergency_phone = cleaned_data.get('emergency')
             )
 
+        adult.save()
+
         try:
             doctor = Doctor.objects.get(adult=adult)
             doctor.name = cleaned_data.get('doctor_name')
@@ -597,9 +599,6 @@ class ContractAdultInfo(forms.Form):
                 phone=cleaned_data.get('doctor_phone'),
                 cp=cleaned_data.get('doctor_cp')
             )
-
-
-        adult.save()
 
         doctor.save()
 
