@@ -95,11 +95,11 @@ class CoolUser(PermissionsMixin, AbstractBaseUser):
         blank=False,
     )
     is_admin = models.BooleanField(
-        _('staff status'),
+        _('Staff'),
         default=False,
     )
     is_active = models.BooleanField(
-        _('staff status'),
+        _('Active'),
         default=True,
     )
 
