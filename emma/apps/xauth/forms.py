@@ -207,18 +207,18 @@ class SignupForm(forms.Form):
     def save(self):
         cleaned_data = super(SignupForm, self).clean()
 
-        user = CoolUser.objects.create_user(
+        user = CoolUser(
             email=cleaned_data.get('email'),
             password=cleaned_data.get('password_2'),
             first_name=cleaned_data.get('name'),
             last_name=cleaned_data.get('last_name'),
             user_type='client',
+            is_active=False,
         )
+
+        user.save()
 
         client = Client(user=user, change_password=True)
         client.save()
 
-        self.user_cache = authenticate(
-            email=cleaned_data.get('email'),
-            password=cleaned_data.get("password_2")
-        )
+        self.user_cache = user
