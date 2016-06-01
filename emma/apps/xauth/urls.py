@@ -39,4 +39,8 @@ urlpatterns = [
         view=views.ChangePasswordView.as_view(),
         name='change_password'),
 
+    url(regex=r'^activar/(?P<uidb64>[0-9A-Za-z]+)$',
+        view=views.ActivateAccount.as_view(),
+        name='active_account'),
+
 ]
