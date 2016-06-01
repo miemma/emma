@@ -4,20 +4,43 @@
 from django.contrib.auth import get_user_model, logout, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.tokens import default_token_generator
+from django.contrib.sites.shortcuts import get_current_site
 from django.core.urlresolvers import reverse_lazy
+from django.http import Http404
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 from django.utils.encoding import force_text
-from django.utils.http import urlsafe_base64_decode
 from django.views.generic import View, TemplateView, FormView
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.conf import settings
 
+from emma.apps.users.models import CoolUser
 from emma.core.mixins import NextUrlMixin, AuthRedirectMixin, \
     LoginRequiredMixin, RequestFormMixin
 from emma.core.utils import send_email
 
 from .forms import PasswordResetRequestForm, PasswordResetForm, \
     ChangePasswordForm, SignupForm, LoginForm
+
+
+class ActivateAccount(View):
+    template_name = 'xauth/active_account.html'
+    def get(self, request, uidb64):
+        uid = urlsafe_base64_decode(uidb64)
+        try:
+            user = CoolUser.objects.get(id=uid)
+        except CoolUser.DoesNotExist:
+            user = None
+
+        if user is not None:
+            if user.is_active:
+                raise Http404
+            else:
+                user.is_active = True
+                user.save()
+                return TemplateResponse(self.request, self.template_name)
+        else:
+            raise Http404
 
 
 class PasswordReset(View):
@@ -145,11 +168,16 @@ class SignupView(FormView):
 
     def form_valid(self, form):
         form.save()
-        login(self.request, form.user_cache)
+        uid = urlsafe_base64_encode(str(form.user_cache.id))
+        current_site = get_current_site(self.request)
+        domain = current_site.domain
         send_email(
             subject='email/subjects/notification_welcome.txt',
             body='email/notification_welcome.html',
-            context={},
+            context={
+                'uid':uid,
+                'domain':domain,
+            },
             to_email=[form.user_cache.email],
         )
         return super(SignupView, self).form_valid(form)
