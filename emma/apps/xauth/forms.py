@@ -209,12 +209,13 @@ class SignupForm(forms.Form):
 
         user = CoolUser(
             email=cleaned_data.get('email'),
-            password=cleaned_data.get('password_2'),
             first_name=cleaned_data.get('name'),
             last_name=cleaned_data.get('last_name'),
             user_type='client',
             is_active=False,
         )
+
+        user.set_password(cleaned_data.get('password_2'))
 
         user.save()
 
