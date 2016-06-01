@@ -1,3 +1,4 @@
 {% autoescape off %}
-Bienvenido a Emma
+Bienvenido a Emma, haz click en el siguiente enlace para activar tu cuenta
+http://{{ domain }}{% url 'xauth:active_account' uidb64=uid %}
 {% endautoescape %}
