@@ -183,6 +183,7 @@ class DateEmailView(View):
 
         }
 
+
         send_email(
             subject='email/subjects/call_schedule.txt',
             body='email/call_schedule.html',
@@ -193,15 +194,13 @@ class DateEmailView(View):
             context=ctx
         )
 
-        ctx = {
-            'day': datet,
-            'hour': time,
-            'tz': tz,
-        }
 
         send_email(
             subject='email/subjects/notification_call.txt',
             body='email/notification_call.html',
+            from_email="Emma - Notificaciones <postmaster@%s>" % (
+                settings.MAILGUN_SERVER_NAME
+            ),
             to_email=[email],
             context=ctx
         )
