@@ -1,4 +1,59 @@
-{% autoescape off %}
-Bienvenido a Emma, haz click en el siguiente enlace para activar tu cuenta
-http://{{ domain }}{% url 'xauth:active_account' uidb64=uid %}
-{% endautoescape %}
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Email Bienvenida</title>
+</head>
+<body>
+	<p>
+		Estimado(a) {{ name }}:
+	</p>
+	<p>
+		¡Bienvenido(a) a Emma!
+	</p>
+	<p>
+		Muchas gracias por tu confianza. A partir de hoy podrás contar con el mejor
+		plan de acompañamiento para tu ser querido. En Emma estamos comprometidos
+		tanto contigo como con tu familia de forma que encuentres a una compañera
+		confiable en menos de 12 horas, de forma sencilla, segura y sin fricciones.
+	</p>
+	<p>
+		Completemos tu proceso de registro:
+	</p>
+
+	<ol>
+		<li>
+			Activa tu cuenta haciendo click
+			<a href="http://{{ domain }}{% url 'xauth:active_account' uidb64=uid %}">
+				Aqui
+			</a>
+		</li>
+		<li>
+			Entra a miemma.com con la contraseña que elegiste (de no recordarla dar
+			click <a href="http://{{ domain }}{% url 'xauth:reset_password_form' %}"> Aqui </a>).
+		</li>
+		<li>
+			Programa una llamada telefónica y personalicemos el servicio que buscas.
+		</li>
+		<li>
+			Escoge el horario y fecha para una sesión de prueba (sin costo).
+		</li>
+	</ol>
+	<p>
+		Nuestra misión es lograr una estimulación integral con el adulto mayor a
+		través de servicios preventivos, relevantes e incluyentes. Monitoreamos cada
+		servicio con un gran cuidado para mantenerte al tanto de su estado de ánimo y
+		el los avances en las sesiones.
+	</p>
+	<p>
+		Para cualquier duda o comentario, nos puedes contactar a: info@miemma.com
+	</p>
+
+	<p>
+		Muchos saludos,
+	</p>
+	<p>
+		Equipo fundador
+	</p>
+</body>
+</html>

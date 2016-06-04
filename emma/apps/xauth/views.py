@@ -177,6 +177,7 @@ class SignupView(FormView):
             context={
                 'uid':uid,
                 'domain':domain,
+                'name': form.user_cache.first_name,
             },
             to_email=[form.user_cache.email],
         )
