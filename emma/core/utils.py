@@ -7,6 +7,7 @@ from django.template import loader
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
+from django.template import Context
 
 from pyExcelerator import *
 
@@ -27,9 +28,11 @@ def send_email(subject, body, to_email, context, from_email=None):
     subject = ''.join(subject.splitlines())
     body = loader.render_to_string(body, context)
     email_message = EmailMultiAlternatives(
-        subject, body, from_email, to_email
+        subject, 'Text Content', from_email, to_email
     )
+    email_message.attach_alternative(body, "text/html")
     email_message.send()
+    print("Mensaje enviado")
 
 
 def export_as_xls(modeladmin, request, queryset):
