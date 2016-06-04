@@ -69,7 +69,8 @@ class SelectCardView(ClientRequiredMixin, View):
 
         ctx = {
             'amount': request.POST['service_ammount'],
-            'card': card.card_number
+            'card': card.card_number,
+            'name': request.user.first_name
         }
 
         send_email(
@@ -161,7 +162,10 @@ class AddCardView(ClientRequiredMixin, View):
             device_session_id=request.POST['devsessionid']
         )
 
-        ctx.update({'amount': request.POST['service_ammount']})
+        ctx.update({
+            'amount': request.POST['service_ammount'],
+            'name': request.user.first_name,
+        })
 
         send_email(
             subject='email/subjects/notification_payment.txt',
