@@ -102,6 +102,8 @@ USE_L10N = False
 
 USE_TZ = True
 
+PASSWORD_RESET_TIMEOUT_DAYS = 1
+
 # TEMPLATE CONFIGURATION
 # -----------------------------------------------------------------------------
 TEMPLATES = [
