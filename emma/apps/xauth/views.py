@@ -98,7 +98,7 @@ class PasswordResetDone(TemplateView):
 
 class PasswordResetRequest(View):
     template_name = 'xauth/password_reset_request.html'
-    from_email = "Notificaciones - Emma <postmaster@%s>" % (
+    from_email = "Emma - Notificaciones <postmaster@%s>" % (
         settings.MAILGUN_SERVER_NAME
     )
     email_template_name = 'email/password_reset_request.html'
