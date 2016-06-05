@@ -1,3 +1,26 @@
-{% autoescape off %}
-Se agrego la tarjeta la tarjeta {{ card }} a la cuenta
-{% endautoescape %}
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Email Tarjeta Agregada</title>
+</head>
+<body>
+	<p>
+		Estimado(a) {{ name }}:
+	</p>
+	<p>
+		Te enviamos este correo para informarte que se ha agregado una nueva
+		tarjeta {{ card }} a tu cuenta de usuario en Emma. Para cualquier duda o
+		aclaración, puedes contactarnos a: info@miemma.com
+	</p>
+	<p>
+		Muchas gracias.
+	</p>
+	<p>
+		Atentamente,
+	</p>
+	<p>
+		Equipo de soporte técnico
+	</p>
+</body>
+</html>

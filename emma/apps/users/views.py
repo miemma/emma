@@ -142,7 +142,8 @@ class AddCardView(ClientRequiredMixin, View):
         )
 
         ctx = {
-            'card': card.card_number
+            'card': card.card_number,
+            'name': request.user.first_name,
         }
 
         send_email(
