@@ -46,6 +46,7 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
     'suit',
+    'session_security',
 )
 
 # Apps specific for this project go here.
@@ -66,12 +67,11 @@ INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS + LOCAL_APPS
 # MIDDLEWARE CLASSES
 # -----------------------------------------------------------------------------
 MIDDLEWARE_CLASSES = (
-    # Make sure djangosecure.middleware.SecurityMiddleware is listed first
     'django.contrib.sessions.middleware.SessionMiddleware',
-    # 'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'session_security.middleware.SessionSecurityMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -166,3 +166,9 @@ STATICFILES_FINDERS = (
 LOGIN_URL = reverse_lazy('xauth:login')
 
 AUTH_USER_MODEL = "users.CoolUser"
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+SESSION_SECURITY_EXPIRE_AFTER = 30
+
+SESSION_SECURITY_WARN_AFTER = 10
