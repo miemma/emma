@@ -17,6 +17,7 @@ from emma.apps.suscriptions import urls as suscription_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'session_security/', include('session_security.urls')),
 
     # Custom urls
     # url(r'', include(module_urls, namespace='module')),
