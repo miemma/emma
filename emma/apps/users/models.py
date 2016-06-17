@@ -102,6 +102,10 @@ class CoolUser(PermissionsMixin, AbstractBaseUser):
         _('Active'),
         default=True,
     )
+    join_date = models.DateField(
+        _('Join Date'),
+        auto_now_add=True
+    )
 
     objects = CoolUserManager()
 
