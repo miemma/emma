@@ -69,3 +69,4 @@ emma/media
 emma/staticfiles
 emma/static/node_modules
 db.sqlite3
+emma/apps/landing/migrations
