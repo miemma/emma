@@ -2,90 +2,17 @@
 {% load settings_tag %}
 <!DOCTYPE html>
 <html lang="es_ES">
-  <head>
-    <title>Emma: Acompañamiento con propósito</title>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0,
-                   user-scalable=no" />
-    <meta name="description"
-          content="Emma es un servicio de acompañamiento a adultos de la
-          tercera edad. Premio Nacional del Estudiante Emprendedor de
-          Entrepreneurs Organization (EO)"/>
-    <meta name="keywords"
-          content="emma, fernanda sottil, permio nacional el estudiante
-          emprendedor, acompañantes de la tercera edad, emma acompañantes de
-          la tercera edad, fernanda sottil ganadora del premio estudiante
-          emprendedor, Para que tu ser querido no pierda sus pasatiempos
-          favoritos, acompañamiento, tercera, edad, tercera edad, miemma, mi
-          emma, mi emma fernanda sottil"/>
-
-    <meta property="og:site_name" content="Emma">
-    <meta property="og:locale" content="en_MX"/>
-    <meta property="og:locale:alternate" content="es_US"/>
-    <meta property="og:type" content="article"/>
-    <meta property="og:url" content="http://sandbox.miemma.com">
-    <meta property="og:title"
-          content="Emma: Acompañamiento con propósito"/>
-    <meta property="og:description"
-          content="Emma es un servicio de acompañamiento a adultos de la
-          tercera edad. Premio Nacional del Estudiante Emprendedor de
-          Entrepreneurs Organization (EO)"/>
-
-  <meta property="og:image" content="{% static "img/Logo-Emma-OG.png" %}" />
-	<meta property="og:image:type" content="image/png" />
-	<meta property="og:image:width" content="250" />
-	<meta property="og:image:height" content="250" />
-
-    <link href="{% static "lib/bootstrap/css/bootstrap.min.css" %}"
-          rel="stylesheet"/>
-    <link href="{% static "lib/font-awesome/css/font-awesome.min.css" %}"
-          rel="stylesheet"/>
-    <link href="{% static "css/main.css" %}" rel="stylesheet" type="text/css"
-          media="screen"/>
-    <link rel="shortcut icon" type="image/x-icon"
-          href="{% static "img/favicon.png" %}"/>
-    {% autoescape off %}
-      {% settings_value "GOOGLE_ANALYTICS_CODE" %}
-    {% endautoescape %}
-	  {% block fbpixel %}
-    {% endblock %}
-  </head>
+  {% include "base/head.html" %}
   <body>
     <div class="container-overflow">
-    {% include "base/contact.html" %}
-    {% include "base/header.html" %}
+      {% include "base/contact.html" %}
+      {% include "base/header.html" %}
 
-    {% block content %}
-    {% endblock content %}
+      {% block content %}
+      {% endblock content %}
 
-		{% include "base/footer.html" %}
-
-    <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
-    {% include 'session_security/all.html' %}
-    <script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/efects.js' %}"></script>
-    <script type="text/javascript">
-	    $( "#contactForm" ).submit(function( event ) {
-			  window._fbq.push(['track', 'Lead']);
-		    return true
-			});
-    </script>
-    <script src="//cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js" ></script>
-		<script src="{% static 'js/validationForms.js' %}"></script>
-    {% block js %}
-    {% endblock %}
+		  {% include "base/footer.html" %}
+      {% include "base/scripts.html" %}
     </div>
-    <!-- Start of Async HubSpot Analytics Code -->
-		 <script type="text/javascript">
-		   (function(d,s,i,r) {
-		     if (d.getElementById(i)){return;}
-		     var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
-		     n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/2338938.js';
-		     e.parentNode.insertBefore(n, e);
-		   })(document,"script","hs-analytics",300000);
-		 </script>
-		<!-- End of Async HubSpot Analytics Code -->
   </body>
 </html>
