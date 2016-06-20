@@ -1,0 +1,19 @@
+{% load static from staticfiles%}
+{% load settings_tag %}
+<!DOCTYPE html>
+<html lang="es_ES">
+  {% include "base/head.html" %}
+  <body>
+    <div class="container-overflow">
+      {% include "base/contact.html" %}
+      <header>
+      </header>
+
+      {% block content %}
+      {% endblock content %}
+
+		  {% include "base/footer.html" %}
+      {% include "base/scripts.html" %}
+    </div>
+  </body>
+</html>
