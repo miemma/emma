@@ -9,6 +9,63 @@ from emma.apps.adults.models import Adult
 from emma.apps.clients.models import Client
 from emma.apps.emmas.models import Emma
 
+class ServiceDays(models.Model):
+    name = models.CharField(
+        _('Name'),
+        max_length=35,
+        blank=False,
+        null=False
+    )
+    service_day_1 = models.CharField(
+        _('Day 1 of service'),
+        max_length=25,
+        blank=False,
+        null=False
+    )
+    service_day_2 = models.CharField(
+        _('Day 2 of service'),
+        max_length=25,
+        blank=True,
+        null=True
+    )
+    service_day_3 = models.CharField(
+        _('Day 3 of service'),
+        max_length=25,
+        blank=True,
+        null=True
+    )
+    service_day_4 = models.CharField(
+        _('Day 4 of service'),
+        max_length=25,
+        blank=True,
+        null=True
+    )
+    service_day_5 = models.CharField(
+        _('Day 5 of service'),
+        max_length=25,
+        blank=True,
+        null=True
+    )
+    service_day_6 = models.CharField(
+        _('Day 6 of service'),
+        max_length=25,
+        blank=True,
+        null=True
+    )
+    service_day_7 = models.CharField(
+        _('Day 7 of service'),
+        max_length=25,
+        blank=True,
+        null=True
+    )
+
+    class Meta:
+        verbose_name = _('Service Days')
+        verbose_name_plural = _('Service Days')
+
+    def __unicode__(self):
+        return self.name
+
 
 class Service(models.Model):
     name = models.CharField(
@@ -95,47 +152,9 @@ class HiredService(models.Model):
         blank=False,
         null=False
     )
-    service_day_1 = models.CharField(
-        _('Day 1 of service'),
-        max_length=25,
-        blank=False,
-        null=False
-    )
-    service_day_2 = models.CharField(
-        _('Day 2 of service'),
-        max_length=25,
-        blank=True,
-        null=True
-    )
-    service_day_3 = models.CharField(
-        _('Day 3 of service'),
-        max_length=25,
-        blank=True,
-        null=True
-    )
-    service_day_4 = models.CharField(
-        _('Day 4 of service'),
-        max_length=25,
-        blank=True,
-        null=True
-    )
-    service_day_5 = models.CharField(
-        _('Day 5 of service'),
-        max_length=25,
-        blank=True,
-        null=True
-    )
-    service_day_6 = models.CharField(
-        _('Day 6 of service'),
-        max_length=25,
-        blank=True,
-        null=True
-    )
-    service_day_7 = models.CharField(
-        _('Day 7 of service'),
-        max_length=25,
-        blank=True,
-        null=True
+    service_days = models.ForeignKey(
+        ServiceDays,
+        verbose_name=_('Service Days'),
     )
     active = models.BooleanField(
         default=False
