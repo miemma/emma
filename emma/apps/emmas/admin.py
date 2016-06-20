@@ -8,14 +8,21 @@ from emma.core.utils import export_as_xls
 from . import models
 
 
-@admin.register(models.Emma)
-class EmmaAdmin(admin.ModelAdmin):
-    list_display = ('id', 'get_full_name', 'movile_phone', 'phone')
+@admin.register(models.PotentialEmma)
+class PotentialEmmaAdmin(admin.ModelAdmin):
+    list_display = ('get_full_name', 'movile_phone', 'phone')
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
     exclude = ['id']
 
     def get_full_name(self, obj):
-        return obj.user.get_full_name()
+        return '%s %s' % (obj.first_name, obj.last_name)
 
     get_full_name.short_description = 'Name'
+
+
+@admin.register(models.Emma)
+class EmmaAdmin(admin.ModelAdmin):
+    actions = [export_as_xls]
+    export_as_xls.short_description = "Export selected objects to XLS"
+    exclude = ['id']
