@@ -6,12 +6,42 @@
   <body>
     <div class="container-overflow">
       {% include "base/contact.html" %}
-      <header>
+      <header class="header-navbar dashboard-navbar">
+        <input type="checkbox" id="navbar-trigger" />
+        <label class="fa fa-bars" for="navbar-trigger"></label>
+        <a href="{% url 'landing:home' %}">
+          <img class="header-navbar-logo" src="{% static "img/icons/logo_2.png" %}"/>
+        </a>
+        <ul class="header-navbar-list">
+          <li class="header-navbar-list-item" hcolor="white">
+            <a class="header-navbar-list-item-link" href="#">
+              Historial
+            </a>
+          </li>
+          <li class="header-navbar-list-item" hcolor="white">
+            <a class="header-navbar-list-item-link" href="#">
+              Mi <italic>Emma</italic>
+            </a>
+          </li>
+          <li class="header-navbar-list-item" hcolor="white">
+            <a class="header-navbar-list-item-link" href="#">
+              Blog
+            </a>
+          </li>
+          <li class="header-navbar-list-item" hcolor="white">
+            <a class="header-navbar-list-item-link" href="#">
+              Ver suscripción
+            </a>
+          </li>
+          <li class="header-navbar-list-item" hcolor="white">
+            <a class="header-navbar-list-item-link" href="#">
+              Josefina
+            </a>
+          </li>
+        </ul>
       </header>
-
       {% block content %}
       {% endblock content %}
-
 		  {% include "base/footer.html" %}
       {% include "base/scripts.html" %}
     </div>
