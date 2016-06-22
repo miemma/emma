@@ -7,7 +7,8 @@ from django.shortcuts import render, redirect
 from django.template.response import TemplateResponse
 from django.views.generic import View, FormView
 
-from emma.apps.adults.models import Adult, Doctor
+from emma.apps.adults.models import Adult
+from emma.apps.doctors.models import Doctor
 from emma.apps.clients.models import Client
 from emma.apps.services.forms import ServiceData, ContractAdultInfo
 from emma.apps.services.models import Service, Workshop, HiredService
