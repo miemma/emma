@@ -1,6 +1,9 @@
+{% extends "clients/dashboard_base.html" %}
+{% block content %}
 <ul>
 	{% for history in histories %}
 		<li>{{ history }}</li>
 	{% endfor %}
 
 </ul>
+{% endblock %}
