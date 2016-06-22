@@ -10,19 +10,22 @@ from django.utils.translation import ugettext_lazy as _
 from emma.apps.users.models import Address
 
 
-class Emma(models.Model):
-    id = models.BigIntegerField(
-        _('ID'),
-        auto_created=True,
+class PotentialEmma(models.Model):
+    first_name = models.CharField(
+        _('First Name'),
+        max_length=25,
+        null=False,
+        blank=False,
     )
-    user = models.OneToOneField(
-        settings.AUTH_USER_MODEL,
-        verbose_name=_('User'),
-        on_delete=models.CASCADE,
-        primary_key=True,
+    last_name = models.CharField(
+        _('Last Name'),
+        max_length=25,
+        null=False,
+        blank=False,
     )
-    birthday = models.DateField(
-        _('Birthday'),
+    age = models.CharField(
+        _('Age'),
+        max_length=10,
         null=False,
         blank=False,
     )
@@ -42,9 +45,11 @@ class Emma(models.Model):
         null=False,
         blank=False,
     )
-    direction = models.ForeignKey(
-        Address,
-        verbose_name=_('Address'),
+    address = models.CharField(
+        _('Address'),
+        max_length=100,
+        null=False,
+        blank=False,
     )
     how_met_emma = models.CharField(
         _('How met Emma'),
@@ -62,8 +67,8 @@ class Emma(models.Model):
     )
 
     class Meta:
-        verbose_name = _('Emma')
-        verbose_name_plural = _('Emmas')
+        verbose_name = _('Potential Emma')
+        verbose_name_plural = _('Potential Emmas')
 
     def __unicode__(self):
         return '%s' % self.user
@@ -71,4 +76,54 @@ class Emma(models.Model):
     def save(self, *args, **kwargs):
         parent_id = self.user.id
         self.id = parent_id
-        super(Emma, self).save(*args, **kwargs)
+        super(PotentialEmma, self).save(*args, **kwargs)
+
+
+class Emma(models.Model):
+    id = models.BigIntegerField(
+        _('ID'),
+        auto_created=True,
+    )
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        verbose_name=_('User'),
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
+
+    birthday = models.DateField(
+        _('Birthday'),
+        blank=False,
+        null=False
+    )
+    main_occupation = models.CharField(
+        _('Main occupation'),
+        max_length=30,
+        blank=False,
+        null=False,
+    )
+
+    general_description = models.CharField(
+        _('General Description'),
+        max_length=30,
+        blank=False,
+        null=False,
+    )
+    qualities = models.CharField(
+        _('Qualities'),
+        max_length=50,
+        blank=False,
+        null=False,
+    )
+    experience_with_seniors = models.CharField(
+        _('Experience with Seniors'),
+        max_length=50,
+        blank=False,
+        null=False,
+    )
+    characteristics = models.CharField(
+        _('Characteristics'),
+        max_length=50,
+        blank=False,
+        null=False,
+    )

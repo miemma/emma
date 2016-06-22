@@ -59,6 +59,7 @@ LOCAL_APPS = (
     'emma.apps.services',
     'emma.apps.users',
     'emma.apps.adults',
+    'emma.apps.doctors',
     'emma.apps.xauth',
 )
 

@@ -6,15 +6,151 @@ from django.utils.translation import ugettext_lazy as _
 
 from emma.apps.clients.models import Client
 from emma.apps.users.models import Address
+from emma.apps.doctors.models import Doctor
 
 
-MARITAL_CHOICES = (
-    ('married', _('Married')),
-    ('widowed', _('Widowed')),
-    ('divorced', _('Divorced')),
-    ('separated', _('Separated')),
-    ('single', _('Single')),
-)
+class EmergencyContact(models.Model):
+    first_name = models.CharField(
+        _('First name'),
+        max_length=25,
+        blank=False,
+        null=False,
+    )
+    last_name = models.CharField(
+        _('Last name'),
+        max_length=25,
+        blank=False,
+        null=False,
+    )
+    relation = models.CharField(
+        _('Relation'),
+        max_length=25,
+        blank=False,
+        null=False,
+    )
+    cell_phone = models.CharField(
+        _('Cell Phone'),
+        max_length=25,
+        blank=False,
+        null=False,
+    )
+    home_phone = models.CharField(
+        _('Home Phone'),
+        max_length=25,
+        blank=False,
+        null=False,
+    )
+
+    class Meta:
+        verbose_name = _('Emergency Contact')
+        verbose_name_plural = _('Emergency Contacts')
+
+    def __unicode__(self):
+        return '%s %s' % (self.first_name, self.last_name)
+
+
+class MedicalInfo(models.Model):
+    blood_type = models.CharField(
+        _('Blood Type'),
+        max_length=25,
+        blank=False,
+        null=False,
+    )
+    emergency_contact_1 = models.ForeignKey(
+        EmergencyContact,
+        verbose_name='Emergency Contact #1',
+        related_name='emergency_contact_1'
+    )
+    emergency_contact_2 = models.ForeignKey(
+        EmergencyContact,
+        verbose_name='Emergency Contact #2',
+        related_name='emergency_contact_2'
+    )
+    hospital_preferably = models.CharField(
+        _('Hospital Preferably'),
+        max_length=25,
+        blank=False,
+        null=False,
+    )
+    knows_pda = models.CharField(
+        _('Knows PDA'),
+        max_length=25,
+        blank=False,
+        null=False,
+    )
+    exercise_pda = models.CharField(
+        _('Exercise PDA'),
+        max_length=25,
+        blank=False,
+        null=False,
+    )
+    has_medical_insurance = models.BooleanField(
+        _('Has Medical Insurance'),
+        default=False,
+    )
+    insurance_company = models.CharField(
+        _('Insurance Company'),
+        max_length=25,
+        blank=False,
+        null=False,
+    )
+    policy_number = models.CharField(
+        _('Insurance Company'),
+        max_length=25,
+        blank=False,
+        null=False,
+    )
+    policy_expiration_date = models.DateField(
+        _('Policy Experation Date'),
+        blank=False,
+        null=False,
+    )
+    has_social_security = models.BooleanField(
+        _('Has Social Security'),
+        blank=False,
+        null=False,
+    )
+    social_security_number = models.CharField(
+        _('Social Security Number'),
+        max_length=25,
+        blank=False,
+        null=False,
+    )
+    doctor = models.ForeignKey(
+        Doctor,
+        verbose_name=_('Doctor')
+    )
+    diseases = models.CharField(
+        _('Diseases'),
+        max_length=25,
+        blank=False,
+        null=False,
+    )
+    current_medications = models.CharField(
+        _('Current Medications'),
+        max_length=25,
+        blank=False,
+        null=False,
+    )
+    drug_allergy = models.CharField(
+        _('Drug Allergy'),
+        max_length=25,
+        blank=False,
+        null=False,
+    )
+    food_allergy = models.CharField(
+        _('Food Allergy'),
+        max_length=25,
+        blank=False,
+        null=False,
+    )
+
+    class Meta:
+        verbose_name = _('Medical Information')
+        verbose_name_plural = _('Medical Information')
+
+    def __unicode__(self):
+        return 'Medical Informatin - %s' % self.id
 
 
 class Adult(models.Model):
@@ -36,13 +172,6 @@ class Adult(models.Model):
         blank=False,
         null=False,
     )
-    marital_status = models.CharField(
-        _('Marital status'),
-        max_length=25,
-        blank=True,
-        null=True,
-        choices=MARITAL_CHOICES
-    )
     address = models.ForeignKey(
         Address,
         verbose_name=_('Address'),
@@ -54,21 +183,25 @@ class Adult(models.Model):
         Client,
         verbose_name=_('Responsable'),
     )
+    familiar_structure = models.CharField(
+        _('Familiar Structure'),
+        max_length=30,
+        blank=False,
+        null=False,
+    )
+    personality = models.CharField(
+        _('Personality'),
+        max_length=30,
+        blank=False,
+        null=False,
+    )
+    medical_information = models.OneToOneField(
+        MedicalInfo,
+        verbose_name=_('Medical Information')
+    )
     is_candidate = models.BooleanField(
         _('Candidate'),
         default=False,
-    )
-    phone = models.CharField(
-        _('Phone'),
-        max_length=25,
-        blank=False,
-        null=False,
-    )
-    emergency_phone = models.CharField(
-        _('Emergency Phone'),
-        max_length=25,
-        blank=False,
-        null=False,
     )
 
     class Meta:
@@ -77,35 +210,3 @@ class Adult(models.Model):
 
     def __unicode__(self):
         return '%s %s' % (self.first_name, self.last_name)
-
-
-
-class Doctor(models.Model):
-    adult = models.ForeignKey(
-        Adult,
-        verbose_name=_('Adult')
-    )
-    name = models.CharField(
-        _('Name'),
-        max_length=25,
-        blank=False,
-        null=False,
-    )
-    phone = models.CharField(
-        _('Phone'),
-        max_length=25,
-        blank=False,
-        null=False,
-    )
-    cp = models.CharField(
-        _('Professional card'),
-        max_length=25,
-        blank=False,
-        null=False,
-    )
-    class Meta:
-        verbose_name = _('Doctor')
-        verbose_name_plural = _('Doctors')
-
-    def __unicode__(self):
-        return '%s' % self.name

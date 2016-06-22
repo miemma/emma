@@ -3,7 +3,8 @@
 
 from django import forms
 
-from emma.apps.adults.models import Adult, Doctor
+from emma.apps.adults.models import Adult
+from emma.apps.doctors.models import Doctor
 from emma.apps.services.models import HiredService, Service, Workshop
 from emma.apps.users.models import Address
 from emma.core import validators
