@@ -42,8 +42,10 @@
         </ul>
       </header>
       <div id="content-no-navbar-wrapper">
-        {% block content %}
-        {% endblock content %}
+        <div id="dashboard-container">
+          {% block content %}
+          {% endblock content %}
+        </div>
 		    {% include "base/footer.html" %}
       </div>
       {% include "base/scripts.html" %}
