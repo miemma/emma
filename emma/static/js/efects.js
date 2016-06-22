@@ -3,7 +3,7 @@ function detectTouch(e) {
 }
 
 $(function() {
-	$('section').click(function () {
+	$('#content-no-navbar-wrapper').click(function () {
 		$('#navbar-trigger').prop('checked', false);
 	});
 
@@ -19,7 +19,7 @@ $(function() {
 	}
 
 	if (responsiveMenu.matches) {
-		document.getElementsByTagName('section')[0].addEventListener('touchmove', detectTouch, false);
+		document.getElementById('content-no-navbar-wrapper').addEventListener('touchmove', detectTouch, false);
 	}
 
 	$(window).scroll(function () {
@@ -45,9 +45,9 @@ $(function() {
             $('#navbar-trigger').prop('checked', false);
         }
         if (responsiveMenu.matches) {
-          document.getElementsByTagName('section')[0].addEventListener('touchmove', detectTouch, false);
+          document.getElementById('content-no-navbar-wrapper').addEventListener('touchmove', detectTouch, false);
         } else {
-          document.getElementsByTagName('section')[0].removeEventListener('touchmove', detectTouch, false);
+          document.getElementById('content-no-navbar-wrapper').removeEventListener('touchmove', detectTouch, false);
         }
     });
 });

@@ -7,11 +7,11 @@
     <div class="container-overflow">
       {% include "base/contact.html" %}
       {% include "base/header.html" %}
-
-      {% block content %}
-      {% endblock content %}
-
-		  {% include "base/footer.html" %}
+      <div id="content-no-navbar-wrapper">
+        {% block content %}
+        {% endblock content %}
+		    {% include "base/footer.html" %}
+      </div>
       {% include "base/scripts.html" %}
     </div>
   </body>
