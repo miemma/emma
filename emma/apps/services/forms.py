@@ -87,7 +87,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Dia (Ej: Lunes)'
+                'placeholder': 'Dia'
             }
         ),
         required=True,
@@ -97,7 +97,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Hora (Ej: 12:00)'
+                'placeholder': 'Hora'
             }
         ),
         required=True,
@@ -109,7 +109,7 @@ class ServiceData(forms.Form):
             attrs={
                 'class': 'emma-input contract-location-form-input '
                          'contract-location-form-input-morning',
-                'placeholder': 'Hora (Ej: 12:00)',
+                'placeholder': 'Hora',
                 'value': 'AM',
                 'readonly': 'true'
             }
@@ -120,7 +120,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Dia (Ej: Martes)'
+                'placeholder': 'Dia'
             }
         ),
         required=False
@@ -129,7 +129,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Hora (Ej: 12:00)'
+                'placeholder': 'Hora'
             }
         ),
         required=False,
@@ -141,7 +141,7 @@ class ServiceData(forms.Form):
             attrs={
                 'class': 'emma-input contract-location-form-input '
                          'contract-location-form-input-morning',
-                'placeholder': 'Hora (Ej: 12:00)',
+                'placeholder': 'Hora',
                 'value': 'AM',
                 'readonly': 'true'
             }
@@ -152,7 +152,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Dia (Ej: Miércoles)'
+                'placeholder': 'Dia'
             }
         ),
         required=False
@@ -161,7 +161,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Hora (Ej: 12:00)'
+                'placeholder': 'Hora'
             }
         ),
         required=False,
@@ -173,7 +173,7 @@ class ServiceData(forms.Form):
             attrs={
                 'class': 'emma-input contract-location-form-input '
                          'contract-location-form-input-morning',
-                'placeholder': 'Hora (Ej: 12:00)',
+                'placeholder': 'Hora',
                 'value': 'AM',
                 'readonly': 'true'
             }
@@ -184,7 +184,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Dia (Ej: Jueves)'
+                'placeholder': 'Dia'
             }
         ),
         required=False
@@ -193,7 +193,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Hora (Ej: 12:00)'
+                'placeholder': 'Hora'
             }
         ),
         required=False,
@@ -205,7 +205,7 @@ class ServiceData(forms.Form):
             attrs={
                 'class': 'emma-input contract-location-form-input '
                          'contract-location-form-input-morning',
-                'placeholder': 'Hora (Ej: 12:00)',
+                'placeholder': 'Hora',
                 'value': 'AM',
                 'readonly': 'true'
             }
@@ -216,7 +216,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Dia (Ej: Viernes)'
+                'placeholder': 'Dia'
             }
         ),
         required=False
@@ -225,7 +225,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Hora (Ej: 12:00)'
+                'placeholder': 'Hora'
             }
         ),
         required=False,
@@ -237,7 +237,7 @@ class ServiceData(forms.Form):
             attrs={
                 'class': 'emma-input contract-location-form-input '
                          'contract-location-form-input-morning',
-                'placeholder': 'Hora (Ej: 12:00)',
+                'placeholder': 'Hora',
                 'value': 'AM',
                 'readonly': 'true'
             }
@@ -248,7 +248,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Dia (Ej: Sábado)'
+                'placeholder': 'Dia'
             }
         ),
         required=False
@@ -257,7 +257,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Hora (Ej: 12:00)'
+                'placeholder': 'Hora'
             }
         ),
         required=False,
@@ -269,7 +269,7 @@ class ServiceData(forms.Form):
             attrs={
                 'class': 'emma-input contract-location-form-input '
                          'contract-location-form-input-morning',
-                'placeholder': 'Hora (Ej: 12:00)',
+                'placeholder': 'Hora',
                 'value': 'AM',
                 'readonly': 'true'
             }
@@ -280,7 +280,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Dia (Ej: Domingo)'
+                'placeholder': 'Dia'
             }
         ),
         required=False
@@ -289,7 +289,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Hora (Ej: 12:00)'
+                'placeholder': 'Hora'
             }
         ),
         required=False,
@@ -301,7 +301,7 @@ class ServiceData(forms.Form):
             attrs={
                 'class': 'emma-input contract-location-form-input '
                          'contract-location-form-input-morning',
-                'placeholder': 'Hora (Ej: 12:00)',
+                'placeholder': 'Hora',
                 'value': 'AM',
                 'readonly': 'true'
             }
@@ -323,7 +323,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Hora (Ej: 12:00)'
+                'placeholder': 'Hora'
             }
         ),
         required=True,
@@ -335,7 +335,7 @@ class ServiceData(forms.Form):
             attrs={
                 'class': 'emma-input contract-location-form-input '
                          'contract-location-form-input-morning',
-                'placeholder': 'Hora (Ej: 12:00)',
+                'placeholder': 'Hora',
                 'value': 'AM',
                 'readonly': 'true'
             }
