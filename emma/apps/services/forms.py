@@ -6,6 +6,7 @@ from django import forms
 from emma.apps.adults.models import Adult, AdultAddress
 from emma.apps.services.models import HiredService, Service, Workshop, \
     ServiceDays
+from emma.apps.clients.models import ContractProcess
 from emma.core import validators
 from emma.core.messages import error_messages
 
@@ -349,8 +350,13 @@ class ServiceData(forms.Form):
             self.fields[field].error_messages = error_messages
     def save(self):
         cleaned_data = super(ServiceData, self).clean()
+        contract_process = ContractProcess.objects.get(
+            client=self.request.user.client
+        )
         try:
-            service_address = AdultAddress.objects.get(user=self.request.user)
+            service_address = AdultAddress.objects.get(
+                id=contract_process.adult_address_id
+            )
             service_address.street = cleaned_data.get('street')
             service_address.outdoor_number = cleaned_data.get('num_ext')
             service_address.colony = cleaned_data.get('colony')
@@ -376,11 +382,18 @@ class ServiceData(forms.Form):
 
         service_address.save()
 
+        contract_process.adult_address_id = service_address.id
+        contract_process.save()
+
         service = Service.objects.get(
-            id=self.request.session['id_service']
+            id=contract_process.id_service
         )
 
-        workshop_list = self.request.session['workshop_list']
+        workshop_list = []
+        for x in contract_process.workshop_list:
+            if x.isdigit():
+                workshop_list.append(x)
+
         workshops = ''
         num_workshops = 0
         for workshop in workshop_list:
@@ -397,7 +410,7 @@ class ServiceData(forms.Form):
                 client=self.request.user.client
             )
             hired_service.service = Service.objects.get(
-                id=self.request.session['id_service']
+                id=contract_process.id_service
             )
             hired_service.workshops = workshops
             hired_service.num_workshops = num_workshops
@@ -406,7 +419,7 @@ class ServiceData(forms.Form):
             hired_service = HiredService(
                 client=self.request.user.client,
                 service=Service.objects.get(
-                    id=self.request.session['id_service']
+                    id=contract_process.id_service
                 ),
                 workshops=workshops,
                 num_workshops=num_workshops,
