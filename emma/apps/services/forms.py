@@ -5,7 +5,8 @@ from django import forms
 
 from emma.apps.adults.models import Adult
 from emma.apps.doctors.models import Doctor
-from emma.apps.services.models import HiredService, Service, Workshop
+from emma.apps.services.models import HiredService, Service, Workshop, \
+    ServiceDays
 from emma.apps.users.models import Address
 from emma.core import validators
 from emma.core.messages import error_messages
@@ -391,12 +392,6 @@ class ServiceData(forms.Form):
             num_workshops += 1
         workshops = workshops[:-2]
 
-        day_1 = '%s %s %s' % (
-            self.cleaned_data.get('day_1'),
-            self.cleaned_data.get('day_1_hour'),
-            self.cleaned_data.get('day_1_morning'),
-        )
-
 
         start_date = self.cleaned_data.get('start_date')
 
@@ -410,7 +405,6 @@ class ServiceData(forms.Form):
             hired_service.workshops = workshops
             hired_service.num_workshops = num_workshops
             hired_service.start_date = start_date
-            hired_service.service_day_1 = day_1
         except HiredService.DoesNotExist:
             hired_service = HiredService(
                 client=self.request.user.client,
@@ -420,9 +414,19 @@ class ServiceData(forms.Form):
                 workshops=workshops,
                 num_workshops=num_workshops,
                 start_date=start_date,
-                service_day_1 = day_1,
 
             )
+
+        day_1 = '%s %s %s' % (
+            self.cleaned_data.get('day_1'),
+            self.cleaned_data.get('day_1_hour'),
+            self.cleaned_data.get('day_1_morning'),
+        )
+
+        service_days = ServiceDays(
+            name="Service Days - %s" % self.request.user.email,
+            service_day_1=day_1
+        )
 
         if self.cleaned_data.get('day_2'):
             day_2 = '%s %s %s' % (
@@ -431,7 +435,7 @@ class ServiceData(forms.Form):
                 self.cleaned_data.get('day_2_morning'),
             )
 
-            hired_service.service_day_2 = day_2
+            service_days.service_day_2 = day_2
 
         if self.cleaned_data.get('day_3'):
             day_3 = '%s %s %s' % (
@@ -440,7 +444,7 @@ class ServiceData(forms.Form):
                 self.cleaned_data.get('day_3_morning'),
             )
 
-            hired_service.service_day_3 = day_3
+            service_days.service_day_3 = day_3
 
         if self.cleaned_data.get('day_4'):
             day_4 = '%s %s %s' % (
@@ -449,7 +453,7 @@ class ServiceData(forms.Form):
                 self.cleaned_data.get('day_4_morning'),
             )
 
-            hired_service.service_day_4 = day_4
+            service_days.service_day_4 = day_4
 
         if self.cleaned_data.get('day_5'):
             day_5 = '%s %s %s' % (
@@ -458,7 +462,7 @@ class ServiceData(forms.Form):
                 self.cleaned_data.get('day_5_morning'),
             )
 
-            hired_service.service_day_4 = day_5
+            service_days.service_day_4 = day_5
 
         if self.cleaned_data.get('day_6'):
             day_6 = '%s %s %s' % (
@@ -467,7 +471,7 @@ class ServiceData(forms.Form):
                 self.cleaned_data.get('day_6_morning'),
             )
 
-            hired_service.service_day_6 = day_6
+            service_days.service_day_6 = day_6
 
         if self.cleaned_data.get('day_7'):
             day_7 = '%s %s %s' % (
@@ -476,7 +480,11 @@ class ServiceData(forms.Form):
                 self.cleaned_data.get('day_7_morning'),
             )
 
-            hired_service.service_day_7 = day_7
+            service_days.service_day_7 = day_7
+
+        service_days.save()
+
+        hired_service.service_days = service_days
 
         hired_service.save()
 
