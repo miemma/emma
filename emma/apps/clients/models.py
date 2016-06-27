@@ -82,21 +82,22 @@ class ContractProcess(models.Model):
         null=True,
         blank=True,
     )
-
     adult_address_id = models.IntegerField(
         _('ID Adult Address'),
         null=False,
         blank=False,
         default=0,
     )
-
     service_setup = models.BooleanField(
         _('Service Setup'),
         default=False
     )
-
     service_days = models.IntegerField(
         _('Service Days'),
         null=True,
         blank=False
+    )
+    adult_setup = models.BooleanField(
+        _('Adult Setup'),
+        default=False
     )
