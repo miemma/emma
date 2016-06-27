@@ -513,52 +513,30 @@ class ContractAdultInfo(forms.Form):
             }
         ),
     )
-    phone = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                'class': 'emma-input contract-adult-form-input',
-                'placeholder': 'Teléfono fijo'
-            }
-        ),
-    )
-    emergency = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                'class': 'emma-input contract-adult-form-input',
-                'placeholder': 'Teléfono de emergencia'
-            }
-        ),
-    )
     description = forms.CharField(
         widget=forms.Textarea(
             attrs={
                 'class': 'emma-input contract-adult-form-area',
                 'placeholder': 'Descripción',
-                'rows': '8'
+                'rows': '5'
             }
         ),
     )
-    doctor_name = forms.CharField(
-        widget=forms.TextInput(
+    familiar_structure = forms.CharField(
+        widget=forms.Textarea(
             attrs={
-                'class': 'emma-input contract-adult-form-input',
-                'placeholder': 'Nombre del médico'
+                'class': 'emma-input contract-adult-form-area',
+                'placeholder': 'Estructura Familiar',
+                'rows': '5'
             }
         ),
     )
-    doctor_phone = forms.CharField(
-        widget=forms.TextInput(
+    personality = forms.CharField(
+        widget=forms.Textarea(
             attrs={
-                'class': 'emma-input contract-adult-form-input',
-                'placeholder': 'Teléfono del médico'
-            }
-        ),
-    )
-    doctor_cp = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                'class': 'emma-input contract-adult-form-input',
-                'placeholder': 'C.P'
+                'class': 'emma-input contract-adult-form-area',
+                'placeholder': 'Personalidad',
+                'rows': '5'
             }
         ),
     )
@@ -582,34 +560,21 @@ class ContractAdultInfo(forms.Form):
             adult.first_name = cleaned_data.get('name')
             adult.last_name = cleaned_data.get('last_name')
             adult.birthday = cleaned_data.get('birthday')
-            adult.phone = cleaned_data.get('phone')
-            adult.emergency_phone = cleaned_data.get('emergency')
+            adult.description = cleaned_data.get('description')
+            adult.personality = cleaned_data.get('personality')
+            adult.familiar_structure = cleaned_data.get('familiar_structure')
         except Adult.DoesNotExist:
             adult = Adult(
                 first_name=cleaned_data.get('name'),
                 last_name=cleaned_data.get('last_name'),
                 birthday=cleaned_data.get('birthday'),
                 responsable=self.request.user.client,
-                phone=cleaned_data.get('phone'),
-                emergency_phone = cleaned_data.get('emergency')
+                personality=cleaned_data.get('personality'),
+                familiar_structure=cleaned_data.get('familiar_structure'),
+                description=cleaned_data.get('description')
             )
 
         adult.save()
-
-        try:
-            doctor = Doctor.objects.get(adult=adult)
-            doctor.name = cleaned_data.get('doctor_name')
-            doctor.phone = cleaned_data.get('doctor_phone')
-            doctor.cp = cleaned_data.get('doctor_cp')
-        except Doctor.DoesNotExist:
-            doctor = Doctor(
-                adult=adult,
-                name=cleaned_data.get('doctor_name'),
-                phone=cleaned_data.get('doctor_phone'),
-                cp=cleaned_data.get('doctor_cp')
-            )
-
-        doctor.save()
 
         service = HiredService.objects.get(
             client=self.request.user.client
