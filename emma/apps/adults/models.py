@@ -157,20 +157,20 @@ class Adult(models.Model):
     first_name = models.CharField(
         _('First name'),
         max_length=25,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
     last_name = models.CharField(
         _('Last name'),
         max_length=25,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
     birthday = models.CharField(
         _('Birthday'),
         max_length=20,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
     address = models.ForeignKey(
         Address,
@@ -183,25 +183,33 @@ class Adult(models.Model):
         Client,
         verbose_name=_('Responsable'),
     )
+    description = models.CharField(
+        _('Familiar Structure'),
+        max_length=30,
+        blank=True,
+        null=True,
+    )
     familiar_structure = models.CharField(
         _('Familiar Structure'),
         max_length=30,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
     personality = models.CharField(
         _('Personality'),
         max_length=30,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
     medical_information = models.OneToOneField(
         MedicalInfo,
-        verbose_name=_('Medical Information')
+        verbose_name=_('Medical Information'),
+        null=True,
+        blank=True,
     )
     is_candidate = models.BooleanField(
         _('Candidate'),
-        default=False,
+        default=True,
     )
 
     class Meta:
