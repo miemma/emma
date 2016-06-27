@@ -142,23 +142,25 @@ class ContractComprobation(ActiveClientRequiredMixin, View):
     template_name = 'services/contract_confirmation.html'
 
     def get(self, request, **kwargs):
-        if not 'adult_setup' in request.session:
+        contract_process = ContractProcess.objects.get(
+            client=self.request.user.client
+        )
+        if contract_process.adult_setup is not True:
             return redirect('services:contract_adult')
+
         service = HiredService.objects.get(
             client=self.request.user.client
         )
 
-        address = AdultAddress.objects.get(user=self.request.user)
+        address = AdultAddress.objects.get(id=contract_process.adult_address_id)
 
         adult = Adult.objects.get(responsable=self.request.user.client)
-
-        doctor = Doctor.objects.get(adult=adult)
 
         def calculate_age(born):
             today = date.today()
             try:
                 birthday = born.replace(year=today.year)
-            except ValueError:  # raised when birth date is February 29 and the current year is not a leap year
+            except ValueError:
                 birthday = born.replace(year=today.year, day=born.day - 1)
             if birthday > today:
                 return today.year - born.year - 1
@@ -182,20 +184,16 @@ class ContractComprobation(ActiveClientRequiredMixin, View):
             'city': address.city,
             'state': address.state,
             'reference': address.reference,
-            'day_1': service.service_day_1,
-            'day_2': service.service_day_2,
-            'day_3': service.service_day_3,
-            'day_4': service.service_day_4,
-            'day_5': service.service_day_5,
-            'day_6': service.service_day_6,
-            'day_7': service.service_day_7,
+            'day_1': service.service_days.service_day_1,
+            'day_2': service.service_days.service_day_2,
+            'day_3': service.service_days.service_day_3,
+            'day_4': service.service_days.service_day_4,
+            'day_5': service.service_days.service_day_5,
+            'day_6': service.service_days.service_day_6,
+            'day_7': service.service_days.service_day_7,
             'adult_first_name': adult.first_name,
             'adult_last_name': adult.last_name,
-            'adult_phone': adult.phone,
-            'adult_emergency': adult.emergency_phone,
             'age': calculate_age(born),
-            'doctor_name': doctor.name,
-            'doctor_phone': doctor.phone,
         }
 
         return TemplateResponse(request, self.template_name, ctx)
