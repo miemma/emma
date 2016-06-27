@@ -9,15 +9,13 @@ from django.views.generic import View, FormView
 
 from emma.apps.adults.models import Adult, AdultAddress
 from emma.apps.doctors.models import Doctor
-from emma.apps.clients.models import Client
+from emma.apps.clients.models import Client, ContractProcess
 from emma.apps.services.forms import ServiceData, ContractAdultInfo
 from emma.apps.services.models import Service, Workshop, HiredService
 from emma.apps.suscriptions.models import Suscription, History
 from emma.core.mixins import RequestFormMixin, ActiveClientRequiredMixin
 
 from datetime import datetime, date
-
-from emma.core.utils import send_email
 
 
 class ContractServiceInfo(ActiveClientRequiredMixin, View):
@@ -32,17 +30,28 @@ class ContractServiceInfo(ActiveClientRequiredMixin, View):
         return TemplateResponse(request, self.template_name, ctx)
 
     def post(self, request):
-        service_id = request.POST.get('contract-service')
+        id_service = request.POST.get('contract-service')
         workshop_list = request.POST.getlist('contract-service-workshop')
         ctx = {
             'services': self.services
         }
         try:
-            service = self.services.get(id=service_id)
+            service = self.services.get(id=id_service)
             for workshop in workshop_list:
                 Workshop.objects.get(id=workshop, service=service)
-            request.session['id_service'] = service_id
-            request.session['workshop_list'] = workshop_list
+            try:
+                contract_process = ContractProcess.objects.get(
+                    client=request.user.client
+                )
+                contract_process.id_service = id_service
+                contract_process.workshop_list = workshop_list
+            except ContractProcess.DoesNotExist:
+                contract_process = ContractProcess(
+                    client=request.user.client,
+                    id_service=id_service,
+                    workshop_list=workshop_list
+                )
+            contract_process.save()
             return redirect(self.success_url)
 
         except Service.DoesNotExist:
@@ -76,10 +85,16 @@ class ContractLocation(ActiveClientRequiredMixin, RequestFormMixin, FormView):
 
     def get_context_data(self, **kwargs):
         context = super(ContractLocation, self).get_context_data(**kwargs)
-        service = Service.objects.get(
-            id=self.request.session['id_service']
+        contract_process = ContractProcess.objects.get(
+            client=self.request.user.client
         )
-        workshop_list = self.request.session['workshop_list']
+        service = Service.objects.get(
+            id=contract_process.id_service
+        )
+        workshop_list = []
+        for x in contract_process.workshop_list:
+            if x.isdigit():
+                workshop_list.append(x)
         workshops = []
         for workshop in workshop_list:
             work = Workshop.objects.get(id=workshop, service=service)
