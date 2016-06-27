@@ -31,6 +31,6 @@ class EmergencyContactAdmin(admin.ModelAdmin):
 
 @admin.register(models.AdultAddress)
 class AdultAddress(admin.ModelAdmin):
-    list_display = ('adult', 'street', 'postal_code')
+    list_display = ('id', 'street', 'postal_code')
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
