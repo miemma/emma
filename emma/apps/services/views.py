@@ -74,13 +74,23 @@ class ContractLocation(ActiveClientRequiredMixin, RequestFormMixin, FormView):
     success_url = reverse_lazy('services:contract_adult')
 
     def get(self, request, **kwargs):
-        if not 'days_per_service' in request.session:
-            request.session['days_per_service'] = 1
+        contract_process = ContractProcess.objects.get(
+            client=self.request.user.client
+        )
+        if not contract_process.id_service or not contract_process.workshop_list:
+            return redirect(reverse_lazy('services:contract_service_info'))
+        if not contract_process.service_days:
+            contract_process.service_days = 1
+            contract_process.save()
         return super(ContractLocation, self).get(self, request, **kwargs)
 
     def form_valid(self, form):
         form.save()
-        self.request.session['service_setup'] = True
+        contract_process = ContractProcess.objects.get(
+            client=self.request.user.client
+        )
+        contract_process.service_setup = True
+        contract_process.save()
         return super(ContractLocation, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -101,6 +111,7 @@ class ContractLocation(ActiveClientRequiredMixin, RequestFormMixin, FormView):
             workshops.append(work)
         context['service'] = service
         context['workshops'] = workshops
+        context['days'] = contract_process.service_days
         return context
 
 
@@ -237,7 +248,11 @@ class ContractAddDay(View):
 
     @staticmethod
     def post(request):
-        request.session['days_per_service'] +=1
+        contract_process = ContractProcess.objects.get(
+            client=request.user.client
+        )
+        contract_process.service_days +=1
+        contract_process.save()
         return HttpResponse('Add Day')
 
 
@@ -248,6 +263,9 @@ class ContractRemoveDay(View):
 
     @staticmethod
     def post(request):
-        request.session['days_per_service'] -=1
-        # del request.session['days_per_service']
+        contract_process = ContractProcess.objects.get(
+            client=request.user.client
+        )
+        contract_process.service_days -= 1
+        contract_process.save()
         return HttpResponse('Remove Day')
