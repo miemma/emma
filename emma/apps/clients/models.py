@@ -5,8 +5,6 @@ from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
-from emma.apps.users.models import Address
-
 
 class Client(models.Model):
     id = models.BigIntegerField(
@@ -18,12 +16,6 @@ class Client(models.Model):
         verbose_name=_('User'),
         on_delete=models.CASCADE,
         primary_key=True,
-    )
-    address = models.ForeignKey(
-        Address,
-        verbose_name=_('Address'),
-        blank=True,
-        null=True,
     )
     change_password = models.BooleanField(
         _('Change password'),
