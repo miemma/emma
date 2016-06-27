@@ -564,7 +564,10 @@ class ContractAdultInfo(forms.Form):
 
     def save(self):
         cleaned_data = super(ContractAdultInfo, self).clean()
-
+        contract_process = ContractProcess.objects.get(
+            client=self.request.user.client
+        )
+        address = AdultAddress.objects.get(id=contract_process.adult_address_id)
         try:
             adult = Adult.objects.get(responsable=self.request.user.client)
             adult.first_name = cleaned_data.get('name')
@@ -581,7 +584,8 @@ class ContractAdultInfo(forms.Form):
                 responsable=self.request.user.client,
                 personality=cleaned_data.get('personality'),
                 familiar_structure=cleaned_data.get('familiar_structure'),
-                description=cleaned_data.get('description')
+                description=cleaned_data.get('description'),
+                address=address
             )
 
         adult.save()

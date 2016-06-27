@@ -121,13 +121,20 @@ class ContractAdult(ActiveClientRequiredMixin, RequestFormMixin, FormView):
     success_url = reverse_lazy('services:contract_comprobation')
 
     def get(self, request, **kwargs):
-        if not 'service_setup' in request.session:
-            return redirect('services:contract_ubication')
+        contract_process = ContractProcess.objects.get(
+            client=self.request.user.client
+        )
+        if contract_process.service_setup is not True:
+            return redirect(reverse_lazy('services:contract_location'))
         return super(ContractAdult, self).get(self, request, **kwargs)
 
     def form_valid(self, form):
         form.save()
-        self.request.session['adult_setup'] = True
+        contract_process = ContractProcess.objects.get(
+            client=self.request.user.client
+        )
+        contract_process.adult_setup = True
+        contract_process.save()
         return super(ContractAdult, self).form_valid(form)
 
 
