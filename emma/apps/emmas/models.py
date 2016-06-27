@@ -7,9 +7,6 @@ from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 
-from emma.apps.users.models import Address
-
-
 class PotentialEmma(models.Model):
     first_name = models.CharField(
         _('First Name'),
