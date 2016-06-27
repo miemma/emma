@@ -7,13 +7,12 @@ from django.shortcuts import render, redirect
 from django.template.response import TemplateResponse
 from django.views.generic import View, FormView
 
-from emma.apps.adults.models import Adult
+from emma.apps.adults.models import Adult, AdultAddress
 from emma.apps.doctors.models import Doctor
 from emma.apps.clients.models import Client
 from emma.apps.services.forms import ServiceData, ContractAdultInfo
 from emma.apps.services.models import Service, Workshop, HiredService
 from emma.apps.suscriptions.models import Suscription, History
-from emma.apps.users.models import Address
 from emma.core.mixins import RequestFormMixin, ActiveClientRequiredMixin
 
 from datetime import datetime, date
@@ -116,7 +115,7 @@ class ContractComprobation(ActiveClientRequiredMixin, View):
             client=self.request.user.client
         )
 
-        address = Address.objects.get(user=self.request.user)
+        address = AdultAddress.objects.get(user=self.request.user)
 
         adult = Adult.objects.get(responsable=self.request.user.client)
 

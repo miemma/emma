@@ -3,11 +3,9 @@
 
 from django import forms
 
-from emma.apps.adults.models import Adult
-from emma.apps.doctors.models import Doctor
+from emma.apps.adults.models import Adult, AdultAddress
 from emma.apps.services.models import HiredService, Service, Workshop, \
     ServiceDays
-from emma.apps.users.models import Address
 from emma.core import validators
 from emma.core.messages import error_messages
 
@@ -352,7 +350,7 @@ class ServiceData(forms.Form):
     def save(self):
         cleaned_data = super(ServiceData, self).clean()
         try:
-            service_address = Address.objects.get(user=self.request.user)
+            service_address = AdultAddress.objects.get(user=self.request.user)
             service_address.street = cleaned_data.get('street')
             service_address.outdoor_number = cleaned_data.get('num_ext')
             service_address.colony = cleaned_data.get('colony')
@@ -361,9 +359,8 @@ class ServiceData(forms.Form):
             service_address.city = 'Ciudad de México'
             service_address.state = 'México'
             service_address.reference = cleaned_data.get('address_reference')
-        except Address.DoesNotExist:
-            service_address = Address(
-                user=self.request.user,
+        except AdultAddress.DoesNotExist:
+            service_address = AdultAddress(
                 street=cleaned_data.get('street'),
                 outdoor_number=cleaned_data.get('num_ext'),
                 colony=cleaned_data.get('colony'),
