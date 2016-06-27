@@ -203,8 +203,11 @@ class ContractPay(ActiveClientRequiredMixin, View):
     template_name = 'services/contract_payment.html'
 
     def get(self, request):
-        if not 'service_setup' in request.session:
-            return redirect('services:contract_ubication')
+        contract_process = ContractProcess.objects.get(
+            client=self.request.user.client
+        )
+        if contract_process.adult_setup is not True:
+            return redirect('services:contract_adult')
         return render(request, self.template_name)
 
     def post(self, request):
@@ -238,10 +241,9 @@ class ContractPay(ActiveClientRequiredMixin, View):
             device_session_id=request.POST['devsessionid']
         )
 
-        del request.session['adult_setup']
-        del request.session['days_per_service']
-        del request.session['id_service']
-        del request.session['workshop_list']
+        contract_process = ContractProcess.objects.get(
+            client=self.request.user.client
+        ).delete()
 
         return redirect(reverse_lazy('landing:success_contract'))
 
