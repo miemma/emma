@@ -64,3 +64,21 @@ class PotentialClient(models.Model):
 
     def __unicode__(self):
         return '%s - %s' % (self.name, self.email)
+
+
+class ContractProcess(models.Model):
+    client = models.ForeignKey(
+        Client,
+        verbose_name=_('Client')
+    )
+    id_service = models.IntegerField(
+        _('ID Service'),
+        null=True,
+        blank=True,
+    )
+    workshop_list = models.CharField(
+        _('Workshop List'),
+        max_length=50,
+        null=True,
+        blank=True,
+    )
