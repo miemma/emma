@@ -15,62 +15,6 @@ TYPE_CHOICES = (
 )
 
 
-class Address(models.Model):
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-    )
-    street = models.CharField(
-        max_length=25,
-        blank=False,
-        null=False
-    )
-    outdoor_number = models.PositiveIntegerField(
-        blank=False,
-        null=False
-    )
-    interior_number = models.PositiveIntegerField(
-        blank=True,
-        null=True
-    )
-    colony = models.CharField(
-        max_length=25,
-        blank=False,
-        null=False
-    )
-    postal_code = models.PositiveIntegerField(
-        blank=False,
-        null=False
-    )
-    municipality = models.CharField(
-        max_length=25,
-        blank=False,
-        null=False
-    )
-    city = models.CharField(
-        max_length=25,
-        blank=False,
-        null=False
-    )
-    state = models.CharField(
-        max_length=25,
-        blank=False,
-        null=False
-    )
-    reference = models.CharField(
-        max_length=25,
-        blank=False,
-        null=False
-    )
-
-    class Meta:
-        verbose_name = 'Address'
-        verbose_name_plural = 'Addresses'
-
-    def __unicode__(self):
-        return '%s %s' % (self.user.get_full_name(), self.postal_code)
-
-
 class CoolUser(PermissionsMixin, AbstractBaseUser):
     email = models.EmailField(
         _('Email address'),
