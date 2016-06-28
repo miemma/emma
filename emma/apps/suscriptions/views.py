@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import openpay
+from django.http import HttpResponse
 from django.template.response import TemplateResponse
 from django.views.generic import ListView, View
 
@@ -42,3 +43,9 @@ class PaymentInfo(ClientRequiredMixin, View):
             'cards': cards.data
         }
         return TemplateResponse(request, self.template_name, ctx)
+
+    def post (self, request):
+        suscription = Suscription.objects.get(client=request.user.client)
+        customer = openpay.Customer.retrieve(suscription.id_customer)
+        card = customer.cards.retrieve(request.POST['card_id'])
+        return HttpResponse("Mi mami")
