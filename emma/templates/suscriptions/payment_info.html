@@ -1,23 +1,56 @@
+{% load static from staticfiles%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Payment Info</title>
 </head>
-<body>
-	<ul>
-	  {{ request.user.client }}
-		{% for card in cards %}
-			<li>
-				<p>
-					{{ card.card_number }}
-				</p>
-				<p>
-					{{ card.brand }}
-				</p>
-			</li>
-		{% endfor %}
+	<body>
+		<ul>
+		  {{ request.user.client }}
+			<br>
+			<br>
+			<br>
+			{% for card in cards %}
+				<form action="." method="post" id="updatecard-form">
+					{% csrf_token %}
+					<span>{{ card.brand }}</span>
+					<label>
+						Numero de la tarjeta:
+						<input type="text" name="card_number" value="{{ card.card_number }}">
+					</label>
+					<label>
+						Mes de expiracion
+						<input type="text" name="card_exp_month" value="{{ card.expiration_month }}">
+					</label>
+					<label>
+						Año de expiracion
+						<input type="text" name="card_exp_year" value="{{ card.expiration_year }}">
+					</label>
+					<label>
+						ID de la tarjeta
+						<input type="text" name="card_id" value="{{ card.id }}">
+					</label>
+					<br>
+					<label>
+						Session ID
+						<input type='hidden' name='devsessionid' id='devsessionid'>
+					</label>
+					<button type="submit">Actualizar tarjeta</button>
+				</form>
+			{% endfor %}
 
-	</ul>
-</body>
+		</ul>
+		<script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+		<script type="text/javascript" src="https://openpay.s3.amazonaws.com/openpay.v1.min.js"></script>
+		<script type='text/javascript' src="https://openpay.s3.amazonaws.com/openpay-data.v1.min.js"></script>
+		<script>
+			$(document).ready(function() {
+			  OpenPay.setId('mg0kzdwsiduimlfaudun');
+			  OpenPay.setApiKey('pk_106c640a77f94dd49bae11cf94937075');
+			  OpenPay.setSandboxMode(true);
+				OpenPay.deviceData.setup("updatecard-form", "devsessionid");
+			});
+		</script>
+	</body>
 </html>
