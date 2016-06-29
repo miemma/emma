@@ -15,6 +15,7 @@ from emma.apps.xauth import urls as xauth_urls
 from emma.apps.services import urls as services_urls
 from emma.apps.suscriptions import urls as suscription_urls
 from emma.apps.adults import urls as adult_urls
+from emma.apps.clients import urls as clients_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -28,6 +29,7 @@ urlpatterns = [
     url(r'', include(services_urls, namespace='services')),
     url(r'', include(suscription_urls, namespace='suscriptions')),
     url(r'', include(adult_urls, namespace='adult_urls')),
+    url(r'', include(clients_urls, namespace='clients_urls')),
 ]
 
 if settings.DEBUG:
