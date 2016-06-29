@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>User detail view</title>
+</head>
+<body>
+	<h3>
+		Informacion del familiar administrador
+	</h3>
+	<p>
+		Nombre: {{ request.user.first_name }}
+	</p>
+	<p>
+		Apellido: {{ request.user.last_name }}
+	</p>
+	<p>
+		Email: {{ request.user.email }}
+	</p>
+	<p>
+		Telefono de contacto: {{ request.user.client.contact_number }}
+	</p>
+	<h3>Formulario para actualizar la contraseña</h3>
+	<p>
+	<form action="." method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit">Actualizar</button>
+	</form>
+	</p>
+</body>
+</html>
