@@ -17,6 +17,12 @@ class Client(models.Model):
         on_delete=models.CASCADE,
         primary_key=True,
     )
+    contact_number = models.CharField(
+        _('Contact Number'),
+        max_length=20,
+        blank=True,
+        null=True
+    )
     change_password = models.BooleanField(
         _('Change password'),
         default=False
