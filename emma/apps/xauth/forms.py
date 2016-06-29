@@ -223,3 +223,56 @@ class SignupForm(forms.Form):
         client.save()
 
         self.user_cache = user
+
+
+class UpdatePasswordForm(forms.Form):
+    current_password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'class': '',
+                'placeholder': 'Contraseña Actual'
+            }
+        ),
+    )
+    new_password_1 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'class': '',
+                'placeholder': 'Nueva Contraseña'
+            }
+        ),
+    )
+    new_password_2 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                'class': '',
+                'placeholder': 'Confirmar Contraseña'
+            }
+        ),
+    )
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super(UpdatePasswordForm, self).__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].validators = [validators.eval_blank]
+            self.fields[field].required = True
+            self.fields[field].error_messages = error_messages
+
+    def clean_current_password(self):
+        password = self.cleaned_data.get('current_password')
+        username = self.request.user.email
+        return validators.eval_password(username, password)
+
+    def clean(self):
+        cleaned_data = super(UpdatePasswordForm, self).clean()
+        new_password_1 = cleaned_data.get('new_password_1')
+        new_password_2 = cleaned_data.get('new_password_2')
+        if new_password_1 and new_password_2:
+            return validators.eval_matching(new_password_1, new_password_2)
+
+    def save(self):
+        cleaned_data = super(UpdatePasswordForm, self).clean()
+        user_instance = self.request.user
+        user_instance.set_password(cleaned_data)
+        user_instance.save()
