@@ -28,8 +28,8 @@ urlpatterns = [
     url(r'', include(xauth_urls, namespace='xauth')),
     url(r'', include(services_urls, namespace='services')),
     url(r'', include(suscription_urls, namespace='suscriptions')),
-    url(r'', include(adult_urls, namespace='adult_urls')),
-    url(r'', include(clients_urls, namespace='clients_urls')),
+    url(r'', include(adult_urls, namespace='adult')),
+    url(r'', include(clients_urls, namespace='clients')),
 ]
 
 if settings.DEBUG:
