@@ -49,5 +49,16 @@
 	<p>
 		<b>Caracteristicas </b> {{ emma.characteristics }}
 	</p>
+	<p>
+		<b>Intereses y Hobbies: </b>
+		<ul>
+			{% for hobbie in emma.emmahobbie_set.all %}
+				<li>
+					{{ hobbie.hobbie }}
+				</li>
+			{% endfor %}
+
+		</ul>
+	</p>
 </body>
 </html>
