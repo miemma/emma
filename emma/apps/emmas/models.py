@@ -141,7 +141,7 @@ class Emma(models.Model):
 class EmmaStudies(models.Model):
     emma = models.ForeignKey(
         Emma,
-        verbose_name='Emma'
+        verbose_name=_('Emma')
     )
     studie = models.CharField(
         _('Studie'),
@@ -156,3 +156,30 @@ class EmmaStudies(models.Model):
 
     def __unicode__(self):
         return '%s %s' % (self.emma, self.studie)
+
+
+class EmmaCertification(models.Model):
+    emma = models.ForeignKey(
+        Emma,
+        verbose_name=_('Emma')
+    )
+    certification = models.CharField(
+        _('Certification'),
+        max_length=100,
+        blank=False,
+        null=False,
+    )
+
+    time = models.CharField(
+        _('Time'),
+        max_length=100,
+        blank=False,
+        null=False,
+    )
+
+    class Meta:
+        verbose_name = _('Emma Certification')
+        verbose_name_plural = _('Emma Certifications')
+
+    def __unicode__(self):
+        return '%s %s' % (self.emma, self.certification)
