@@ -183,3 +183,23 @@ class EmmaCertification(models.Model):
 
     def __unicode__(self):
         return '%s %s' % (self.emma, self.certification)
+
+
+class EmmaHobbie(models.Model):
+    emma = models.ForeignKey(
+        Emma,
+        verbose_name=_('Emma')
+    )
+    hobbie = models.CharField(
+        _('Hobbie'),
+        max_length=200,
+        blank=False,
+        null=False,
+    )
+
+    class Meta:
+        verbose_name = _('Emma Hobbie')
+        verbose_name_plural = _('Emma Hobbies')
+
+    def __unicode__(self):
+        return '%s %s' % (self.emma, self.hobbie)
