@@ -26,7 +26,17 @@
 			
 		</ul>
 	</p>
-	
+	<p>
+		<b>Certificaciones: </b>
+		<ul>
+			{% for certification in emma.emmacertification_set.all %}
+				<li>
+					{{ certification.certification }} / {{ certification.time }}
+				</li>
+			{% endfor %}
+
+		</ul>
+	</p>
 	<p>
 		<b>Descripcion general: </b> {{ emma.general_description }}
 	</p>
