@@ -40,3 +40,10 @@ class EmmaCertificationAdmin(admin.ModelAdmin):
     list_display = ('emma', 'certification', 'time')
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
+
+
+@admin.register(models.EmmaHobbie)
+class EmmaHobbieAdmin(admin.ModelAdmin):
+    list_display = ('emma', 'hobbie')
+    actions = [export_as_xls]
+    export_as_xls.short_description = "Export selected objects to XLS"
