@@ -13,8 +13,20 @@
 	</p>
 	<p>
 		<p>
-		<b>Edad:</b> {{ emma.birthday }}
+		<b>Edad: </b> {{ emma.birthday }}
 	</p>
+	<p>
+		<b>Estudios: </b>
+		<ul>
+			{% for studie in emma.emmastudies_set.all %}
+				<li>
+					{{ studie.studie }}
+				</li>
+			{% endfor %}
+			
+		</ul>
+	</p>
+	
 	<p>
 		<b>Descripcion general: </b> {{ emma.general_description }}
 	</p>
