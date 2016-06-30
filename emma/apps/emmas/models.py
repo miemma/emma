@@ -136,3 +136,23 @@ class Emma(models.Model):
         parent_id = self.user.id
         self.id = parent_id
         super(Emma, self).save(*args, **kwargs)
+
+
+class EmmaStudies(models.Model):
+    emma = models.ForeignKey(
+        Emma,
+        verbose_name='Emma'
+    )
+    studie = models.CharField(
+        _('Studie'),
+        max_length=50,
+        blank=False,
+        null=False,
+    )
+
+    class Meta:
+        verbose_name = _('Emma Studie')
+        verbose_name_plural = _('Emma Studies')
+
+    def __unicode__(self):
+        return '%s %s' % (self.emma, self.studie)
