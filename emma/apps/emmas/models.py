@@ -105,27 +105,27 @@ class Emma(models.Model):
         null=False,
     )
 
-    general_description = models.CharField(
+    general_description = models.TextField(
         _('General Description'),
-        max_length=30,
+        max_length=500,
         blank=False,
         null=False,
     )
-    qualities = models.CharField(
+    qualities = models.TextField(
         _('Qualities'),
-        max_length=50,
+        max_length=500,
         blank=False,
         null=False,
     )
-    experience_with_seniors = models.CharField(
+    experience_with_seniors = models.TextField(
         _('Experience with Seniors'),
-        max_length=50,
+        max_length=500,
         blank=False,
         null=False,
     )
-    characteristics = models.CharField(
+    characteristics = models.TextField(
         _('Characteristics'),
-        max_length=50,
+        max_length=500,
         blank=False,
         null=False,
     )
@@ -195,7 +195,7 @@ class EmmaHobbie(models.Model):
         Emma,
         verbose_name=_('Emma')
     )
-    hobbie = models.CharField(
+    hobbie = models.TextField(
         _('Hobbie'),
         max_length=200,
         blank=False,
