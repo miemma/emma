@@ -8,7 +8,10 @@ from . import views
 urlpatterns = [
 
     url(regex='^dashboard/emma-titular/$',
-        view=views.MainEmma.as_view(),
+        view=views.MainEmmaView.as_view(),
         name='dashboard_main_emma'),
+    url(regex='^dashboard/emma-alternativa/$',
+        view=views.SecondEmmaView.as_view(),
+        name='dashboard_alternative_emma'),
 
 ]
