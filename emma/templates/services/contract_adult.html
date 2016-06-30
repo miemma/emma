@@ -7,7 +7,7 @@
 	<section class="contract-adult">
 		<div class="row text-center contract-row-img">
 			<div class="col-lg-8">
-				<img src="{% static "img/pasos_4.png" %}">
+				<img src="{% static "img/pasos_3.png" %}" height="66px" width="749">
 			</div>
 		</div>
 		<div class="row text-center contract-row-title">
@@ -46,7 +46,7 @@
 					<div class="row">
 		        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			        <p class="contract-adult-form-desc">
-				        Fecha de Nacimiento
+				        Fecha de Nacimiento:
 			        </p>
 		        </div>
 	        </div>
@@ -56,57 +56,6 @@
 							{% if form.birthday.errors %}
 								<label class="error nowrap-lg">
 									{{ form.birthday.errors.as_text|cut:"*" }}
-								</label>
-		          {% endif %}
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-lg-6">
-							{{ form.phone }}
-							{% if form.phone.errors %}
-								<label class="error nowrap-lg">
-									{{ form.phone.errors.as_text|cut:"*" }}
-								</label>
-		          {% endif %}
-						</div>
-						<div class="col-lg-6">
-							{{ form.emergency }}
-							{% if form.emergency.errors %}
-								<label class="error nowrap-lg">
-									{{ form.emergency.errors.as_text|cut:"*" }}
-								</label>
-		          {% endif %}
-						</div>
-					</div>
-					<div class="row">
-		        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			        <p class="contract-adult-form-desc">
-				        *En caso de no contestar se contactará al médico de cabecera
-			        </p>
-		        </div>
-	        </div>
-					<div class="row">
-						<div class="col-lg-5">
-							{{ form.doctor_name }}
-							{% if form.doctor_name.errors %}
-								<label class="error nowrap-lg">
-									{{ form.doctor_name.errors.as_text|cut:"*" }}
-								</label>
-		          {% endif %}
-						</div>
-						<div class="col-lg-4">
-							{{ form.doctor_phone }}
-							{% if form.doctor_phone.errors %}
-								<label class="error nowrap-lg">
-									{{ form.doctor_phone.errors.as_text|cut:"*" }}
-								</label>
-		          {% endif %}
-						</div>
-						<div class="col-lg-3">
-							{{ form.doctor_cp }}
-							{% if form.doctor_cp.errors %}
-								<label class="error nowrap-lg">
-									{{ form.doctor_cp.errors.as_text|cut:"*" }}
 								</label>
 		          {% endif %}
 						</div>
@@ -128,6 +77,26 @@
 		          {% endif %}
 	          </div>
 	        </div>
+					<div class="row">
+	          <div class="col-lg-12">
+	            {{ form.familiar_structure }}
+		          {% if form.familiar_structure.errors %}
+								<label class="error nowrap-lg">
+									{{ form.familiar_structure.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
+	          </div>
+	        </div>
+					<div class="row">
+	          <div class="col-lg-12">
+	            {{ form.personality }}
+		          {% if form.personality.errors %}
+								<label class="error nowrap-lg">
+									{{ form.personality.errors.as_text|cut:"*" }}
+								</label>
+		          {% endif %}
+	          </div>
+	        </div>
 					<div class="row contract-adult-loader">
 						<div class="col-lg-12">
 			        <div id="movingBallG">
@@ -137,7 +106,7 @@
 			      </div>
 					</div>
 					<div class="row text-center">
-	          <div class="col-xs-10 col-sm-6 col-md-6 col-lg-3">
+	          <div class="col-xs-10 col-sm-6 col-md-6 col-lg-2">
 	            <a href="{% url 'services:contract_location' %}"
 	               class="emma-btn-dark contract-location-btn">
 		            Regresar

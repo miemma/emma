@@ -7,18 +7,15 @@ from django.shortcuts import render, redirect
 from django.template.response import TemplateResponse
 from django.views.generic import View, FormView
 
-from emma.apps.adults.models import Adult
+from emma.apps.adults.models import Adult, AdultAddress
 from emma.apps.doctors.models import Doctor
-from emma.apps.clients.models import Client
+from emma.apps.clients.models import Client, ContractProcess
 from emma.apps.services.forms import ServiceData, ContractAdultInfo
 from emma.apps.services.models import Service, Workshop, HiredService
 from emma.apps.suscriptions.models import Suscription, History
-from emma.apps.users.models import Address
 from emma.core.mixins import RequestFormMixin, ActiveClientRequiredMixin
 
 from datetime import datetime, date
-
-from emma.core.utils import send_email
 
 
 class ContractServiceInfo(ActiveClientRequiredMixin, View):
@@ -33,17 +30,28 @@ class ContractServiceInfo(ActiveClientRequiredMixin, View):
         return TemplateResponse(request, self.template_name, ctx)
 
     def post(self, request):
-        service_id = request.POST.get('contract-service')
+        id_service = request.POST.get('contract-service')
         workshop_list = request.POST.getlist('contract-service-workshop')
         ctx = {
             'services': self.services
         }
         try:
-            service = self.services.get(id=service_id)
+            service = self.services.get(id=id_service)
             for workshop in workshop_list:
                 Workshop.objects.get(id=workshop, service=service)
-            request.session['id_service'] = service_id
-            request.session['workshop_list'] = workshop_list
+            try:
+                contract_process = ContractProcess.objects.get(
+                    client=request.user.client
+                )
+                contract_process.id_service = id_service
+                contract_process.workshop_list = workshop_list
+            except ContractProcess.DoesNotExist:
+                contract_process = ContractProcess(
+                    client=request.user.client,
+                    id_service=id_service,
+                    workshop_list=workshop_list
+                )
+            contract_process.save()
             return redirect(self.success_url)
 
         except Service.DoesNotExist:
@@ -66,27 +74,44 @@ class ContractLocation(ActiveClientRequiredMixin, RequestFormMixin, FormView):
     success_url = reverse_lazy('services:contract_adult')
 
     def get(self, request, **kwargs):
-        if not 'days_per_service' in request.session:
-            request.session['days_per_service'] = 1
+        contract_process = ContractProcess.objects.get(
+            client=self.request.user.client
+        )
+        if not contract_process.id_service or not contract_process.workshop_list:
+            return redirect(reverse_lazy('services:contract_service_info'))
+        if not contract_process.service_days:
+            contract_process.service_days = 1
+            contract_process.save()
         return super(ContractLocation, self).get(self, request, **kwargs)
 
     def form_valid(self, form):
         form.save()
-        self.request.session['service_setup'] = True
+        contract_process = ContractProcess.objects.get(
+            client=self.request.user.client
+        )
+        contract_process.service_setup = True
+        contract_process.save()
         return super(ContractLocation, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super(ContractLocation, self).get_context_data(**kwargs)
-        service = Service.objects.get(
-            id=self.request.session['id_service']
+        contract_process = ContractProcess.objects.get(
+            client=self.request.user.client
         )
-        workshop_list = self.request.session['workshop_list']
+        service = Service.objects.get(
+            id=contract_process.id_service
+        )
+        workshop_list = []
+        for x in contract_process.workshop_list:
+            if x.isdigit():
+                workshop_list.append(x)
         workshops = []
         for workshop in workshop_list:
             work = Workshop.objects.get(id=workshop, service=service)
             workshops.append(work)
         context['service'] = service
         context['workshops'] = workshops
+        context['days'] = contract_process.service_days
         return context
 
 
@@ -96,13 +121,20 @@ class ContractAdult(ActiveClientRequiredMixin, RequestFormMixin, FormView):
     success_url = reverse_lazy('services:contract_comprobation')
 
     def get(self, request, **kwargs):
-        if not 'service_setup' in request.session:
-            return redirect('services:contract_ubication')
+        contract_process = ContractProcess.objects.get(
+            client=self.request.user.client
+        )
+        if contract_process.service_setup is not True:
+            return redirect(reverse_lazy('services:contract_location'))
         return super(ContractAdult, self).get(self, request, **kwargs)
 
     def form_valid(self, form):
         form.save()
-        self.request.session['adult_setup'] = True
+        contract_process = ContractProcess.objects.get(
+            client=self.request.user.client
+        )
+        contract_process.adult_setup = True
+        contract_process.save()
         return super(ContractAdult, self).form_valid(form)
 
 
@@ -110,23 +142,25 @@ class ContractComprobation(ActiveClientRequiredMixin, View):
     template_name = 'services/contract_confirmation.html'
 
     def get(self, request, **kwargs):
-        if not 'adult_setup' in request.session:
+        contract_process = ContractProcess.objects.get(
+            client=self.request.user.client
+        )
+        if contract_process.adult_setup is not True:
             return redirect('services:contract_adult')
+
         service = HiredService.objects.get(
             client=self.request.user.client
         )
 
-        address = Address.objects.get(user=self.request.user)
+        address = AdultAddress.objects.get(id=contract_process.adult_address_id)
 
         adult = Adult.objects.get(responsable=self.request.user.client)
-
-        doctor = Doctor.objects.get(adult=adult)
 
         def calculate_age(born):
             today = date.today()
             try:
                 birthday = born.replace(year=today.year)
-            except ValueError:  # raised when birth date is February 29 and the current year is not a leap year
+            except ValueError:
                 birthday = born.replace(year=today.year, day=born.day - 1)
             if birthday > today:
                 return today.year - born.year - 1
@@ -150,20 +184,16 @@ class ContractComprobation(ActiveClientRequiredMixin, View):
             'city': address.city,
             'state': address.state,
             'reference': address.reference,
-            'day_1': service.service_day_1,
-            'day_2': service.service_day_2,
-            'day_3': service.service_day_3,
-            'day_4': service.service_day_4,
-            'day_5': service.service_day_5,
-            'day_6': service.service_day_6,
-            'day_7': service.service_day_7,
+            'day_1': service.service_days.service_day_1,
+            'day_2': service.service_days.service_day_2,
+            'day_3': service.service_days.service_day_3,
+            'day_4': service.service_days.service_day_4,
+            'day_5': service.service_days.service_day_5,
+            'day_6': service.service_days.service_day_6,
+            'day_7': service.service_days.service_day_7,
             'adult_first_name': adult.first_name,
             'adult_last_name': adult.last_name,
-            'adult_phone': adult.phone,
-            'adult_emergency': adult.emergency_phone,
             'age': calculate_age(born),
-            'doctor_name': doctor.name,
-            'doctor_phone': doctor.phone,
         }
 
         return TemplateResponse(request, self.template_name, ctx)
@@ -173,8 +203,11 @@ class ContractPay(ActiveClientRequiredMixin, View):
     template_name = 'services/contract_payment.html'
 
     def get(self, request):
-        if not 'service_setup' in request.session:
-            return redirect('services:contract_ubication')
+        contract_process = ContractProcess.objects.get(
+            client=self.request.user.client
+        )
+        if contract_process.adult_setup is not True:
+            return redirect('services:contract_adult')
         return render(request, self.template_name)
 
     def post(self, request):
@@ -208,10 +241,9 @@ class ContractPay(ActiveClientRequiredMixin, View):
             device_session_id=request.POST['devsessionid']
         )
 
-        del request.session['adult_setup']
-        del request.session['days_per_service']
-        del request.session['id_service']
-        del request.session['workshop_list']
+        contract_process = ContractProcess.objects.get(
+            client=self.request.user.client
+        ).delete()
 
         return redirect(reverse_lazy('landing:success_contract'))
 
@@ -223,7 +255,11 @@ class ContractAddDay(View):
 
     @staticmethod
     def post(request):
-        request.session['days_per_service'] +=1
+        contract_process = ContractProcess.objects.get(
+            client=request.user.client
+        )
+        contract_process.service_days +=1
+        contract_process.save()
         return HttpResponse('Add Day')
 
 
@@ -234,6 +270,9 @@ class ContractRemoveDay(View):
 
     @staticmethod
     def post(request):
-        request.session['days_per_service'] -=1
-        # del request.session['days_per_service']
+        contract_process = ContractProcess.objects.get(
+            client=request.user.client
+        )
+        contract_process.service_days -= 1
+        contract_process.save()
         return HttpResponse('Remove Day')

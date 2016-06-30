@@ -3,10 +3,10 @@
 
 from django import forms
 
-from emma.apps.adults.models import Adult
-from emma.apps.doctors.models import Doctor
-from emma.apps.services.models import HiredService, Service, Workshop
-from emma.apps.users.models import Address
+from emma.apps.adults.models import Adult, AdultAddress
+from emma.apps.services.models import HiredService, Service, Workshop, \
+    ServiceDays
+from emma.apps.clients.models import ContractProcess
 from emma.core import validators
 from emma.core.messages import error_messages
 
@@ -87,7 +87,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Dia (Ej: Lunes)'
+                'placeholder': 'Dia'
             }
         ),
         required=True,
@@ -97,7 +97,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Hora (Ej: 12:00)'
+                'placeholder': 'Hora'
             }
         ),
         required=True,
@@ -109,7 +109,7 @@ class ServiceData(forms.Form):
             attrs={
                 'class': 'emma-input contract-location-form-input '
                          'contract-location-form-input-morning',
-                'placeholder': 'Hora (Ej: 12:00)',
+                'placeholder': 'Hora',
                 'value': 'AM',
                 'readonly': 'true'
             }
@@ -120,7 +120,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Dia (Ej: Martes)'
+                'placeholder': 'Dia'
             }
         ),
         required=False
@@ -129,7 +129,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Hora (Ej: 12:00)'
+                'placeholder': 'Hora'
             }
         ),
         required=False,
@@ -141,7 +141,7 @@ class ServiceData(forms.Form):
             attrs={
                 'class': 'emma-input contract-location-form-input '
                          'contract-location-form-input-morning',
-                'placeholder': 'Hora (Ej: 12:00)',
+                'placeholder': 'Hora',
                 'value': 'AM',
                 'readonly': 'true'
             }
@@ -152,7 +152,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Dia (Ej: Miércoles)'
+                'placeholder': 'Dia'
             }
         ),
         required=False
@@ -161,7 +161,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Hora (Ej: 12:00)'
+                'placeholder': 'Hora'
             }
         ),
         required=False,
@@ -173,7 +173,7 @@ class ServiceData(forms.Form):
             attrs={
                 'class': 'emma-input contract-location-form-input '
                          'contract-location-form-input-morning',
-                'placeholder': 'Hora (Ej: 12:00)',
+                'placeholder': 'Hora',
                 'value': 'AM',
                 'readonly': 'true'
             }
@@ -184,7 +184,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Dia (Ej: Jueves)'
+                'placeholder': 'Dia'
             }
         ),
         required=False
@@ -193,7 +193,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Hora (Ej: 12:00)'
+                'placeholder': 'Hora'
             }
         ),
         required=False,
@@ -205,7 +205,7 @@ class ServiceData(forms.Form):
             attrs={
                 'class': 'emma-input contract-location-form-input '
                          'contract-location-form-input-morning',
-                'placeholder': 'Hora (Ej: 12:00)',
+                'placeholder': 'Hora',
                 'value': 'AM',
                 'readonly': 'true'
             }
@@ -216,7 +216,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Dia (Ej: Viernes)'
+                'placeholder': 'Dia'
             }
         ),
         required=False
@@ -225,7 +225,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Hora (Ej: 12:00)'
+                'placeholder': 'Hora'
             }
         ),
         required=False,
@@ -237,7 +237,7 @@ class ServiceData(forms.Form):
             attrs={
                 'class': 'emma-input contract-location-form-input '
                          'contract-location-form-input-morning',
-                'placeholder': 'Hora (Ej: 12:00)',
+                'placeholder': 'Hora',
                 'value': 'AM',
                 'readonly': 'true'
             }
@@ -248,7 +248,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Dia (Ej: Sábado)'
+                'placeholder': 'Dia'
             }
         ),
         required=False
@@ -257,7 +257,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Hora (Ej: 12:00)'
+                'placeholder': 'Hora'
             }
         ),
         required=False,
@@ -269,7 +269,7 @@ class ServiceData(forms.Form):
             attrs={
                 'class': 'emma-input contract-location-form-input '
                          'contract-location-form-input-morning',
-                'placeholder': 'Hora (Ej: 12:00)',
+                'placeholder': 'Hora',
                 'value': 'AM',
                 'readonly': 'true'
             }
@@ -280,7 +280,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Dia (Ej: Domingo)'
+                'placeholder': 'Dia'
             }
         ),
         required=False
@@ -289,7 +289,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Hora (Ej: 12:00)'
+                'placeholder': 'Hora'
             }
         ),
         required=False,
@@ -301,7 +301,7 @@ class ServiceData(forms.Form):
             attrs={
                 'class': 'emma-input contract-location-form-input '
                          'contract-location-form-input-morning',
-                'placeholder': 'Hora (Ej: 12:00)',
+                'placeholder': 'Hora',
                 'value': 'AM',
                 'readonly': 'true'
             }
@@ -323,7 +323,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Hora (Ej: 12:00)'
+                'placeholder': 'Hora'
             }
         ),
         required=True,
@@ -335,7 +335,7 @@ class ServiceData(forms.Form):
             attrs={
                 'class': 'emma-input contract-location-form-input '
                          'contract-location-form-input-morning',
-                'placeholder': 'Hora (Ej: 12:00)',
+                'placeholder': 'Hora',
                 'value': 'AM',
                 'readonly': 'true'
             }
@@ -350,8 +350,13 @@ class ServiceData(forms.Form):
             self.fields[field].error_messages = error_messages
     def save(self):
         cleaned_data = super(ServiceData, self).clean()
+        contract_process = ContractProcess.objects.get(
+            client=self.request.user.client
+        )
         try:
-            service_address = Address.objects.get(user=self.request.user)
+            service_address = AdultAddress.objects.get(
+                id=contract_process.adult_address_id
+            )
             service_address.street = cleaned_data.get('street')
             service_address.outdoor_number = cleaned_data.get('num_ext')
             service_address.colony = cleaned_data.get('colony')
@@ -360,9 +365,8 @@ class ServiceData(forms.Form):
             service_address.city = 'Ciudad de México'
             service_address.state = 'México'
             service_address.reference = cleaned_data.get('address_reference')
-        except Address.DoesNotExist:
-            service_address = Address(
-                user=self.request.user,
+        except AdultAddress.DoesNotExist:
+            service_address = AdultAddress(
                 street=cleaned_data.get('street'),
                 outdoor_number=cleaned_data.get('num_ext'),
                 colony=cleaned_data.get('colony'),
@@ -378,11 +382,18 @@ class ServiceData(forms.Form):
 
         service_address.save()
 
+        contract_process.adult_address_id = service_address.id
+        contract_process.save()
+
         service = Service.objects.get(
-            id=self.request.session['id_service']
+            id=contract_process.id_service
         )
 
-        workshop_list = self.request.session['workshop_list']
+        workshop_list = []
+        for x in contract_process.workshop_list:
+            if x.isdigit():
+                workshop_list.append(x)
+
         workshops = ''
         num_workshops = 0
         for workshop in workshop_list:
@@ -390,12 +401,6 @@ class ServiceData(forms.Form):
             workshops += '%s, ' % str(work.name)
             num_workshops += 1
         workshops = workshops[:-2]
-
-        day_1 = '%s %s %s' % (
-            self.cleaned_data.get('day_1'),
-            self.cleaned_data.get('day_1_hour'),
-            self.cleaned_data.get('day_1_morning'),
-        )
 
 
         start_date = self.cleaned_data.get('start_date')
@@ -405,24 +410,33 @@ class ServiceData(forms.Form):
                 client=self.request.user.client
             )
             hired_service.service = Service.objects.get(
-                id=self.request.session['id_service']
+                id=contract_process.id_service
             )
             hired_service.workshops = workshops
             hired_service.num_workshops = num_workshops
             hired_service.start_date = start_date
-            hired_service.service_day_1 = day_1
         except HiredService.DoesNotExist:
             hired_service = HiredService(
                 client=self.request.user.client,
                 service=Service.objects.get(
-                    id=self.request.session['id_service']
+                    id=contract_process.id_service
                 ),
                 workshops=workshops,
                 num_workshops=num_workshops,
                 start_date=start_date,
-                service_day_1 = day_1,
 
             )
+
+        day_1 = '%s %s %s' % (
+            self.cleaned_data.get('day_1'),
+            self.cleaned_data.get('day_1_hour'),
+            self.cleaned_data.get('day_1_morning'),
+        )
+
+        service_days = ServiceDays(
+            name="Service Days - %s" % self.request.user.email,
+            service_day_1=day_1
+        )
 
         if self.cleaned_data.get('day_2'):
             day_2 = '%s %s %s' % (
@@ -431,7 +445,7 @@ class ServiceData(forms.Form):
                 self.cleaned_data.get('day_2_morning'),
             )
 
-            hired_service.service_day_2 = day_2
+            service_days.service_day_2 = day_2
 
         if self.cleaned_data.get('day_3'):
             day_3 = '%s %s %s' % (
@@ -440,7 +454,7 @@ class ServiceData(forms.Form):
                 self.cleaned_data.get('day_3_morning'),
             )
 
-            hired_service.service_day_3 = day_3
+            service_days.service_day_3 = day_3
 
         if self.cleaned_data.get('day_4'):
             day_4 = '%s %s %s' % (
@@ -449,7 +463,7 @@ class ServiceData(forms.Form):
                 self.cleaned_data.get('day_4_morning'),
             )
 
-            hired_service.service_day_4 = day_4
+            service_days.service_day_4 = day_4
 
         if self.cleaned_data.get('day_5'):
             day_5 = '%s %s %s' % (
@@ -458,7 +472,7 @@ class ServiceData(forms.Form):
                 self.cleaned_data.get('day_5_morning'),
             )
 
-            hired_service.service_day_4 = day_5
+            service_days.service_day_4 = day_5
 
         if self.cleaned_data.get('day_6'):
             day_6 = '%s %s %s' % (
@@ -467,7 +481,7 @@ class ServiceData(forms.Form):
                 self.cleaned_data.get('day_6_morning'),
             )
 
-            hired_service.service_day_6 = day_6
+            service_days.service_day_6 = day_6
 
         if self.cleaned_data.get('day_7'):
             day_7 = '%s %s %s' % (
@@ -476,7 +490,11 @@ class ServiceData(forms.Form):
                 self.cleaned_data.get('day_7_morning'),
             )
 
-            hired_service.service_day_7 = day_7
+            service_days.service_day_7 = day_7
+
+        service_days.save()
+
+        hired_service.service_days = service_days
 
         hired_service.save()
 
@@ -505,52 +523,30 @@ class ContractAdultInfo(forms.Form):
             }
         ),
     )
-    phone = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                'class': 'emma-input contract-adult-form-input',
-                'placeholder': 'Teléfono fijo'
-            }
-        ),
-    )
-    emergency = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                'class': 'emma-input contract-adult-form-input',
-                'placeholder': 'Teléfono de emergencia'
-            }
-        ),
-    )
     description = forms.CharField(
         widget=forms.Textarea(
             attrs={
                 'class': 'emma-input contract-adult-form-area',
                 'placeholder': 'Descripción',
-                'rows': '8'
+                'rows': '5'
             }
         ),
     )
-    doctor_name = forms.CharField(
-        widget=forms.TextInput(
+    familiar_structure = forms.CharField(
+        widget=forms.Textarea(
             attrs={
-                'class': 'emma-input contract-adult-form-input',
-                'placeholder': 'Nombre del médico'
+                'class': 'emma-input contract-adult-form-area',
+                'placeholder': 'Estructura Familiar',
+                'rows': '5'
             }
         ),
     )
-    doctor_phone = forms.CharField(
-        widget=forms.TextInput(
+    personality = forms.CharField(
+        widget=forms.Textarea(
             attrs={
-                'class': 'emma-input contract-adult-form-input',
-                'placeholder': 'Teléfono del médico'
-            }
-        ),
-    )
-    doctor_cp = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                'class': 'emma-input contract-adult-form-input',
-                'placeholder': 'C.P'
+                'class': 'emma-input contract-adult-form-area',
+                'placeholder': 'Personalidad',
+                'rows': '5'
             }
         ),
     )
@@ -568,40 +564,31 @@ class ContractAdultInfo(forms.Form):
 
     def save(self):
         cleaned_data = super(ContractAdultInfo, self).clean()
-
+        contract_process = ContractProcess.objects.get(
+            client=self.request.user.client
+        )
+        address = AdultAddress.objects.get(id=contract_process.adult_address_id)
         try:
             adult = Adult.objects.get(responsable=self.request.user.client)
             adult.first_name = cleaned_data.get('name')
             adult.last_name = cleaned_data.get('last_name')
             adult.birthday = cleaned_data.get('birthday')
-            adult.phone = cleaned_data.get('phone')
-            adult.emergency_phone = cleaned_data.get('emergency')
+            adult.description = cleaned_data.get('description')
+            adult.personality = cleaned_data.get('personality')
+            adult.familiar_structure = cleaned_data.get('familiar_structure')
         except Adult.DoesNotExist:
             adult = Adult(
                 first_name=cleaned_data.get('name'),
                 last_name=cleaned_data.get('last_name'),
                 birthday=cleaned_data.get('birthday'),
                 responsable=self.request.user.client,
-                phone=cleaned_data.get('phone'),
-                emergency_phone = cleaned_data.get('emergency')
+                personality=cleaned_data.get('personality'),
+                familiar_structure=cleaned_data.get('familiar_structure'),
+                description=cleaned_data.get('description'),
+                address=address
             )
 
         adult.save()
-
-        try:
-            doctor = Doctor.objects.get(adult=adult)
-            doctor.name = cleaned_data.get('doctor_name')
-            doctor.phone = cleaned_data.get('doctor_phone')
-            doctor.cp = cleaned_data.get('doctor_cp')
-        except Doctor.DoesNotExist:
-            doctor = Doctor(
-                adult=adult,
-                name=cleaned_data.get('doctor_name'),
-                phone=cleaned_data.get('doctor_phone'),
-                cp=cleaned_data.get('doctor_cp')
-            )
-
-        doctor.save()
 
         service = HiredService.objects.get(
             client=self.request.user.client

@@ -7,7 +7,7 @@
 	<section class="contract-location">
 		<div class="row text-center contract-row-img">
 			<div class="col-lg-8">
-				<img src="{% static "img/pasos_3.png" %}">
+				<img src="{% static "img/pasos_2.png" %}" height="66px" width="749">
 			</div>
 		</div>
 		<div class="row text-center contract-row-title">
@@ -175,7 +175,7 @@
 		          {% endif %}
 						</div>
 					</div>
-					{% if request.session.days_per_service > 1 %}
+					{% if days > 1 %}
 						<div class="row">
 							<div class="col-lg-4">
 								{{ form.day_2 }}
@@ -203,7 +203,7 @@
 							</div>
 						</div>
 					{% endif %}
-					{% if request.session.days_per_service > 2 %}
+					{% if days > 2 %}
 						<div class="row">
 							<div class="col-lg-4">
 								{{ form.day_3 }}
@@ -231,7 +231,7 @@
 							</div>
 						</div>
 					{% endif %}
-					{% if request.session.days_per_service > 3 %}
+					{% if days > 3 %}
 						<div class="row">
 							<div class="col-lg-4">
 								{{ form.day_4 }}
@@ -259,7 +259,7 @@
 							</div>
 						</div>
 					{% endif %}
-					{% if request.session.days_per_service > 4 %}
+					{% if days > 4 %}
 						<div class="row">
 							<div class="col-lg-4">
 								{{ form.day_5 }}
@@ -287,7 +287,7 @@
 							</div>
 						</div>
 					{% endif %}
-					{% if request.session.days_per_service > 5 %}
+					{% if days > 5 %}
 						<div class="row">
 							<div class="col-lg-4">
 								{{ form.day_6 }}
@@ -315,7 +315,7 @@
 							</div>
 						</div>
 					{% endif %}
-					{% if request.session.days_per_service > 6 %}
+					{% if days > 6 %}
 						<div class="row">
 							<div class="col-lg-4">
 								{{ form.day_7 }}
@@ -351,7 +351,7 @@
                 Agregar un dia
               </button>
             </div>
-						{% if request.session.days_per_service > 1 %}
+						{% if days > 1 %}
 							<div class="col-lg-3 contract-location-row-day-btn">
 	              <button class="emma-btn-dark contract-location-day-btn"
 	                      type="button" id="remove_day">
@@ -379,7 +379,7 @@
 					<div class="row">
 		        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			        <p class="contract-location-form-desc">
-				        Fecha de inicio del servicio
+				        Fecha de inicio del servicio:
 			        </p>
 		        </div>
 	        </div>
@@ -423,7 +423,7 @@
 						</div>
 					{% endif %}
 					<div class="row text-center">
-	          <div class="col-xs-10 col-sm-6 col-md-6 col-lg-3">
+	          <div class="col-xs-10 col-sm-6 col-md-6 col-lg-2">
 	            <a href="{% url 'services:contract_service_info' %}"
 	               class="emma-btn-dark contract-location-btn">
 		            Regresar
@@ -455,7 +455,7 @@
 			var day_1_morning = sessionStorage.getItem('day_1_morning');
       if (day_1_morning !== null) $('#id_day_1_morning').val(day_1_morning);
 
-			{% if request.session.days_per_service > 1 %}
+			{% if days > 1 %}
 				var day_2 = sessionStorage.getItem('day_2');
 	      if (day_2 !== null) $('#id_day_2').val(day_2);
 
@@ -466,7 +466,7 @@
 	      if (day_2_morning !== null) $('#id_day_2_morning').val(day_2_morning);
 			{% endif %}
 
-			{% if request.session.days_per_service > 2 %}
+			{% if days > 2 %}
 				var day_3 = sessionStorage.getItem('day_3');
 	      if (day_3 !== null) $('#id_day_3').val(day_3);
 
@@ -477,7 +477,7 @@
 	      if (day_3_morning !== null) $('#id_day_3_morning').val(day_3_morning);
 			{% endif %}
 
-			{% if request.session.days_per_service > 3 %}
+			{% if days > 3 %}
 				var day_4 = sessionStorage.getItem('day_4');
 	      if (day_4 !== null) $('#id_day_4').val(day_4);
 
@@ -488,7 +488,7 @@
 	      if (day_4_morning !== null) $('#id_day_4_morning').val(day_4_morning);
 			{% endif %}
 
-			{% if request.session.days_per_service > 4 %}
+			{% if days > 4 %}
 				var day_5 = sessionStorage.getItem('day_5');
 	      if (day_5 !== null) $('#id_day_5').val(day_5);
 
@@ -499,7 +499,7 @@
 	      if (day_5_morning !== null) $('#id_day_5_morning').val(day_5_morning);
 			{% endif %}
 
-			{% if request.session.days_per_service > 5 %}
+			{% if days > 5 %}
 				var day_6 = sessionStorage.getItem('day_6');
 	      if (day_6 !== null) $('#id_day_6').val(day_6);
 
@@ -510,7 +510,7 @@
 	      if (day_6_morning !== null) $('#id_day_6_morning').val(day_6_morning);
 			{% endif %}
 
-			{% if request.session.days_per_service > 6 %}
+			{% if days > 6 %}
 				var day_7 = sessionStorage.getItem('day_7');
 	      if (day_7 !== null) $('#id_day_7').val(day_7);
 
@@ -527,37 +527,37 @@
       sessionStorage.setItem("day_1_hour", $('#id_day_1_hour').val());
       sessionStorage.setItem("day_1_morning", $('#id_day_1_morning').val());
 
-			{% if request.session.days_per_service > 1 %}
+			{% if days > 1 %}
 				sessionStorage.setItem("day_2", $('#id_day_2').val());
         sessionStorage.setItem("day_2_hour", $('#id_day_2_hour').val());
         sessionStorage.setItem("day_2_morning", $('#id_day_2_morning').val());
 			{% endif %}
 
-			{% if request.session.days_per_service > 2 %}
+			{% if days > 2 %}
 				sessionStorage.setItem("day_3", $('#id_day_3').val());
         sessionStorage.setItem("day_3_hour", $('#id_day_3_hour').val());
         sessionStorage.setItem("day_3_morning", $('#id_day_3_morning').val());
 			{% endif %}
 
-			{% if request.session.days_per_service > 3 %}
+			{% if days > 3 %}
 				sessionStorage.setItem("day_4", $('#id_day_4').val());
         sessionStorage.setItem("day_4_hour", $('#id_day_4_hour').val());
         sessionStorage.setItem("day_4_morning", $('#id_day_4_morning').val());
 			{% endif %}
 
-			{% if request.session.days_per_service > 4 %}
+			{% if days > 4 %}
 				sessionStorage.setItem("day_5", $('#id_day_5').val());
         sessionStorage.setItem("day_5_hour", $('#id_day_5_hour').val());
         sessionStorage.setItem("day_5_morning", $('#id_day_5_morning').val());
 			{% endif %}
 
-			{% if request.session.days_per_service > 5 %}
+			{% if days > 5 %}
 				sessionStorage.setItem("day_6", $('#id_day_6').val());
         sessionStorage.setItem("day_6_hour", $('#id_day_6_hour').val());
         sessionStorage.setItem("day_6_morning", $('#id_day_6_morning').val());
 			{% endif %}
 
-			{% if request.session.days_per_service > 6 %}
+			{% if days > 6 %}
 				sessionStorage.setItem("day_7", $('#id_day_7').val());
         sessionStorage.setItem("day_7_hour", $('#id_day_7_hour').val());
         sessionStorage.setItem("day_7_morning", $('#id_day_7_morning').val());
@@ -566,7 +566,7 @@
 
     $('#add_day').on("click", function () {
 
-	    var days = {{ request.session.days_per_service }};
+	    var days = {{ days }};
 
 	    if (days >= 7) {
 		    $('.contract-location-row-days-error').show()

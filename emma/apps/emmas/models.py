@@ -7,9 +7,6 @@ from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 
-from emma.apps.users.models import Address
-
-
 class PotentialEmma(models.Model):
     first_name = models.CharField(
         _('First Name'),
@@ -127,3 +124,15 @@ class Emma(models.Model):
         blank=False,
         null=False,
     )
+
+    class Meta:
+        verbose_name = _('Emma')
+        verbose_name_plural = _('Emmas')
+
+    def __unicode__(self):
+        return '%s' % (self.user)
+
+    def save(self, *args, **kwargs):
+        parent_id = self.user.id
+        self.id = parent_id
+        super(Emma, self).save(*args, **kwargs)

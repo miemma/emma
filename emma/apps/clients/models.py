@@ -5,8 +5,6 @@ from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
-from emma.apps.users.models import Address
-
 
 class Client(models.Model):
     id = models.BigIntegerField(
@@ -19,11 +17,11 @@ class Client(models.Model):
         on_delete=models.CASCADE,
         primary_key=True,
     )
-    address = models.ForeignKey(
-        Address,
-        verbose_name=_('Address'),
+    contact_number = models.CharField(
+        _('Contact Number'),
+        max_length=20,
         blank=True,
-        null=True,
+        null=True
     )
     change_password = models.BooleanField(
         _('Change password'),
@@ -72,3 +70,40 @@ class PotentialClient(models.Model):
 
     def __unicode__(self):
         return '%s - %s' % (self.name, self.email)
+
+
+class ContractProcess(models.Model):
+    client = models.ForeignKey(
+        Client,
+        verbose_name=_('Client')
+    )
+    id_service = models.IntegerField(
+        _('ID Service'),
+        null=True,
+        blank=True,
+    )
+    workshop_list = models.CharField(
+        _('Workshop List'),
+        max_length=50,
+        null=True,
+        blank=True,
+    )
+    adult_address_id = models.IntegerField(
+        _('ID Adult Address'),
+        null=False,
+        blank=False,
+        default=0,
+    )
+    service_setup = models.BooleanField(
+        _('Service Setup'),
+        default=False
+    )
+    service_days = models.IntegerField(
+        _('Service Days'),
+        null=True,
+        blank=False
+    )
+    adult_setup = models.BooleanField(
+        _('Adult Setup'),
+        default=False
+    )

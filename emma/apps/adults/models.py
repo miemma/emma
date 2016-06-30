@@ -5,8 +5,59 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from emma.apps.clients.models import Client
-from emma.apps.users.models import Address
 from emma.apps.doctors.models import Doctor
+
+
+class AdultAddress(models.Model):
+    street = models.CharField(
+        max_length=25,
+        blank=False,
+        null=False
+    )
+    outdoor_number = models.PositiveIntegerField(
+        blank=False,
+        null=False
+    )
+    interior_number = models.PositiveIntegerField(
+        blank=True,
+        null=True
+    )
+    colony = models.CharField(
+        max_length=25,
+        blank=False,
+        null=False
+    )
+    postal_code = models.PositiveIntegerField(
+        blank=False,
+        null=False
+    )
+    municipality = models.CharField(
+        max_length=25,
+        blank=False,
+        null=False
+    )
+    city = models.CharField(
+        max_length=25,
+        blank=False,
+        null=False
+    )
+    state = models.CharField(
+        max_length=25,
+        blank=False,
+        null=False
+    )
+    reference = models.CharField(
+        max_length=25,
+        blank=False,
+        null=False
+    )
+
+    class Meta:
+        verbose_name = 'Address'
+        verbose_name_plural = 'Addresses'
+
+    def __unicode__(self):
+        return '%s' % self.postal_code
 
 
 class EmergencyContact(models.Model):
@@ -157,23 +208,23 @@ class Adult(models.Model):
     first_name = models.CharField(
         _('First name'),
         max_length=25,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
     last_name = models.CharField(
         _('Last name'),
         max_length=25,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
     birthday = models.CharField(
         _('Birthday'),
         max_length=20,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
     address = models.ForeignKey(
-        Address,
+        AdultAddress,
         verbose_name=_('Address'),
         blank=True,
         null=True,
@@ -183,25 +234,33 @@ class Adult(models.Model):
         Client,
         verbose_name=_('Responsable'),
     )
+    description = models.CharField(
+        _('Familiar Structure'),
+        max_length=30,
+        blank=True,
+        null=True,
+    )
     familiar_structure = models.CharField(
         _('Familiar Structure'),
         max_length=30,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
     personality = models.CharField(
         _('Personality'),
         max_length=30,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
     medical_information = models.OneToOneField(
         MedicalInfo,
-        verbose_name=_('Medical Information')
+        verbose_name=_('Medical Information'),
+        null=True,
+        blank=True,
     )
     is_candidate = models.BooleanField(
         _('Candidate'),
-        default=False,
+        default=True,
     )
 
     class Meta:

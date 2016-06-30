@@ -168,8 +168,9 @@ LOGIN_URL = reverse_lazy('xauth:login')
 
 AUTH_USER_MODEL = "users.CoolUser"
 
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-
-SESSION_SECURITY_EXPIRE_AFTER = 600
-
-SESSION_SECURITY_WARN_AFTER = 500
+# SESSION SECURITY
+# -----------------------------------------------------------------------------
+SESSION_EXPIRE_AT_BROWSER_CLOSE = env.bool('SESSION_EXPIRE_AT_BROWSER_CLOSE',
+                                           default=True)
+SESSION_SECURITY_EXPIRE_AFTER = env.int("SESSION_SECURITY_EXPIRE_AFTER")
+SESSION_SECURITY_WARN_AFTER = env.int("SESSION_SECURITY_WARN_AFTER")
