@@ -81,6 +81,11 @@ class Emma(models.Model):
         _('ID'),
         auto_created=True,
     )
+    profile_picture = models.ImageField(
+        upload_to='profile_pictures',
+        blank=False,
+        null=False,
+    )
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         verbose_name=_('User'),
