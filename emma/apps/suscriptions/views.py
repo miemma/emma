@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import openpay
+from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponse
+from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 from django.views.generic import ListView, View
 
@@ -47,5 +49,10 @@ class PaymentInfo(ClientRequiredMixin, View):
     def post (self, request):
         suscription = Suscription.objects.get(client=request.user.client)
         customer = openpay.Customer.retrieve(suscription.id_customer)
-        card = customer.cards.retrieve(request.POST['card_id'])
-        return HttpResponse("Mi mami")
+        try:
+            card = customer.cards.retrieve(request.POST['card_id'])
+        except:
+            card = None
+        if card is not None:
+            card.delete()
+        return redirect(reverse_lazy('suscriptions:payment_info'))
