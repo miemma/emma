@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse_lazy, reverse
 from django.http import Http404
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
@@ -10,7 +10,7 @@ from emma.apps.clients.forms import UserInformationForm
 from emma.apps.clients.models import Client
 from emma.apps.suscriptions.models import Suscription
 from emma.apps.xauth.forms import UpdatePasswordForm
-from emma.core.mixins import ClientRequiredMixin
+from emma.core.mixins import ClientRequiredMixin, LoginRequiredMixin
 
 import openpay
 
@@ -88,3 +88,25 @@ class AddCardView(ClientRequiredMixin, View):
             device_session_id=request.POST['devsessionid']
         )
         return redirect(reverse_lazy('clients:dashboard_add_card'))
+
+
+class WelcomeView(ClientRequiredMixin, View):
+    def get(self, request, **kwargs):
+
+        client = request.user.client
+
+        if client.active_client:
+            if client.suscriptions:
+                if client.first_time_dashboard:
+                    client.first_time_dashboard = False
+                    client.save()
+                    ctx = {'view_profile':'true'}
+                    return TemplateResponse(request, 'clients/welcome.html', ctx)
+                else:
+                    return redirect(reverse('adults:dashboard_adult'))
+            else:
+                ctx = {'contract_service': 'true'}
+                return TemplateResponse(request, 'clients/welcome.html', ctx)
+        else:
+            ctx = {'make_call': 'true'}
+            return TemplateResponse(request, 'clients/welcome.html', ctx)
