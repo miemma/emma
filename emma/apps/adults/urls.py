@@ -7,7 +7,11 @@ from . import views
 
 urlpatterns = [
 
-    url(regex='^dashboard/adult/(?P<id>.*)$',
+    url(regex='^dashboard/adulto/(?P<id>.*)$',
+        view=views.AdultInformation.as_view(),
+        name='dashboard_adult'),
+
+    url(regex='^dashboard/adulto/$',
         view=views.AdultInformation.as_view(),
         name='dashboard_adult'),
 

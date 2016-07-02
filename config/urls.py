@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'', include(xauth_urls, namespace='xauth')),
     url(r'', include(services_urls, namespace='services')),
     url(r'', include(suscription_urls, namespace='suscriptions')),
-    url(r'', include(adult_urls, namespace='adult')),
+    url(r'', include(adult_urls, namespace='adults')),
     url(r'', include(clients_urls, namespace='clients')),
     url(r'', include(emmas_urls, namespace='emmas')),
 ]

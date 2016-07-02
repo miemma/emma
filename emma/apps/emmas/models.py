@@ -81,6 +81,11 @@ class Emma(models.Model):
         _('ID'),
         auto_created=True,
     )
+    profile_picture = models.ImageField(
+        upload_to='profile_pictures',
+        blank=False,
+        null=False,
+    )
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         verbose_name=_('User'),
@@ -100,27 +105,27 @@ class Emma(models.Model):
         null=False,
     )
 
-    general_description = models.CharField(
+    general_description = models.TextField(
         _('General Description'),
-        max_length=30,
+        max_length=500,
         blank=False,
         null=False,
     )
-    qualities = models.CharField(
+    qualities = models.TextField(
         _('Qualities'),
-        max_length=50,
+        max_length=500,
         blank=False,
         null=False,
     )
-    experience_with_seniors = models.CharField(
+    experience_with_seniors = models.TextField(
         _('Experience with Seniors'),
-        max_length=50,
+        max_length=500,
         blank=False,
         null=False,
     )
-    characteristics = models.CharField(
+    characteristics = models.TextField(
         _('Characteristics'),
-        max_length=50,
+        max_length=500,
         blank=False,
         null=False,
     )
@@ -136,3 +141,70 @@ class Emma(models.Model):
         parent_id = self.user.id
         self.id = parent_id
         super(Emma, self).save(*args, **kwargs)
+
+
+class EmmaStudies(models.Model):
+    emma = models.ForeignKey(
+        Emma,
+        verbose_name=_('Emma')
+    )
+    studie = models.CharField(
+        _('Studie'),
+        max_length=50,
+        blank=False,
+        null=False,
+    )
+
+    class Meta:
+        verbose_name = _('Emma Studie')
+        verbose_name_plural = _('Emma Studies')
+
+    def __unicode__(self):
+        return '%s %s' % (self.emma, self.studie)
+
+
+class EmmaCertification(models.Model):
+    emma = models.ForeignKey(
+        Emma,
+        verbose_name=_('Emma')
+    )
+    certification = models.CharField(
+        _('Certification'),
+        max_length=100,
+        blank=False,
+        null=False,
+    )
+
+    time = models.CharField(
+        _('Time'),
+        max_length=100,
+        blank=False,
+        null=False,
+    )
+
+    class Meta:
+        verbose_name = _('Emma Certification')
+        verbose_name_plural = _('Emma Certifications')
+
+    def __unicode__(self):
+        return '%s %s' % (self.emma, self.certification)
+
+
+class EmmaHobbie(models.Model):
+    emma = models.ForeignKey(
+        Emma,
+        verbose_name=_('Emma')
+    )
+    hobbie = models.TextField(
+        _('Hobbie'),
+        max_length=200,
+        blank=False,
+        null=False,
+    )
+
+    class Meta:
+        verbose_name = _('Emma Hobbie')
+        verbose_name_plural = _('Emma Hobbies')
+
+    def __unicode__(self):
+        return '%s %s' % (self.emma, self.hobbie)
