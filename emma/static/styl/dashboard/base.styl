@@ -24,11 +24,102 @@
           margin-left 14px
 
 #dashboard-container
-  background $light_gray
+  background #f4f4f4
   font-family "Avenir LT Std Medium"
   font-size 19px
   margin-top 86px
   padding 25px 50px
+  
+.dashboard
+  display flex
+  
+.dashboard-menu
+  width 295px
+
+.dashboard-menu,
+.dashboard-submenu
+  font-family "Avenir LT Std Medium"
+  font-size 20px
+  list-style none
+  
+  &-item
+    background white
+    border-width 1px 0
+    border-color #ccc
+    border-style solid
+    
+    &.active > a
+      background $light_gray
+      color $gray
+      
+    a
+      color black
+      display block
+      height 100%
+      width 100%
+      padding 30px 40px
+      
+      &:hover
+        background $light_gray
+        color $gray
+        
+.dashboard-menu .dashboard-menu-item
+  &:first-child
+    border-width 0 0 1px 0
+    
+    &.active
+      border-width 2px 0 0 0
+      
+  &:last-child
+    border-width 1px 0 0 0
+    
+.dashboard-submenu .dashboard-submenu-item
+  border-width 1px 0 0 0
+
+.dashboard-submenu-item a
+  padding-left 90px
+  
+.dashboard-content
+  flex-grow 1
+  margin-left 30px
+  
+.dashboard-user-card
+  background white
+  display flex
+  padding 25px 0
+  
+  &-photo
+    padding 0 30px
+    width 280px
+    
+  &-data
+    flex-grow 1
+
+    &-content
+      color $gray
+      margin-top 30px
+      
+      &-row
+        display block
+    
+.dashboard-card-title
+  align-items center
+  border-color $gray
+  border-style solid
+  border-width 0 0 1px 0
+  color $gray
+  display flex
+  padding-bottom 10px
+  
+  h2
+    flex-grow 1
+  
+  &-button
+    color $yellow
+    cursor pointer
+    cursor hand
+    margin-right 30px
+    with 300px
 
 @media screen and (max-width: 1100px)
   .dashboard-navbar .header-navbar-list
@@ -39,3 +130,15 @@
   
   #dashboard-container
     margin-top 65px
+    
+@media screen and (max-width: 992px)
+  .dashboard
+    display block
+    
+  .dashboard-menu
+    width 100%
+    
+  .dashboard-content
+    margin-left 0
+    margin-top 50px
+    width 100%
