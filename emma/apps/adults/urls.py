@@ -11,4 +11,8 @@ urlpatterns = [
         view=views.AdultInformation.as_view(),
         name='dashboard_adult'),
 
+    url(regex='^dashboard/adulto/$',
+        view=views.AdultInformation.as_view(),
+        name='dashboard_adult'),
+
 ]
