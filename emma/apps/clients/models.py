@@ -31,6 +31,10 @@ class Client(models.Model):
         _('Active client'),
         default=False
     )
+    first_time_dashboard = models.BooleanField(
+        _('First time dashboard'),
+        default=True,
+    )
 
     class Meta:
         verbose_name = _('Client')
