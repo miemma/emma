@@ -14,4 +14,8 @@ urlpatterns = [
     url(regex='^dashboard/tarjeta/$',
         view=views.AddCardView.as_view(),
         name='dashboard_add_card'),
+
+    url(regex='^dashboard/bienvenida/$',
+        view=views.WelcomeView.as_view(),
+        name='dashboard_welcome'),
 ]
