@@ -11,6 +11,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.utils.decorators import method_decorator
 
 from emma.apps.clients.models import Client
+from emma.apps.suscriptions.models import Suscription
 
 
 class AuthRedirectMixin(object):
@@ -67,7 +68,7 @@ class ClientRequiredMixin(object):
             return super(ClientRequiredMixin, self).dispatch(request, *args,
                                                         **kwargs)
         except Client.DoesNotExist:
-            return redirect('/')
+            raise PermissionDenied
 
 
 class ActiveClientRequiredMixin(object):
@@ -75,7 +76,21 @@ class ActiveClientRequiredMixin(object):
     def dispatch(self, request, *args, **kwargs):
         try:
             Client.objects.get(user=request.user, active_client=True)
-            return super(ActiveClientRequiredMixin, self).dispatch(request, *args,
-                                                        **kwargs)
+            return super(ActiveClientRequiredMixin, self).dispatch(
+                request, *args, **kwargs)
+        except Client.DoesNotExist:
+            raise PermissionDenied
+
+class ActiveSuscriptionRequiredMixin(object):
+    @method_decorator(login_required(login_url=reverse_lazy('xauth:login')))
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            client = Client.objects.get(user=request.user, active_client=True)
+            try:
+                Suscription.objects.get(client=client, is_active=True)
+                return super(ActiveSuscriptionRequiredMixin, self).dispatch(
+                    request, *args, **kwargs)
+            except Suscription.DoesNotExist:
+                raise PermissionDenied
         except Client.DoesNotExist:
             raise PermissionDenied
