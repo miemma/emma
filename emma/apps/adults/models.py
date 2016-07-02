@@ -217,9 +217,14 @@ class Adult(models.Model):
         blank=True,
         null=True,
     )
-    birthday = models.CharField(
+    photo = models.ImageField(
+        _('Profile picture'),
+        upload_to='emma_profile_pictures',
+        null=True,
+        blank=True
+    )
+    birthday = models.DateField(
         _('Birthday'),
-        max_length=20,
         blank=True,
         null=True,
     )
