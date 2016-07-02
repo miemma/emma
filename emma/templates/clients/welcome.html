@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Pagina de Bienvenida</title>
+</head>
+<body>
+	{% if view_profile %}
+		<p>
+			Pantalla que solo aparece la primera ves que entras al dashboard, aqui eres cliente final
+		</p>
+	{% endif %}
+
+	{% if contract_service %}
+		<p>
+			Pantalla que te invita a contratar un servicio
+		</p>
+	{% endif %}
+
+	{% if make_call %}
+		<p>
+			Pantalla que te invita a agendar una llamada
+		</p>
+	{% endif %}
+</body>
+</html>
