@@ -8,25 +8,24 @@
 	<h3>
 		Informacion del familiar administrador
 	</h3>
-	<p>
-		Nombre: {{ request.user.first_name }}
-	</p>
-	<p>
-		Apellido: {{ request.user.last_name }}
-	</p>
-	<p>
-		Email: {{ request.user.email }}
-	</p>
-	<p>
-		Telefono de contacto: {{ request.user.client.contact_number }}
-	</p>
-	<h3>Formulario para actualizar la contraseña</h3>
-	<p>
 	<form action="." method="post">
 		{% csrf_token %}
-		{{ form.as_p }}
-		<button type="submit">Actualizar</button>
+		{{ user_form.as_p }}
+		<button type="submit" name="user_information">Actualizar</button>
 	</form>
+	<h3>Formulario para actualizar la contraseña</h3>
+	<p>
+		<form action="." method="post">
+			{% csrf_token %}
+			{{ password_form.as_p }}
+			<button type="submit" name="user_password">Actualizar</button>
+		</form>
+	</p>
+	<br><br><br>
+	<p>
+		{% if success %}
+			<p> {{ success }} </p>
+		{% endif %}
 	</p>
 </body>
 </html>

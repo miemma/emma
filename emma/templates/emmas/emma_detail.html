@@ -6,6 +6,9 @@
 </head>
 <body>
 	<p>
+		<img src="{{ emma.profile_picture.url }}" height="500px" width="400px">
+	</p>
+	<p>
 		<b>Nombre:</b> {{ emma.user.first_name }}
 	</p>
 	<p>
@@ -13,7 +16,29 @@
 	</p>
 	<p>
 		<p>
-		<b>Edad:</b> {{ emma.birthday }}
+		<b>Edad: </b> {{ emma.birthday }}
+	</p>
+	<p>
+		<b>Estudios: </b>
+		<ul>
+			{% for studie in emma.emmastudies_set.all %}
+				<li>
+					{{ studie.studie }}
+				</li>
+			{% endfor %}
+			
+		</ul>
+	</p>
+	<p>
+		<b>Certificaciones: </b>
+		<ul>
+			{% for certification in emma.emmacertification_set.all %}
+				<li>
+					{{ certification.certification }} / {{ certification.time }}
+				</li>
+			{% endfor %}
+
+		</ul>
 	</p>
 	<p>
 		<b>Descripcion general: </b> {{ emma.general_description }}
@@ -25,7 +50,18 @@
 		<b>Experincia con abuelos: </b> {{ emma.experience_with_seniors }}
 	</p>
 	<p>
-		<b>Caracteristicas </b> {{ emma.experience_with_seniors }}
+		<b>Caracteristicas </b> {{ emma.characteristics }}
+	</p>
+	<p>
+		<b>Intereses y Hobbies: </b>
+		<ul>
+			{% for hobbie in emma.emmahobbie_set.all %}
+				<li>
+					{{ hobbie.hobbie }}
+				</li>
+			{% endfor %}
+
+		</ul>
 	</p>
 </body>
 </html>

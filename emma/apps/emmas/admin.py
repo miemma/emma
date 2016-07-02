@@ -26,3 +26,24 @@ class EmmaAdmin(admin.ModelAdmin):
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
     exclude = ['id']
+
+
+@admin.register(models.EmmaStudies)
+class EmmaStudiesAdmin(admin.ModelAdmin):
+    list_display = ('emma', 'studie')
+    actions = [export_as_xls]
+    export_as_xls.short_description = "Export selected objects to XLS"
+
+
+@admin.register(models.EmmaCertification)
+class EmmaCertificationAdmin(admin.ModelAdmin):
+    list_display = ('emma', 'certification', 'time')
+    actions = [export_as_xls]
+    export_as_xls.short_description = "Export selected objects to XLS"
+
+
+@admin.register(models.EmmaHobbie)
+class EmmaHobbieAdmin(admin.ModelAdmin):
+    list_display = ('emma', 'hobbie')
+    actions = [export_as_xls]
+    export_as_xls.short_description = "Export selected objects to XLS"
