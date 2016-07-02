@@ -97,9 +97,9 @@ LANGUAGE_CODE = 'es'
 
 SITE_ID = 1
 
-USE_I18N = False
+USE_I18N = True
 
-USE_L10N = False
+USE_L10N = True
 
 USE_TZ = True
 
@@ -174,3 +174,8 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = env.bool('SESSION_EXPIRE_AT_BROWSER_CLOSE',
                                            default=True)
 SESSION_SECURITY_EXPIRE_AFTER = env.int("SESSION_SECURITY_EXPIRE_AFTER")
 SESSION_SECURITY_WARN_AFTER = env.int("SESSION_SECURITY_WARN_AFTER")
+
+
+DATE_INPUT_FORMATS = [
+    '%d/%m/%Y'
+]
