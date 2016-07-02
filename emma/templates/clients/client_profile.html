@@ -1,0 +1,43 @@
+{% extends "clients/dashboard_base.html" %}
+{% block content %}
+<div class="dashboard">
+{% include "clients/dashboard_menu.html" %}
+<div class="dashboard-content">
+    <div class="dashboard-user-card">
+      <div class="dashboard-user-card-photo">
+        <img src="#" alt="Mariana"
+               class="img-responsive circle"/>
+      </div>
+      <div class="dashboard-user-card-data">
+        <div class="dashboard-card-title">
+          <h2>Nombre</h2>
+          <div class="dashboard-card-title-button">
+            editar
+          </div>
+        </div>
+        <div class="dashboard-user-card-data-content">
+          <div class="dashboard-user-card-data-content-row">
+            Edad: 
+          </div>
+          <div class="dashboard-user-card-data-content-row">
+            Dirección: 
+          </div>
+          <div class="dashboard-user-card-data-content-row">
+            Delegación: 
+          </div>
+          <div class="dashboard-user-card-data-content-row">
+            Colonia: 
+          </div>
+          <div class="dashboard-user-card-data-content-row">
+            C.P. 
+          </div>
+          <div class="dashboard-user-card-data-content-row">
+            Referencias: 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+{% endblock %}
