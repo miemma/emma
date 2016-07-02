@@ -5,15 +5,27 @@
 	<title>Pantalla de vista de detalle del adulto</title>
 </head>
 <body>
-	<p><b>Nombre</b></p>
-	<p>{{ adult.first_name }} {{ adult.last_name }}</p>
+	<h3>
+		Formulario de informacion del adulto mayor
+	</h3>
+	{% if messages %}
+		<ul class="messages">
+			{% for message in messages %}
+				<li id="message_{{ forloop.counter }}"
+					{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+					{{ message }}
+				</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+	<form action="." method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ adultform.as_p }}
+		<button type="submit">Guardar</button>
+	</form>
 
-	<p><b>Fechad de nacimiento</b></p>
-	<p>{{ adult.birthday }}</p>
-
-	<p><b>Estructura familiar</b></p>
-	<p>{{ adult.familiar_structure }}</p>
-
-	<p>Demas datos ...</p>
+	{% if success %}
+		<h1>Exito en el form</h1>
+	{% endif %}
 </body>
 </html>
