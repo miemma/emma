@@ -274,3 +274,24 @@ class Adult(models.Model):
 
     def __unicode__(self):
         return '%s %s' % (self.first_name, self.last_name)
+
+
+class AdultHobbie(models.Model):
+    adult = models.ForeignKey(
+        Adult,
+        verbose_name=_('Adult')
+    )
+
+    hobbie = models.CharField(
+        _('Hobbie'),
+        max_length=50,
+        blank=False,
+        null=False,
+    )
+
+    class Meta:
+        verbose_name = _('Adult Hobbie')
+        verbose_name_plural = _('Adult Hobbie')
+
+    def __unicode__(self):
+        return '%s %s' % (self.adult, self.hobbie)
