@@ -15,17 +15,17 @@
 				</div>
 			</div>
 			<div class="dashboard-box-content flex-grow-1 padding-top-30 padding-bottom-30">
-				<div class="col-md-10 col-sm-10 col-xs-10 centered-col">
+				<div class="col-md-10 col-sm-10 col-xs-10 centered-col padding-0">
 			    {% csrf_token %}
-					<div class="input-container input-container-inline">
+					<div class="input-container">
 						<b>Nombre: </b>
 						{{ user_form.first_name }}
 					</div>
-					<div class="input-container input-container-inline">
+					<div class="input-container">
 						<b>Apellido: </b>
 						{{ user_form.last_name }}
 					</div>
-					<div class="input-container input-container-inline">
+					<div class="input-container">
 						<b>Correo: </b>
 						{{ user_form.email }}
 					</div><div class="input-container input-container-inline">
@@ -47,10 +47,20 @@
 			</div>
 		</div>
 		<div class="dashboard-box-content flex-grow-1 padding-top-30 padding-bottom-30 margin-bottom-70">
-			<form action="." method="post" class="col-md-10 col-sm-10 col-xs-10 centered-col">
+			<form action="." method="post" class="col-md-10 col-sm-10 col-xs-10 centered-col padding-0">
 			{% csrf_token %}
-			{{ password_form.as_p }}
-			<button type="submit" name="user_password">Actualizar</button>
+			<div class="input-container">
+				{{ password_form.current_password }}
+			</div>
+			<div class="input-container">
+				{{ password_form.new_password_1 }}
+			</div>
+			<div class="input-container">
+				{{ password_form.new_password_2 }}
+			</div>
+			<div class="text-center margin-top-40">
+				<button type="submit" name="user_password" class="emma-btn-light large">Actualizar</button>
+			</div>
 		</form>
 		</div>
 	</div>
