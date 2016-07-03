@@ -24,6 +24,19 @@
 		<button type="submit">Guardar</button>
 	</form>
 
+	<h1>
+		Los hobbies no son editables
+	</h1>
+	<ul>
+		{% for hobbie in adult.adulthobbie_set.all %}
+		<li>
+			{{ hobbie.hobbie }}
+		</li>
+		{% endfor %}
+	</ul>
+
+
+
 	{% if success %}
 		<h1>Exito en el form</h1>
 	{% endif %}
