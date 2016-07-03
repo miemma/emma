@@ -1,31 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>User detail view</title>
-</head>
-<body>
-	<h3>
-		Informacion del familiar administrador
-	</h3>
+{% extends "clients/dashboard_base.html" %}
+{% load static from staticfiles %}
+{% block content %}
+<div class="dashboard">
+{% include "clients/dashboard_menu.html" %}
+	<div class="dashboard-content">
 	<form action="." method="post">
-		{% csrf_token %}
-		{{ user_form.as_p }}
-		<button type="submit" name="user_information">Actualizar</button>
+		<div class="dashboard-box">
+			<div class="dashboard-box-title border">
+				<div class="flex-grow-1">
+					<div class="col-md-10 col-sm-8 col-xs-10 centered-col padding-0 flex">
+						<h2>Informacion del familiar administrador</h2>
+						<div class="dashboard-box-title-button">editar</div>
+					</div>
+				</div>
+			</div>
+			<div class="dashboard-box-content flex-grow-1 padding-top-30 padding-bottom-30">
+				<div class="col-md-10 col-sm-10 col-xs-10 centered-col">
+			    {% csrf_token %}
+					<div class="input-container input-container-inline">
+						<b>Nombre: </b>
+						{{ user_form.first_name }}
+					</div>
+					<div class="input-container input-container-inline">
+						<b>Apellido: </b>
+						{{ user_form.last_name }}
+					</div>
+					<div class="input-container input-container-inline">
+						<b>Correo: </b>
+						{{ user_form.email }}
+					</div><div class="input-container input-container-inline">
+						<b>Teléfono de contacto: </b>
+						{{ user_form.contact_number }}
+					</div>
+					<button type="submit" name="user_information">Actualizar</button>
+				</div>
+			</div>
+		</div>
 	</form>
-	<h3>Formulario para actualizar la contraseña</h3>
-	<p>
-		<form action="." method="post">
+
+	<div class="dashboard-box margin-top-20">
+		<div class="dashboard-box-title border">
+			<div class="flex-grow-1">
+				<div class="col-md-10 col-sm-8 col-xs-10 centered-col padding-0 flex">
+					<h2>Modificar contraseña</h2>
+				</div>
+			</div>
+		</div>
+		<div class="dashboard-box-content flex-grow-1 padding-top-30 padding-bottom-30 margin-bottom-70">
+			<form action="." method="post" class="col-md-10 col-sm-10 col-xs-10 centered-col">
 			{% csrf_token %}
 			{{ password_form.as_p }}
 			<button type="submit" name="user_password">Actualizar</button>
 		</form>
-	</p>
-	<br><br><br>
+		</div>
+	</div>
+	</div>
+</div>
 	<p>
 		{% if success %}
 			<p> {{ success }} </p>
 		{% endif %}
 	</p>
-</body>
-</html>
+{% endblock %}
+		
