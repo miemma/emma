@@ -18,7 +18,8 @@ class AdultInformation(ClientRequiredMixin, View):
         adultform = self.get_initial_adult_form(request,
                                                 self.get_adult(request, id))
         ctx = {
-            'adultform': adultform
+            'adultform': adultform,
+            'adult': self.get_adult(request, id)
         }
         return TemplateResponse(request, self.template_name, ctx)
 
