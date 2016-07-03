@@ -23,8 +23,7 @@ class MedicalInfoAdmin(admin.ModelAdmin):
 
 @admin.register(models.EmergencyContact)
 class EmergencyContactAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'relation', 'cell_phone',
-                                                           'home_phone')
+    list_display = ('full_name', 'relation', 'cell_phone', 'home_phone')
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
 
@@ -32,5 +31,12 @@ class EmergencyContactAdmin(admin.ModelAdmin):
 @admin.register(models.AdultAddress)
 class AdultAddress(admin.ModelAdmin):
     list_display = ('id', 'street', 'postal_code')
+    actions = [export_as_xls]
+    export_as_xls.short_description = "Export selected objects to XLS"
+
+
+@admin.register(models.AdultHobbie)
+class AdultHobbie(admin.ModelAdmin):
+    list_display = ('adult', 'hobbie')
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"

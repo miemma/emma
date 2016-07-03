@@ -21,11 +21,28 @@
 	<form action="." method="post" enctype="multipart/form-data">
 		{% csrf_token %}
 		{{ adultform.as_p }}
-		<button type="submit">Guardar</button>
+		<button type="submit" name="adult_form">Guardar</button>
 	</form>
 
-	{% if success %}
-		<h1>Exito en el form</h1>
-	{% endif %}
+	<h1>
+		Los hobbies no son editables
+	</h1>
+	<ul>
+		{% for hobbie in adult.adulthobbie_set.all %}
+		<li>
+			{{ hobbie.hobbie }}
+		</li>
+		{% endfor %}
+	</ul>
+	<h3>
+		Formulario de la informacion médica
+	</h3>
+	<form action="." method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ medicalform.as_p }}
+		<button type="submit" name="medical_form">Guardar</button>
+	</form>
+
+
 </body>
 </html>
