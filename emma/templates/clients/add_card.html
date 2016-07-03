@@ -8,12 +8,12 @@
 		<div class="dashboard-box">
 			<div class="dashboard-box-title border">
 				<div class="flex-grow-1">
-					<div class="col-md-6 centered-col">
+					<div class="col-md-6 centered-col padding-0">
 						<h2>Agregar Tarjeta</h2>
 					</div>
 				</div>
 			</div>
-			<div class="dashboard-box-content flex-grow-1">
+			<div class="dashboard-box-content flex-grow-1 padding-top-70 padding-bottom-70">
 				<div class="col-md-6 centered-col">
 			    {% csrf_token %}
 			    <input type="hidden" name="token_id" id="token_id" />
@@ -67,7 +67,8 @@
 					<input type='hidden' name='devsessionid' id='devsessionid'>
 				</div>
 			</div>
-		</div><button type="button" id="pay-button">Subir</button>
+			<button type="button" id="pay-button" class="centered-col">Subir</button>
+		</div>
 	</form>
 	</div>
 </div>
