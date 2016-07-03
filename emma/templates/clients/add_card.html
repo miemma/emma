@@ -4,56 +4,65 @@
 <div class="dashboard">
 {% include "clients/dashboard_menu.html" %}
 	<div class="dashboard-content">
-			<form class="addcard-form" action="." method="post" id="addcard-form">
-		    {% csrf_token %}
-		    <input type="hidden" name="token_id" id="token_id" />
-				<p>
-					<label>
-						Titular de la tarjeta
+	<form class="addcard-form" action="." method="post" id="addcard-form">
+		<div class="dashboard-credit-card">
+			<div class="dashboard-box-title border">
+				<div class="row" style="flex-grow: 1">
+					<div class="col-md-6" style="margin: 0 auto; float: none">
+						<h2>Agregar Tarjeta</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="flex-grow: 1">
+				<div class="col-md-6" style="margin: 0 auto; float: none">
+			    {% csrf_token %}
+			    <input type="hidden" name="token_id" id="token_id" />
+					<div class="row">
 						<input type="text" autocomplete="off" name="customer_name"
-				           data-openpay-card="holder_name"
-				           placeholder="Titular de la tarjeta" />
-					</label>
-				</p>
-				<p>
-					<label>
-						Numero de la tarjeta
+					           data-openpay-card="holder_name"
+					           placeholder="Nombre titular"
+					           class="emma-input col-md-12" />
+					</div>
+					<div class="row">
 						<input type="text" autocomplete="off" name="card_number"
-				           data-openpay-card="card_number"
-				           placeholder="Numero de la tarjeta" />
-					</label>
-				</p>
-				<p>
-					<label>
-						CVC
-						<input type="text" autocomplete="off" name="card_cvc"
-		               data-openpay-card="cvv2"
-		               placeholder="CVC" />
-					</label>
-				</p>
-				<p>
-					<label>
-						Fecha de Expiracion
-						<input type="text" autocomplete="off" name="card_month"
-		               data-openpay-card="expiration_month"
-		               placeholder="MM"
-		               size="2" maxlength='2' />
-
-						<input type="text" autocomplete="off" name="card_year"
-		               data-openpay-card="expiration_year"
-		               placeholder="AA"
-		               size="2" maxlength='2' />
-					</label>
-				</p>
-				<p>
-					<div class="alert alert-danger addcard-alert" role="alert">
-						La tarjeta fue declinada, revisa la información e
-						intenta de nuevo.
-	        </div>
-				</p>
-				<input type='hidden' name='devsessionid' id='devsessionid'>
-				<button type="button" id="pay-button">Subir</button>
-			</form>
+					           data-openpay-card="card_number"
+					           placeholder="Número de tarjeta"
+					           class="emma-input col-md-12" />
+					</div>
+					<div class="row">
+						<div class="col-md-10">
+							<div class="row">
+								<input type="text" autocomplete="off" name="card_month"
+					               data-openpay-card="expiration_month"
+					               placeholder="Mes"
+					               size="2" maxlength='2'
+					               class="emma-input col-md-4" />
+					      <input type="text" autocomplete="off" name="card_year"
+					               data-openpay-card="expiration_year"
+					               placeholder="Año"
+					               size="2" maxlength='2'
+					               class="emma-input col-md-4" />
+								<input type="text" autocomplete="off" name="card_cvc"
+					               data-openpay-card="cvv2"
+					               placeholder="CCV"
+					               class="emma-input col-md-4" />
+					    </div>
+			      </div>
+			      <div class="col-md-2 text-center">
+			      	<span class="fa fa-question circle"></span>
+			      </div>
+					</div>
+					<p>
+						<div class="alert alert-danger addcard-alert" role="alert">
+							La tarjeta fue declinada, revisa la información e
+							intenta de nuevo.
+		        </div>
+					</p>
+					<input type='hidden' name='devsessionid' id='devsessionid'>
+				</div>
+			</div>
+		</div><button type="button" id="pay-button">Subir</button>
+	</form>
 	</div>
 </div>
 {% endblock %}
