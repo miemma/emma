@@ -28,11 +28,26 @@
               Blog
             </a>
           </li>
+          {% if contract_service %}
+          <li class="header-navbar-list-item" hcolor="white">
+            <a class="header-navbar-list-item-link" href="#">
+             Contratar servicio
+            </a>
+          </li>
+          {% elif make_call %}
+          <li class="header-navbar-list-item" hcolor="white">
+            <a class="header-navbar-list-item-link" href="#">
+              Programar llamada
+            </a>
+          </li>
+          {% else %}
           <li class="header-navbar-list-item" hcolor="white">
             <a class="header-navbar-list-item-link" href="#">
               Ver suscripción
             </a>
           </li>
+          {% endif %}
+          
           <li class="header-navbar-list-item" hcolor="white">
             <a class="header-navbar-list-item-link" href="#">
               Josefina

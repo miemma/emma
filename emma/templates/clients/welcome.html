@@ -1,26 +1,46 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Pagina de Bienvenida</title>
-</head>
-<body>
-	{% if view_profile %}
-		<p>
-			Pantalla que solo aparece la primera ves que entras al dashboard, aqui eres cliente final
-		</p>
-	{% endif %}
-
-	{% if contract_service %}
-		<p>
-			Pantalla que te invita a contratar un servicio
-		</p>
-	{% endif %}
-
-	{% if make_call %}
-		<p>
-			Pantalla que te invita a agendar una llamada
-		</p>
-	{% endif %}
-</body>
-</html>
+{% extends "clients/dashboard_base.html" %}
+{% block content %}
+	<div class="row">
+		<div class="col-md-11 centered-col white-background padding-top-80 padding-bottom-80">
+			<div class="col-md-8 centered-col text-center">
+				<< Logo emma >> <br>
+				¡<< Nombre usuario >>, <br>
+				Bienvenido(a) a Emma! <br>
+				{% if contract_service %}
+			  	<p>
+				  	A partir de hoy podrás contar con el mejor plan de acompañamiento para tu ser querido. En Emma estamos comprometidos tanto contigo como con tu familia de forma que encuentres a una compañera conable en menos de 12 horas, de forma sencilla, segura y sin fricciones.
+				  </p>
+				  <p>
+				  	<h3>¡Muchas gracias por tu conanza!</h3>
+				  </p>
+				  <div>
+				  	<a href="#" class="emma-btn-light">Contratar servicio</a>
+				  </div>
+			  {% elif make_call %}
+				  <p>
+				  	A partir de hoy podrás contar con el mejor plan de acompañamiento para tu ser querido. En Emma estamos comprometidos tanto contigo como con tu familia de forma que encuentres a una compañera conable en menos de 12 horas, de forma sencilla, segura y sin fricciones.
+				  </p>
+				  <p>
+				  	<ol>
+				  		<li>Programa una llamada telefónica y personalicemos el servicio que buscas.</li>
+							<li>Escoge el horario y fecha para una sesión de prueba (sin costo).</li>
+				  	</ol>
+				  </p>
+				  <p>
+				  	<h3>¡Muchas gracias por tu confianza!</h3>
+				  </p>
+				  <div>
+				  	<a href="#" class="emma-btn-light">Programar llamada</a>
+				  </div>
+			  {% else %}
+				  <p>
+				  	En Emma trabajaremos día con día para que tu ser querido reciba el mejor plan de acompañamiento integral de parte de nuestras Emmas. Conoce nuestro portal, diseñado exclusivamente para ti.
+				  </p>
+				  <div>
+				  	<a href="#" class="emma-btn-light">Ver suscripción</a>
+				  </div>
+			  {% endif %}
+		  </div>
+	  </div>
+	</div>
+{% endblock %}
