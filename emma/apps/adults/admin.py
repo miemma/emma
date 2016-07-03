@@ -34,3 +34,10 @@ class AdultAddress(admin.ModelAdmin):
     list_display = ('id', 'street', 'postal_code')
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
+
+
+@admin.register(models.AdultHobbie)
+class AdultG(admin.ModelAdmin):
+    list_display = ('adult', 'hobbie')
+    actions = [export_as_xls]
+    export_as_xls.short_description = "Export selected objects to XLS"
