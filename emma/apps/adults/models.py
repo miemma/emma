@@ -61,18 +61,13 @@ class AdultAddress(models.Model):
 
 
 class EmergencyContact(models.Model):
-    first_name = models.CharField(
+    full_name = models.CharField(
         _('First name'),
         max_length=25,
         blank=False,
         null=False,
     )
-    last_name = models.CharField(
-        _('Last name'),
-        max_length=25,
-        blank=False,
-        null=False,
-    )
+
     relation = models.CharField(
         _('Relation'),
         max_length=25,
@@ -97,7 +92,7 @@ class EmergencyContact(models.Model):
         verbose_name_plural = _('Emergency Contacts')
 
     def __unicode__(self):
-        return '%s %s' % (self.first_name, self.last_name)
+        return self.full_name
 
 
 class MedicalInfo(models.Model):
@@ -123,17 +118,13 @@ class MedicalInfo(models.Model):
         blank=False,
         null=False,
     )
-    knows_pda = models.CharField(
+    knows_pda = models.BooleanField(
         _('Knows PDA'),
-        max_length=25,
-        blank=False,
-        null=False,
+        default=False
     )
-    exercise_pda = models.CharField(
+    exercise_pda = models.BooleanField(
         _('Exercise PDA'),
-        max_length=25,
-        blank=False,
-        null=False,
+        default=False
     )
     has_medical_insurance = models.BooleanField(
         _('Has Medical Insurance'),
