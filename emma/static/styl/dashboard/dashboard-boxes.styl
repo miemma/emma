@@ -24,15 +24,59 @@
   
   &-content
     background $light_gray
+
+    .input-container
+      padding 5px 0
+      
+      .emma-input
+        width 100%
+        color #5a5a5a
+        font-size 19px
+        margin 0
+        padding 15px
+      
+      &-inline
+        padding 5px 10px 0 0
     
-    .emma-input
-      color #5a5a5a
-      font-size 19px
-      margin 5px
-      padding 15px
-  
-  .inline-input-container
-    padding 0 10px 0 0
+    .help-container
+      padding 0
+
+    .help
+      cursor pointer
+      cursor hand
+      margin 14px 0
+      position relative
+      
+      &::before
+        background #aaa
+        border-radius 50%
+        color white
+        display inline-block
+        font-size 26px
+        width 36px
+        height 36px
+        padding 5px
+        text-align center
+        
+      .emma-tooltip
+        background black
+        color white
+        display block
+        font-family 'Avenir LT Std Medium'
+        font-size 14px
+        margin-top 11px
+        padding 0 15px
+        height 0
+        overflow hidden
+        opacity 0
+        position absolute
+        text-align left
+        transition all 0.2s
+        width 200px
+        
+      &:hover
+        .emma-tooltip
+          height auto
+          padding 15px
+          opacity 1
     
-    .emma-input
-      width 100%

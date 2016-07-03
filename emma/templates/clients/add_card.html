@@ -8,45 +8,45 @@
 		<div class="dashboard-box">
 			<div class="dashboard-box-title border">
 				<div class="flex-grow-1">
-					<div class="col-md-6 centered-col padding-0">
+					<div class="col-md-6 col-sm-8 col-xs-10 centered-col padding-0">
 						<h2>Agregar Tarjeta</h2>
 					</div>
 				</div>
 			</div>
 			<div class="dashboard-box-content flex-grow-1 padding-top-70 padding-bottom-70">
-				<div class="col-md-6 centered-col">
+				<div class="col-md-6 col-sm-8 col-xs-10 centered-col">
 			    {% csrf_token %}
 			    <input type="hidden" name="token_id" id="token_id" />
-					<div class="row">
+					<div class="row input-container">
 						<input type="text" autocomplete="off" name="customer_name"
 					           data-openpay-card="holder_name"
 					           placeholder="Nombre titular"
-					           class="emma-input col-md-12" />
+					           class="emma-input" />
 					</div>
-					<div class="row">
+					<div class="row input-container">
 						<input type="text" autocomplete="off" name="card_number"
 					           data-openpay-card="card_number"
 					           placeholder="Número de tarjeta"
-					           class="emma-input col-md-12" />
+					           class="emma-input" />
 					</div>
 					<div class="row">
 						<div class="col-md-10">
 							<div class="row">
-								<div class="col-md-4 inline-input-container">
+								<div class="col-md-4 input-container input-container-inline">
 									<input type="text" autocomplete="off" name="card_month"
 					               data-openpay-card="expiration_month"
 					               placeholder="Mes"
 					               size="2" maxlength='2'
 					               class="emma-input inline-input" />
 								</div>
-								<div class="col-md-4 inline-input-container">
+								<div class="col-md-4 input-container input-container-inline">
 									<input type="text" autocomplete="off" name="card_year"
 					               data-openpay-card="expiration_year"
 					               placeholder="Año"
 					               size="2" maxlength='2'
 					               class="emma-input inline-input" />
 								</div>
-								<div class="col-md-4 inline-input-container">
+								<div class="col-md-4 input-container input-container-inline">
 									<input type="text" autocomplete="off" name="card_cvc"
 					               data-openpay-card="cvv2"
 					               placeholder="CCV"
@@ -54,8 +54,10 @@
 								</div>
 					    </div>
 			      </div>
-			      <div class="col-md-2 text-center">
-			      	<span class="fa fa-question circle"></span>
+			      <div class="col-md-2 text-center help-container">
+			      	<span class="fa fa-question help">
+			      		<span class="emma-tooltip">Pasa el mouse sobre este simbolo y obten información sobre el campo que debes de llenar.</span>
+			      	</span>
 			      </div>
 					</div>
 					<p>
