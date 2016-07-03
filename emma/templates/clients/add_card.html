@@ -1,90 +1,59 @@
-{% load static from staticfiles%}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Agregar Tarjeta</title>
-</head>
-	<body>
-		<form class="addcard-form" action="." method="post" id="addcard-form">
-	    {% csrf_token %}
-	    <input type="hidden" name="token_id" id="token_id" />
-			<p>
-				<label>
-					Titular de la tarjeta
-					<input type="text" autocomplete="off" name="customer_name"
-			           data-openpay-card="holder_name"
-			           placeholder="Titular de la tarjeta" />
-				</label>
-			</p>
-			<p>
-				<label>
-					Numero de la tarjeta
-					<input type="text" autocomplete="off" name="card_number"
-			           data-openpay-card="card_number"
-			           placeholder="Numero de la tarjeta" />
-				</label>
-			</p>
-			<p>
-				<label>
-					CVC
-					<input type="text" autocomplete="off" name="card_cvc"
-	               data-openpay-card="cvv2"
-	               placeholder="CVC" />
-				</label>
-			</p>
-			<p>
-				<label>
-					Fecha de Expiracion
-					<input type="text" autocomplete="off" name="card_month"
-	               data-openpay-card="expiration_month"
-	               placeholder="MM"
-	               size="2" maxlength='2' />
+{% extends "clients/dashboard_base.html" %}
+{% load static from staticfiles %}
+{% block content %}
+<div class="dashboard">
+{% include "clients/dashboard_menu.html" %}
+	<div class="dashboard-content">
+			<form class="addcard-form" action="." method="post" id="addcard-form">
+		    {% csrf_token %}
+		    <input type="hidden" name="token_id" id="token_id" />
+				<p>
+					<label>
+						Titular de la tarjeta
+						<input type="text" autocomplete="off" name="customer_name"
+				           data-openpay-card="holder_name"
+				           placeholder="Titular de la tarjeta" />
+					</label>
+				</p>
+				<p>
+					<label>
+						Numero de la tarjeta
+						<input type="text" autocomplete="off" name="card_number"
+				           data-openpay-card="card_number"
+				           placeholder="Numero de la tarjeta" />
+					</label>
+				</p>
+				<p>
+					<label>
+						CVC
+						<input type="text" autocomplete="off" name="card_cvc"
+		               data-openpay-card="cvv2"
+		               placeholder="CVC" />
+					</label>
+				</p>
+				<p>
+					<label>
+						Fecha de Expiracion
+						<input type="text" autocomplete="off" name="card_month"
+		               data-openpay-card="expiration_month"
+		               placeholder="MM"
+		               size="2" maxlength='2' />
 
-					<input type="text" autocomplete="off" name="card_year"
-	               data-openpay-card="expiration_year"
-	               placeholder="AA"
-	               size="2" maxlength='2' />
-				</label>
-			</p>
-			<p>
-				<div class="alert alert-danger addcard-alert" role="alert">
-					La tarjeta fue declinada, revisa la información e
-					intenta de nuevo.
-        </div>
-			</p>
-			<input type='hidden' name='devsessionid' id='devsessionid'>
-			<button type="button" id="pay-button">Subir</button>
-		</form>
-		<script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
-		<script type="text/javascript" src="https://openpay.s3.amazonaws.com/openpay.v1.min.js"></script>
-		<script type='text/javascript' src="https://openpay.s3.amazonaws.com/openpay-data.v1.min.js"></script>
-		<script>
-			$(document).ready(function() {
-				$('.addcard-alert').hide();
-			  OpenPay.setId('mg0kzdwsiduimlfaudun');
-			  OpenPay.setApiKey('pk_106c640a77f94dd49bae11cf94937075');
-			  OpenPay.setSandboxMode(true);
-				var deviceSessionId = OpenPay.deviceData.setup("addcard-form", "devsessionid");
-			});
-			var success_callbak = function(response) {
-				var token_id = response.data.id;
-				$('#token_id').val(token_id);
-				$('.addcard-alert').hide();
-				$('#addcard-form').submit();
-				// console.log("Se enviara el formulario")
-			};
-
-			var error_callbak = function(response) {
-				$('.addcard-alert').show();
-			};
-
-			$('#pay-button').on('click', function(event) {
-				$('.addcard-alert').hide();
-				OpenPay.token.extractFormAndCreate(
-					'addcard-form', success_callbak, error_callbak
-				);
-			});
-		</script>
-	</body>
-</html>
+						<input type="text" autocomplete="off" name="card_year"
+		               data-openpay-card="expiration_year"
+		               placeholder="AA"
+		               size="2" maxlength='2' />
+					</label>
+				</p>
+				<p>
+					<div class="alert alert-danger addcard-alert" role="alert">
+						La tarjeta fue declinada, revisa la información e
+						intenta de nuevo.
+	        </div>
+				</p>
+				<input type='hidden' name='devsessionid' id='devsessionid'>
+				<button type="button" id="pay-button">Subir</button>
+			</form>
+	</div>
+</div>
+{% endblock %}
