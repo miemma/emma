@@ -7,14 +7,14 @@
 	<form class="addcard-form" action="." method="post" id="addcard-form">
 		<div class="dashboard-credit-card">
 			<div class="dashboard-box-title border">
-				<div class="row" style="flex-grow: 1">
-					<div class="col-md-6" style="margin: 0 auto; float: none">
+				<div class="flex-grow-1">
+					<div class="col-md-6 centered-col">
 						<h2>Agregar Tarjeta</h2>
 					</div>
 				</div>
 			</div>
-			<div class="row" style="flex-grow: 1">
-				<div class="col-md-6" style="margin: 0 auto; float: none">
+			<div class="flex-grow-1">
+				<div class="col-md-6 centered-col">
 			    {% csrf_token %}
 			    <input type="hidden" name="token_id" id="token_id" />
 					<div class="row">
