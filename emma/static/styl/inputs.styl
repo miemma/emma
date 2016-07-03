@@ -10,8 +10,8 @@ input[type=text]:disabled
   color white
 
 .emma
-  &-btn-light
-    background-color $yellow
+  &-btn-light,
+  &-btn-dark
     color white
     text-decoration none
     outline none
@@ -20,17 +20,16 @@ input[type=text]:disabled
     border none
     cursor pointer
     font-family "Avenir LT Std Roman"
+    padding 8px 21px
+    
+    &.large
+      padding 8px 40px
+    
+  &-btn-light
+    background-color $yellow
 
   &-btn-dark
     background-color $orange
-    color white
-    text-decoration none
-    outline none
-    border-radius 5px
-    text-align center
-    border none
-    cursor pointer
-    font-family "Avenir LT Std Roman"
 
     &:hover
     &:active
@@ -46,6 +45,7 @@ input[type=text]:disabled
     outline none
     border none
     font-family "Avenir LT Std Medium"
+    padding 0.7em
 
     &:hover
     &:active
