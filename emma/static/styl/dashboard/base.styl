@@ -32,9 +32,6 @@
   
 .dashboard
   display flex
-  
-.dashboard-menu
-  width 295px
 
 .dashboard-menu,
 .dashboard-submenu
@@ -62,6 +59,9 @@
       &:hover
         background $light_gray
         color $gray
+  
+.dashboard-menu
+  width 295px
         
 .dashboard-menu .dashboard-menu-item
   &:first-child
@@ -75,32 +75,13 @@
     
 .dashboard-submenu .dashboard-submenu-item
   border-width 1px 0 0 0
-
-.dashboard-submenu-item a
-  padding-left 90px
+  
+  a
+    padding-left 90px
   
 .dashboard-content
   flex-grow 1
   margin-left 30px
-  
-.dashboard-user-card
-  background white
-  display flex
-  padding 25px 0
-  
-  &-photo
-    padding 0 30px
-    width 280px
-    
-  &-data
-    flex-grow 1
-
-    &-content
-      color $gray
-      margin-top 30px
-      
-      &-row
-        display block
     
 .dashboard-card-title
   align-items center
