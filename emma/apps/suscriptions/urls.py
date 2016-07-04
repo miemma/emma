@@ -7,15 +7,15 @@ from . import views
 
 urlpatterns = [
 
-    url(regex=r'^usuarios/historial-pagos/$',
+    url(regex=r'^dashboard/historial-pagos/$',
         view=views.ChargesList.as_view(),
-        name='charges_list'),
+        name='dashboard_charges_list'),
 
-    url(regex=r'^usuarios/historial/$',
+    url(regex=r'^dashboard/historial/$',
         view=views.HistoryList.as_view(),
-        name='history_list'),
+        name='dashboard_history_list'),
 
-    url(regex=r'^usuarios/informacion-pago/$',
+    url(regex=r'^dashboard/informacion-pago/$',
         view=views.PaymentInfo.as_view(),
-        name='payment_info'),
+        name='dashboard_payment_info'),
 ]
