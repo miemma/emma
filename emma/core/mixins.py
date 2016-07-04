@@ -6,10 +6,11 @@ from __future__ import absolute_import, unicode_literals
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseForbidden
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.core.urlresolvers import reverse_lazy
 from django.utils.decorators import method_decorator
 
+from emma.apps.adults.models import Adult
 from emma.apps.clients.models import Client
 from emma.apps.suscriptions.models import Suscription
 
@@ -94,3 +95,14 @@ class ActiveSuscriptionRequiredMixin(object):
                 raise PermissionDenied
         except Client.DoesNotExist:
             raise PermissionDenied
+
+
+class GetAdultMixin(object):
+    def get_adult(self, request):
+        client = request.user.client
+        if not 'adult_id' in request.session:
+            adult = Adult.objects.filter(responsable=client)[0]
+        else:
+            adult = get_object_or_404(Adult, responsable=client, id=id)
+
+        return adult
