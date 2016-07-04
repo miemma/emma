@@ -2,7 +2,11 @@
 {% load settings_tag %}
 <!DOCTYPE html>
 <html lang="es_ES">
+  <head>
   {% include "base/head.html" %}
+  {% block fbpixel %}
+  {% endblock %}
+  </head>
   <body>
     <div class="container-overflow">
       {% include "base/contact.html" %}
