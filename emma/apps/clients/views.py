@@ -102,7 +102,7 @@ class WelcomeView(ClientRequiredMixin, View):
         client = request.user.client
 
         if client.active_client:
-            if client.suscriptions:
+            if hasattr(client, 'suscriptions'):
                 if client.first_time_dashboard:
                     client.first_time_dashboard = False
                     client.save()
