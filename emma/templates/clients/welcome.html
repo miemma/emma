@@ -1,43 +1,47 @@
 {% extends "clients/dashboard_base.html" %}
+{% load static from staticfiles %}
 {% block content %}
 	<div class="row">
 		<div class="col-md-11 centered-col white-background padding-top-80 padding-bottom-80">
-			<div class="col-md-8 centered-col text-center">
-				<< Logo emma >> <br>
-				¡<< Nombre usuario >>, <br>
-				Bienvenido(a) a Emma! <br>
+			<div class="welcome-text-container centered-col text-center">
+				<img src="{% static 'img/icons/bench.png' %}" alt="" class="welcome-bench-image"> <br>
+				<div class="welcome-title margin-top-20 margin-bottom-30">
+					<span class="welcome-text-bold">
+					¡{{ user.first_name }} {{ user.last_name }},</span><br>
+					Bienvenido(a) a Emma!</div>
+
 				{% if contract_service %}
-			  	<p>
+			  	<div class="welcome-paragraph">
 				  	A partir de hoy podrás contar con el mejor plan de acompañamiento para tu ser querido. En Emma estamos comprometidos tanto contigo como con tu familia de forma que encuentres a una compañera conable en menos de 12 horas, de forma sencilla, segura y sin fricciones.
-				  </p>
-				  <p>
+				  </div>
+				  <div class="welcome-paragraph margin-top-40 margin-bottom-80">
 				  	<h3>¡Muchas gracias por tu conanza!</h3>
-				  </p>
-				  <div>
-				  	<a href="#" class="emma-btn-light">Contratar servicio</a>
+				  </div>
+				  <div class="margin-bottom-30">
+				  	<a href="#" class="emma-btn-light welcome-btn">Contratar servicio</a>
 				  </div>
 			  {% elif make_call %}
-				  <p>
+				  <div class="welcome-paragraph">
 				  	A partir de hoy podrás contar con el mejor plan de acompañamiento para tu ser querido. En Emma estamos comprometidos tanto contigo como con tu familia de forma que encuentres a una compañera conable en menos de 12 horas, de forma sencilla, segura y sin fricciones.
-				  </p>
-				  <p>
-				  	<ol>
-				  		<li>Programa una llamada telefónica y personalicemos el servicio que buscas.</li>
-							<li>Escoge el horario y fecha para una sesión de prueba (sin costo).</li>
-				  	</ol>
-				  </p>
-				  <p>
+				  </div>
+				  <div class="welcome-paragraph margin-top-30">
+				  	<ul>
+				  		<li>1. <span class="welcome-text-bold">Programa una llamada telefónica</span> y personalicemos el servicio que buscas.</li>
+							<li>2. <span class="welcome-text-bold">Escoge el horario y fecha para una sesión de prueba</span> (sin costo).</li>
+				  	</ul>
+				  </div>
+				  <div class="welcome-paragraph margin-top-60 margin-bottom-70">
 				  	<h3>¡Muchas gracias por tu confianza!</h3>
-				  </p>
+				  </div>
 				  <div>
-				  	<a href="#" class="emma-btn-light">Programar llamada</a>
+				  	<a href="#" class="emma-btn-light welcome-btn">Programar llamada</a>
 				  </div>
 			  {% else %}
-				  <p>
+				  <div class="welcome-paragraph margin-bottom-80">
 				  	En Emma trabajaremos día con día para que tu ser querido reciba el mejor plan de acompañamiento integral de parte de nuestras Emmas. Conoce nuestro portal, diseñado exclusivamente para ti.
-				  </p>
+				  </div>
 				  <div>
-				  	<a href="#" class="emma-btn-light">Ver suscripción</a>
+				  	<a href="#" class="emma-btn-light welcome-btn">Ver suscripción</a>
 				  </div>
 			  {% endif %}
 		  </div>
