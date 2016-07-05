@@ -1,11 +1,19 @@
 <ul class="dashboard-menu">
-  <li class="dashboard-menu-item active"><a href="#">Perfil</a></li>
+	<li class="dashboard-menu-item"><a href="#">Perfil</a></li>
   <li class="dashboard-menu-item"><a href="#">Pagos</a>
     <ul class="dashboard-submenu">
-      <li class="dashboard-submenu-item"><a href="#">Mis tarjetas</a></li>
+	    {% if request.path == '/dashboard/informacion-pago/' or request.path == '/dashboard/tarjeta/' %}
+				<li class="dashboard-submenu-item active"><a href="#">Mis tarjetas</a></li>
+			{% else %}
+				<li class="dashboard-submenu-item"><a href="#">Mis tarjetas</a></li>
+			{% endif %}
       <li class="dashboard-submenu-item"><a href="#">Historial de Pagos</a></li>
     </ul>
   </li>
-  <li class="dashboard-menu-item"><a href="#">Configuración</a></li>
+	{% if request.path == '/dashboard/cliente/'%}
+		<li class="dashboard-menu-item active"><a href="#">Configuración</a></li>
+	{% else %}
+		<li class="dashboard-menu-item"><a href="#">Configuración</a></li>
+	{% endif %}
   <li class="dashboard-menu-item"><a href="#">Cerrar sesión</a></li>
 </ul>

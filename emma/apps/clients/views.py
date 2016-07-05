@@ -2,15 +2,17 @@
 # -*- coding: utf-8 -*-
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.http import Http404
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.template.response import TemplateResponse
 from django.views.generic import View
 
+from emma.apps.adults.models import Adult
 from emma.apps.clients.forms import UserInformationForm
 from emma.apps.clients.models import Client
 from emma.apps.suscriptions.models import Suscription
 from emma.apps.xauth.forms import UpdatePasswordForm
-from emma.core.mixins import ClientRequiredMixin, LoginRequiredMixin
+from emma.core.mixins import ClientRequiredMixin, LoginRequiredMixin, \
+    GetAdultMixin
 
 import openpay
 
@@ -72,11 +74,15 @@ class ClientDetailView(ClientRequiredMixin, View):
         )
         return form
 
-class AddCardView(ClientRequiredMixin, View):
+
+class AddCardView(GetAdultMixin, ClientRequiredMixin, View):
     template_name = 'clients/add_card.html'
 
     def get(self, request, **kwargs):
-        return TemplateResponse(request, self.template_name)
+        ctx = {
+            'adult': self.get_adult(request)
+        }
+        return TemplateResponse(request, self.template_name, ctx)
 
     def post(self, request):
         client = Client.objects.get(user=request.user)

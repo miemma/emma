@@ -255,7 +255,7 @@ class MedicalInfo(forms.Form):
             }
         ),
         validators=[validators.eval_blank],
-        required=True,
+        required=False,
         error_messages=error_messages
     )
     emergency_contact_2_relation = forms.CharField(
@@ -266,7 +266,7 @@ class MedicalInfo(forms.Form):
             }
         ),
         validators=[validators.eval_blank],
-        required=True,
+        required=False,
         error_messages=error_messages
     )
     emergency_contact_2_cell_phone = forms.CharField(
@@ -277,7 +277,7 @@ class MedicalInfo(forms.Form):
             }
         ),
         validators=[validators.eval_blank],
-        required=True,
+        required=False,
         error_messages=error_messages
     )
     emergency_contact_2_home_phone = forms.CharField(
@@ -288,7 +288,7 @@ class MedicalInfo(forms.Form):
             }
         ),
         validators=[validators.eval_blank],
-        required=True,
+        required=False,
         error_messages=error_messages
     )
     knows_pda = forms.BooleanField(
@@ -483,12 +483,50 @@ class MedicalInfo(forms.Form):
             adult = get_object_or_404(Adult,
                                       responsable=client,
                                       id=int(self.adult_id))
+
         medical_information = medical_info.objects.get(adult=adult)
 
         medical_information.blood_type = cleaned_data.get('blood_type')
+        medical_information.knows_pda = cleaned_data.get('knows_pda')
+        medical_information.exercise_pda = cleaned_data.get('exercise_pda')
+        medical_information.has_medical_insurance = cleaned_data.get('has_medical_insurance')
+        medical_information.insurance_company = cleaned_data.get('insurance_company')
+        medical_information.insurance_company = cleaned_data.get('insurance_company')
+        medical_information.policy_number = cleaned_data.get('policy_number')
+        medical_information.policy_expiration_date = cleaned_data.get('policy_expiration_date')
+        medical_information.has_social_security = cleaned_data.get('has_social_security')
+        medical_information.social_security_number = cleaned_data.get('social_security_number')
+        medical_information.diseases = cleaned_data.get('diseases')
+        medical_information.current_medications = cleaned_data.get('current_medications')
+        medical_information.drug_allergy = cleaned_data.get('drug_allergy')
 
         medical_information.save()
 
         contact_1 = adult.medical_information.emergency_contact_1
 
+        contact_1.full_name = cleaned_data.get('emergency_contact_1_full_name')
+        contact_1.relation =cleaned_data.get('emergency_contact_1_relation')
+        contact_1.cell_phone =cleaned_data.get('emergency_contact_1_cell_phone')
+        contact_1.home_phone =cleaned_data.get('emergency_contact_1_home_phone')
+
         contact_1.save()
+
+        contact_2 = adult.medical_information.emergency_contact_2
+
+        contact_2.full_name = cleaned_data.get('emergency_contact_2_full_name')
+        contact_2.relation = cleaned_data.get('emergency_contact_2_relation')
+        contact_2.cell_phone = cleaned_data.get('emergency_contact_2_cell_phone')
+        contact_2.home_phone = cleaned_data.get('emergency_contact_2_home_phone')
+
+        contact_2.save()
+
+        doctor = adult.medical_information.doctor
+
+        doctor.first_name = cleaned_data.get('doctor_first_name')
+        doctor.last_name = cleaned_data.get('doctor_last_name')
+        doctor.cell_phone = cleaned_data.get('doctor_cell_phone')
+        doctor.home_phone = cleaned_data.get('doctor_home_phone')
+        doctor.working_institution = cleaned_data.get('doctor_working_institution')
+        doctor.professional_id = cleaned_data.get('professional_id')
+
+        doctor.save()

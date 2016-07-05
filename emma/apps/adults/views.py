@@ -3,29 +3,28 @@
 from django.contrib import messages
 from django.core.urlresolvers import reverse_lazy
 from django.http import Http404
-from django.shortcuts import redirect, get_object_or_404, render
+from django.shortcuts import redirect, render
 from django.template.response import TemplateResponse
 from django.views.generic import View
 
 from emma.apps.adults.forms import AdultInfo, MedicalInfo
-from emma.apps.adults.models import Adult
-from emma.core.mixins import ClientRequiredMixin
+from emma.core.mixins import ClientRequiredMixin, GetAdultMixin
 
 
-class AdultInformation(ClientRequiredMixin, View):
+class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
     template_name = 'adults/adult_detail.html'
 
     def get(self, request, id, **kwargs):
         adultform = self.get_initial_adult_form(
-            request, self.get_adult(request, id)
+            request, self.get_adult(request)
         )
         medicalform = self.get_initial_medical_form(
-            request, self.get_adult(request,id)
+            request, self.get_adult(request)
         )
         ctx = {
             'adultform': adultform,
             'medicalform': medicalform,
-            'adult': self.get_adult(request, id)
+            'adult': self.get_adult(request)
         }
         return TemplateResponse(request, self.template_name, ctx)
 
@@ -76,19 +75,6 @@ class AdultInformation(ClientRequiredMixin, View):
             }
         )
         return form
-
-    @staticmethod
-    def get_client(request):
-        return request.user.client
-
-    def get_adult(self, request, id):
-        client = self.get_client(request)
-        if not id:
-            adult = Adult.objects.filter(responsable=client)[0]
-        else:
-            adult = get_object_or_404(Adult, responsable=client, id=id)
-
-        return adult
 
     @staticmethod
     def get_initial_medical_form(request, adult):
