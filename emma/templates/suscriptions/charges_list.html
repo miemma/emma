@@ -24,7 +24,16 @@
               </tr>
             </thead>
             <tbody>
+              {% for charge in charges %}
               <tr>
+                <td>{{ history.date }}</td>
+                <td>{{ history.status }}</td>
+                <td>{{ history.suscription }}</td>
+                <td>{{ history.amount }}</td>
+                <td>{{ history.description }}</td>
+              </tr>
+              {% endfor %}
+              <!-- <tr>
                 <td>22 junio 2016</td>
                 <td>Acompañamiento con propósito</td>
                 <td>Taller de lectura</td>
@@ -37,18 +46,12 @@
                 <td>Pendientes diarios</td>
                 <td>$1,729</td>
                 <td>Visa****1543</td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
-  <ul>
-    {% for charge in charges %}
-      <li>{{ charge }}</li>
-    {% endfor %}
-
-  </ul>
 </div>
 {% endblock %}
