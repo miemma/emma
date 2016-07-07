@@ -14,7 +14,7 @@ class AdultInfo(forms.Form):
     first_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Nombre'
             }
         ),
@@ -25,7 +25,7 @@ class AdultInfo(forms.Form):
     last_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Apellido'
             }
         ),
@@ -36,7 +36,7 @@ class AdultInfo(forms.Form):
     birthday = forms.DateField(
         widget=forms.SelectDateWidget(
             attrs={
-                'class': '',
+                'class': 'emma-input hide',
             }
         ),
         required = True,
@@ -45,7 +45,7 @@ class AdultInfo(forms.Form):
     street = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Calle'
             }
         ),
@@ -56,7 +56,7 @@ class AdultInfo(forms.Form):
     num_ext = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Num. Ext'
             }
         ),
@@ -67,7 +67,7 @@ class AdultInfo(forms.Form):
     num_int = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Num. Int'
             }
         ),
@@ -78,7 +78,7 @@ class AdultInfo(forms.Form):
     delegation = forms.ChoiceField(
         widget=forms.Select(
             attrs={
-                'class': '',
+                'class': 'emma-input hide',
                 'placeholder': 'Delegacion'
             }
         ),
@@ -108,7 +108,7 @@ class AdultInfo(forms.Form):
     colony = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Delegacion'
             }
         ),
@@ -119,7 +119,7 @@ class AdultInfo(forms.Form):
     postal_code = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Codigo Postal'
             }
         ),
@@ -130,7 +130,7 @@ class AdultInfo(forms.Form):
     reference = forms.CharField(
         widget=forms.Textarea(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Referencia'
             }
         ),
@@ -186,7 +186,7 @@ class MedicalInfo(forms.Form):
     blood_type = forms.ChoiceField(
         widget=forms.Select(
             attrs={
-                'class': '',
+                'class': 'emma-input hide',
             }
         ),
         validators=[validators.eval_blank],
@@ -206,7 +206,7 @@ class MedicalInfo(forms.Form):
     emergency_contact_1_full_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Nombre Completo'
             }
         ),
@@ -217,7 +217,7 @@ class MedicalInfo(forms.Form):
     emergency_contact_1_relation = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Relacion con la persona mayor'
             }
         ),
@@ -228,7 +228,7 @@ class MedicalInfo(forms.Form):
     emergency_contact_1_cell_phone = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Teléfono móvil'
             }
         ),
@@ -239,7 +239,7 @@ class MedicalInfo(forms.Form):
     emergency_contact_1_home_phone = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Teléfono de casa'
             }
         ),
@@ -250,7 +250,7 @@ class MedicalInfo(forms.Form):
     emergency_contact_2_full_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Nombre Completo'
             }
         ),
@@ -261,7 +261,7 @@ class MedicalInfo(forms.Form):
     emergency_contact_2_relation = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Relacion con la persona mayor'
             }
         ),
@@ -272,7 +272,7 @@ class MedicalInfo(forms.Form):
     emergency_contact_2_cell_phone = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Teléfono móvil'
             }
         ),
@@ -283,7 +283,7 @@ class MedicalInfo(forms.Form):
     emergency_contact_2_home_phone = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Teléfono de casa'
             }
         ),
@@ -294,28 +294,28 @@ class MedicalInfo(forms.Form):
     knows_pda = forms.BooleanField(
         widget=forms.CheckboxInput(
             attrs={
-                'class': '',
+                'class': 'radio-input show-as-text',
             }
         ),
     )
     exercise_pda = forms.BooleanField(
         widget=forms.CheckboxInput(
             attrs={
-                'class': '',
+                'class': 'radio-input show-as-text',
             }
         ),
     )
     has_medical_insurance = forms.BooleanField(
         widget=forms.CheckboxInput(
             attrs={
-                'class': '',
+                'class': 'radio-input show-as-text',
             }
         ),
     )
     insurance_company = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Compañia de seguros'
             }
         ),
@@ -326,7 +326,7 @@ class MedicalInfo(forms.Form):
     policy_number = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Numero de poliza'
             }
         ),
@@ -337,7 +337,7 @@ class MedicalInfo(forms.Form):
     policy_expiration_date = forms.DateField(
         widget=forms.SelectDateWidget(
             attrs={
-                'class': '',
+                'class': 'emma-input hide',
             }
         ),
         required=True,
@@ -345,14 +345,14 @@ class MedicalInfo(forms.Form):
     has_social_security = forms.BooleanField(
         widget=forms.CheckboxInput(
             attrs={
-                'class': '',
+                'class': 'radio-input show-as-text',
             }
         ),
     )
     social_security_number = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Numero de seguridad social'
             }
         ),
@@ -364,7 +364,7 @@ class MedicalInfo(forms.Form):
     doctor_first_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Nombre'
             }
         ),
@@ -376,7 +376,7 @@ class MedicalInfo(forms.Form):
     doctor_last_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Apellido'
             }
         ),
@@ -387,7 +387,7 @@ class MedicalInfo(forms.Form):
     doctor_cell_phone = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Teléfono móvil'
             }
         ),
@@ -398,7 +398,7 @@ class MedicalInfo(forms.Form):
     doctor_home_phone = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Teléfono de casa'
             }
         ),
@@ -408,7 +408,7 @@ class MedicalInfo(forms.Form):
     doctor_working_institution = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Institución donde trabaja'
             }
         ),
@@ -418,7 +418,7 @@ class MedicalInfo(forms.Form):
     doctor_professional_id = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Teléfono de casa'
             }
         ),
@@ -428,7 +428,7 @@ class MedicalInfo(forms.Form):
     diseases = forms.CharField(
         widget=forms.Textarea(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': '¿Qué enfermedades o padecimientos presenta?'
             }
         ),
@@ -438,7 +438,7 @@ class MedicalInfo(forms.Form):
     current_medications = forms.CharField(
         widget=forms.Textarea(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Medicacion Actual'
             }
         ),
@@ -448,7 +448,7 @@ class MedicalInfo(forms.Form):
     drug_allergy = forms.CharField(
         widget=forms.Textarea(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Alergias a medicamentos'
             }
         ),
@@ -458,7 +458,7 @@ class MedicalInfo(forms.Form):
     food_allergy = forms.CharField(
         widget=forms.Textarea(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Alergias a alimentos'
             }
         ),

@@ -13,7 +13,7 @@ class UserInformationForm(forms.Form):
     first_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Nombre'
             }
         ),
@@ -21,7 +21,7 @@ class UserInformationForm(forms.Form):
     last_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Apellido'
             }
         ),
@@ -29,7 +29,7 @@ class UserInformationForm(forms.Form):
     email = forms.EmailField(
         widget=forms.EmailInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Email'
             }
         ),
@@ -37,7 +37,7 @@ class UserInformationForm(forms.Form):
     contact_number = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Telefono de contacto'
             }
         ),
