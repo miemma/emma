@@ -14,7 +14,7 @@ class AdultInfo(forms.Form):
     first_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Nombre'
             }
         ),
@@ -25,7 +25,7 @@ class AdultInfo(forms.Form):
     last_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Apellido'
             }
         ),
@@ -36,7 +36,7 @@ class AdultInfo(forms.Form):
     birthday = forms.DateField(
         widget=forms.SelectDateWidget(
             attrs={
-                'class': '',
+                'class': 'emma-input hide',
             }
         ),
         required = True,
@@ -45,7 +45,7 @@ class AdultInfo(forms.Form):
     street = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Calle'
             }
         ),
@@ -56,7 +56,7 @@ class AdultInfo(forms.Form):
     num_ext = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Num. Ext'
             }
         ),
@@ -67,7 +67,7 @@ class AdultInfo(forms.Form):
     num_int = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Num. Int'
             }
         ),
@@ -78,7 +78,7 @@ class AdultInfo(forms.Form):
     delegation = forms.ChoiceField(
         widget=forms.Select(
             attrs={
-                'class': '',
+                'class': 'emma-input hide',
                 'placeholder': 'Delegacion'
             }
         ),
@@ -108,7 +108,7 @@ class AdultInfo(forms.Form):
     colony = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Delegacion'
             }
         ),
@@ -119,7 +119,7 @@ class AdultInfo(forms.Form):
     postal_code = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Codigo Postal'
             }
         ),
@@ -130,7 +130,7 @@ class AdultInfo(forms.Form):
     reference = forms.CharField(
         widget=forms.Textarea(
             attrs={
-                'class': '',
+                'class': 'emma-input show-as-text',
                 'placeholder': 'Referencia'
             }
         ),
