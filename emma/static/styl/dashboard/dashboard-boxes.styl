@@ -19,8 +19,21 @@
       color $yellow
       cursor pointer
       cursor hand
-      with 300px
-  
+      margin-left 30px
+      
+      &.send-button
+        background none
+        border none
+        height 0
+        outline 0
+        padding 0
+        
+      &.cancel-button
+        color $gray
+        
+      &:hover ~ &.cancel-button
+        width 300px
+      
   &-content
     background $light_gray
 
@@ -42,8 +55,13 @@
         
         .emma-input
           flex-grow 1
-          margin-left 10px
+          margin-left 25px
           width auto
+          
+          &.show-as-text
+            margin-left 10px
+            padding 0
+            background transparent
     
     .help-container
       padding 0

@@ -10,7 +10,9 @@
 				<div class="flex-grow-1">
 					<div class="col-md-10 col-sm-8 col-xs-10 centered-col padding-0 flex">
 						<h2>Informacion del familiar administrador</h2>
-						<div class="dashboard-box-title-button">editar</div>
+						<div class="dashboard-box-title-button cancel-button hide">cancelar</div>
+						<div class="dashboard-box-title-button edit-button">editar</div>
+						<button id="user_information" name="user_information" class="dashboard-box-title-button send-button hide" type="submit">guardar</button>
 					</div>
 				</div>
 			</div>
@@ -32,7 +34,6 @@
 						<b>Teléfono de contacto: </b>
 						{{ user_form.contact_number }}
 					</div>
-					<button type="submit" name="user_information">Actualizar</button>
 				</div>
 			</div>
 		</div>
@@ -72,4 +73,3 @@
 		{% endif %}
 	</p>
 {% endblock %}
-		
