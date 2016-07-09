@@ -229,24 +229,24 @@ class UpdatePasswordForm(forms.Form):
     current_password = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
-                'class': '',
-                'placeholder': 'Contraseña Actual'
+                'class': 'emma-input',
+                'placeholder': 'Contraseña actual'
             }
         ),
     )
     new_password_1 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
-                'class': '',
-                'placeholder': 'Nueva Contraseña'
+                'class': 'emma-input',
+                'placeholder': 'Contraseña nueva'
             }
         ),
     )
     new_password_2 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
-                'class': '',
-                'placeholder': 'Confirmar Contraseña'
+                'class': 'emma-input',
+                'placeholder': 'Confirmar'
             }
         ),
     )

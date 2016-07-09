@@ -30,7 +30,7 @@ class UserInformationForm(forms.Form):
         widget=forms.EmailInput(
             attrs={
                 'class': 'emma-input show-as-text',
-                'placeholder': 'Email'
+                'placeholder': 'Correo'
             }
         ),
     )
@@ -38,7 +38,7 @@ class UserInformationForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input show-as-text',
-                'placeholder': 'Telefono de contacto'
+                'placeholder': 'Teléfono de contacto'
             }
         ),
     )
