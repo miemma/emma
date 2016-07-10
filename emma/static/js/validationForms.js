@@ -82,6 +82,10 @@ $(document).ready(function () {
         .addClass('show-as-default');
       form.find('.show-as-default')
         .removeAttr('disabled');
+      form.find('.input-container.multiple-fields .fields-container')
+        .removeClass('hide');
+      form.find('.input-container.multiple-fields .value-container')
+        .addClass('hide');
     });
 
     form.find('.cancel-button').click(function () {
@@ -94,6 +98,10 @@ $(document).ready(function () {
         .removeClass('show-as-default');
       form.find('.show-as-text')
         .attr('disabled', '');
+      form.find('.input-container.multiple-fields .fields-container')
+        .addClass('hide');
+      form.find('.input-container.multiple-fields .value-container')
+        .removeClass('hide');
     });
   });
 
