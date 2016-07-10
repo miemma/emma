@@ -49,23 +49,23 @@
 						{% csrf_token %}
 						<div class="input-container select-container flex">
 							<div class="fields-container hide">
-								<b>Edad: </b>
+								<span>Edad: </span>
 								{{ adultform.birthday }}
 							</div>
 							<div class="value-container">
-								<b>Edad: </b>
+								<span>Edad: </span>
 								{{ adultform.birthday.value }}
 							</div>
 						</div>
 						<div class="input-container multiple-fields flex">
 							<div class="fields-container hide">
-								<b>Dirección: </b>
+								<span>Dirección: </span>
 	          		{{ adultform.street }} 
 	          		{{ adultform.num_ext }} 
 								{{ adultform.num_int }}
 							</div>
 							<span class="value-container">
-								<b>Dirección: </b>
+								<span>Dirección: </span>
 								{{ adultform.street.value }}
 								{{ adultform.num_ext.value }}
 								{{ adultform.num_int.value }}
@@ -73,29 +73,29 @@
 						</div>
 						<div class="input-container flex select-container">
 							<div class="fields-container hide">
-								<b>Delegación: </b>
+								<span>Delegación: </span>
 								{{ adultform.delegation }}
 							</div>
 							<div class="value-container">
-								<b>Delegación: </b>
+								<span>Delegación: </span>
 								{{ adultform.delegation.value|default_if_none:"" }}
 							</div>
 						</div>
 						<div class="input-container flex">
-							<b>Colonia: </b>
+							<span>Colonia: </span>
 							{{ adultform.colony }}
 						</div>
 						<div class="input-container flex">
-							<b>C.P. </b>
+							<span>C.P. </span>
 							{{ adultform.postal_code }}
 						</div>
 						<div class="input-container flex textarea-container">
 							<div class="fields-container hide">
-								<b>Referencias: </b>
+								<span>Referencias: </span>
 								{{ adultform.reference }}
 							</div>
 							<div class="value-container">
-								<b>Referencias: </b>
+								<span>Referencias: </span>
 								{{ adultform.reference.value|default_if_none:"" }}
 							</div>
 						</div>

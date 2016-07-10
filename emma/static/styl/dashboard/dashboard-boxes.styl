@@ -70,9 +70,6 @@
           align-items center
           display flex
           
-          .emma-input:not(:first-child)
-            margin-left 2px
-          
   .help-container
     padding 0
 
@@ -152,10 +149,6 @@
   .dashboard-box-title
     border-width 0 0 2px 0
     padding 20px 20px 0 0
-    
-    .emma-input:first-child
-      color $dark_gray
-      margin-left 0
       
     .send-button
       height auto
@@ -163,12 +156,29 @@
   .dashboard-box-content
     background white
     color $gray
+    padding-right 20px
     
     .input-container
       padding 0
         
       .emma-input
         color $gray
+        
+      .emma-input:not(.show-as-text)
+        margin-bottom 5px
+        margin-top 5px
     
 .white .emma-input:not(.show-as-text)
   border 1px solid $light_gray
+  
+.dashboard-box-title
+  .emma-input:first-child
+    color $dark_gray
+    margin-left 0 !important
+    
+  .emma-input:not(:first-child)
+    margin-left 2px !important
+    
+.dashboard-box-content .multiple-fields, .select-container
+  .emma-input:not(:nth-child(2))
+    margin-left 2px
