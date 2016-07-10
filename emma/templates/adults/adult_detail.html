@@ -1,48 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Pantalla de vista de detalle del adulto</title>
-</head>
-<body>
-	<h3>
-		Formulario de informacion del adulto mayor
-	</h3>
-	{% if messages %}
-		<ul class="messages">
-			{% for message in messages %}
-				<li id="message_{{ forloop.counter }}"
-					{% if message.tags %} class="{{ message.tags }}" {% endif %}>
-					{{ message }}
-				</li>
-			{% endfor %}
-		</ul>
-	{% endif %}
-	<form action="." method="post" enctype="multipart/form-data">
-		{% csrf_token %}
-		{{ adultform.as_p }}
-		<button type="submit" name="adult_form">Guardar</button>
-	</form>
+{% extends "clients/dashboard_base.html" %}
+{% block content %}
+<div class="dashboard">
+{% include "clients/dashboard_menu.html" %}
+  <div class="dashboard-content">
+		<form action="." method="post" enctype="multipart/form-data" class="dashboard-special-form">
+			<div class="dashboard-box adult-profile-box">
+	      <div class="adult-profile-box-picture">
+	      	<div class="adult-picture-container circle" style="background: url('{{ adult.photo.url }}')">
+	      	</div>
+	      </div>
+	      <div class="adult-profile-box-data">
+	        <div class="dashboard-box-title border">
+	          <h2>Nombre</h2>
+	          <div class="dashboard-box-title-button cancel-button hide">
+	            cancelar
+	          </div>
+	          <div class="dashboard-box-title-button edit-button">
+	            editar
+	          </div>
+	          <button type="submit" id="adult_information" name="adult_information" class="dashboard-box-title-button send-button hide">
+	            guardar
+	          </button>
+	        </div>
+	        <div class="dashboard-box-content">
+	        	{% if messages %}
+							<ul class="messages">
+								{% for message in messages %}
+									<li id="message_{{ forloop.counter }}"
+										{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+										{{ message }}
+									</li>
+								{% endfor %}
+							</ul>
+						{% endif %}
+						{% csrf_token %}
+						{{ adultform.as_p }}
+						<button type="submit" name="adult_form">Guardar</button>
+	        </div>
+	      </div>
+    	</div>
+    </form>
+						<h3>
+							Formulario de informacion del adulto mayor
+						</h3>
+						
 
-	<h1>
-		Los hobbies no son editables
-	</h1>
-	<ul>
-		{% for hobbie in adult.adulthobbie_set.all %}
-		<li>
-			{{ hobbie.hobbie }}
-		</li>
-		{% endfor %}
-	</ul>
-	<h3>
-		Formulario de la informacion médica
-	</h3>
-	<form action="." method="post" enctype="multipart/form-data">
-		{% csrf_token %}
-		{{ medicalform.as_p }}
-		<button type="submit" name="medical_form">Guardar</button>
-	</form>
-
-
-</body>
-</html>
+						<h1>
+							Los hobbies no son editables
+						</h1>
+						<ul>
+							{% for hobbie in adult.adulthobbie_set.all %}
+							<li>
+								{{ hobbie.hobbie }}
+							</li>
+							{% endfor %}
+						</ul>
+						<h3>
+							Formulario de la informacion médica
+						</h3>
+						<form action="." method="post" enctype="multipart/form-data">
+							{% csrf_token %}
+							{{ medicalform.as_p }}
+							<button type="submit" name="medical_form">Guardar</button>
+						</form>
+  </div>
+</div>
+{% endblock %}
