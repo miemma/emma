@@ -70,6 +70,9 @@
           align-items center
           display flex
           
+          .emma-input:not(:first-child)
+            margin-left 2px
+          
   .help-container
     padding 0
 
@@ -118,8 +121,8 @@
   display flex
   
   &-picture
-    height 200px
-    width 250px !important
+    height 180px
+    width auto
     
     &:hover label
       opacity 1
@@ -139,9 +142,9 @@
     .adult-picture-container
       background-position center !important
       background-size cover !important
-      height 200px
-      margin 0 auto
-      width 200px
+      height 180px
+      margin 0 20px
+      width 180px
     
   &-data
     flex-grow 1
@@ -150,11 +153,22 @@
     border-width 0 0 2px 0
     padding 20px 20px 0 0
     
+    .emma-input:first-child
+      color $dark_gray
+      margin-left 0
+      
     .send-button
       height auto
       
   .dashboard-box-content
     background white
+    color $gray
+    
+    .input-container
+      padding 0
+        
+      .emma-input
+        color $gray
     
 .white .emma-input:not(.show-as-text)
   border 1px solid $light_gray
