@@ -24,7 +24,7 @@
 		<form action="." method="post" id="contract-form" class="row text-center">
       {% csrf_token %}
 			{% if error %}
-				<label class="error margin-top-30" id="contract-alert">
+				<label class="error margin-top-30" class="form-alert">
 					{{ error }}
 				</label>
 			{% endif %}
@@ -79,11 +79,5 @@
 		</form>
 	</section>
 
-{% endblock %}
-
-{% block js %}
-	<script type="text/javascript">
-
-	</script>
 {% endblock %}
 
