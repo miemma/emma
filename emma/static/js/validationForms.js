@@ -407,6 +407,9 @@ $(document).ready(function () {
   }, "La hora no es valida");
   
   jQuery.validator.setDefaults({
+    highlight: function(element, errorClass) {
+      $(element).removeClass(errorClass);
+    },
     submitHandler: function (form) {
       if ($(form).find('.form-loader').length) {
         $(form).find('.form-loader').show();
