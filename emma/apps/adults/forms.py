@@ -36,7 +36,7 @@ class AdultInfo(forms.Form):
     birthday = forms.DateField(
         widget=forms.SelectDateWidget(
             attrs={
-                'class': 'emma-input hide',
+                'class': 'emma-input',
             }
         ),
         required = True,
@@ -78,7 +78,7 @@ class AdultInfo(forms.Form):
     delegation = forms.ChoiceField(
         widget=forms.Select(
             attrs={
-                'class': 'emma-input hide',
+                'class': 'emma-input',
                 'placeholder': 'Delegacion'
             }
         ),
