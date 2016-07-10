@@ -406,4 +406,16 @@ $(document).ready(function () {
     }
   }, "La hora no es valida");
   
+  jQuery.validator.setDefaults({
+    submitHandler: function (form) {
+      if ($(form).find('.form-loader').length) {
+        $(form).find('.form-loader').show();
+      }
+      if ($(form).find('.form-alert').length) {
+        $(form).find('.form-alert').hide();
+      }
+      form.submit();
+    }
+  });
+  $('#dashboard-user-form').validate();
 });

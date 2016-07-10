@@ -4,7 +4,7 @@
 <div class="dashboard">
 {% include "clients/dashboard_menu.html" %}
 	<div class="dashboard-content">
-	<form action="." method="post" class="dashboard-special-form">
+	<form id="dashboard-user-form" action="." method="post" class="dashboard-special-form">
 		<div class="dashboard-box">
 			<div class="dashboard-box-title border">
 				<div class="flex-grow-1">
@@ -34,6 +34,14 @@
 						<b>Teléfono de contacto: </b>
 						{{ user_form.contact_number }}
 					</div>
+					<div class="row text-center padding-top-10 padding-bottom-20 form-loader">
+		        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
+		          <div id="movingBallG">
+								<div class="movingBallLineG"></div>
+								<div id="movingBallG_1" class="movingBallG"></div>
+							</div>
+				    </div>
+				  </div>
 				</div>
 			</div>
 		</div>
@@ -48,7 +56,7 @@
 			</div>
 		</div>
 		<div class="dashboard-box-content flex-grow-1 padding-top-30 padding-bottom-30 margin-bottom-70">
-			<form action="." method="post" class="col-md-7 col-sm-10 col-xs-10 centered-col padding-0">
+			<form action="." method="post" class="col-md-7 col-sm-10 col-xs-10 centered-col padding-0 loader-form">
 			{% csrf_token %}
 			<div class="input-container">
 				{{ password_form.current_password }}
