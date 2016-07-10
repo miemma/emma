@@ -1,4 +1,5 @@
 {% extends "clients/dashboard_base.html" %}
+{% load age_filter_tag %}
 {% block content %}
 <div class="dashboard">
 {% include "clients/dashboard_menu.html" %}
@@ -54,7 +55,7 @@
 							</div>
 							<div class="value-container">
 								<span>Edad: </span>
-								{{ adultform.birthday.value }}
+								{{ adultform.birthday.value|age }}
 							</div>
 						</div>
 						<div class="input-container multiple-fields flex">
