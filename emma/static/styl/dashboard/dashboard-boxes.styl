@@ -37,78 +37,83 @@
   &-content
     background $light_gray
 
-    .input-container
-      padding 5px 0
+  .input-container
+    padding 5px 0
+    
+    .emma-input
+      width 100%
+      color #5a5a5a
+      font-size 19px
+      margin 0
+      padding 15px
+    
+    &-inline
+      padding 5px 10px 0 0
+      
+    &.flex
+      align-items center
       
       .emma-input
-        width 100%
-        color #5a5a5a
-        font-size 19px
-        margin 0
-        padding 15px
-      
-      &-inline
-        padding 5px 10px 0 0
+        flex-grow 1
+        margin-left 25px
+        width auto
         
-      &.flex
-        align-items center
-        
-        .emma-input
-          flex-grow 1
-          margin-left 25px
-          width auto
+        &.show-as-text
+          background transparent
+          cursor text
+          margin-left 10px
+          padding 0
           
-          &.show-as-text
-            background transparent
-            cursor text
-            margin-left 10px
-            padding 0
-    
-    .help-container
-      padding 0
-
-    .help
-      cursor pointer
-      cursor hand
-      margin 14px 0
-      position relative
-      
-      &::before
-        background #aaa
-        border-radius 50%
-        color white
-        display inline-block
-        font-size 26px
-        width 36px
-        height 36px
-        padding 5px
-        text-align center
-        
-      .emma-tooltip
-        background black
-        color white
+      &.multiple-fields
         display block
-        font-family 'Avenir LT Std Medium'
-        font-size 14px
-        margin-top 11px
-        padding 0 15px
-        height 0
-        overflow hidden
-        opacity 0
-        position absolute
-        text-align left
-        transition all 0.2s
-        width 200px
         
-      &:hover
-        .emma-tooltip
-          height auto
-          padding 15px
-          opacity 1
+        .fields-container
+          display block
+          
+  .help-container
+    padding 0
+
+  .help
+    cursor pointer
+    cursor hand
+    margin 14px 0
+    position relative
+    
+    &::before
+      background #aaa
+      border-radius 50%
+      color white
+      display inline-block
+      font-size 26px
+      width 36px
+      height 36px
+      padding 5px
+      text-align center
+      
+    .emma-tooltip
+      background black
+      color white
+      display block
+      font-family 'Avenir LT Std Medium'
+      font-size 14px
+      margin-top 11px
+      padding 0 15px
+      height 0
+      overflow hidden
+      opacity 0
+      position absolute
+      text-align left
+      transition all 0.2s
+      width 200px
+      
+    &:hover
+      .emma-tooltip
+        height auto
+        padding 15px
+        opacity 1
     
 
 .adult-profile-box
-  background white
   display flex
   
   &-picture
@@ -125,3 +130,6 @@
     
   .dashboard-box-content
     background white
+    
+.white-container .emma-input:not(.show-as-text)
+  border 1px solid $light_gray

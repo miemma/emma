@@ -4,14 +4,24 @@
 {% include "clients/dashboard_menu.html" %}
   <div class="dashboard-content">
 		<form action="." method="post" enctype="multipart/form-data" class="dashboard-special-form">
-			<div class="dashboard-box adult-profile-box">
+			<div class="dashboard-box adult-profile-box white-container">
 	      <div class="adult-profile-box-picture">
 	      	<div class="adult-picture-container circle" style="background: url('{{ adult.photo.url }}')">
 	      	</div>
+						{{ adultform.photo }}
 	      </div>
 	      <div class="adult-profile-box-data">
 	        <div class="dashboard-box-title border">
-	          <h2>Nombre</h2>
+	          <h2 class="input-container flex multiple-fields">
+	          	<div class="fields-container hide">
+	          		{{ adultform.first_name }}
+	          		{{ adultform.last_name }}
+							</div>
+							<span class="value-container">
+		          	{{ adultform.first_name.value }} 
+		          	{{ adultform.last_name.value }}
+	          	</span>
+	          </h2>
 	          <div class="dashboard-box-title-button cancel-button hide">
 	            cancelar
 	          </div>
@@ -34,8 +44,39 @@
 							</ul>
 						{% endif %}
 						{% csrf_token %}
-						{{ adultform.as_p }}
-						<button type="submit" name="adult_form">Guardar</button>
+						<div class="input-container multiple-fields flex">
+							<b>Edad: </b>
+							{{ adultform.birthday }}
+						</div>
+						<div class="input-container multiple-fields flex">
+							<b>Dirección: </b>
+							<div class="fields-container hide">
+	          		{{ adultform.street }}
+	          		{{ adultform.num_ext }}
+								{{ adultform.num_int }}
+							</div>
+							<span class="value-container">
+								{{ adultform.street.value }}
+								{{ adultform.num_ext.value }}
+								{{ adultform.num_int.value }}
+	          	</span>
+						</div>
+						<div class="input-container flex">
+							<b>Delegación: </b>
+							{{ adultform.delegation }}
+						</div>
+						<div class="input-container flex">
+							<b>Colonia: </b>
+							{{ adultform.colony }}
+						</div>
+						<div class="input-container flex">
+							<b>C.P. </b>
+							{{ adultform.postal_code }}
+						</div>
+						<div class="input-container flex">
+							<b>Referencias: </b>
+							{{ adultform.reference }}
+						</div>
 	        </div>
 	      </div>
     	</div>
