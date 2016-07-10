@@ -1,362 +1,7 @@
 $(document).ready(function () {
-  $('.dashboard-special-form').toArray().forEach(function (elem, index) {
-    var form = $(elem);
-
-    form.find('.show-as-text').attr('disabled', '');
-
-    form.find('.edit-button').click(function () {
-      $(this).addClass('hide');
-      $(this).siblings('.cancel-button').removeClass('hide');
-      $(this).siblings('.send-button').removeClass('hide');
-      form.find('.emma-input.show-as-text')
-        .removeClass('show-as-text')
-        .addClass('show-as-default');
-      form.find('.show-as-default')
-        .removeAttr('disabled');
-    });
-
-    form.find('.cancel-button').click(function () {
-      $(this).addClass('hide');
-      $(this).siblings('.edit-button').removeClass('hide');
-      $(this).siblings('.send-button').addClass('hide');
-      form[0].reset();
-      form.find('.emma-input.show-as-default')
-        .addClass('show-as-text')
-        .removeClass('show-as-default');
-      form.find('.show-as-text')
-        .attr('disabled', '');
-    });
-  });
-
-  /* Contract Adult Form
+  /* jQuery validator config
   ---------------------------------------------------------------------------*/
-  var $contractAdultForm = $('#contract-adult-form');
-  $contractAdultForm.validate({
-      rules: {
-        name: {
-          required:true
-        },
-        last_name: {
-          required:true
-        },
-        birthday: {
-          required:true
-        },
-        description: {
-          required:true
-        },
-        doctor_name: {
-          required:true
-        },
-        doctor_phone: {
-          required:true,
-          number:true
-        },
-        doctor_cp: {
-          required:true
-        }
-      },
-      highlight: function(element, errorClass) {
-        $(element).removeClass(errorClass);
-      },
-      submitHandler: function(form)  {
-        $('.contract-adult-loader').show();
-        form.submit();
-      }
-    });
-
-  /* Contract Location Form
-  ---------------------------------------------------------------------------*/
-  var $contractLocationForm = $('#contract-location-form');
-  $contractLocationForm.validate({
-      rules: {
-        street: {
-          required:true
-        },
-        num_ext: {
-          required:true,
-          number:true
-        },
-        num_int: {
-          required:false,
-          number:true
-        },
-        colony: {
-          required:true
-        },
-        delegation: {
-          required:true
-        },
-        cp: {
-          required:true,
-          number:true
-        },
-        address_reference: {
-          required:true
-        },
-        day_1: {
-          required:true
-        },
-        day_1_hour: {
-          required:true
-        },
-        start_date: {
-          required:true
-        },
-        start_time: {
-          required:true
-        }
-      },
-      highlight: function(element, errorClass) {
-        $(element).removeClass(errorClass);
-      },
-      submitHandler: function(form)  {
-        $('.contract-location-2-loader').show();
-        form.submit();
-      }
-    });
-
-  /* Contract Form
-  ---------------------------------------------------------------------------*/
-  var $contractForm = $('#contract-form');
-  $contractForm.validate({
-	    rules: {
-        "contract-service-workshop": {
-          required: true,
-          minlength: 1
-        },
-		    "contract-service": {
-          required: true,
-          minlength: 1
-        }
-	    },
-	    messages: {
-        "contract-service-workshop": "Selecciona al menos 1 Taller",
-		    "contract-service": "Selecciona 1 Servicio"
-	    },
-			highlight: function(element, errorClass) {
-	      $(element).removeClass(errorClass);
-	    },
-			submitHandler: function(form)  {
-	      $('.contract-alert').hide();
-	      $('.contract-loader').show();
-	      form.submit();
-	    }
-		});
-  
-  /* Request Password Form
-  ---------------------------------------------------------------------------*/
-  var $passwdForm = $('#passwd-form');
-  $passwdForm.validate({
-    rules: {
-      new_password_1: {
-        required: true
-      },
-      new_password_2: {
-        required: true,
-        equalTo: "#id_new_password_1"
-      }
-    },
-    highlight: function(element, errorClass) {
-      $(element).removeClass(errorClass);
-    },
-    submitHandler: function(form)  {
-      $('.passwd-alert').hide();
-      $('.passwd-loader').show();
-      form.submit();
-    }
- });
-
-  /* Request Password Form
-  ---------------------------------------------------------------------------*/
-  var $passwdReset = $('#passwd-reset-form');
-  $passwdReset.validate({
-    rules: {
-      new_password1: {
-        required: true
-      },
-      new_password2: {
-        required: true,
-        equalTo: "#id_new_password1"
-      }
-    },
-    highlight: function(element, errorClass) {
-      $(element).removeClass(errorClass);
-    },
-    submitHandler: function(form)  {
-      $('.passwd-reset-alert').hide();
-      $('.passwd-reset-loader').show();
-      form.submit();
-    }
- });
-
-  /* Request Password Request Form
-  ---------------------------------------------------------------------------*/
-  var $passwdResetReq = $('#passwd-reset-req-form');
-  $passwdResetReq.validate({
-    rules: {
-      email: {
-        email: true,
-        required: true
-      }
-    },
-    highlight: function(element, errorClass) {
-      $(element).removeClass(errorClass);
-    },
-    submitHandler: function(form)  {
-      $('.passwd-reset-req-alert').hide();
-      $('.passwd-reset-req-loader').show();
-      form.submit();
-    }
- });
-
-  /* Signup Form
-  ---------------------------------------------------------------------------*/
-  var $signupForm = $('#signup-form');
-  $signupForm.validate({
-    rules: {
-      email: {
-        email: true,
-        required:true
-      },
-      password_1: {
-        required:true
-      },
-      password_2: {
-        required:true,
-        equalTo: "#id_password_1"
-      },
-      name: {
-        required:true
-      },
-      last_name: {
-        required:true
-      }
-    },
-
-    highlight: function(element, errorClass) {
-        $(element).removeClass(errorClass);
-    },
-    submitHandler: function(form)  {
-      $('.signup-alert').hide();
-      $('.signup-loader').show();
-      form.submit();
-    }
-  });
-  
-  /* Login Form
-  ---------------------------------------------------------------------------*/
-  var $loginForm = $('#login-form');
-  $loginForm.validate({
-    rules: {
-      username: {
-        email: true
-      }
-    },
-    highlight: function(element, errorClass) {
-      $(element).removeClass(errorClass);
-    },
-    submitHandler: function(form)  {
-      $('.login-alert').hide();
-      $('.login-loader').show();
-      form.submit();
-    }
- });
-  
-  /* Date Form
-  ---------------------------------------------------------------------------*/
-  var $dateForm = $('#dateForm');
-  $dateForm.validate({
-    groups: {
-        timeGroup: "hour minute"
-    },
-    rules: {
-      hour: {
-        number: true,
-        maxlength: 12,
-        minlength: 1,
-        required: true
-      },
-      minute: {
-        checkDateTime: true,
-        number: true,
-        maxlength: 59,
-        minlength: 0,
-        required: true
-      },
-      number: {
-        number: true,
-        maxlength: 10
-      }
-    },
-
-    highlight: function(element, errorClass) {
-        $(element).removeClass(errorClass);
-    },
-    submitHandler: function(form)  {
-      $('.date-loader').show();
-      form.submit();
-    }
-  });
-  
-  /* Pay Form
-  ---------------------------------------------------------------------------*/
-  var $payForm = $('#pay-form');
-  $payForm.validate({
-    highlight: function(element, errorClass) {
-        $(element).removeClass(errorClass);
-    },
-    submitHandler: function(form)  {
-      $('.pay-loader').show();
-      form.submit();
-    }
-  });
-  
-  /* Contact Form
-  ---------------------------------------------------------------------------*/
-  var $contactForm = $('#contactForm');
-  $contactForm.validate({
-    errorClass: "errorWhite",
-    onkeyup: false,
-    onfocusout: false,
-    highlight: function(element, errorClass) {
-        $(element).removeClass(errorClass);
-    },
-    submitHandler: function(form)  {
-      $('.emma-modal-loader').show();
-      form.submit();
-    }
-  });
-
-  /* Contact Form
-  ---------------------------------------------------------------------------*/
-  var $joinForm = $('#joinForm');
-  $joinForm.validate({
-    rules: {
-      age: {
-        number: true,
-        maxlength: 2
-      },
-      phone_movile: {
-        number: true,
-        maxlength: 10
-      },
-      phone: {
-        number: true,
-        maxlength: 10
-      }
-    },
-    highlight: function(element, errorClass) {
-        $(element).removeClass(errorClass);
-    },
-    submitHandler: function(form)  {
-      $('.join-loader').show();
-      form.submit();
-    }
-  });
-
   // Mensajes de error
-
   jQuery.extend(jQuery.validator.messages, {
     required: "Este campo es obligatorio",
     remote: "Please fix this field.",
@@ -420,5 +65,261 @@ $(document).ready(function () {
       form.submit();
     }
   });
+
+  /* Show-as-text forms
+  ---------------------------------------------------------------------------*/
+  $('.dashboard-special-form').toArray().forEach(function (elem, index) {
+    var form = $(elem);
+
+    form.find('.show-as-text').attr('disabled', '');
+
+    form.find('.edit-button').click(function () {
+      $(this).addClass('hide');
+      $(this).siblings('.cancel-button').removeClass('hide');
+      $(this).siblings('.send-button').removeClass('hide');
+      form.find('.emma-input.show-as-text')
+        .removeClass('show-as-text')
+        .addClass('show-as-default');
+      form.find('.show-as-default')
+        .removeAttr('disabled');
+    });
+
+    form.find('.cancel-button').click(function () {
+      $(this).addClass('hide');
+      $(this).siblings('.edit-button').removeClass('hide');
+      $(this).siblings('.send-button').addClass('hide');
+      form[0].reset();
+      form.find('.emma-input.show-as-default')
+        .addClass('show-as-text')
+        .removeClass('show-as-default');
+      form.find('.show-as-text')
+        .attr('disabled', '');
+    });
+  });
+
+  /* Contract Adult Form
+  ---------------------------------------------------------------------------*/
+  $('#contract-adult-form').validate({
+    rules: {
+      name: {
+        required:true
+      },
+      last_name: {
+        required:true
+      },
+      birthday: {
+        required:true
+      },
+      description: {
+        required:true
+      },
+      doctor_name: {
+        required:true
+      },
+      doctor_phone: {
+        required:true,
+        number:true
+      },
+      doctor_cp: {
+        required:true
+      }
+    }
+  });
+
+  /* Contract Location Form
+  ---------------------------------------------------------------------------*/
+  $('#contract-location-form').validate({
+    rules: {
+      street: {
+        required:true
+      },
+      num_ext: {
+        required:true,
+        number:true
+      },
+      num_int: {
+        required:false,
+        number:true
+      },
+      colony: {
+        required:true
+      },
+      delegation: {
+        required:true
+      },
+      cp: {
+        required:true,
+        number:true
+      },
+      address_reference: {
+        required:true
+      },
+      day_1: {
+        required:true
+      },
+      day_1_hour: {
+        required:true
+      },
+      start_date: {
+        required:true
+      },
+      start_time: {
+        required:true
+      }
+    }
+  });
+
+  /* Contract Form
+  ---------------------------------------------------------------------------*/
+  $('#contract-form').validate({
+    rules: {
+      "contract-service-workshop": {
+        required: true,
+        minlength: 1
+      },
+	    "contract-service": {
+        required: true,
+        minlength: 1
+      }
+    },
+    messages: {
+      "contract-service-workshop": "Selecciona al menos 1 Taller",
+	    "contract-service": "Selecciona 1 Servicio"
+    }
+	});
+  
+  /* Request Password Form
+  ---------------------------------------------------------------------------*/
+  $('#passwd-form').validate({
+    rules: {
+      new_password_1: {
+        required: true
+      },
+      new_password_2: {
+        required: true,
+        equalTo: "#id_new_password_1"
+      }
+    }
+  });
+
+  /* Request Password Form
+  ---------------------------------------------------------------------------*/
+  $('#passwd-reset-form').validate({
+    rules: {
+      new_password1: {
+        required: true
+      },
+      new_password2: {
+        required: true,
+        equalTo: "#id_new_password1"
+      }
+    }
+  });
+
+  /* Request Password Request Form
+  ---------------------------------------------------------------------------*/
+  $('#passwd-reset-req-form').validate({
+    rules: {
+      email: {
+        email: true,
+        required: true
+      }
+    }
+  });
+
+  /* Signup Form
+  ---------------------------------------------------------------------------*/
+  $('#signup-form').validate({
+    rules: {
+      email: {
+        email: true,
+        required:true
+      },
+      password_1: {
+        required:true
+      },
+      password_2: {
+        required:true,
+        equalTo: "#id_password_1"
+      },
+      name: {
+        required:true
+      },
+      last_name: {
+        required:true
+      }
+    }
+  });
+  
+  /* Login Form
+  ---------------------------------------------------------------------------*/
+  $('#login-form').validate({
+    rules: {
+      username: {
+        email: true
+      }
+    }
+  });
+  
+  /* Date Form
+  ---------------------------------------------------------------------------*/
+  $('#dateForm').validate({
+    groups: {
+        timeGroup: "hour minute"
+    },
+    rules: {
+      hour: {
+        number: true,
+        maxlength: 12,
+        minlength: 1,
+        required: true
+      },
+      minute: {
+        checkDateTime: true,
+        number: true,
+        maxlength: 59,
+        minlength: 0,
+        required: true
+      },
+      number: {
+        number: true,
+        maxlength: 10
+      }
+    }
+  });
+  
+  /* Pay Form
+  ---------------------------------------------------------------------------*/
+  $('#pay-form').validate();
+  
+  /* Contact Form
+  ---------------------------------------------------------------------------*/
+  $('#contactForm').validate({
+    errorClass: "errorWhite",
+    onkeyup: false,
+    onfocusout: false
+  });
+
+  /* Contact Form
+  ---------------------------------------------------------------------------*/
+  $('#joinForm').validate({
+    rules: {
+      age: {
+        number: true,
+        maxlength: 2
+      },
+      phone_movile: {
+        number: true,
+        maxlength: 10
+      },
+      phone: {
+        number: true,
+        maxlength: 10
+      }
+    }
+  });
+
+  /* Dashboard User Information Form
+  ---------------------------------------------------------------------------*/
   $('#dashboard-user-form').validate();
 });
