@@ -26,7 +26,7 @@
 	  <div class="row text-center">
 		  <div class="col-lg-5 col-md-6 col-sm-8 col-xs-10">
 				{% if form.non_field_errors %}
-					<div class="alert alert-danger login-alert" role="alert">
+					<div class="alert alert-danger form-alert" role="alert">
 						{{ form.non_field_errors.as_text|cut:"*" }}
 					</div>
 				{% endif %}
@@ -41,13 +41,13 @@
           {% endif %}
 	        {{ form.username }}
 	        {% if form.username.errors %}
-            <div class="alert alert-danger login-alert" role="alert">
+            <div class="alert alert-danger form-alert" role="alert">
               {{ form.username.errors.as_text|cut:"*" }}
             </div>
           {% endif %}
           {{ form.password}}
 	        {% if form.password.errors %}
-            <div class="alert alert-danger login-alert" role="alert">
+            <div class="alert alert-danger form-alert" role="alert">
               {{ form.password.errors.as_text|cut:"*" }}
             </div>
           {% endif %}
@@ -67,7 +67,7 @@
               </a>
             </div>
           </div>
-          <div class="row text-center padding-top-30 login-loader">
+          <div class="row text-center padding-top-30 form-loader">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div id="movingBallG">
 								<div class="movingBallLineG"></div>
