@@ -131,7 +131,8 @@ class AdultInfo(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'class': 'emma-input show-as-text',
-                'placeholder': 'Referencia'
+                'placeholder': 'Referencia',
+                'rows': 5
             }
         ),
         validators=[validators.eval_blank],

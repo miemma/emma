@@ -114,10 +114,27 @@
     
 
 .adult-profile-box
+  align-items center
   display flex
   
   &-picture
+    height 200px
     width 200px
+    
+    &:hover label
+      opacity 1
+    
+    label
+      background rgba(black, 0.6)
+      display block
+      color white
+      cursor pointer
+      cursor hand
+      height 100%
+      line-height 200px
+      opacity 0
+      text-align center
+      transition opacity 0.2s
     
     .adult-picture-container
       background-position center !important

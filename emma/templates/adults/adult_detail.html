@@ -7,8 +7,11 @@
 			<div class="dashboard-box adult-profile-box white">
 	      <div class="adult-profile-box-picture">
 	      	<div class="adult-picture-container circle" style="background: url('{{ adult.photo.url }}')">
+	      		<div class="hide">
+							{{ adultform.photo }}
+	      		</div>
+	      		<label for="id_photo" class="circle hide">Cambiar</label>
 	      	</div>
-						{{ adultform.photo }}
 	      </div>
 	      <div class="adult-profile-box-data">
 	        <div class="dashboard-box-title border">
@@ -28,7 +31,7 @@
 	          <div class="dashboard-box-title-button edit-button">
 	            editar
 	          </div>
-	          <button type="submit" id="adult_information" name="adult_information" class="dashboard-box-title-button send-button hide">
+	          <button type="submit" id="adult_form" name="adult_form" class="dashboard-box-title-button send-button hide">
 	            guardar
 	          </button>
 	        </div>
