@@ -9,7 +9,7 @@
 	  <div class="row text-center">
 		  <div class="col-lg-5 col-md-6 col-sm-8 col-xs-10">
 				{% if form.non_field_errors %}
-					<div class="alert alert-danger signup-alert" role="alert">
+					<div class="alert alert-danger form-alert" role="alert">
 						{{ form.non_field_errors.as_text|cut:"*" }}
 					</div>
 				{% endif %}
@@ -21,13 +21,13 @@
           {% csrf_token %}
 	        {{ form.name }}
 	        {% if form.name.errors %}
-            <div class="alert alert-danger signup-alert" role="alert">
+            <div class="alert alert-danger form-alert" role="alert">
               {{ form.name.errors.as_text|cut:"*" }}
             </div>
           {% endif %}
           {{ form.last_name }}
 	        {% if form.last_name.errors %}
-            <div class="alert alert-danger signup-alert" role="alert">
+            <div class="alert alert-danger form-alert" role="alert">
               {{ form.last_name.errors.as_text|cut:"*" }}
             </div>
           {% endif %}
@@ -59,7 +59,7 @@
 	            </a>
 	          </div>
 	        </div>
-          <div class="row text-center padding-top-30 signup-loader">
+          <div class="row text-center padding-top-30 form-loader">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div id="movingBallG">
 								<div class="movingBallLineG"></div>
