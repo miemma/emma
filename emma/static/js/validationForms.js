@@ -82,9 +82,9 @@ $(document).ready(function () {
         .addClass('show-as-default');
       form.find('.show-as-default')
         .removeAttr('disabled');
-      form.find('.input-container.multiple-fields .fields-container')
+      form.find('.input-container .fields-container')
         .removeClass('hide');
-      form.find('.input-container.multiple-fields .value-container')
+      form.find('.input-container .value-container')
         .addClass('hide');
     });
 
@@ -98,9 +98,9 @@ $(document).ready(function () {
         .removeClass('show-as-default');
       form.find('.show-as-text')
         .attr('disabled', '');
-      form.find('.input-container.multiple-fields .fields-container')
+      form.find('.input-container .fields-container')
         .addClass('hide');
-      form.find('.input-container.multiple-fields .value-container')
+      form.find('.input-container .value-container')
         .removeClass('hide');
     });
   });

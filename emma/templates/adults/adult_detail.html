@@ -47,9 +47,15 @@
 							</ul>
 						{% endif %}
 						{% csrf_token %}
-						<div class="input-container multiple-fields flex">
-							<b>Edad: </b>
-							{{ adultform.birthday }}
+						<div class="input-container select-container flex">
+							<div class="fields-container hide">
+								<b>Edad: </b>
+								{{ adultform.birthday }}
+							</div>
+							<div class="value-container">
+								<b>Edad: </b>
+								{{ adultform.birthday.value }}
+							</div>
 						</div>
 						<div class="input-container multiple-fields flex">
 							<div class="fields-container hide">
@@ -65,9 +71,15 @@
 								{{ adultform.num_int.value }}
 	          	</span>
 						</div>
-						<div class="input-container flex">
-							<b>Delegación: </b>
-							{{ adultform.delegation }}
+						<div class="input-container flex select-container">
+							<div class="fields-container hide">
+								<b>Delegación: </b>
+								{{ adultform.delegation }}
+							</div>
+							<div class="value-container">
+								<b>Delegación: </b>
+								{{ adultform.delegation.value|default_if_none:"" }}
+							</div>
 						</div>
 						<div class="input-container flex">
 							<b>Colonia: </b>
@@ -77,9 +89,15 @@
 							<b>C.P. </b>
 							{{ adultform.postal_code }}
 						</div>
-						<div class="input-container flex">
-							<b>Referencias: </b>
-							{{ adultform.reference }}
+						<div class="input-container flex textarea-container">
+							<div class="fields-container hide">
+								<b>Referencias: </b>
+								{{ adultform.reference }}
+							</div>
+							<div class="value-container">
+								<b>Referencias: </b>
+								{{ adultform.reference.value|default_if_none:"" }}
+							</div>
 						</div>
 	        </div>
 	      </div>

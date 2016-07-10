@@ -63,7 +63,7 @@
           margin-left 10px
           padding 0
           
-      &.multiple-fields
+      &.multiple-fields, &.textarea-container, &.select-container
         display block
         
         .fields-container
@@ -119,7 +119,7 @@
   
   &-picture
     height 200px
-    width 200px
+    width 250px !important
     
     &:hover label
       opacity 1
@@ -140,11 +140,19 @@
       background-position center !important
       background-size cover !important
       height 200px
+      margin 0 auto
       width 200px
     
   &-data
     flex-grow 1
     
+  .dashboard-box-title
+    border-width 0 0 2px 0
+    padding 20px 20px 0 0
+    
+    .send-button
+      height auto
+      
   .dashboard-box-content
     background white
     
