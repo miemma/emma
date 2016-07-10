@@ -69,7 +69,19 @@ $(document).ready(function () {
   /* Show-as-text forms
   ---------------------------------------------------------------------------*/
   $('.dashboard-special-form').toArray().forEach(function (elem, index) {
-    var form = $(elem);
+    var form = $(elem),
+      pictures = [],
+      pictureContainers = null;
+
+    if (form.find('.form-image').length) {
+      pictureContainers = form.find('.form-image');
+      pictureContainers.toArray().forEach(function (elem, index) {
+        pictures[index] = $(elem).css('background-image');
+        $($(elem).find('input[type="file"]')).change(function (e) {
+          $(elem).css('background-image', 'url("' + URL.createObjectURL(e.target.files[0]) + '")');
+        });
+      });
+    }
 
     form.find('.show-as-text').attr('disabled', '');
 
@@ -86,6 +98,10 @@ $(document).ready(function () {
         .removeClass('hide');
       form.find('.input-container .value-container')
         .addClass('hide');
+      if (pictureContainers) {
+        pictureContainers.find('label')
+          .removeClass('hide');
+      }
     });
 
     form.find('.cancel-button').click(function () {
@@ -102,6 +118,13 @@ $(document).ready(function () {
         .addClass('hide');
       form.find('.input-container .value-container')
         .removeClass('hide');
+      if (pictureContainers) {
+        pictureContainers.children('label')
+          .addClass('hide');
+        pictureContainers.toArray().forEach(function (elem, index) {
+          $(elem).css('background-image', pictures[index]);
+        });
+      }
     });
   });
 
