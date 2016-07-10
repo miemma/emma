@@ -322,4 +322,8 @@ $(document).ready(function () {
   /* Dashboard User Information Form
   ---------------------------------------------------------------------------*/
   $('#dashboard-user-form').validate();
+
+  /* Dashboard Password Form
+  ---------------------------------------------------------------------------*/
+  $('#dashboard-password-form').validate();
 });

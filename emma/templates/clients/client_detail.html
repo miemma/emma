@@ -56,7 +56,7 @@
 			</div>
 		</div>
 		<div class="dashboard-box-content flex-grow-1 padding-top-30 padding-bottom-30 margin-bottom-70">
-			<form action="." method="post" class="col-md-7 col-sm-10 col-xs-10 centered-col padding-0">
+			<form id="dashboard-password-form" action="." method="post" class="col-md-7 col-sm-10 col-xs-10 centered-col padding-0">
 			{% csrf_token %}
 			<div class="input-container">
 				{{ password_form.current_password }}
@@ -67,6 +67,14 @@
 			<div class="input-container">
 				{{ password_form.new_password_2 }}
 			</div>
+			<div class="row text-center padding-top-10 padding-bottom-10 form-loader">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
+          <div id="movingBallG">
+						<div class="movingBallLineG"></div>
+						<div id="movingBallG_1" class="movingBallG"></div>
+					</div>
+		    </div>
+		  </div>
 			<div class="text-center margin-top-40">
 				<button type="submit" name="user_password" class="emma-btn-light large">Actualizar</button>
 			</div>
