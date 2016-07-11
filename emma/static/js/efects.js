@@ -51,3 +51,17 @@ $(function() {
         }
     });
 });
+
+$('.dashboard-toggle-list-button').click(function () {
+  if ($(this).hasClass('inverse')) {
+    $($(this).parent()
+      .siblings('.dashboard-toggle-list-content'))
+      .removeClass('toggle');
+    $(this).removeClass('inverse');
+  } else {
+    $($(this).parent()
+      .siblings('.dashboard-toggle-list-content'))
+      .addClass('toggle');
+    $(this).addClass('inverse');
+  }
+});

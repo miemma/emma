@@ -60,12 +60,21 @@
       &-button
         cursor pointer
         cursor hand
+        transition all .2s
           
         &.inverse
-          transform rotate(180deg)
+          transform rotate(-180deg)
           
       &-content
         background transparent
+        height 0
+        padding 0 30px
+        overflow hidden
+        transition all .2s
+        
+        &.toggle
+          height auto
+          padding 30px
 
   .input-container
     padding 5px 0
