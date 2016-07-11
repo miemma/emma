@@ -1,62 +1,93 @@
 {% extends "clients/dashboard_base.html" %}
+{% load age_filter_tag %}
 {% block content %}
-	<p>
-		<img src="{{ emma.profile_picture.url }}" height="500px" width="400px">
-	</p>
-	<p>
-		<b>Nombre:</b> {{ emma.user.first_name }}
-	</p>
-	<p>
-		<b>Apellido:</b> {{ emma.user.last_name }}
-	</p>
-	<p>
-		<p>
-		<b>Edad: </b> {{ emma.birthday }}
-	</p>
-	<p>
-		<b>Estudios: </b>
-		<ul>
-			{% for studie in emma.emmastudies_set.all %}
-				<li>
-					{{ studie.studie }}
-				</li>
-			{% endfor %}
-			
-		</ul>
-	</p>
-	<p>
-		<b>Certificaciones: </b>
-		<ul>
-			{% for certification in emma.emmacertification_set.all %}
-				<li>
-					{{ certification.certification }} / {{ certification.time }}
-				</li>
-			{% endfor %}
-
-		</ul>
-	</p>
-	<p>
-		<b>Descripcion general: </b> {{ emma.general_description }}
-	</p>
-	<p>
-		<b>Cualidades: </b> {{ emma.qualities }}
-	</p>
-	<p>
-		<b>Experincia con abuelos: </b> {{ emma.experience_with_seniors }}
-	</p>
-	<p>
-		<b>Caracteristicas </b> {{ emma.characteristics }}
-	</p>
-	<p>
-		<b>Intereses y Hobbies: </b>
-		<ul>
+<div class="dashboard-emma-box">
+	<div class="dashboard-emma-picture-container">
+		<img src="{{ emma.profile_picture.url }}" alt="Emma" class="circle" width="180px">
+	</div>
+	<div class="dashboard-emma-data-box">
+		<div class="emma-role-selector">
+			<a class="emma-role-selector-item {%if request.path == dashboard_main_emma%}active{%endif%}" href="{{dashboard_main_emma}}">
+				Titular
+			</a>
+			<a class="emma-role-selector-item {%if request.path == dashboard_alternative_emma%}active{%endif%}" href="{{dashboard_alternative_emma}}">
+				Suplente
+			</a>
+			<a class="emma-role-selector-item" href="#">
+				Coordinadora
+			</a>
+		</div>
+		<div class="dashboard-box margin-top-20">
+			<div class="dashboard-box-title small no-button border">
+				<div class="col-md-11 col-sm-11 col-xs-11 centered-col">
+					<h2>{{ emma.user.first_name }} {{ emma.user.last_name }}</h2>
+				</div>
+			</div>
+			<div class="dashboard-box-content white padding-top-30 padding-bottom-30">
+				<div class="col-md-11 col-sm-11 col-xs-11 centered-col">
+					<b>Edad:</b> {{ emma.birthday|age }} años <br>
+					<b>Ocupación principal:</b> <br>
+					<b>Estudios y cursos previos:</b>
+					<div class="margin-top-10 row">
+						<p class="col-md-6 col-sm-6 col-xs-6">
+							{% for studie in emma.emmastudies_set.all %}
+								{{ studie.studie }} <br>
+							{% endfor %}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="dashboard-box margin-top-20">
+			<div class="dashboard-box-title small no-button yellow">
+				<div class="col-md-11 col-sm-11 col-xs-11 centered-col">
+					<h2>Certificaciones y capacitaciones</h2>
+				</div>
+			</div>
+			<div class="dashboard-box-content white padding-top-30 padding-bottom-30">
+				<div class="col-md-11 col-sm-11 col-xs-11 centered-col">
+					{% for certification in emma.emmacertification_set.all %}
+					<b>{{ certification.certification }}</b> <br>
+					{{ certification.time }}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="dashboard-box margin-top-20">
+	<div class="dashboard-box-title border small no-button">
+		<div class="col-md-11 col-sm-11 col-xs-11 centered-col text-center">
+			<h2>Conoce más de {{ emma.user.first_name }}</h2>
+		</div>
+	</div>
+	<div class="dashboard-box-content padding-top-30 padding-bottom-30">
+		<div class="col-md-11 col-sm-11 col-xs-11 centered-col">
+			<b>Descripción personal</b>
+			<p class="margin-bottom-20">{{ emma.general_description }}</p>
+			<b>Con qué cualidades se identica tu Emma:</b>
+			<p class="margin-bottom-20">{{ emma.qualities }}</p>
+			<b>Experiencia pcon personas mayores:</b>
+			<p class="margin-bottom-20">{{ emma.experience_with_seniors }}</p>
+			<b>Características que buscaría en una Emma:</b>
+			<p>{{ emma.characteristics }}</p>
+		</div>
+	</div>
+</div>
+<div class="dashboard-box margin-top-20">
+	<div class="dashboard-box-title border small no-button">
+		<div class="col-md-11 col-sm-11 col-xs-11 centered-col text-center">
+			<h2>Intereses y Hobbies</h2>
+		</div>
+	</div>
+	<div class="dashboard-box-content padding-top-30 padding-bottom-30 white">
+		<div class="col-md-11 col-sm-11 col-xs-11 centered-col emma-hobbies">
 			{% for hobbie in emma.emmahobbie_set.all %}
-				<li>
-					{{ hobbie.hobbie }}
-				</li>
+			<p class="emma-hobbie-item">
+				{{ hobbie }}
+			</p>
 			{% endfor %}
-
-		</ul>
-	</p>
-
+		</div>
+	</div>
+</div>
 {% endblock %}
