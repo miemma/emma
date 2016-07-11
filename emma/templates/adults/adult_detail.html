@@ -1,5 +1,6 @@
 {% extends "clients/dashboard_base.html" %}
 {% load age_filter_tag %}
+{% load static from staticfiles %}
 {% block content %}
 <div class="dashboard">
 {% include "clients/dashboard_menu.html" %}
@@ -15,7 +16,7 @@
 	      	</div>
 	      </div>
 	      <div class="adult-profile-box-data">
-	        <div class="dashboard-box-title border">
+	        <div class="dashboard-box-title small border">
 	          <h2 class="input-container flex multiple-fields">
 	          	<div class="fields-container hide">
 	          		{{ adultform.first_name }}
@@ -104,26 +105,145 @@
 	      </div>
     	</div>
     </form>
-						<h3>
-							Formulario de informacion del adulto mayor
-						</h3>
-						
+    <form action="." method="post" class="dashboard-special-form">
+	    <div class="dashboard-box margin-top-20">
+	    	<div class="dashboard-box-title small border">
+	    		<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-0 flex">
+						<h2>Información personal</h2>
+						<div class="dashboard-box-title-button cancel-button hide">
+	            cancelar
+	          </div>
+	          <div class="dashboard-box-title-button edit-button">
+	            editar
+	          </div>
+	          <button type="submit" id="adult_form" name="adult_form" class="dashboard-box-title-button send-button hide">
+	            guardar
+	          </button>
+					</div>
+	    	</div>
+	    	<div class="dashboard-box-content">
+	    		<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-top-30 padding-bottom-20">
+	    			<b>Estructura familiar/condición:</b> <br>
 
-						<h1>
-							Los hobbies no son editables
-						</h1>
-						<ul>
-							{% for hobbie in adult.adulthobbie_set.all %}
-							<li>
-								{{ hobbie.hobbie }}
-							</li>
-							{% endfor %}
-						</ul>
-						<h3>
-							Formulario de la informacion médica
-						</h3>
+	    			<b>Personalidad:</b> <br> 
+	    		</div>
+	    		<div class="dashboard-box-title small internal-title border">
+	    			<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-0">
+	    				<h2>Intereses y pasatiempos</h2>
+	    			</div>
+	    		</div>
+	    		<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-top-30 padding-bottom-20">
+	    			<ul>
+						{% for hobbie in adult.adulthobbie_set.all %}
+						<li>
+							{{ hobbie.hobbie }}
+						</li>
+						{% endfor %}
+					</ul>
+	    		</div>
+	    	</div>
+	    </div>
+	  </form>
+		<form action="." method="post" class="dashboard-special-form">
+			{% csrf_token %}
+			<div class="dashboard-box margin-top-20">
+	    	<div class="dashboard-box-title small border">
+	    		<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-0 flex">
+						<h2>Información médica</h2>
+						<div class="dashboard-box-title-button cancel-button hide">
+	            cancelar
+	          </div>
+	          <div class="dashboard-box-title-button edit-button">
+	            editar
+	          </div>
+	          <button type="submit" id="adult_form" name="adult_form" class="dashboard-box-title-button send-button hide">
+	            guardar
+	          </button>
+					</div>
+	    	</div>
+	    	<div class="dashboard-box-content">
+	    		<div class="dashboard-toggle-list">
+	    			<div class="dashboard-toggle-list-title flex">
+	    				<h3 class="col-xs-offset-1 flex-grow-1">
+	    					Información básica
+	    				</h3>
+	    				<img class="dashboard-toggle-list-button" src="{% static "img/icons/arrow-down.png" %}" alt="">
+	    			</div>
+	    			<div class="dashboard-toggle-list-content">
+	    				aa
+	    			</div>
+	    		</div>
+	    		<div class="dashboard-toggle-list">
+	    			<div class="dashboard-toggle-list-title flex">
+	    				<h3 class="col-xs-offset-1 flex-grow-1">
+	    					Contactos de emergencia
+	    				</h3>
+	    				<img class="dashboard-toggle-list-button" src="{% static "img/icons/arrow-down.png" %}" alt="">
+	    			</div>
+	    			<div class="dashboard-toggle-list-content">
+	    				aa
+	    			</div>
+	    		</div>
+	    		<div class="dashboard-toggle-list">
+	    			<div class="dashboard-toggle-list-title flex">
+	    				<h3 class="col-xs-offset-1 flex-grow-1">
+	    					Ley de voluntad anticipada
+	    				</h3>
+	    				<img class="dashboard-toggle-list-button" src="{% static "img/icons/arrow-down.png" %}" alt="">
+	    			</div>
+	    			<div class="dashboard-toggle-list-content">
+	    				aa
+	    			</div>
+	    		</div>
+	    		<div class="dashboard-toggle-list">
+	    			<div class="dashboard-toggle-list-title flex">
+	    				<h3 class="col-xs-offset-1 flex-grow-1">
+	    					Seguro de gastos médicos mayores
+	    				</h3>
+	    				<img class="dashboard-toggle-list-button" src="{% static "img/icons/arrow-down.png" %}" alt="">
+	    			</div>
+	    			<div class="dashboard-toggle-list-content">
+	    				aa
+	    			</div>
+	    		</div>
+	    		<div class="dashboard-toggle-list">
+	    			<div class="dashboard-toggle-list-title flex">
+	    				<h3 class="col-xs-offset-1 flex-grow-1">
+	    					Seguridad social
+	    				</h3>
+	    				<img class="dashboard-toggle-list-button" src="{% static "img/icons/arrow-down.png" %}" alt="">
+	    			</div>
+	    			<div class="dashboard-toggle-list-content">
+	    				aa
+	    			</div>
+	    		</div>
+	    		<div class="dashboard-toggle-list">
+	    			<div class="dashboard-toggle-list-title flex">
+	    				<h3 class="col-xs-offset-1 flex-grow-1">
+	    					Médico de cabecera
+	    				</h3>
+	    				<img class="dashboard-toggle-list-button" src="{% static "img/icons/arrow-down.png" %}" alt="">
+	    			</div>
+	    			<div class="dashboard-toggle-list-content">
+	    				aa
+	    			</div>
+	    		</div>
+	    		<div class="dashboard-toggle-list">
+	    			<div class="dashboard-toggle-list-title flex">
+	    				<h3 class="col-xs-offset-1 flex-grow-1">
+	    					Enfermedades, medicamentos y alergias
+	    				</h3>
+	    				<img class="dashboard-toggle-list-button" src="{% static "img/icons/arrow-down.png" %}" alt="">
+	    			</div>
+	    			<div class="dashboard-toggle-list-content">
+	    				aa
+	    			</div>
+	    		</div>
+	    	</div>
+	    </div>
+		</form>
 						<form action="." method="post" enctype="multipart/form-data">
-							{% csrf_token %}
+							
 							{{ medicalform.as_p }}
 							<button type="submit" name="medical_form">Guardar</button>
 						</form>
