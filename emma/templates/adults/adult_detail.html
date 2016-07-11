@@ -132,14 +132,12 @@
 	    				<h2>Intereses y pasatiempos</h2>
 	    			</div>
 	    		</div>
-	    		<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-top-30 padding-bottom-20">
-	    			<ul>
+	    		<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-top-30 padding-bottom-30 adult-hobbies">
 						{% for hobbie in adult.adulthobbie_set.all %}
-						<li>
+						<p class="adult-hobbie-item">
 							{{ hobbie.hobbie }}
-						</li>
+						</p>
 						{% endfor %}
-					</ul>
 	    		</div>
 	    	</div>
 	    </div>
