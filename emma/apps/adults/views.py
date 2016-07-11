@@ -72,6 +72,9 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
                 'postal_code': adult.address.postal_code,
                 'reference': adult.address.reference,
                 'photo': adult.photo,
+                'personality': adult.personality,
+                'familiar_structure': adult.familiar_structure,
+                'description': adult.description,
             }
         )
         return form
