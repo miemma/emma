@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Emma titular</title>
-</head>
-<body>
+{% extends "clients/dashboard_base.html" %}
+{% block content %}
 	<p>
 		<img src="{{ emma.profile_picture.url }}" height="500px" width="400px">
 	</p>
@@ -63,5 +58,5 @@
 
 		</ul>
 	</p>
-</body>
-</html>
+
+{% endblock %}
