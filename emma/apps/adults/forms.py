@@ -144,6 +144,43 @@ class AdultInfo(forms.Form):
         error_messages=error_messages
     )
 
+    description = forms.CharField(
+        widget=forms.Textarea(
+            attrs={
+                'class': 'emma-input show-as-text',
+                'placeholder': 'Descripcion',
+                'rows': 5
+            }
+        ),
+        validators=[validators.eval_blank],
+        required=True,
+        error_messages=error_messages
+    )
+    familiar_structure = forms.CharField(
+        widget=forms.Textarea(
+            attrs={
+                'class': 'emma-input show-as-text',
+                'placeholder': 'Estructura Familiar',
+                'rows': 5
+            }
+        ),
+        validators=[validators.eval_blank],
+        required=True,
+        error_messages=error_messages
+    )
+    personality = forms.CharField(
+        widget=forms.Textarea(
+            attrs={
+                'class': 'emma-input show-as-text',
+                'placeholder': 'Personalidad',
+                'rows': 5
+            }
+        ),
+        validators=[validators.eval_blank],
+        required=True,
+        error_messages=error_messages
+    )
+
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
         self.adult_id = kwargs.pop('adult_id', None)
@@ -166,6 +203,9 @@ class AdultInfo(forms.Form):
         adult.first_name = cleaned_data.get('first_name')
         adult.last_name = cleaned_data.get('last_name')
         adult.birthday = cleaned_data.get('birthday')
+        adult.personality = cleaned_data.get('personality')
+        adult.description = cleaned_data.get('description')
+        adult.familiar_structure = cleaned_data.get('familiar_structure')
 
         if cleaned_data.get('photo'):
             adult.photo = cleaned_data.get('photo')
