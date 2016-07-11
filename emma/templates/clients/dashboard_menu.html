@@ -1,19 +1,13 @@
 <ul class="dashboard-menu">
-	<li class="dashboard-menu-item"><a href="#">Perfil</a></li>
-  <li class="dashboard-menu-item"><a href="#">Pagos</a>
+	<li class="dashboard-menu-item {%if request.path == dashboard_adult %}active{%endif%}"><a href="{{dashboard_adult}}">Perfil</a></li>
+  <li class="dashboard-menu-item"><a href="{{dashboard_add_card}}">Pagos</a>
+    {% if request.path == dashboard_add_card or request.path == dashboard_charges_list%}
     <ul class="dashboard-submenu">
-	    {% if request.path == '/dashboard/informacion-pago/' or request.path == '/dashboard/tarjeta/' %}
-				<li class="dashboard-submenu-item active"><a href="#">Mis tarjetas</a></li>
-			{% else %}
-				<li class="dashboard-submenu-item"><a href="#">Mis tarjetas</a></li>
-			{% endif %}
-      <li class="dashboard-submenu-item"><a href="#">Historial de Pagos</a></li>
+			<li class="dashboard-submenu-item {%if request.path == dashboard_add_card %}active{%endif%}"><a href="{{dashboard_add_card}}">Mis tarjetas</a></li>
+      <li class="dashboard-submenu-item {%if request.path == dashboard_charges_list %}active{%endif%}"><a href="{{dashboard_charges_list}}">Historial de Pagos</a></li>
     </ul>
+    {% endif %}
   </li>
-	{% if request.path == '/dashboard/cliente/'%}
-		<li class="dashboard-menu-item active"><a href="#">Configuración</a></li>
-	{% else %}
-		<li class="dashboard-menu-item"><a href="#">Configuración</a></li>
-	{% endif %}
-  <li class="dashboard-menu-item"><a href="#">Cerrar sesión</a></li>
+	<li class="dashboard-menu-item {%if request.path == dashboard_client_detail %}active{%endif%}"><a href="{{dashboard_client_detail}}">Configuración</a></li>
+  <li class="dashboard-menu-item"><a href="{% url 'xauth:logout' %}">Cerrar sesión</a></li>
 </ul>

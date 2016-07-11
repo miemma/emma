@@ -1,3 +1,12 @@
+{% url 'clients:dashboard_client_detail' as dashboard_client_detail %}
+{% url 'clients:dashboard_add_card' as dashboard_add_card %}
+{% url 'adults:dashboard_adult' as dashboard_adult %}
+{% url 'emmas:dashboard_main_emma' as dashboard_main_emma %}
+{% url 'emmas:dashboard_alternative_emma' as dashboard_alternative_emma %}
+{% url 'suscriptions:dashboard_charges_list' as dashboard_charges_list %}
+{% url 'suscriptions:dashboard_history_list' as dashboard_history_list %}
+{% url 'suscriptions:dashboard_payment_info' as dashboard_payment_info %}
+
 {% load static from staticfiles%}
 {% load settings_tag %}
 <!DOCTYPE html>
@@ -18,12 +27,12 @@
         </a>
         <ul class="header-navbar-list">
           <li class="header-navbar-list-item" hcolor="white">
-            <a class="header-navbar-list-item-link" href="#">
+            <a class="header-navbar-list-item-link" href="{{dashboard_history_list}}">
               Historial
             </a>
           </li>
           <li class="header-navbar-list-item" hcolor="white">
-            <a class="header-navbar-list-item-link" href="#">
+            <a class="header-navbar-list-item-link" href="{{dashboard_main_emma}}">
               Mi <i>Emma</i>
             </a>
           </li>
