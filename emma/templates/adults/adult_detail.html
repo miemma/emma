@@ -49,22 +49,26 @@
 							</ul>
 						{% endif %}
 						{% csrf_token %}
-						<div class="input-container multiple-fields select-container flex">
+						<div class="input-container multiple-fields select-container">
 							<div class="fields-container hide">
 								<span>Fecha de nacimiento: </span>
+								<div class="flex">
 								{{ adultform.birthday }}
+								</div>
 							</div>
 							<div class="value-container">
 								<span>Edad: </span>
 								{{ adultform.birthday.value|age }}
 							</div>
 						</div>
-						<div class="input-container multiple-fields flex">
+						<div class="input-container multiple-fields">
 							<div class="fields-container hide">
 								<span>Dirección: </span>
+								<div class="flex">
 	          		{{ adultform.street }} 
 	          		{{ adultform.num_ext }} 
 								{{ adultform.num_int }}
+								</div>
 							</div>
 							<span class="value-container">
 								<span>Dirección: </span>
@@ -73,28 +77,48 @@
 								{{ adultform.num_int.value }}
 	          	</span>
 						</div>
-						<div class="input-container flex select-container">
+						<div class="input-container select-container">
 							<div class="fields-container hide">
 								<span>Delegación: </span>
+								<div class="flex">
 								{{ adultform.delegation }}
+								</div>
 							</div>
 							<div class="value-container">
 								<span>Delegación: </span>
 								{{ adultform.delegation.value|default_if_none:"" }}
 							</div>
 						</div>
-						<div class="input-container flex">
-							<span>Colonia: </span>
-							{{ adultform.colony }}
+						<div class="input-container">
+							<div class="fields-container hide">
+								<span>Colonia: </span>
+								<div class="flex">
+								{{ adultform.colony }}
+								</div>
+							</div>
+							<div class="value-container">
+								<span>Colonia: </span>
+								{{ adultform.colony.value|default_if_none:"" }}
+							</div>
 						</div>
-						<div class="input-container flex">
-							<span>C.P. </span>
-							{{ adultform.postal_code }}
+						<div class="input-container">
+							<div class="fields-container hide">
+								<span>C.P. </span>
+								<div class="flex">
+								{{ adultform.postal_code }}
+								</div>
+							</div>
+							<div class="value-container">
+								<span>C.P. </span>
+								{{ adultform.postal_code.value|default_if_none:"" }}
+							</div>
 						</div>
-						<div class="input-container flex textarea-container">
+						<div class="input-container textarea-container">
 							<div class="fields-container hide">
 								<span>Referencias: </span>
+								<div class="flex">
 								{{ adultform.reference }}
+								</div>
 							</div>
 							<div class="value-container">
 								<span>Referencias: </span>
