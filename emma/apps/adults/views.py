@@ -7,7 +7,7 @@ from django.shortcuts import redirect, render
 from django.template.response import TemplateResponse
 from django.views.generic import View
 
-from emma.apps.adults.forms import AdultInfo, MedicalInfo
+from emma.apps.adults.forms import AdultInfo, MedicalInfo, AdultPreferences
 from emma.core.mixins import ClientRequiredMixin, GetAdultMixin
 
 
@@ -21,9 +21,13 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
         medicalform = self.get_initial_medical_form(
             request, self.get_adult(request)
         )
+        preferenceform = self.get_initial_preferences_form(
+            request, self.get_adult(request)
+        )
         ctx = {
             'adultform': adultform,
             'medicalform': medicalform,
+            'preferenceform': preferenceform,
             'adult': self.get_adult(request)
         }
         return TemplateResponse(request, self.template_name, ctx)
@@ -54,6 +58,20 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
             else:
                 ctx = {'adultform': adultform}
                 return render(request, self.template_name, ctx)
+
+        elif 'preference_form' in request.POST:
+
+            preferenceform = AdultPreferences(request.POST, **kwargs)
+
+            if preferenceform.is_valid():
+                preferenceform.save()
+                messages.info(self.request, 'User update')
+                return redirect(reverse_lazy('adults:dashboard_adult',
+                                             kwargs={'id': id}))
+            else:
+                ctx = {'preferenceform': preferenceform}
+                return render(request, self.template_name, ctx)
+
         else:
             raise Http404("No se encontro la pagina")
 
@@ -81,7 +99,6 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
 
     @staticmethod
     def get_initial_medical_form(request, adult):
-        print (adult.medical_information)
         form = MedicalInfo(
             initial={
                 'blood_type':
@@ -138,6 +155,17 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
                     adult.medical_information.drug_allergy,
                 'food_allergy':
                     adult.medical_information.food_allergy,
+            }
+        )
+        return form
+
+    @staticmethod
+    def get_initial_preferences_form(request, adult):
+        form = AdultPreferences(
+            initial={
+                'description': adult.description,
+                'familiar_structure': adult.familiar_structure,
+                'personality': adult.personality,
             }
         )
         return form

@@ -10,6 +10,68 @@ from emma.core import validators
 from emma.core.messages import error_messages
 
 
+class AdultPreferences(forms.Form):
+    description = forms.CharField(
+        widget=forms.Textarea(
+            attrs={
+                'class': 'emma-input show-as-text',
+                'placeholder': 'Descripcion',
+                'rows': 5
+            }
+        ),
+        validators=[validators.eval_blank],
+        required=True,
+        error_messages=error_messages
+    )
+    familiar_structure = forms.CharField(
+        widget=forms.Textarea(
+            attrs={
+                'class': 'emma-input show-as-text',
+                'placeholder': 'Estructura Familiar',
+                'rows': 5
+            }
+        ),
+        validators=[validators.eval_blank],
+        required=True,
+        error_messages=error_messages
+    )
+    personality = forms.CharField(
+        widget=forms.Textarea(
+            attrs={
+                'class': 'emma-input show-as-text',
+                'placeholder': 'Personalidad',
+                'rows': 5
+            }
+        ),
+        validators=[validators.eval_blank],
+        required=True,
+        error_messages=error_messages
+    )
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        self.adult_id = kwargs.pop('adult_id', None)
+        super(AdultPreferences, self).__init__(*args, **kwargs)
+
+    def save(self):
+        cleaned_data = super(AdultPreferences, self).clean()
+
+        client = self.request.user.client
+
+        if not self.adult_id:
+            adult = Adult.objects.filter(responsable=client)[0]
+        else:
+            adult = get_object_or_404(Adult,
+                                      responsable=client,
+                                      id=int(self.adult_id))
+
+        adult.personality = cleaned_data.get('personality')
+        adult.description = cleaned_data.get('description')
+        adult.familiar_structure = cleaned_data.get('familiar_structure')
+
+        adult.save()
+
+
 class AdultInfo(forms.Form):
     first_name = forms.CharField(
         widget=forms.TextInput(
@@ -141,43 +203,6 @@ class AdultInfo(forms.Form):
     )
     photo = forms.ImageField(
         required=False,
-        error_messages=error_messages
-    )
-
-    description = forms.CharField(
-        widget=forms.Textarea(
-            attrs={
-                'class': 'emma-input show-as-text',
-                'placeholder': 'Descripcion',
-                'rows': 5
-            }
-        ),
-        validators=[validators.eval_blank],
-        required=True,
-        error_messages=error_messages
-    )
-    familiar_structure = forms.CharField(
-        widget=forms.Textarea(
-            attrs={
-                'class': 'emma-input show-as-text',
-                'placeholder': 'Estructura Familiar',
-                'rows': 5
-            }
-        ),
-        validators=[validators.eval_blank],
-        required=True,
-        error_messages=error_messages
-    )
-    personality = forms.CharField(
-        widget=forms.Textarea(
-            attrs={
-                'class': 'emma-input show-as-text',
-                'placeholder': 'Personalidad',
-                'rows': 5
-            }
-        ),
-        validators=[validators.eval_blank],
-        required=True,
         error_messages=error_messages
     )
 
