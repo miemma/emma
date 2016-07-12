@@ -182,24 +182,15 @@
 	    	</div>
 	    </div>
 	  </form>
-		<form action="." method="post" class="dashboard-special-form">
-			{% csrf_token %}
-			<div class="dashboard-box margin-top-20">
-	    	<div class="dashboard-box-title small border">
-	    		<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-0 flex">
-						<h2>Información médica</h2>
-						<div class="dashboard-box-title-button cancel-button hide">
-	            cancelar
-	          </div>
-	          <div class="dashboard-box-title-button edit-button">
-	            editar
-	          </div>
-	          <button type="submit" id="medical_form" name="medical_form" class="dashboard-box-title-button send-button hide">
-	            guardar
-	          </button>
-					</div>
-	    	</div>
-	    	<div class="dashboard-box-content">
+		<div class="dashboard-box margin-top-20 margin-bottom-50">
+    	<div class="dashboard-box-title small border">
+    		<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-0">
+					<h2>Información médica</h2>
+				</div>
+    	</div>
+    	<div class="dashboard-box-content">
+				<form action="." method="post" class="dashboard-special-form">
+					{% csrf_token %}
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
 	    				<div class="col-md-11 col-sm-11 col-xs-11 centered-col flex">
@@ -210,6 +201,17 @@
 	    				</div>
 	    			</div>
 	    			<div class="dashboard-toggle-list-content">
+	    				<div class="dashboard-toggle-list-buttons">
+								<div class="dashboard-box-title-button cancel-button hide">
+			            cancelar
+			          </div>
+			          <div class="dashboard-box-title-button edit-button">
+			            editar
+			          </div>
+			          <button type="submit" id="medical_form" name="medical_form" class="dashboard-box-title-button send-button hide">
+			            guardar
+			          </button>
+							</div>
 	    				<div class="input-container">
 								<div class="fields-container hide">
 									<b>Tipo de sangre:</b>
@@ -221,6 +223,9 @@
 							</div>
 	    			</div>
 	    		</div>
+	    	</form>
+				<form action="." method="post" class="dashboard-special-form">
+					{% csrf_token %}
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
 	    				<div class="col-md-11 col-sm-11 col-xs-11 centered-col flex">
@@ -230,95 +235,111 @@
 		    				<img class="dashboard-toggle-list-button" height="10px" src="{% static "img/icons/arrow-down.png" %}" alt="">
 	    				</div>
 	    			</div>
-	    			<div class="dashboard-toggle-list-content columns">
-	    				<div class="dashboard-toggle-list-content-column">
-	    					<h4>Contacto #1</h4>
-	    					<div class="input-container">
-	    						<div class="fields-container hide">
-	    							<b>Nombre completo: </b>
-	                	{{ medicalform.emergency_contact_1_full_name }}
-	    						</div>
-									<div class="value-container">
-										<b>Nombre completo: </b>
-										{{ medicalform.emergency_contact_1_full_name.value|default_if_none:"---"}}
-									</div>
-	    					</div>
-	    					<div class="input-container">
-	    						<div class="fields-container hide">
-	    							<b>Relación: </b>
-	                	{{ medicalform.emergency_contact_1_relation }}
-	    						</div>
-									<div class="value-container">
-										<b>Relación: </b>
-										{{ medicalform.emergency_contact_1_relation.value|default_if_none:"---"}}
-									</div>
-	    					</div>
-	    					<div class="input-container">
-	    						<div class="fields-container hide">
-	    							<b>Número fijo: </b>
-	                	{{ medicalform.emergency_contact_1_home_phone }}
-	    						</div>
-									<div class="value-container">
-										<b>Número fijo: </b>
-										{{ medicalform.emergency_contact_1_home_phone.value|default_if_none:"---"}}
-									</div>
-	    					</div>
-	    					<div class="input-container">
-	    						<div class="fields-container hide">
-	    							<b>Número celular: </b>
-	                	{{ medicalform.emergency_contact_1_cell_phone }}
-	    						</div>
-									<div class="value-container">
-										<b>Número celular: </b>
-										{{ medicalform.emergency_contact_1_cell_phone.value|default_if_none:"---"}}
-									</div>
-	    					</div>
-	    				</div>
-							<div class="dashboard-toggle-list-content-column">
-	    					<h4>Contacto #2</h4>
-	    					<div class="input-container">
-	    						<div class="fields-container hide">
-	    							<b>Nombre completo: </b>
-	                	{{ medicalform.emergency_contact_2_full_name }}
-	    						</div>
-									<div class="value-container">
-										<b>Nombre completo: </b>
-										{{ medicalform.emergency_contact_2_full_name.value|default_if_none:"---"}}
-									</div>
-	    					</div>
-	    					<div class="input-container">
-	    						<div class="fields-container hide">
-	    							<b>Relación: </b>
-	                	{{ medicalform.emergency_contact_2_relation }}
-	    						</div>
-									<div class="value-container">
-										<b>Relación: </b>
-										{{ medicalform.emergency_contact_2_relation.value|default_if_none:"---"}}
-									</div>
-	    					</div>
-	    					<div class="input-container">
-	    						<div class="fields-container hide">
-	    							<b>Número fijo: </b>
-	                	{{ medicalform.emergency_contact_2_home_phone }}
-	    						</div>
-									<div class="value-container">
-										<b>Número fijo: </b>
-										{{ medicalform.emergency_contact_2_home_phone.value|default_if_none:"---"}}
-									</div>
-	    					</div>
-	    					<div class="input-container">
-	    						<div class="fields-container hide">
-	    							<b>Número celular: </b>
-	                	{{ medicalform.emergency_contact_2_cell_phone }}
-	    						</div>
-									<div class="value-container">
-										<b>Número celular: </b>
-										{{ medicalform.emergency_contact_2_cell_phone.value|default_if_none:"---"}}
-									</div>
-	    					</div>
-	    				</div>
+	    			<div class="dashboard-toggle-list-content">
+	    				<div class="dashboard-toggle-list-buttons">
+								<div class="dashboard-box-title-button cancel-button hide">
+			            cancelar
+			          </div>
+			          <div class="dashboard-box-title-button edit-button">
+			            editar
+			          </div>
+			          <button type="submit" id="medical_form" name="medical_form" class="dashboard-box-title-button send-button hide">
+			            guardar
+			          </button>
+							</div>
+							<div class="columns">
+		    				<div class="dashboard-toggle-list-content-column">
+		    					<h4>Contacto #1</h4>
+		    					<div class="input-container">
+		    						<div class="fields-container hide">
+		    							<b>Nombre completo: </b>
+		                	{{ medicalform.emergency_contact_1_full_name }}
+		    						</div>
+										<div class="value-container">
+											<b>Nombre completo: </b>
+											{{ medicalform.emergency_contact_1_full_name.value|default_if_none:"---"}}
+										</div>
+		    					</div>
+		    					<div class="input-container">
+		    						<div class="fields-container hide">
+		    							<b>Relación: </b>
+		                	{{ medicalform.emergency_contact_1_relation }}
+		    						</div>
+										<div class="value-container">
+											<b>Relación: </b>
+											{{ medicalform.emergency_contact_1_relation.value|default_if_none:"---"}}
+										</div>
+		    					</div>
+		    					<div class="input-container">
+		    						<div class="fields-container hide">
+		    							<b>Número fijo: </b>
+		                	{{ medicalform.emergency_contact_1_home_phone }}
+		    						</div>
+										<div class="value-container">
+											<b>Número fijo: </b>
+											{{ medicalform.emergency_contact_1_home_phone.value|default_if_none:"---"}}
+										</div>
+		    					</div>
+		    					<div class="input-container">
+		    						<div class="fields-container hide">
+		    							<b>Número celular: </b>
+		                	{{ medicalform.emergency_contact_1_cell_phone }}
+		    						</div>
+										<div class="value-container">
+											<b>Número celular: </b>
+											{{ medicalform.emergency_contact_1_cell_phone.value|default_if_none:"---"}}
+										</div>
+		    					</div>
+		    				</div>
+								<div class="dashboard-toggle-list-content-column">
+		    					<h4>Contacto #2</h4>
+		    					<div class="input-container">
+		    						<div class="fields-container hide">
+		    							<b>Nombre completo: </b>
+		                	{{ medicalform.emergency_contact_2_full_name }}
+		    						</div>
+										<div class="value-container">
+											<b>Nombre completo: </b>
+											{{ medicalform.emergency_contact_2_full_name.value|default_if_none:"---"}}
+										</div>
+		    					</div>
+		    					<div class="input-container">
+		    						<div class="fields-container hide">
+		    							<b>Relación: </b>
+		                	{{ medicalform.emergency_contact_2_relation }}
+		    						</div>
+										<div class="value-container">
+											<b>Relación: </b>
+											{{ medicalform.emergency_contact_2_relation.value|default_if_none:"---"}}
+										</div>
+		    					</div>
+		    					<div class="input-container">
+		    						<div class="fields-container hide">
+		    							<b>Número fijo: </b>
+		                	{{ medicalform.emergency_contact_2_home_phone }}
+		    						</div>
+										<div class="value-container">
+											<b>Número fijo: </b>
+											{{ medicalform.emergency_contact_2_home_phone.value|default_if_none:"---"}}
+										</div>
+		    					</div>
+		    					<div class="input-container">
+		    						<div class="fields-container hide">
+		    							<b>Número celular: </b>
+		                	{{ medicalform.emergency_contact_2_cell_phone }}
+		    						</div>
+										<div class="value-container">
+											<b>Número celular: </b>
+											{{ medicalform.emergency_contact_2_cell_phone.value|default_if_none:"---"}}
+										</div>
+		    					</div>
+		    				</div>
+		    			</div>
 	    			</div>
 	    		</div>
+	    	</form>
+				<form action="." method="post" class="dashboard-special-form">
+					{% csrf_token %}
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
 	    				<div class="col-md-11 col-sm-11 col-xs-11 centered-col flex">
@@ -329,6 +350,17 @@
 	    				</div>
 	    			</div>
 	    			<div class="dashboard-toggle-list-content">
+	    				<div class="dashboard-toggle-list-buttons">
+								<div class="dashboard-box-title-button cancel-button hide">
+			            cancelar
+			          </div>
+			          <div class="dashboard-box-title-button edit-button">
+			            editar
+			          </div>
+			          <button type="submit" id="medical_form" name="medical_form" class="dashboard-box-title-button send-button hide">
+			            guardar
+			          </button>
+							</div>
 	    				<div class="input-container">
 								<div class="fields-container hide">
 									<span class="join-input-label">
@@ -359,6 +391,9 @@
 							</div>
 	    			</div>
 	    		</div>
+	    	</form>
+				<form action="." method="post" class="dashboard-special-form">
+					{% csrf_token %}
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
 	    				<div class="col-md-11 col-sm-11 col-xs-11 centered-col flex">
@@ -369,6 +404,17 @@
 	    				</div>
 	    			</div>
 	    			<div class="dashboard-toggle-list-content">
+	    				<div class="dashboard-toggle-list-buttons">
+								<div class="dashboard-box-title-button cancel-button hide">
+			            cancelar
+			          </div>
+			          <div class="dashboard-box-title-button edit-button">
+			            editar
+			          </div>
+			          <button type="submit" id="medical_form" name="medical_form" class="dashboard-box-title-button send-button hide">
+			            guardar
+			          </button>
+							</div>
 	    				<div class="input-container">
 								<div class="fields-container hide">
 									<span class="join-input-label">
@@ -386,24 +432,24 @@
 							<div class="input-container">
 								<div class="fields-container hide">
 									<b>Compañia de seguros:</b>
-                	{{ medicalform.insurance_company }}
+	              	{{ medicalform.insurance_company }}
 								</div>
 								{% if medicalform.has_medical_insurance.value == True %}
 								<div class="value-container">
 									<b>Compañia de seguros: </b>
-                	{{ medicalform.insurance_company.value|default_if_none:"---"}}
+	              	{{ medicalform.insurance_company.value|default_if_none:"---"}}
 								</div>
 								{% endif %}
 							</div>
 							<div class="input-container">
 								<div class="fields-container hide">
 									<b>Número de poliza:</b>
-                	{{ medicalform.policy_number }}
+	              	{{ medicalform.policy_number }}
 								</div>
 								{% if medicalform.has_medical_insurance.value == True %}
 								<div class="value-container">
 									<b>Número de poliza: </b>
-                	{{ medicalform.policy_number.value|default_if_none:"---"}}
+	              	{{ medicalform.policy_number.value|default_if_none:"---"}}
 								</div>
 								{% endif %}
 							</div>
@@ -411,18 +457,21 @@
 								<div class="fields-container hide">
 									<b>Fecha de vencimiento de la poliza:</b>
 									<div class="flex">
-                	{{ medicalform.policy_expiration_date }}
-                	</div>
+	              	{{ medicalform.policy_expiration_date }}
+	              	</div>
 								</div>
 								{% if medicalform.has_medical_insurance.value == True %}
 								<div class="value-container">
 									<b>Fecha de vencimiento de la poliza: </b>
-                	{{ medicalform.policy_expiration_date.value|default_if_none:"---"}}
+	              	{{ medicalform.policy_expiration_date.value|default_if_none:"---"}}
 								</div>
 								{% endif %}
 							</div>
 	    			</div>
 	    		</div>
+	    	</form>
+				<form action="." method="post" class="dashboard-special-form">
+					{% csrf_token %}
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
 	    				<div class="col-md-11 col-sm-11 col-xs-11 centered-col flex">
@@ -433,6 +482,17 @@
 	    				</div>
 	    			</div>
 	    			<div class="dashboard-toggle-list-content">
+	    				<div class="dashboard-toggle-list-buttons">
+								<div class="dashboard-box-title-button cancel-button hide">
+			            cancelar
+			          </div>
+			          <div class="dashboard-box-title-button edit-button">
+			            editar
+			          </div>
+			          <button type="submit" id="medical_form" name="medical_form" class="dashboard-box-title-button send-button hide">
+			            guardar
+			          </button>
+							</div>
 	    				<div class="input-container">
 								<div class="fields-container hide">
 									<span class="join-input-label">
@@ -450,17 +510,20 @@
 							<div class="input-container">
 								<div class="fields-container hide">
 									<b>Número de seguridad social:</b>
-                	{{ medicalform.social_security_number }}
+	              	{{ medicalform.social_security_number }}
 								</div>
 								{% if medicalform.has_social_security.value == True %}
 								<div class="value-container">
 									<b>Número de seguridad social: </b>
-                	{{ medicalform.social_security_number.value|default_if_none:"---"}}
+	              	{{ medicalform.social_security_number.value|default_if_none:"---"}}
 								</div>
 								{% endif %}
 							</div>
 	    			</div>
 	    		</div>
+	    	</form>
+				<form action="." method="post" class="dashboard-special-form">
+					{% csrf_token %}
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
 	    				<div class="col-md-11 col-sm-11 col-xs-11 centered-col flex">
@@ -471,68 +534,82 @@
 	    				</div>
 	    			</div>
 	    			<div class="dashboard-toggle-list-content">
+	    				<div class="dashboard-toggle-list-buttons">
+								<div class="dashboard-box-title-button cancel-button hide">
+			            cancelar
+			          </div>
+			          <div class="dashboard-box-title-button edit-button">
+			            editar
+			          </div>
+			          <button type="submit" id="medical_form" name="medical_form" class="dashboard-box-title-button send-button hide">
+			            guardar
+			          </button>
+							</div>
 	    				<div class="input-container">
 								<div class="fields-container hide">
 									<b>Nombre: </b>
-                	{{ medicalform.doctor_first_name }}
+	              	{{ medicalform.doctor_first_name }}
 								</div>
 								<div class="value-container">
 									<b>Nombre: </b>
-                	{{ medicalform.doctor_first_name.value|default_if_none:"---"}}
+	              	{{ medicalform.doctor_first_name.value|default_if_none:"---"}}
 								</div>
 							</div>
 							<div class="input-container">
 								<div class="fields-container hide">
 									<b>Apellido: </b>
-                	{{ medicalform.doctor_last_name }}
+	              	{{ medicalform.doctor_last_name }}
 								</div>
 								<div class="value-container">
 									<b>Apellidos: </b>
-              		{{ medicalform.doctor_last_name.value|default_if_none:"---"}}
+	            		{{ medicalform.doctor_last_name.value|default_if_none:"---"}}
 								</div>
 							</div>
 							<div class="input-container">
 								<div class="fields-container hide">
 									<b>Número fijo: </b>
-                	{{ medicalform.doctor_home_phone }}
+	              	{{ medicalform.doctor_home_phone }}
 								</div>
 								<div class="value-container">
 									<b>Número fijo: </b>
-              		{{ medicalform.doctor_home_phone.value|default_if_none:"---"}}
+	            		{{ medicalform.doctor_home_phone.value|default_if_none:"---"}}
 								</div>
 							</div>
 							<div class="input-container">
 								<div class="fields-container hide">
 									<b>Número celular: </b>
-                	{{ medicalform.doctor_cell_phone }}
+	              	{{ medicalform.doctor_cell_phone }}
 								</div>
 								<div class="value-container">
 									<b>Número celular: </b>
-              		{{ medicalform.doctor_cell_phone.value|default_if_none:"---"}}
+	            		{{ medicalform.doctor_cell_phone.value|default_if_none:"---"}}
 								</div>
 							</div>
 							<div class="input-container">
 								<div class="fields-container hide">
 									<b>Institución donde trabaja: </b>
-                	{{ medicalform.doctor_working_institution }}
+	              	{{ medicalform.doctor_working_institution }}
 								</div>
 								<div class="value-container">
 									<b>Institución donde trabaja: </b>
-              		{{ medicalform.doctor_working_institution.value|default_if_none:"---"}}
+	            		{{ medicalform.doctor_working_institution.value|default_if_none:"---"}}
 								</div>
 							</div>
 							<div class="input-container">
 								<div class="fields-container hide">
 									<b>Cédula profesional: </b>
-                	{{ medicalform.doctor_professional_id }}
+	              	{{ medicalform.doctor_professional_id }}
 								</div>
 								<div class="value-container">
 									<b>Cédula profesional: </b>
-              		{{ medicalform.doctor_professional_id.value|default_if_none:"---"}}
+	            		{{ medicalform.doctor_professional_id.value|default_if_none:"---"}}
 								</div>
 							</div>
 	    			</div>
 	    		</div>
+	    	</form>
+				<form action="." method="post" class="dashboard-special-form">
+					{% csrf_token %}
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
 	    				<div class="col-md-11 col-sm-11 col-xs-11 centered-col flex">
@@ -543,59 +620,70 @@
 	    				</div>
 	    			</div>
 	    			<div class="dashboard-toggle-list-content">
+	    				<div class="dashboard-toggle-list-buttons">
+								<div class="dashboard-box-title-button cancel-button hide">
+			            cancelar
+			          </div>
+			          <div class="dashboard-box-title-button edit-button">
+			            editar
+			          </div>
+			          <button type="submit" id="medical_form" name="medical_form" class="dashboard-box-title-button send-button hide">
+			            guardar
+			          </button>
+							</div>
 	    				<div class="input-container textarea-container">
 								<div class="fields-container hide">
 									<b>Enfermedades y padecimientos: </b>
-                	{{ medicalform.diseases }}
+	              	{{ medicalform.diseases }}
 								</div>
 								<div class="value-container">
 									<b>Enfermedades y padecimientos: </b>
 									<p>
-              		{{ medicalform.diseases.value|default_if_none:"---"}}
-              		</p>
+	            		{{ medicalform.diseases.value|default_if_none:"---"}}
+	            		</p>
 								</div>
 							</div>
 							<div class="input-container textarea-container">
 								<div class="fields-container hide">
 									<b>Medicación actual: </b>
-                	{{ medicalform.current_medications }}
+	              	{{ medicalform.current_medications }}
 								</div>
 								<div class="value-container">
 									<b>Medicación actual: </b>
 									<p>
-              		{{ medicalform.current_medications.value|default_if_none:"---"}}
-              		</p>
+	            		{{ medicalform.current_medications.value|default_if_none:"---"}}
+	            		</p>
 								</div>
 							</div>
 							<div class="input-container textarea-container">
 								<div class="fields-container hide">
 									<b>Alergias a medicamentos: </b>
-                	{{ medicalform.drug_allergy }}
+	              	{{ medicalform.drug_allergy }}
 								</div>
 								<div class="value-container">
 									<b>Alergias a medicamentos: </b>
 									<p>
-              		{{ medicalform.drug_allergy.value|default_if_none:"---"}}
-              		</p>
+	            		{{ medicalform.drug_allergy.value|default_if_none:"---"}}
+	            		</p>
 								</div>
 							</div>
 							<div class="input-container textarea-container">
 								<div class="fields-container hide">
 									<b>Alergias a alimentos: </b>
-                	{{ medicalform.food_allergy }}
+	              	{{ medicalform.food_allergy }}
 								</div>
 								<div class="value-container">
 									<b>Alergias a alimentos: </b>
 									<p>
-              		{{ medicalform.food_allergy.value|default_if_none:"---" }}
-              		</p>
+	            		{{ medicalform.food_allergy.value|default_if_none:"---" }}
+	            		</p>
 								</div>
 							</div>
 	    			</div>
 	    		</div>
-	    	</div>
-	    </div>
-		</form>
+	    	</form>
+    	</div>
+    </div>
   </div>
 </div>
 {% endblock %}

@@ -97,12 +97,6 @@ $(document).ready(function () {
       }
       form.find('.client-information-container')
         .css('width', '60%');
-      if (form.find('.dashboard-toggle-list-button').length) {
-        form.find('.dashboard-toggle-list-content')
-          .addClass('toggle');
-        form.find('.dashboard-toggle-list-button')
-          .addClass('inverse');
-      }
     });
 
     form.find('.cancel-button').click(function () {
@@ -123,12 +117,6 @@ $(document).ready(function () {
       }
       form.find('.client-information-container')
         .css('width', '');
-      if (form.find('.dashboard-toggle-list-button').length) {
-        form.find('.dashboard-toggle-list-content')
-          .removeClass('toggle');
-        form.find('.dashboard-toggle-list-button')
-          .removeClass('inverse');
-      }
     });
   });
 
