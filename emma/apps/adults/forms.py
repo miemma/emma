@@ -360,21 +360,21 @@ class MedicalInfo(forms.Form):
     knows_pda = forms.BooleanField(
         widget=forms.CheckboxInput(
             attrs={
-                'class': 'radio-input',
+                'class': 'radio-check-button',
             }
         ),
     )
     exercise_pda = forms.BooleanField(
         widget=forms.CheckboxInput(
             attrs={
-                'class': 'radio-input',
+                'class': 'radio-check-button',
             }
         ),
     )
     has_medical_insurance = forms.BooleanField(
         widget=forms.CheckboxInput(
             attrs={
-                'class': 'radio-input',
+                'class': 'radio-check-button',
             }
         ),
     )
@@ -393,7 +393,7 @@ class MedicalInfo(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Numero de poliza'
+                'placeholder': 'Número de poliza'
             }
         ),
         validators=[validators.eval_blank],
@@ -411,7 +411,7 @@ class MedicalInfo(forms.Form):
     has_social_security = forms.BooleanField(
         widget=forms.CheckboxInput(
             attrs={
-                'class': 'radio-input',
+                'class': 'radio-check-button',
             }
         ),
     )
@@ -419,7 +419,7 @@ class MedicalInfo(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Numero de seguridad social'
+                'placeholder': 'Número de seguridad social'
             }
         ),
         validators=[validators.eval_blank],
@@ -495,7 +495,8 @@ class MedicalInfo(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'class': 'emma-input',
-                'placeholder': '¿Qué enfermedades o padecimientos presenta?'
+                'placeholder': '¿Qué enfermedades o padecimientos presenta?',
+                'rows': 5
             }
         ),
         required=True,
@@ -505,7 +506,8 @@ class MedicalInfo(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Medicacion Actual'
+                'placeholder': 'Medicacion Actual',
+                'rows': 5
             }
         ),
         required=True,
@@ -515,7 +517,8 @@ class MedicalInfo(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Alergias a medicamentos'
+                'placeholder': 'Alergias a medicamentos',
+                'rows': 5
             }
         ),
         required=True,
@@ -525,7 +528,8 @@ class MedicalInfo(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Alergias a alimentos'
+                'placeholder': 'Alergias a alimentos',
+                'rows': 5
             }
         ),
         required=True,
