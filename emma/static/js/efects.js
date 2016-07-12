@@ -65,3 +65,12 @@ $('.dashboard-toggle-list-button').click(function () {
     $(this).addClass('inverse');
   }
 });
+
+if ($('.alert.temporal-alert').length) {
+  window.setTimeout(function () {
+    window.setTimeout(function () {
+      $('.alert.temporal-alert').hide();
+    }, 450);
+    $('.alert.temporal-alert').addClass('hide-alert');
+  }, 2000);
+}

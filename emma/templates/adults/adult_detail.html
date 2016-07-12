@@ -39,14 +39,14 @@
 	        </div>
 	        <div class="dashboard-box-content margin-top-30 margin-bottom-20">
 	        	{% if messages %}
-							<ul class="messages">
+							<div class="alert alert-success form-alert temporal-alert">
 								{% for message in messages %}
-									<li id="message_{{ forloop.counter }}"
+									<div id="message_{{ forloop.counter }}"
 										{% if message.tags %} class="{{ message.tags }}" {% endif %}>
 										{{ message }}
-									</li>
+									</div>
 								{% endfor %}
-							</ul>
+							</div>
 						{% endif %}
 						{% csrf_token %}
 						<div class="input-container multiple-fields select-container">
