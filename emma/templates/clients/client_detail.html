@@ -4,121 +4,121 @@
 <div class="dashboard">
 {% include "clients/dashboard_menu.html" %}
 	<div class="dashboard-content">
-	<form id="dashboard-user-form" action="." method="post" class="dashboard-special-form">
-		<div class="dashboard-box">
+		{% if success %}
+		<div class="alert alert-success form-alert temporal-alert text-center">
+			{{ success }}
+		</div>
+		{% endif %}
+		<form id="dashboard-user-form" action="." method="post" class="dashboard-special-form">
+			<div class="dashboard-box">
+				<div class="dashboard-box-title border">
+					<div class="flex-grow-1">
+						<div class="col-md-10 col-sm-8 col-xs-10 centered-col padding-0 flex">
+							<h2>Información del familiar administrador</h2>
+							<div class="dashboard-box-title-button cancel-button hide">cancelar</div>
+							<div class="dashboard-box-title-button edit-button">editar</div>
+							<button id="user_information" name="user_information" class="dashboard-box-title-button send-button hide" type="submit">guardar</button>
+						</div>
+					</div>
+				</div>
+				<div class="dashboard-box-content flex-grow-1 padding-top-30 padding-bottom-30">
+					<div class="col-md-10 col-sm-10 col-xs-10 client-information-container centered-col padding-0">
+				    {% csrf_token %}
+				    <div class="input-container">
+							<div class="fields-container hide">
+								<b>Nombre: </b>
+								<div>
+								{{ user_form.first_name }}
+								</div>
+							</div>
+							<div class="value-container">
+								<b>Nombre: </b>
+								{{ user_form.first_name.value|default_if_none:"" }}
+							</div>
+						</div>
+						<div class="input-container">
+							<div class="fields-container hide">
+								<b>Apellido: </b>
+								<div>
+								{{ user_form.last_name }}
+								</div>
+							</div>
+							<div class="value-container">
+								<b>Apellido: </b>
+								{{ user_form.last_name.value|default_if_none:"" }}
+							</div>
+						</div>
+						<div class="input-container">
+							<div class="fields-container hide">
+								<b>Correo: </b>
+								<div>
+								{{ user_form.email }}
+								</div>
+							</div>
+							<div class="value-container">
+								<b>Correo: </b>
+								{{ user_form.email.value|default_if_none:"" }}
+							</div>
+						</div>
+						<div class="input-container">
+							<div class="fields-container hide">
+								<b>Teléfono de contacto: </b>
+								<div>
+								{{ user_form.contact_number }}
+								</div>
+							</div>
+							<div class="value-container">
+								<b>Teléfono de contacto: </b>
+								{{ user_form.contact_number.value|default_if_none:"" }}
+							</div>
+						</div>
+						<div class="row text-center padding-top-10 padding-bottom-20 form-loader">
+			        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
+			          <div id="movingBallG">
+									<div class="movingBallLineG"></div>
+									<div id="movingBallG_1" class="movingBallG"></div>
+								</div>
+					    </div>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</form>
+
+		<div class="dashboard-box margin-top-20">
 			<div class="dashboard-box-title border">
 				<div class="flex-grow-1">
 					<div class="col-md-10 col-sm-8 col-xs-10 centered-col padding-0 flex">
-						<h2>Información del familiar administrador</h2>
-						<div class="dashboard-box-title-button cancel-button hide">cancelar</div>
-						<div class="dashboard-box-title-button edit-button">editar</div>
-						<button id="user_information" name="user_information" class="dashboard-box-title-button send-button hide" type="submit">guardar</button>
+						<h2>Modificar contraseña</h2>
 					</div>
 				</div>
 			</div>
-			<div class="dashboard-box-content flex-grow-1 padding-top-30 padding-bottom-30">
-				<div class="col-md-10 col-sm-10 col-xs-10 client-information-container centered-col padding-0">
-			    {% csrf_token %}
-			    <div class="input-container">
-						<div class="fields-container hide">
-							<b>Nombre: </b>
-							<div>
-							{{ user_form.first_name }}
-							</div>
-						</div>
-						<div class="value-container">
-							<b>Nombre: </b>
-							{{ user_form.first_name.value|default_if_none:"" }}
-						</div>
-					</div>
-					<div class="input-container">
-						<div class="fields-container hide">
-							<b>Apellido: </b>
-							<div>
-							{{ user_form.last_name }}
-							</div>
-						</div>
-						<div class="value-container">
-							<b>Apellido: </b>
-							{{ user_form.last_name.value|default_if_none:"" }}
-						</div>
-					</div>
-					<div class="input-container">
-						<div class="fields-container hide">
-							<b>Correo: </b>
-							<div>
-							{{ user_form.email }}
-							</div>
-						</div>
-						<div class="value-container">
-							<b>Correo: </b>
-							{{ user_form.email.value|default_if_none:"" }}
-						</div>
-					</div>
-					<div class="input-container">
-						<div class="fields-container hide">
-							<b>Teléfono de contacto: </b>
-							<div>
-							{{ user_form.contact_number }}
-							</div>
-						</div>
-						<div class="value-container">
-							<b>Teléfono de contacto: </b>
-							{{ user_form.contact_number.value|default_if_none:"" }}
-						</div>
-					</div>
-					<div class="row text-center padding-top-10 padding-bottom-20 form-loader">
-		        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
-		          <div id="movingBallG">
-								<div class="movingBallLineG"></div>
-								<div id="movingBallG_1" class="movingBallG"></div>
-							</div>
-				    </div>
-				  </div>
+			<div class="dashboard-box-content flex-grow-1 padding-top-30 padding-bottom-30 margin-bottom-70">
+				<form id="dashboard-password-form" action="." method="post" class="col-md-7 col-sm-10 col-xs-10 centered-col padding-0">
+				{% csrf_token %}
+				<div class="input-container">
+					{{ password_form.current_password }}
 				</div>
-			</div>
-		</div>
-	</form>
-
-	<div class="dashboard-box margin-top-20">
-		<div class="dashboard-box-title border">
-			<div class="flex-grow-1">
-				<div class="col-md-10 col-sm-8 col-xs-10 centered-col padding-0 flex">
-					<h2>Modificar contraseña</h2>
+				<div class="input-container margin-top-10">
+					{{ password_form.new_password_1 }}
 				</div>
+				<div class="input-container margin-top-10">
+					{{ password_form.new_password_2 }}
+				</div>
+				<div class="row text-center padding-top-10 padding-bottom-10 form-loader">
+	        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
+	          <div id="movingBallG">
+							<div class="movingBallLineG"></div>
+							<div id="movingBallG_1" class="movingBallG"></div>
+						</div>
+			    </div>
+			  </div>
+				<div class="text-center margin-top-40">
+					<button type="submit" name="user_password" class="emma-btn-light large">Actualizar</button>
+				</div>
+			</form>
 			</div>
 		</div>
-		<div class="dashboard-box-content flex-grow-1 padding-top-30 padding-bottom-30 margin-bottom-70">
-			<form id="dashboard-password-form" action="." method="post" class="col-md-7 col-sm-10 col-xs-10 centered-col padding-0">
-			{% csrf_token %}
-			<div class="input-container">
-				{{ password_form.current_password }}
-			</div>
-			<div class="input-container">
-				{{ password_form.new_password_1 }}
-			</div>
-			<div class="input-container">
-				{{ password_form.new_password_2 }}
-			</div>
-			<div class="row text-center padding-top-10 padding-bottom-10 form-loader">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
-          <div id="movingBallG">
-						<div class="movingBallLineG"></div>
-						<div id="movingBallG_1" class="movingBallG"></div>
-					</div>
-		    </div>
-		  </div>
-			<div class="text-center margin-top-40">
-				<button type="submit" name="user_password" class="emma-btn-light large">Actualizar</button>
-			</div>
-		</form>
-		</div>
-	</div>
 	</div>
 </div>
-	<p>
-		{% if success %}
-			<p> {{ success }} </p>
-		{% endif %}
-	</p>
 {% endblock %}

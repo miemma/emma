@@ -5,6 +5,16 @@
 <div class="dashboard">
 {% include "clients/dashboard_menu.html" %}
   <div class="dashboard-content">
+  	{% if messages %}
+			<div class="alert alert-success form-alert temporal-alert text-center">
+				{% for message in messages %}
+					<div id="message_{{ forloop.counter }}"
+						{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+						{{ message }}
+					</div>
+				{% endfor %}
+			</div>
+		{% endif %}
 		<form action="." method="post" enctype="multipart/form-data" class="dashboard-special-form">
 			<div class="dashboard-box adult-profile-box white">
 	      <div class="adult-profile-box-picture">
@@ -38,16 +48,6 @@
 	          </button>
 	        </div>
 	        <div class="dashboard-box-content margin-top-30 margin-bottom-20">
-	        	{% if messages %}
-							<div class="alert alert-success form-alert temporal-alert">
-								{% for message in messages %}
-									<div id="message_{{ forloop.counter }}"
-										{% if message.tags %} class="{{ message.tags }}" {% endif %}>
-										{{ message }}
-									</div>
-								{% endfor %}
-							</div>
-						{% endif %}
 						{% csrf_token %}
 						<div class="input-container multiple-fields select-container">
 							<div class="fields-container hide">
@@ -148,16 +148,6 @@
 	    	<div class="dashboard-box-content">
 	    		<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-top-30 padding-bottom-20">
 						{% csrf_token %}
-						{% if messages %}
-							<div class="alert alert-success form-alert temporal-alert">
-								{% for message in messages %}
-									<div id="message_{{ forloop.counter }}"
-										{% if message.tags %} class="{{ message.tags }}" {% endif %}>
-										{{ message }}
-									</div>
-								{% endfor %}
-							</div>
-						{% endif %}
 	    			<b>Estructura familiar/condición:</b> <br>
 						<div class="input-container textarea-container">
 							<div class="fields-container hide">
@@ -177,6 +167,14 @@
 							</div>
 						</div>
 	    		</div>
+	    		<div class="row text-center padding-top-30 form-loader">
+		        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
+		          <div id="movingBallG">
+								<div class="movingBallLineG"></div>
+								<div id="movingBallG_1" class="movingBallG"></div>
+							</div>
+		        </div>
+		      </div>
 	    		<div class="dashboard-box-title small internal-title border">
 	    			<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-0">
 	    				<h2>Intereses y pasatiempos</h2>
@@ -231,6 +229,14 @@
 								 <b>Tipo de sangre: </b>{{ medicalform.blood_type.value|default_if_none:"---"}}
 								</div>
 							</div>
+							<div class="row text-center padding-top-30 form-loader">
+				        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
+				          <div id="movingBallG">
+										<div class="movingBallLineG"></div>
+										<div id="movingBallG_1" class="movingBallG"></div>
+									</div>
+				        </div>
+				      </div>
 	    			</div>
 	    		</div>
 	    	</form>
@@ -345,6 +351,14 @@
 		    					</div>
 		    				</div>
 		    			</div>
+							<div class="row text-center padding-top-30 form-loader">
+				        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
+				          <div id="movingBallG">
+										<div class="movingBallLineG"></div>
+										<div id="movingBallG_1" class="movingBallG"></div>
+									</div>
+				        </div>
+				      </div>
 	    			</div>
 	    		</div>
 	    	</form>
@@ -399,6 +413,14 @@
 								 <b>¿Ejerce la ley de voluntad anticipada? </b>{{ medicalform.exercise_pda.value|yesno:"Si, No," }}
 								</div>
 							</div>
+							<div class="row text-center padding-top-30 form-loader">
+				        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
+				          <div id="movingBallG">
+										<div class="movingBallLineG"></div>
+										<div id="movingBallG_1" class="movingBallG"></div>
+									</div>
+				        </div>
+				      </div>
 	    			</div>
 	    		</div>
 	    	</form>
@@ -477,6 +499,14 @@
 								</div>
 								{% endif %}
 							</div>
+							<div class="row text-center padding-top-30 form-loader">
+				        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
+				          <div id="movingBallG">
+										<div class="movingBallLineG"></div>
+										<div id="movingBallG_1" class="movingBallG"></div>
+									</div>
+				        </div>
+				      </div>
 	    			</div>
 	    		</div>
 	    	</form>
@@ -529,6 +559,14 @@
 								</div>
 								{% endif %}
 							</div>
+							<div class="row text-center padding-top-30 form-loader">
+				        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
+				          <div id="movingBallG">
+										<div class="movingBallLineG"></div>
+										<div id="movingBallG_1" class="movingBallG"></div>
+									</div>
+				        </div>
+				      </div>
 	    			</div>
 	    		</div>
 	    	</form>
@@ -615,6 +653,14 @@
 	            		{{ medicalform.doctor_professional_id.value|default_if_none:"---"}}
 								</div>
 							</div>
+							<div class="row text-center padding-top-30 form-loader">
+				        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
+				          <div id="movingBallG">
+										<div class="movingBallLineG"></div>
+										<div id="movingBallG_1" class="movingBallG"></div>
+									</div>
+				        </div>
+				      </div>
 	    			</div>
 	    		</div>
 	    	</form>
@@ -689,6 +735,14 @@
 	            		</p>
 								</div>
 							</div>
+							<div class="row text-center padding-top-30 form-loader">
+				        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
+				          <div id="movingBallG">
+										<div class="movingBallLineG"></div>
+										<div id="movingBallG_1" class="movingBallG"></div>
+									</div>
+				        </div>
+				      </div>
 	    			</div>
 	    		</div>
 	    	</form>
