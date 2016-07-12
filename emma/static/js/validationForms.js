@@ -66,7 +66,7 @@ $(document).ready(function () {
     }
   });
 
-  /* Show-as-text forms
+  /* Special forms
   ---------------------------------------------------------------------------*/
   $('.dashboard-special-form').toArray().forEach(function (elem, index) {
     var form = $(elem),
@@ -83,17 +83,10 @@ $(document).ready(function () {
       });
     }
 
-    form.find('.show-as-text').attr('disabled', '');
-
     form.find('.edit-button').click(function () {
       $(this).addClass('hide');
       $(this).siblings('.cancel-button').removeClass('hide');
       $(this).siblings('.send-button').removeClass('hide');
-      form.find('.emma-input.show-as-text')
-        .removeClass('show-as-text')
-        .addClass('show-as-default');
-      form.find('.show-as-default')
-        .removeAttr('disabled');
       form.find('.input-container .fields-container')
         .removeClass('hide');
       form.find('.input-container .value-container')
@@ -109,11 +102,6 @@ $(document).ready(function () {
       $(this).siblings('.edit-button').removeClass('hide');
       $(this).siblings('.send-button').addClass('hide');
       form[0].reset();
-      form.find('.emma-input.show-as-default')
-        .addClass('show-as-text')
-        .removeClass('show-as-default');
-      form.find('.show-as-text')
-        .attr('disabled', '');
       form.find('.input-container .fields-container')
         .addClass('hide');
       form.find('.input-container .value-container')
