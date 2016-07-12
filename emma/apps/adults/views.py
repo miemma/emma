@@ -34,7 +34,15 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
 
     def post(self, request, id, **kwargs):
         kwargs = {'request': request, 'adult_id': id}
-
+        adultform = self.get_initial_adult_form(
+            request, self.get_adult(request)
+        )
+        medicalform = self.get_initial_medical_form(
+            request, self.get_adult(request)
+        )
+        preferenceform = self.get_initial_preferences_form(
+            request, self.get_adult(request)
+        )
         if 'medical_form' in request.POST:
             medicalform = MedicalInfo(request.POST, **kwargs)
 
@@ -44,7 +52,12 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
                 return redirect(reverse_lazy('adults:dashboard_adult',
                                              kwargs={'id': id}))
             else:
-                ctx = {'medicalform': medicalform}
+                ctx = {
+                    'adultform': adultform,
+                    'medicalform': medicalform,
+                    'preferenceform': preferenceform,
+                    'adult': self.get_adult(request)
+                }
                 return render(request, self.template_name, ctx)
         elif 'adult_form' in request.POST:
 
@@ -56,7 +69,12 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
                 return redirect(reverse_lazy('adults:dashboard_adult',
                                              kwargs={'id': id}))
             else:
-                ctx = {'adultform': adultform}
+                ctx = {
+                    'adultform': adultform,
+                    'medicalform': medicalform,
+                    'preferenceform': preferenceform,
+                    'adult': self.get_adult(request)
+                }
                 return render(request, self.template_name, ctx)
 
         elif 'preference_form' in request.POST:
@@ -69,7 +87,12 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
                 return redirect(reverse_lazy('adults:dashboard_adult',
                                              kwargs={'id': id}))
             else:
-                ctx = {'preferenceform': preferenceform}
+                ctx = {
+                    'adultform': adultform,
+                    'medicalform': medicalform,
+                    'preferenceform': preferenceform,
+                    'adult': self.get_adult(request)
+                }
                 return render(request, self.template_name, ctx)
 
         else:
