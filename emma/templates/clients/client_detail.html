@@ -17,22 +17,55 @@
 				</div>
 			</div>
 			<div class="dashboard-box-content flex-grow-1 padding-top-30 padding-bottom-30">
-				<div class="col-md-10 col-sm-10 col-xs-10 centered-col padding-0">
+				<div class="col-md-10 col-sm-10 col-xs-10 client-information-container centered-col padding-0">
 			    {% csrf_token %}
-					<div class="input-container flex">
-						<b>Nombre: </b>
-						{{ user_form.first_name }}
+			    <div class="input-container">
+						<div class="fields-container hide">
+							<b>Nombre: </b>
+							<div>
+							{{ user_form.first_name }}
+							</div>
+						</div>
+						<div class="value-container">
+							<b>Nombre: </b>
+							{{ user_form.first_name.value|default_if_none:"" }}
+						</div>
 					</div>
-					<div class="input-container flex">
-						<b>Apellido: </b>
-						{{ user_form.last_name }}
+					<div class="input-container">
+						<div class="fields-container hide">
+							<b>Apellido: </b>
+							<div>
+							{{ user_form.last_name }}
+							</div>
+						</div>
+						<div class="value-container">
+							<b>Apellido: </b>
+							{{ user_form.last_name.value|default_if_none:"" }}
+						</div>
 					</div>
-					<div class="input-container flex">
-						<b>Correo: </b>
-						{{ user_form.email }}
-					</div><div class="input-container flex">
-						<b>Teléfono de contacto: </b>
-						{{ user_form.contact_number }}
+					<div class="input-container">
+						<div class="fields-container hide">
+							<b>Correo: </b>
+							<div>
+							{{ user_form.email }}
+							</div>
+						</div>
+						<div class="value-container">
+							<b>Correo: </b>
+							{{ user_form.email.value|default_if_none:"" }}
+						</div>
+					</div>
+					<div class="input-container">
+						<div class="fields-container hide">
+							<b>Teléfono de contacto: </b>
+							<div>
+							{{ user_form.contact_number }}
+							</div>
+						</div>
+						<div class="value-container">
+							<b>Teléfono de contacto: </b>
+							{{ user_form.contact_number.value|default_if_none:"" }}
+						</div>
 					</div>
 					<div class="row text-center padding-top-10 padding-bottom-20 form-loader">
 		        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
