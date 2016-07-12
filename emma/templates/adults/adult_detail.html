@@ -23,8 +23,8 @@
 	          		{{ adultform.last_name }}
 							</div>
 							<span class="value-container">
-		          	{{ adultform.first_name.value }} 
-		          	{{ adultform.last_name.value }}
+		          	{{ adultform.first_name.value|default_if_none:"---" }} 
+		          	{{ adultform.last_name.value|default_if_none:"---" }}
 	          	</span>
 	          </h2>
 	          <div class="dashboard-box-title-button cancel-button hide">
@@ -72,9 +72,9 @@
 							</div>
 							<span class="value-container">
 								<span>Dirección: </span>
-								{{ adultform.street.value }}
-								{{ adultform.num_ext.value }}
-								{{ adultform.num_int.value }}
+								{{ adultform.street.value|default_if_none:"---"}}
+								{{ adultform.num_ext.value|default_if_none:"---"}}
+								{{ adultform.num_int.value|default_if_none:"---"}}
 	          	</span>
 						</div>
 						<div class="input-container select-container">
@@ -216,7 +216,7 @@
 									{{ medicalform.blood_type }}
 								</div>
 								<div class="value-container">
-								 <b>Tipo de sangre: </b>{{ medicalform.blood_type.value }}
+								 <b>Tipo de sangre: </b>{{ medicalform.blood_type.value|default_if_none:"---"}}
 								</div>
 							</div>
 	    			</div>
@@ -232,7 +232,7 @@
 	    			</div>
 	    			<div class="dashboard-toggle-list-content columns">
 	    				<div class="dashboard-toggle-list-content-column">
-	    					<h4>Contacto de emergencia 1</h4>
+	    					<h4>Contacto #1</h4>
 	    					<div class="input-container">
 	    						<div class="fields-container hide">
 	    							<b>Nombre completo: </b>
@@ -240,7 +240,7 @@
 	    						</div>
 									<div class="value-container">
 										<b>Nombre completo: </b>
-										{{ medicalform.emergency_contact_1_full_name.value }}
+										{{ medicalform.emergency_contact_1_full_name.value|default_if_none:"---"}}
 									</div>
 	    					</div>
 	    					<div class="input-container">
@@ -250,7 +250,7 @@
 	    						</div>
 									<div class="value-container">
 										<b>Relación: </b>
-										{{ medicalform.emergency_contact_1_relation.value }}
+										{{ medicalform.emergency_contact_1_relation.value|default_if_none:"---"}}
 									</div>
 	    					</div>
 	    					<div class="input-container">
@@ -260,7 +260,7 @@
 	    						</div>
 									<div class="value-container">
 										<b>Número fijo: </b>
-										{{ medicalform.emergency_contact_1_home_phone.value }}
+										{{ medicalform.emergency_contact_1_home_phone.value|default_if_none:"---"}}
 									</div>
 	    					</div>
 	    					<div class="input-container">
@@ -270,12 +270,12 @@
 	    						</div>
 									<div class="value-container">
 										<b>Número celular: </b>
-										{{ medicalform.emergency_contact_1_cell_phone.value }}
+										{{ medicalform.emergency_contact_1_cell_phone.value|default_if_none:"---"}}
 									</div>
 	    					</div>
 	    				</div>
 							<div class="dashboard-toggle-list-content-column">
-	    					<h4>Contacto de emergencia 2</h4>
+	    					<h4>Contacto #2</h4>
 	    					<div class="input-container">
 	    						<div class="fields-container hide">
 	    							<b>Nombre completo: </b>
@@ -283,7 +283,7 @@
 	    						</div>
 									<div class="value-container">
 										<b>Nombre completo: </b>
-										{{ medicalform.emergency_contact_2_full_name.value }}
+										{{ medicalform.emergency_contact_2_full_name.value|default_if_none:"---"}}
 									</div>
 	    					</div>
 	    					<div class="input-container">
@@ -293,7 +293,7 @@
 	    						</div>
 									<div class="value-container">
 										<b>Relación: </b>
-										{{ medicalform.emergency_contact_2_relation.value }}
+										{{ medicalform.emergency_contact_2_relation.value|default_if_none:"---"}}
 									</div>
 	    					</div>
 	    					<div class="input-container">
@@ -303,7 +303,7 @@
 	    						</div>
 									<div class="value-container">
 										<b>Número fijo: </b>
-										{{ medicalform.emergency_contact_2_home_phone.value }}
+										{{ medicalform.emergency_contact_2_home_phone.value|default_if_none:"---"}}
 									</div>
 	    					</div>
 	    					<div class="input-container">
@@ -313,7 +313,7 @@
 	    						</div>
 									<div class="value-container">
 										<b>Número celular: </b>
-										{{ medicalform.emergency_contact_2_cell_phone.value }}
+										{{ medicalform.emergency_contact_2_cell_phone.value|default_if_none:"---"}}
 									</div>
 	    					</div>
 	    				</div>
@@ -335,12 +335,12 @@
 	                	{{ medicalform.knows_pda }}
 	                  <label class="radio-check-label"
 	                        for="id_knows_pda">
-		                Knows pda
 	                  </label>
+		                <b>Conoce la ley de voluntad anticipada</b>
 	              	</span>
 								</div>
 								<div class="value-container">
-								 <b>Knows pda? </b>{{ medicalform.knows_pda.value|yesno:"Si, No," }}
+								 <b>¿Conoce la ley de voluntad anticipada? </b>{{ medicalform.knows_pda.value|yesno:"Si, No," }}
 								</div>
 							</div>
 							<div class="input-container">
@@ -349,12 +349,12 @@
 	                	{{ medicalform.exercise_pda }}
 	                  <label class="radio-check-label"
 	                        for="id_exercise_pda">
-		                Exercise pda
 	                  </label>
+	                  <b>Ejerce la ley de voluntad anticipada</b>
 	              	</span>
 								</div>
 								<div class="value-container">
-								 <b>Exercise pda? </b>{{ medicalform.exercise_pda.value|yesno:"Si, No," }}
+								 <b>¿Ejerce la ley de voluntad anticipada? </b>{{ medicalform.exercise_pda.value|yesno:"Si, No," }}
 								</div>
 							</div>
 	    			</div>
@@ -375,8 +375,8 @@
 	                	{{ medicalform.has_medical_insurance }}
 	                  <label class="radio-check-label"
 	                        for="id_has_medical_insurance">
-		                Cuenta con seguro de gastos médicos mayores
 	                  </label>
+	                  <b>Cuenta con seguro de gastos médicos mayores</b>
 	              	</span>
 								</div>
 								<div class="value-container">
@@ -388,20 +388,24 @@
 									<b>Compañia de seguros:</b>
                 	{{ medicalform.insurance_company }}
 								</div>
+								{% if medicalform.has_medical_insurance.value == True %}
 								<div class="value-container">
 									<b>Compañia de seguros: </b>
-                	{{ medicalform.insurance_company.value }}
+                	{{ medicalform.insurance_company.value|default_if_none:"---"}}
 								</div>
+								{% endif %}
 							</div>
 							<div class="input-container">
 								<div class="fields-container hide">
 									<b>Número de poliza:</b>
                 	{{ medicalform.policy_number }}
 								</div>
+								{% if medicalform.has_medical_insurance.value == True %}
 								<div class="value-container">
 									<b>Número de poliza: </b>
-                	{{ medicalform.policy_number.value }}
+                	{{ medicalform.policy_number.value|default_if_none:"---"}}
 								</div>
+								{% endif %}
 							</div>
 							<div class="input-container select-container">
 								<div class="fields-container hide">
@@ -410,10 +414,12 @@
                 	{{ medicalform.policy_expiration_date }}
                 	</div>
 								</div>
+								{% if medicalform.has_medical_insurance.value == True %}
 								<div class="value-container">
 									<b>Fecha de vencimiento de la poliza: </b>
-                	{{ medicalform.policy_expiration_date.value }}
+                	{{ medicalform.policy_expiration_date.value|default_if_none:"---"}}
 								</div>
+								{% endif %}
 							</div>
 	    			</div>
 	    		</div>
@@ -433,8 +439,8 @@
 	                	{{ medicalform.has_social_security }}
 	                  <label class="radio-check-label"
 	                        for="id_has_social_security">
-		                Cuenta con seguro social
 	                  </label>
+	                  <b>Cuenta con seguro social</b>
 	              	</span>
 								</div>
 								<div class="value-container">
@@ -446,10 +452,12 @@
 									<b>Número de seguridad social:</b>
                 	{{ medicalform.social_security_number }}
 								</div>
+								{% if medicalform.has_social_security.value == True %}
 								<div class="value-container">
 									<b>Número de seguridad social: </b>
-                	{{ medicalform.social_security_number.value }}
+                	{{ medicalform.social_security_number.value|default_if_none:"---"}}
 								</div>
+								{% endif %}
 							</div>
 	    			</div>
 	    		</div>
@@ -470,7 +478,7 @@
 								</div>
 								<div class="value-container">
 									<b>Nombre: </b>
-                	{{ medicalform.doctor_first_name.value }}
+                	{{ medicalform.doctor_first_name.value|default_if_none:"---"}}
 								</div>
 							</div>
 							<div class="input-container">
@@ -480,7 +488,7 @@
 								</div>
 								<div class="value-container">
 									<b>Apellidos: </b>
-              		{{ medicalform.doctor_last_name.value }}
+              		{{ medicalform.doctor_last_name.value|default_if_none:"---"}}
 								</div>
 							</div>
 							<div class="input-container">
@@ -490,7 +498,7 @@
 								</div>
 								<div class="value-container">
 									<b>Número fijo: </b>
-              		{{ medicalform.doctor_home_phone.value }}
+              		{{ medicalform.doctor_home_phone.value|default_if_none:"---"}}
 								</div>
 							</div>
 							<div class="input-container">
@@ -500,7 +508,7 @@
 								</div>
 								<div class="value-container">
 									<b>Número celular: </b>
-              		{{ medicalform.doctor_cell_phone.value }}
+              		{{ medicalform.doctor_cell_phone.value|default_if_none:"---"}}
 								</div>
 							</div>
 							<div class="input-container">
@@ -510,7 +518,7 @@
 								</div>
 								<div class="value-container">
 									<b>Institución donde trabaja: </b>
-              		{{ medicalform.doctor_working_institution.value }}
+              		{{ medicalform.doctor_working_institution.value|default_if_none:"---"}}
 								</div>
 							</div>
 							<div class="input-container">
@@ -520,7 +528,7 @@
 								</div>
 								<div class="value-container">
 									<b>Cédula profesional: </b>
-              		{{ medicalform.doctor_professional_id.value }}
+              		{{ medicalform.doctor_professional_id.value|default_if_none:"---"}}
 								</div>
 							</div>
 	    			</div>
@@ -543,7 +551,7 @@
 								<div class="value-container">
 									<b>Enfermedades y padecimientos: </b>
 									<p>
-              		{{ medicalform.diseases.value }}
+              		{{ medicalform.diseases.value|default_if_none:"---"}}
               		</p>
 								</div>
 							</div>
@@ -555,7 +563,7 @@
 								<div class="value-container">
 									<b>Medicación actual: </b>
 									<p>
-              		{{ medicalform.current_medications.value }}
+              		{{ medicalform.current_medications.value|default_if_none:"---"}}
               		</p>
 								</div>
 							</div>
@@ -567,7 +575,7 @@
 								<div class="value-container">
 									<b>Alergias a medicamentos: </b>
 									<p>
-              		{{ medicalform.drug_allergy.value }}
+              		{{ medicalform.drug_allergy.value|default_if_none:"---"}}
               		</p>
 								</div>
 							</div>
@@ -579,7 +587,7 @@
 								<div class="value-container">
 									<b>Alergias a alimentos: </b>
 									<p>
-              		{{ medicalform.food_allergy.value }}
+              		{{ medicalform.food_allergy.value|default_if_none:"---" }}
               		</p>
 								</div>
 							</div>
