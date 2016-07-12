@@ -140,16 +140,32 @@
 	          <div class="dashboard-box-title-button edit-button">
 	            editar
 	          </div>
-	          <button type="submit" id="adult_form" name="adult_form" class="dashboard-box-title-button send-button hide">
+	          <button type="submit" id="preference_form" name="preference_form" class="dashboard-box-title-button send-button hide">
 	            guardar
 	          </button>
 					</div>
 	    	</div>
 	    	<div class="dashboard-box-content">
 	    		<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-top-30 padding-bottom-20">
+						{% csrf_token %}
 	    			<b>Estructura familiar/condición:</b> <br>
-
-	    			<b>Personalidad:</b> <br> 
+						<div class="input-container textarea-container">
+							<div class="fields-container hide">
+							{{ preferenceform.familiar_structure }}
+							</div>
+							<div class="value-container">
+							{{ preferenceform.familiar_structure.value|default_if_none:"" }}
+							</div>
+						</div>
+	    			<b>Personalidad:</b> <br>
+						<div class="input-container textarea-container">
+							<div class="fields-container hide">
+							{{ preferenceform.personality }}
+							</div>
+							<div class="value-container">
+							{{ preferenceform.personality.value|default_if_none:"" }}
+							</div>
+						</div>
 	    		</div>
 	    		<div class="dashboard-box-title small internal-title border">
 	    			<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-0">
