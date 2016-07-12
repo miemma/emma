@@ -95,6 +95,8 @@ $(document).ready(function () {
         pictureContainers.find('label')
           .removeClass('hide');
       }
+      form.find('.client-information-container')
+        .css('width', '60%');
     });
 
     form.find('.cancel-button').click(function () {
@@ -113,6 +115,8 @@ $(document).ready(function () {
           $(elem).css('background-image', pictures[index]);
         });
       }
+      form.find('.client-information-container')
+        .css('width', '');
     });
   });
 
