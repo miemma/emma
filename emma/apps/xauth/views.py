@@ -144,7 +144,7 @@ class LoginView(NextUrlMixin, AuthRedirectMixin, FormView):
 
     def form_valid(self, form):
         login(self.request, form.user_cache)
-        return redirect(reverse_lazy('adults:dashboard_adult'))
+        return redirect(reverse_lazy('clients:dashboard_welcome'))
 
     def form_invalid(self, form):
         return self.render_to_response(self.get_context_data())
