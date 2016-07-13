@@ -1,49 +1,31 @@
-{% load static from staticfiles%}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Payment Info</title>
-</head>
-	<body>
-		<ul>
-		  {{ request.user.client }}
-			<br>
-			<br>
-			<br>
-			{% for card in cards %}
-				<form action="." method="post" id="updatecard-form">
-					{% csrf_token %}
-					<h4>{{ card.brand }}</h4>
-					<label>
-						Numero de la tarjeta:
-						<input type="text" name="card_number" value="{{ card.card_number }}">
-					</label>
-					<br>
-					<label>
-						Mes de expiracion
-						<input type="text" name="card_exp_month" value="{{ card.expiration_month }}">
-					</label>
-					<br>
-					<label>
-						Año de expiracion
-						<input type="text" name="card_exp_year" value="{{ card.expiration_year }}">
-					</label>
-					<br>
-					<label>
-						ID de la tarjeta
-						<input type="text" name="card_id" value="{{ card.id }}">
-					</label>
-					<br>
-					<label>
-						Session ID (Hidden)
-					</label>
-					<br>
-					<button type="submit">Eliminar tarjeta</button>
-				</form>
-				<br><br><br><br><br>
-			{% endfor %}
-
-		</ul>
-	</body>
-</html>
+{% extends "clients/dashboard_base.html" %}
+{% block content %}
+<div class="dashboard">
+ {% include "clients/dashboard_menu.html" %}
+	<div class="dashboard-content">
+	  <div class="dashboard-box centered-col">
+	    <div class="dashboard-box-title border">
+	      <div class="flex-grow-1 text-center">
+	        <h2>Mis tarjetas</h2>
+	      </div>
+	    </div>
+	    <div class="dashboard-box-content cards-list flex-grow-1 padding-top-40 padding-bottom-40 margin-bottom-80">
+	    	<div class="col-md-7 col-sm-8 col-xs-10 centered-col">
+	    		{% for card in cards %}
+		    		<form action="." method="post" class="updatecard-form">
+		    			<div class="flex">
+		    				<span class="card-brand-image">{{ card.brand }}</span>
+		    				<div class="card-number flex-grow-1">{{ card.card_number }}</div>
+		    				<button type="submit" class="dashboard-box-title-button cancel-button">eliminar</button>
+		    			</div>
+		    		</form>
+					{% endfor %}
+	    	</div>
+	    	<div class="add-card-button-container text-center margin-top-30 padding-top-40">
+	    		<a href="{{dashboard_add_card}}" class="add-card-btn"><span class="fa fa-plus"></span> Agregar tarjeta</a>
+	    	</div>
+			</div>
+	  </div>
+	</div>
+</div>
+{% endblock %}

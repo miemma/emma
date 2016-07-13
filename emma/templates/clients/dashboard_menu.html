@@ -1,9 +1,9 @@
 <ul class="dashboard-menu">
 	<li class="dashboard-menu-item {%if request.path == dashboard_adult %}active{%endif%}"><a href="{{dashboard_adult}}">Perfil</a></li>
-  <li class="dashboard-menu-item"><a href="{{dashboard_add_card}}">Pagos</a>
-    {% if request.path == dashboard_add_card or request.path == dashboard_charges_list%}
+  <li class="dashboard-menu-item"><a href="{{dashboard_payment_info}}">Pagos</a>
+    {% if request.path == dashboard_add_card or request.path == dashboard_charges_list or request.path == dashboard_payment_info %}
     <ul class="dashboard-submenu">
-			<li class="dashboard-submenu-item {%if request.path == dashboard_add_card %}active{%endif%}"><a href="{{dashboard_add_card}}">Mis tarjetas</a></li>
+			<li class="dashboard-submenu-item {%if request.path == dashboard_add_card or request.path == dashboard_payment_info%}active{%endif%}"><a href="{{dashboard_payment_info}}">Mis tarjetas</a></li>
       <li class="dashboard-submenu-item {%if request.path == dashboard_charges_list %}active{%endif%}"><a href="{{dashboard_charges_list}}">Historial de Pagos</a></li>
     </ul>
     {% endif %}
