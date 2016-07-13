@@ -323,7 +323,7 @@ $(document).ready(function () {
     onfocusout: false
   });
 
-  /* Contact Form
+  /* Join Form
   ---------------------------------------------------------------------------*/
   $('#joinForm').validate({
     rules: {
@@ -344,9 +344,42 @@ $(document).ready(function () {
 
   /* Dashboard User Information Form
   ---------------------------------------------------------------------------*/
-  $('#dashboard-user-form').validate();
+  $('#dashboard-user-form').validate({
+    rules: {
+      email: {
+        email: true,
+        required:true
+      },
+      first_name: {
+        required:true
+      },
+      last_name: {
+        required:true
+      },
+      contact_number: {
+        number: true
+      }
+    }
+  });
 
   /* Dashboard Password Form
   ---------------------------------------------------------------------------*/
-  $('#dashboard-password-form').validate();
+  $('#dashboard-password-form').validate({
+    rules: {
+      current_password: {
+        required: true
+      },
+      new_password_1: {
+        required: true
+      },
+      new_password_2: {
+        required: true,
+        equalTo: "#id_new_password_1"
+      }
+    }
+  });
+
+  /* Cards list
+  ---------------------------------------------------------------------------*/
+  $('.updatecard-form').validate();
 });
