@@ -379,6 +379,182 @@ $(document).ready(function () {
     }
   });
 
+  /* Dashboard Adult Form
+  ---------------------------------------------------------------------------*/
+  $('#dashboard-adult-form').validate({
+    rules: {
+      first_name: {
+        required: true
+      },
+      last_name: {
+        required: true
+      },
+      birthday: {
+        required: true
+      },
+      street: {
+        required: true
+      },
+      num_ext: {
+        required: true,
+        number: true
+      },
+      num_int: {
+        required: false,
+        number: true
+      },
+      colony: {
+        required: true
+      },
+      delegation: {
+        required: true
+      },
+      postal_code: {
+        required: true,
+        number: true
+      },
+      reference: {
+        required: true
+      }
+    }
+  });
+
+  /* Dashboard Preferences Form
+  ---------------------------------------------------------------------------*/
+  $('#dashboard-preferences-form').validate({
+    rules: {
+      familiar_structure: {
+        required: true
+      },
+      personality: {
+        required: true
+      }
+    }
+  });
+
+  /* Dashboard Medical Form
+  ---------------------------------------------------------------------------*/
+  $('#dashboard-medical-form-part-1').validate({
+    rules: {
+      blood_type: {
+        required: true
+      }
+    }
+  });
+
+  $('#dashboard-medical-form-part-2').validate({
+    rules: {
+      emergency_contact_1_full_name: {
+        required: true
+      },
+      emergency_contact_1_relation: {
+        required: true
+      },
+      emergency_contact_1_home_phone: {
+        required: true,
+        number: true
+      },
+      emergency_contact_1_cell_phone: {
+        required: true,
+        number: true
+      },
+      emergency_contact_2_full_name: {
+        required: true
+      },
+      emergency_contact_2_relation: {
+        required: true
+      },
+      emergency_contact_2_home_phone: {
+        required: true,
+        number: true
+      },
+      emergency_contact_2_cell_phone: {
+        required: true,
+        number: true
+      }
+    }
+  });
+  
+  $('#dashboard-medical-form-part-3').validate({
+    rules: {
+      knows_pda: {
+        required: false
+      },
+      exercise_pda: {
+        required: false
+      }
+    }
+  });
+
+  $('#dashboard-medical-form-part-4').validate({
+    rules: {
+      has_medical_insurance: {
+        required: true
+      },
+      insurance_company: {
+        required: false
+      },
+      policy_number: {
+        required: false
+      },
+      policy_expiration_date: {
+        required: false
+      }
+    }
+  });
+
+  $('#dashboard-medical-form-part-5').validate({
+    rules: {
+      has_social_security: {
+        required: false
+      },
+      social_security_number: {
+        required: false
+      }
+    }
+  });
+
+  $('#dashboard-medical-form-part-6').validate({
+    rules: {
+      doctor_first_name: {
+        required: true
+      },
+      doctor_last_name: {
+        required: true
+      },
+      doctor_home_phone: {
+        required: true,
+        number: true
+      },
+      doctor_cell_phone: {
+        required: true,
+        number: true
+      },
+      doctor_working_institution: {
+        required: true
+      },
+      doctor_professional_id: {
+        required: true
+      }
+    }
+  });
+
+  $('#dashboard-medical-form-part-7').validate({
+    rules: {
+      diseases: {
+        required: true
+      },
+      current_medications: {
+        required: true
+      },
+      drug_allergy: {
+        required: true
+      },
+      food_allergy: {
+        required: true
+      }
+    }
+  });
   /* Cards list
   ---------------------------------------------------------------------------*/
   $('.updatecard-form').validate();

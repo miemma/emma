@@ -60,6 +60,9 @@
 .radio-check-button
   color transparent
   opacity 0
+  position fixed
+  left -100vw
+  top -100vh
 
 .radio-check-label::before
   background white
@@ -76,10 +79,9 @@
   width 18px
   height 18px
 
-
-.radio-check-button:focus + .radio-check-label::before
+.radio-check-button:focus ~ .radio-check-label::before
   box-shadow 0 0 5px #1481D0
 
-.radio-check-button:checked + .radio-check-label::before
+.radio-check-button:checked ~ .radio-check-label::before
   border-color green
   content '\2714'

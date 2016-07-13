@@ -15,7 +15,7 @@
 				{% endfor %}
 			</div>
 		{% endif %}
-		<form action="." method="post" enctype="multipart/form-data" class="dashboard-special-form">
+		<form id="dashboard-adult-form" action="." method="post" enctype="multipart/form-data" class="dashboard-special-form">
 			<div class="dashboard-box adult-profile-box white">
 	      <div class="adult-profile-box-picture">
 	      	<div class="adult-picture-container form-image circle" style="background-image: url('{{ adult.photo.url }}')">
@@ -49,6 +49,14 @@
 	        </div>
 	        <div class="dashboard-box-content margin-top-30 margin-bottom-20">
 						{% csrf_token %}
+						<div class="row text-center form-loader">
+			        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-10 margin-bottom-20">
+			          <div id="movingBallG">
+									<div class="movingBallLineG"></div>
+									<div id="movingBallG_1" class="movingBallG"></div>
+								</div>
+			        </div>
+			      </div>
 						<div class="input-container multiple-fields select-container">
 							<div class="fields-container hide">
 								<span>Fecha de nacimiento: </span>
@@ -129,7 +137,7 @@
 	      </div>
     	</div>
     </form>
-    <form action="." method="post" class="dashboard-special-form">
+    <form id="dashboard-preferences-form" action="." method="post" class="dashboard-special-form">
 	    <div class="dashboard-box margin-top-20">
 	    	<div class="dashboard-box-title small border">
 	    		<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-0 flex">
@@ -148,6 +156,14 @@
 	    	<div class="dashboard-box-content">
 	    		<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-top-30 padding-bottom-20">
 						{% csrf_token %}
+						<div class="row text-center form-loader">
+			        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-bottom-20">
+			          <div id="movingBallG">
+									<div class="movingBallLineG"></div>
+									<div id="movingBallG_1" class="movingBallG"></div>
+								</div>
+			        </div>
+			      </div>
 	    			<b>Estructura familiar/condición:</b> <br>
 						<div class="input-container textarea-container">
 							<div class="fields-container hide">
@@ -167,14 +183,6 @@
 							</div>
 						</div>
 	    		</div>
-	    		<div class="row text-center padding-top-30 form-loader">
-		        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
-		          <div id="movingBallG">
-								<div class="movingBallLineG"></div>
-								<div id="movingBallG_1" class="movingBallG"></div>
-							</div>
-		        </div>
-		      </div>
 	    		<div class="dashboard-box-title small internal-title border">
 	    			<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-0">
 	    				<h2>Intereses y pasatiempos</h2>
@@ -197,7 +205,7 @@
 				</div>
     	</div>
     	<div class="dashboard-box-content">
-				<form action="." method="post" class="dashboard-special-form">
+				<form id="dashboard-medical-form-part-1" action="." method="post" class="dashboard-special-form">
 					{% csrf_token %}
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
@@ -220,6 +228,14 @@
 			            guardar
 			          </button>
 							</div>
+							<div class="row text-center form-loader">
+				        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-20 margin-bottom-20">
+				          <div id="movingBallG">
+										<div class="movingBallLineG"></div>
+										<div id="movingBallG_1" class="movingBallG"></div>
+									</div>
+				        </div>
+				      </div>
 	    				<div class="input-container">
 								<div class="fields-container hide">
 									<b>Tipo de sangre:</b>
@@ -229,18 +245,10 @@
 								 <b>Tipo de sangre: </b>{{ medicalform.blood_type.value|default_if_none:"---"}}
 								</div>
 							</div>
-							<div class="row text-center padding-top-30 form-loader">
-				        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
-				          <div id="movingBallG">
-										<div class="movingBallLineG"></div>
-										<div id="movingBallG_1" class="movingBallG"></div>
-									</div>
-				        </div>
-				      </div>
 	    			</div>
 	    		</div>
 	    	</form>
-				<form action="." method="post" class="dashboard-special-form">
+				<form id="dashboard-medical-form-part-2" action="." method="post" class="dashboard-special-form">
 					{% csrf_token %}
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
@@ -263,6 +271,14 @@
 			            guardar
 			          </button>
 							</div>
+							<div class="row text-center form-loader">
+				        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-20 margin-bottom-20">
+				          <div id="movingBallG">
+										<div class="movingBallLineG"></div>
+										<div id="movingBallG_1" class="movingBallG"></div>
+									</div>
+				        </div>
+				      </div>
 							<div class="columns">
 		    				<div class="dashboard-toggle-list-content-column">
 		    					<h4>Contacto #1</h4>
@@ -351,18 +367,10 @@
 		    					</div>
 		    				</div>
 		    			</div>
-							<div class="row text-center padding-top-30 form-loader">
-				        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
-				          <div id="movingBallG">
-										<div class="movingBallLineG"></div>
-										<div id="movingBallG_1" class="movingBallG"></div>
-									</div>
-				        </div>
-				      </div>
 	    			</div>
 	    		</div>
 	    	</form>
-				<form action="." method="post" class="dashboard-special-form">
+				<form id="dashboard-medical-form-part-3" action="." method="post" class="dashboard-special-form">
 					{% csrf_token %}
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
@@ -424,7 +432,7 @@
 	    			</div>
 	    		</div>
 	    	</form>
-				<form action="." method="post" class="dashboard-special-form">
+				<form id="dashboard-medical-form-part-4" action="." method="post" class="dashboard-special-form">
 					{% csrf_token %}
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
@@ -510,7 +518,7 @@
 	    			</div>
 	    		</div>
 	    	</form>
-				<form action="." method="post" class="dashboard-special-form">
+				<form id="dashboard-medical-form-part-5" action="." method="post" class="dashboard-special-form">
 					{% csrf_token %}
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
@@ -570,7 +578,7 @@
 	    			</div>
 	    		</div>
 	    	</form>
-				<form action="." method="post" class="dashboard-special-form">
+				<form id="dashboard-medical-form-part-6" action="." method="post" class="dashboard-special-form">
 					{% csrf_token %}
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
@@ -664,7 +672,7 @@
 	    			</div>
 	    		</div>
 	    	</form>
-				<form action="." method="post" class="dashboard-special-form">
+				<form id="dashboard-medical-form-part-7" action="." method="post" class="dashboard-special-form">
 					{% csrf_token %}
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
