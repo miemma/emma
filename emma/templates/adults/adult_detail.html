@@ -66,7 +66,7 @@
 							</div>
 							<div class="value-container">
 								<span>Edad: </span>
-								{{ adultform.birthday.value|age }} años
+								{{ adultform.birthday.value }} años
 							</div>
 						</div>
 						<div class="input-container multiple-fields">
@@ -74,15 +74,17 @@
 								<span>Dirección: </span>
 								<div class="flex">
 	          		{{ adultform.street }} 
-	          		{{ adultform.num_ext }} 
+	          		{{ adultform.num_ext }}
 								{{ adultform.num_int }}
 								</div>
 							</div>
 							<span class="value-container">
 								<span>Dirección: </span>
 								{{ adultform.street.value|default_if_none:"---"}}
-								{{ adultform.num_ext.value|default_if_none:"---"}}
-								{{ adultform.num_int.value|default_if_none:"---"}}
+								#{{ adultform.num_ext.value|default_if_none:"---"}}
+								{% if adultform.num_int.value %}
+									Int. {{ adultform.num_int.value|default_if_none:"---"}}
+								{% endif %}
 	          	</span>
 						</div>
 						<div class="input-container select-container">
@@ -94,7 +96,7 @@
 							</div>
 							<div class="value-container">
 								<span>Delegación: </span>
-								{{ adultform.delegation.value|default_if_none:"" }}
+								{{ adultform.delegation.value|default_if_none:"---" }}
 							</div>
 						</div>
 						<div class="input-container">
@@ -106,7 +108,7 @@
 							</div>
 							<div class="value-container">
 								<span>Colonia: </span>
-								{{ adultform.colony.value|default_if_none:"" }}
+								{{ adultform.colony.value|default_if_none:"---" }}
 							</div>
 						</div>
 						<div class="input-container">
@@ -118,7 +120,7 @@
 							</div>
 							<div class="value-container">
 								<span>C.P. </span>
-								{{ adultform.postal_code.value|default_if_none:"" }}
+								{{ adultform.postal_code.value|default_if_none:"---" }}
 							</div>
 						</div>
 						<div class="input-container textarea-container">
@@ -130,7 +132,7 @@
 							</div>
 							<div class="value-container">
 								<span>Referencias: </span>
-								{{ adultform.reference.value|default_if_none:"" }}
+								{{ adultform.reference.value|default_if_none:"---" }}
 							</div>
 						</div>
 	        </div>
@@ -174,7 +176,7 @@
 								<div class="preferences-form-data">
 									<b>Estructura familiar/condición:</b> <br>
 									<p>
-										{{ preferenceform.familiar_structure.value|default_if_none:"" }}
+										{{ preferenceform.familiar_structure.value|default_if_none:"---" }}
 									</p>
 								</div>
 							</div>
@@ -189,7 +191,7 @@
 		    				<div class="preferences-form-data">
 										<b>Personalidad:</b> <br>
 										<p>
-											{{ preferenceform.personality.value|default_if_none:"" }}
+											{{ preferenceform.personality.value|default_if_none:"---" }}
 										</p>
 								</div>
 							</div>
