@@ -39,7 +39,7 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
 
             if medicalform.is_valid():
                 medicalform.save()
-                messages.info(self.request, 'Medical information update')
+                messages.info(self.request, 'Información médica actualizada')
                 return redirect(reverse_lazy('adults:dashboard_adult',
                                              kwargs={'id': id}))
             else:
@@ -60,7 +60,7 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
 
             if adultform.is_valid():
                 adultform.save()
-                messages.info(self.request, 'User update')
+                messages.info(self.request, 'Información del adulto actualizda')
                 return redirect(reverse_lazy('adults:dashboard_adult',
                                              kwargs={'id': id}))
             else:
@@ -82,7 +82,7 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
 
             if preferenceform.is_valid():
                 preferenceform.save()
-                messages.info(self.request, 'User update')
+                messages.info(self.request, 'Información del adulto actualizda')
                 return redirect(reverse_lazy('adults:dashboard_adult',
                                              kwargs={'id': id}))
             else:
