@@ -14,11 +14,13 @@ class AdultAddress(models.Model):
         blank=False,
         null=False
     )
-    outdoor_number = models.PositiveIntegerField(
+    outdoor_number = models.CharField(
+        max_length=25,
         blank=False,
         null=False
     )
-    interior_number = models.PositiveIntegerField(
+    interior_number = models.CharField(
+        max_length=25,
         blank=True,
         null=True
     )
@@ -273,9 +275,8 @@ class AdultHobbie(models.Model):
         verbose_name=_('Adult')
     )
 
-    hobbie = models.CharField(
+    hobbie = models.TextField(
         _('Hobbie'),
-        max_length=50,
         blank=False,
         null=False,
     )
