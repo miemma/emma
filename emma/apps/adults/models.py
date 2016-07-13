@@ -232,21 +232,18 @@ class Adult(models.Model):
         Client,
         verbose_name=_('Responsable'),
     )
-    description = models.CharField(
+    description = models.TextField(
         _('Description'),
-        max_length=30,
         blank=True,
         null=True,
     )
-    familiar_structure = models.CharField(
+    familiar_structure = models.TextField(
         _('Familiar Structure'),
-        max_length=30,
         blank=True,
         null=True,
     )
-    personality = models.CharField(
+    personality = models.TextField(
         _('Personality'),
-        max_length=30,
         blank=True,
         null=True,
     )
