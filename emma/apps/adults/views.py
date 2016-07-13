@@ -116,9 +116,6 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
                 'postal_code': adult.address.postal_code,
                 'reference': adult.address.reference,
                 'photo': adult.photo,
-                'personality': adult.personality,
-                'familiar_structure': adult.familiar_structure,
-                'description': adult.description,
             }
         )
         return form
@@ -189,7 +186,6 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
     def get_initial_preferences_form(request, adult):
         form = AdultPreferences(
             initial={
-                'description': adult.description,
                 'familiar_structure': adult.familiar_structure,
                 'personality': adult.personality,
             }
