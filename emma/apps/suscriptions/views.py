@@ -27,7 +27,7 @@ class ChargesList(GetAdultMixin, ClientRequiredMixin, ListView):
         return context
 
 
-class HistoryList(ClientRequiredMixin, ListView):
+class HistoryList(GetAdultMixin, ClientRequiredMixin, ListView):
     template_name = 'suscriptions/history_list.html'
     model = History
     context_object_name = 'histories'
@@ -36,6 +36,11 @@ class HistoryList(ClientRequiredMixin, ListView):
         suscription = Suscription.objects.get(client=self.request.user.client)
         queryset = self.model.objects.filter(suscription=suscription)
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super(HistoryList, self).get_context_data(**kwargs)
+        context['adult'] = self.get_adult(self.request)
+        return context
 
 
 class PaymentInfo(GetAdultMixin, ClientRequiredMixin, View):
