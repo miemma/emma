@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import datetime
 from django import forms
 from django.shortcuts import get_object_or_404
 
@@ -8,6 +9,9 @@ from emma.apps.adults.models import Adult, AdultAddress, \
     MedicalInfo as medical_info
 from emma.core import validators
 from emma.core.messages import error_messages
+
+this_year = datetime.date.today().year
+years = range(this_year - 90, this_year)
 
 
 class AdultPreferences(forms.Form):
@@ -97,6 +101,7 @@ class AdultInfo(forms.Form):
     )
     birthday = forms.DateField(
         widget=forms.SelectDateWidget(
+            years=years,
             attrs={
                 'class': 'emma-input',
             }
