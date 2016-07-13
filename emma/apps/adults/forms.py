@@ -20,7 +20,7 @@ class AdultPreferences(forms.Form):
             }
         ),
         validators=[validators.eval_blank],
-        required=True,
+        required=False,
         error_messages=error_messages
     )
     familiar_structure = forms.CharField(
@@ -228,9 +228,6 @@ class AdultInfo(forms.Form):
         adult.first_name = cleaned_data.get('first_name')
         adult.last_name = cleaned_data.get('last_name')
         adult.birthday = cleaned_data.get('birthday')
-        adult.personality = cleaned_data.get('personality')
-        adult.description = cleaned_data.get('description')
-        adult.familiar_structure = cleaned_data.get('familiar_structure')
 
         if cleaned_data.get('photo'):
             adult.photo = cleaned_data.get('photo')
