@@ -31,7 +31,7 @@
   padding 25px 50px
   
 .dashboard
-  display flex
+  position relative
 
 .dashboard-menu,
 .dashboard-submenu
@@ -61,6 +61,7 @@
         color $gray
   
 .dashboard-menu
+  position absolute
   width 295px
         
 .dashboard-menu .dashboard-menu-item
@@ -80,8 +81,8 @@
     padding-left 90px
   
 .dashboard-content
-  flex-grow 1
-  margin-left 30px
+  margin-left 325px
+  min-height 580px
 
 @media screen and (max-width: 1100px)
   .dashboard-navbar .header-navbar-list
@@ -98,9 +99,11 @@
     display block
     
   .dashboard-menu
+    position relative
     width 100%
     
   .dashboard-content
     margin-left 0
     margin-top 50px
+    min-height auto
     width 100%
