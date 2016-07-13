@@ -134,7 +134,7 @@ class AdultInfo(forms.Form):
             }
         ),
         validators=[validators.eval_blank],
-        required=True,
+        required=False,
         error_messages=error_messages
     )
     delegation = forms.ChoiceField(
