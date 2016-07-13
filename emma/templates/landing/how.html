@@ -256,8 +256,8 @@
         </div>
         <div class="row text-center how-detail-row-btn">
           <div class="col-xs-10 col-sm-5 col-md-4 col-lg-5">
-	          {% if request.user.client.active_client %}
-					    <a href="{% url 'users:select_card' %}" class="emma-btn-dark how-detail-btn">
+	          {% if request.user.client %}
+					    <a href="{% url adults:dashboard_adult %}" class="emma-btn-dark how-detail-btn">
 				        Pagar
 				      </a>
 				    {% else %}
