@@ -231,7 +231,7 @@ class Adult(models.Model):
         verbose_name=_('Responsable'),
     )
     description = models.CharField(
-        _('Familiar Structure'),
+        _('Description'),
         max_length=30,
         blank=True,
         null=True,
