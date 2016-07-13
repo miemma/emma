@@ -5,30 +5,30 @@ from django.views.generic import View
 
 from emma.apps.adults.models import Adult
 from emma.apps.services.models import HiredService
-from emma.core.mixins import ClientRequiredMixin
+from emma.core.mixins import ClientRequiredMixin, GetAdultMixin
 
 
-class MainEmmaView(ClientRequiredMixin, View):
+class MainEmmaView(GetAdultMixin, ClientRequiredMixin, View):
     template_name = 'emmas/emma_detail.html'
 
     def get(self, request):
-        adult = Adult.objects.get(responsable=request.user.client)
-        service = HiredService.objects.get(adult=adult)
+        service = HiredService.objects.get(adult=self.get_adult(request))
         emma = service.emma_assigned
         ctx = {
-            'emma': emma
+            'emma': emma,
+            'adult': self.get_adult(request),
         }
         return TemplateResponse(request, self.template_name, ctx)
 
 
-class SecondEmmaView(ClientRequiredMixin, View):
+class SecondEmmaView(GetAdultMixin, ClientRequiredMixin, View):
     template_name = 'emmas/emma_detail.html'
 
     def get(self, request):
-        adult = Adult.objects.get(responsable=request.user.client)
-        service = HiredService.objects.get(adult=adult)
+        service = HiredService.objects.get(adult=self.get_adult(request))
         emma = service.emma_alternate
         ctx = {
-            'emma': emma
+            'emma': emma,
+            'adult': self.get_adult(request),
         }
         return TemplateResponse(request, self.template_name, ctx)

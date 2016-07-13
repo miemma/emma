@@ -1,17 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 import openpay
 from django.core.urlresolvers import reverse_lazy
-from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 from django.views.generic import ListView, View
 
 from emma.apps.suscriptions.models import Charge, Suscription, History
-from emma.core.mixins import ClientRequiredMixin
+from emma.core.mixins import ClientRequiredMixin, GetAdultMixin
 
 
-class ChargesList(ClientRequiredMixin, ListView):
+class ChargesList(GetAdultMixin, ClientRequiredMixin, ListView):
     template_name = 'suscriptions/charges_list.html'
     model = Charge
     context_object_name = 'charges'
@@ -20,6 +20,11 @@ class ChargesList(ClientRequiredMixin, ListView):
         suscription = Suscription.objects.get(client=self.request.user.client)
         queryset = Charge.objects.filter(suscription=suscription)
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super(ChargesList, self).get_context_data(**kwargs)
+        context['adult'] = self.get_adult(self.request)
+        return context
 
 
 class HistoryList(ClientRequiredMixin, ListView):
@@ -33,7 +38,7 @@ class HistoryList(ClientRequiredMixin, ListView):
         return queryset
 
 
-class PaymentInfo(ClientRequiredMixin, View):
+class PaymentInfo(GetAdultMixin, ClientRequiredMixin, View):
     template_name = 'suscriptions/payment_info.html'
 
     def get(self, request):
@@ -42,7 +47,8 @@ class PaymentInfo(ClientRequiredMixin, View):
         cards = customer.cards.all()
 
         ctx = {
-            'cards': cards.data
+            'cards': cards.data,
+            'adult': self.get_adult(request)
         }
         return TemplateResponse(request, self.template_name, ctx)
 

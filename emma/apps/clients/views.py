@@ -17,7 +17,7 @@ from emma.core.mixins import ClientRequiredMixin, LoginRequiredMixin, \
 import openpay
 
 
-class ClientDetailView(ClientRequiredMixin, View):
+class ClientDetailView(GetAdultMixin, ClientRequiredMixin, View):
     template_name = 'clients/client_detail.html'
 
     def get(self, request, **kwargs):
@@ -25,6 +25,7 @@ class ClientDetailView(ClientRequiredMixin, View):
         ctx = {
             'password_form':password_form,
             'user_form':self.get_user_initial_form(request),
+            'adult':self.get_adult(request)
         }
         return TemplateResponse(request, self.template_name, ctx)
 
