@@ -144,12 +144,7 @@ class LoginView(NextUrlMixin, AuthRedirectMixin, FormView):
 
     def form_valid(self, form):
         login(self.request, form.user_cache)
-        if not form.user_cache.client.active_client:
-            return redirect(reverse_lazy('landing:date'))
-        elif not form.user_cache.client.change_password:
-            return redirect(reverse_lazy('xauth:change_password'))
-        else:
-            return super(LoginView, self).form_valid(form)
+        return redirect(reverse_lazy('adults:dashboard_adult'))
 
     def form_invalid(self, form):
         return self.render_to_response(self.get_context_data())
