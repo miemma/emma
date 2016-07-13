@@ -35,9 +35,9 @@
     </li>
     <li class="header-navbar-list-item phone">
       <div class="phone-content">
-	      {% if request.user.client.active_client %}
-			    <a href="{% url 'users:select_card' %}" class="header-navbar-pay">
-		        PAGAR
+	      {% if request.user.client %}
+			    <a href="{% url 'adults:dashboard_adult' %}" class="header-navbar-pay">
+		        Dashboard
 		      </a>
 		    {% else %}
 		      <i class="fa fa-phone"></i>
