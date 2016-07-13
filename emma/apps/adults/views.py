@@ -34,15 +34,6 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
 
     def post(self, request, id, **kwargs):
         kwargs = {'request': request, 'adult_id': id}
-        adultform = self.get_initial_adult_form(
-            request, self.get_adult(request)
-        )
-        medicalform = self.get_initial_medical_form(
-            request, self.get_adult(request)
-        )
-        preferenceform = self.get_initial_preferences_form(
-            request, self.get_adult(request)
-        )
         if 'medical_form' in request.POST:
             medicalform = MedicalInfo(request.POST, **kwargs)
 
@@ -53,9 +44,13 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
                                              kwargs={'id': id}))
             else:
                 ctx = {
-                    'adultform': adultform,
+                    'adultform': self.get_initial_adult_form(
+                        request, self.get_adult(request)
+                    ),
                     'medicalform': medicalform,
-                    'preferenceform': preferenceform,
+                    'preferenceform': self.get_initial_preferences_form(
+                        request, self.get_adult(request)
+                    ),
                     'adult': self.get_adult(request)
                 }
                 return render(request, self.template_name, ctx)
@@ -71,8 +66,12 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
             else:
                 ctx = {
                     'adultform': adultform,
-                    'medicalform': medicalform,
-                    'preferenceform': preferenceform,
+                    'medicalform': self.get_initial_medical_form(
+                        request, self.get_adult(request)
+                    ),
+                    'preferenceform': self.get_initial_preferences_form(
+                        request, self.get_adult(request)
+                    ),
                     'adult': self.get_adult(request)
                 }
                 return render(request, self.template_name, ctx)
@@ -88,8 +87,12 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
                                              kwargs={'id': id}))
             else:
                 ctx = {
-                    'adultform': adultform,
-                    'medicalform': medicalform,
+                    'adultform': self.get_initial_adult_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalform': self.get_initial_medical_form(
+                        request, self.get_adult(request)
+                    ),
                     'preferenceform': preferenceform,
                     'adult': self.get_adult(request)
                 }
