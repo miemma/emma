@@ -164,22 +164,36 @@
 								</div>
 			        </div>
 			      </div>
-	    			<b>Estructura familiar/condición:</b> <br>
 						<div class="input-container textarea-container">
 							<div class="fields-container hide">
+							<b>Estructura familiar/condición:</b> <br>
 							{{ preferenceform.familiar_structure }}
 							</div>
-							<div class="value-container">
-							{{ preferenceform.familiar_structure.value|default_if_none:"" }}
+							<div class="value-container flex">
+								<img src="{% static "img/icons/heart.png" %}" class="preferences-form-icon">
+								<div class="preferences-form-data">
+									<b>Estructura familiar/condición:</b> <br>
+									<!-- {{ preferenceform.familiar_structure.value|default_if_none:"" }} -->
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe velit vitae doloribus rerum quibusdam. Facilis fugiat numquam, voluptate perspiciatis asperiores, non alias quos ipsa dolores exercitationem. Atque asperiores dolorem, error.
+									</p>
+								</div>
 							</div>
 						</div>
-	    			<b>Personalidad:</b> <br>
 						<div class="input-container textarea-container">
 							<div class="fields-container hide">
+	    				<b>Personalidad:</b> <br>
 							{{ preferenceform.personality }}
 							</div>
-							<div class="value-container">
-							{{ preferenceform.personality.value|default_if_none:"" }}
+							<div class="value-container flex margin-top-30">
+								<img src="{% static "img/icons/flag.png" %}" class="preferences-form-icon">
+		    				<div class="preferences-form-data">
+										<b>Personalidad:</b> <br>
+										<!-- {{ preferenceform.personality.value|default_if_none:"" }} -->
+										<p>
+											Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate obcaecati maxime, rerum sapiente, fuga distinctio nulla facere. Quaerat neque ipsum itaque facilis beatae, nihil amet odio optio, mollitia repellat necessitatibus!
+										</p>
+								</div>
 							</div>
 						</div>
 	    		</div>
