@@ -26,16 +26,18 @@
           <img class="header-navbar-logo" src="{% static "img/icons/logo_2.png" %}"/>
         </a>
         <ul class="header-navbar-list">
-          <li class="header-navbar-list-item" hcolor="white">
-            <a class="header-navbar-list-item-link" href="{{dashboard_history_list}}">
-              Historial
-            </a>
-          </li>
-          <li class="header-navbar-list-item" hcolor="white">
+          {% if view_profile %}
+            <li class="header-navbar-list-item" hcolor="white">
+	            <a class="header-navbar-list-item-link" href="{{dashboard_history_list}}">
+	              Historial
+	            </a>
+	          </li>
+	          <li class="header-navbar-list-item" hcolor="white">
             <a class="header-navbar-list-item-link" href="{{dashboard_main_emma}}">
               Mi <i>Emma</i>
             </a>
           </li>
+          {% endif %}
           <li class="header-navbar-list-item" hcolor="white">
             <a class="header-navbar-list-item-link"
                href="https://medium.com/@miemma" >
@@ -50,7 +52,8 @@
           </li>
           {% elif make_call %}
           <li class="header-navbar-list-item" hcolor="white">
-            <a class="header-navbar-list-item-link" href="#">
+            <a class="header-navbar-list-item-link"
+               href="{% url 'landing:date' %}">
               Programar llamada
             </a>
           </li>
@@ -66,7 +69,9 @@
             <a class="header-navbar-list-item-link" href="{{ dashboard_adult }}">
               {{ adult.first_name }}
             </a>
-	          <img class="circle" src="{{ adult.photo.url }}" width="50px" height="50px"/>
+	          {% if view_profile %}
+	            <img class="circle" src="{{ adult.photo.url }}" width="50px" height="50px"/>
+	          {% endif %}
           </li>
         </ul>
       </header>
