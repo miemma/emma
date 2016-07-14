@@ -580,7 +580,7 @@ class ContractAdultInfo(forms.Form):
             adult = Adult(
                 first_name=cleaned_data.get('name'),
                 last_name=cleaned_data.get('last_name'),
-                birthday=cleaned_data.get('birthday'),
+                birthday='1997-11-10',
                 responsable=self.request.user.client,
                 personality=cleaned_data.get('personality'),
                 familiar_structure=cleaned_data.get('familiar_structure'),
