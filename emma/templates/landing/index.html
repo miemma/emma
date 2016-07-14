@@ -38,7 +38,7 @@
 	  <div class="row text-center info-1-row-btn">
 	    <div class="col-xs-10 col-sm-5 col-md-4 col-lg-3">
 		    {% if request.user.client %}
-			    <a href="{% url 'adults:dashboard_adult' %}"
+			    <a href="{%  url 'clients:dashboard_welcome'  %}"
 			       class="emma-btn-dark info-1-btn-pay">
 		        Dashboard
 		      </a>
@@ -396,7 +396,7 @@
 	      <div class="row text-center padding-top-10 margin-bottom-50">
 	        <div class="col-xs-9 col-sm-4 col-md-4 col-lg-4">
 		        {% if request.user.client %}
-					    <a href="{% url 'adults:dashboard_adult' %}" class="emma-btn-dark whois-btn">
+					    <a href="{%  url 'clients:dashboard_welcome'  %}" class="emma-btn-dark whois-btn">
 				        Dashboard
 				      </a>
 				    {% else %}

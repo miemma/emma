@@ -36,7 +36,7 @@
     <li class="header-navbar-list-item phone">
       <div class="phone-content">
 	      {% if request.user.client %}
-			    <a href="{% url 'adults:dashboard_adult' %}" class="header-navbar-pay">
+			    <a href="{%  url 'clients:dashboard_welcome'  %}" class="header-navbar-pay">
 		        Dashboard
 		      </a>
 		    {% else %}
