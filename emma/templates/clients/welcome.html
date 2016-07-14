@@ -18,7 +18,10 @@
 				  	<h3>¡Muchas gracias por tu confianza!</h3>
 				  </div>
 				  <div class="margin-bottom-30">
-				  	<a href="#" class="emma-btn-light welcome-btn">Contratar servicio</a>
+				  	<a href="{% url 'services:contract_service_info' %}"
+					     class="emma-btn-light welcome-btn">
+						  Contratar servicio
+					  </a>
 				  </div>
 			  {% elif make_call %}
 				  <div class="welcome-paragraph">
