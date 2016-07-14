@@ -156,20 +156,6 @@ class ContractComprobation(ActiveClientRequiredMixin, View):
 
         adult = Adult.objects.get(responsable=self.request.user.client)
 
-        def calculate_age(born):
-            today = date.today()
-            try:
-                birthday = born.replace(year=today.year)
-            except ValueError:
-                birthday = born.replace(year=today.year, day=born.day - 1)
-            if birthday > today:
-                return today.year - born.year - 1
-            else:
-                return today.year - born.year
-
-        day, month, year = [int(x) for x in adult.birthday.split("/")]
-        born = date(year, month, day)
-
         ctx = {
             'name': self.request.user.first_name,
             'last_name': self.request.user.last_name,
@@ -193,7 +179,7 @@ class ContractComprobation(ActiveClientRequiredMixin, View):
             'day_7': service.service_days.service_day_7,
             'adult_first_name': adult.first_name,
             'adult_last_name': adult.last_name,
-            'age': calculate_age(born),
+            'age': adult.birthday,
         }
 
         return TemplateResponse(request, self.template_name, ctx)
