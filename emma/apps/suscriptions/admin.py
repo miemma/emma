@@ -9,7 +9,7 @@ from . import models
 
 @admin.register(models.Suscription)
 class SuscriptionAdmin(admin.ModelAdmin):
-    list_display = ('client', 'date', 'id_customer', 'status', 'is_active')
+    list_display = ('client', 'date', 'openpay_id', 'status', 'is_active')
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
     exclude = ['id']
