@@ -98,6 +98,12 @@ class EmergencyContact(models.Model):
 
 
 class MedicalInfo(models.Model):
+    adult_name = models.CharField(
+        _('Adult Full Name'),
+        max_length=50,
+        blank=False,
+        null=False,
+    )
     blood_type = models.CharField(
         _('Blood Type'),
         max_length=25,
@@ -164,27 +170,23 @@ class MedicalInfo(models.Model):
         Doctor,
         verbose_name=_('Doctor')
     )
-    diseases = models.CharField(
+    diseases = models.TextField(
         _('Diseases'),
-        max_length=25,
         blank=False,
         null=False,
     )
-    current_medications = models.CharField(
+    current_medications = models.TextField(
         _('Current Medications'),
-        max_length=25,
         blank=False,
         null=False,
     )
-    drug_allergy = models.CharField(
+    drug_allergy = models.TextField(
         _('Drug Allergy'),
-        max_length=25,
         blank=False,
         null=False,
     )
-    food_allergy = models.CharField(
+    food_allergy = models.TextField(
         _('Food Allergy'),
-        max_length=25,
         blank=False,
         null=False,
     )
@@ -194,7 +196,7 @@ class MedicalInfo(models.Model):
         verbose_name_plural = _('Medical Information')
 
     def __unicode__(self):
-        return 'Medical Informatin - %s' % self.id
+        return 'Medical Information - %s' % self.adult_name
 
 
 class Adult(models.Model):
