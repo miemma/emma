@@ -1,12 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import openpay
 from django import forms
 
 from emma.apps.clients.models import Client
+from emma.apps.suscriptions.models import Suscription
 from emma.apps.users.models import CoolUser
 from emma.core import validators
 from emma.core.messages import error_messages
+
+from datetime import datetime
 
 
 class UserInformationForm(forms.Form):
@@ -74,3 +78,30 @@ class UserInformationForm(forms.Form):
 
         user.save()
         client.save()
+
+
+class ClientCreationForm(forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = ['user', 'contact_number', 'active_client',
+                  'first_time_dashboard']
+
+    def save(self, commit=True):
+        client = super(ClientCreationForm, self).save(commit=False)
+        customer = openpay.Customer.create(
+            name=client.user.get_full_name(),
+            email=client.user.email,
+            requires_account=False,
+            status='active',
+        )
+        suscription = Suscription(
+            client=client,
+            id_customer=customer.id,
+            status='active',
+            is_active=True,
+            date=datetime.today()
+        )
+        suscription.save()
+        if commit:
+            client.save()
+        return client
