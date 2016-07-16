@@ -3,6 +3,7 @@
 
 from django.contrib import admin
 
+from emma.apps.clients.forms import ClientCreationForm
 from emma.core.utils import export_as_xls
 
 from . import models
@@ -10,8 +11,8 @@ from . import models
 
 @admin.register(models.Client)
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'get_email', 'active_client',
-                    'change_password')
+    form = ClientCreationForm
+    list_display = ('id', 'user', 'get_email', 'active_client')
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
     exclude = ['id']
