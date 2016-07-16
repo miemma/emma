@@ -48,7 +48,7 @@ class PaymentInfo(GetAdultMixin, ClientRequiredMixin, View):
 
     def get(self, request):
         suscription = Suscription.objects.get(client=self.request.user.client)
-        customer = openpay.Customer.retrieve(suscription.id_customer)
+        customer = openpay.Customer.retrieve(suscription.openpay_id)
         cards = customer.cards.all()
 
         ctx = {
@@ -59,7 +59,7 @@ class PaymentInfo(GetAdultMixin, ClientRequiredMixin, View):
 
     def post (self, request):
         suscription = Suscription.objects.get(client=request.user.client)
-        customer = openpay.Customer.retrieve(suscription.id_customer)
+        customer = openpay.Customer.retrieve(suscription.openpay_id)
         try:
             card = customer.cards.retrieve(request.POST['card_id'])
         except:

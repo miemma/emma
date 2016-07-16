@@ -208,7 +208,7 @@ class ContractPay(ActiveClientRequiredMixin, View):
 
         suscription = Suscription(
             client=client,
-            id_customer=customer.id,
+            openpay_id=customer.id,
             status='active',
             is_active=True,
             date=datetime.today()

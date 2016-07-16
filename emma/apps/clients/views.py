@@ -88,7 +88,7 @@ class AddCardView(GetAdultMixin, ClientRequiredMixin, View):
     def post(self, request):
         client = Client.objects.get(user=request.user)
         suscription = Suscription.objects.get(client=client)
-        customer = openpay.Customer.retrieve(suscription.id_customer)
+        customer = openpay.Customer.retrieve(suscription.openpay_id)
 
         card = customer.cards.create(
             token_id=request.POST['token_id'],
