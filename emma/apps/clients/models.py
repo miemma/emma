@@ -23,10 +23,6 @@ class Client(models.Model):
         blank=True,
         null=True
     )
-    change_password = models.BooleanField(
-        _('Change password'),
-        default=False
-    )
     active_client = models.BooleanField(
         _('Active client'),
         default=False
