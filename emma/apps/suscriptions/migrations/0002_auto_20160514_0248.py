@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigIntegerField(auto_created=True, verbose_name='ID')),
                 ('client', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, related_name='suscriptions', serialize=False, to='clients.Client', verbose_name='Client')),
                 ('date', models.DateTimeField(auto_now_add=True, verbose_name='Creation date')),
-                ('id_customer', models.CharField(max_length=25, verbose_name='Cuatomer ID')),
+                ('openpay_id', models.CharField(max_length=25, verbose_name='Cuatomer ID')),
                 ('status', models.CharField(max_length=25, verbose_name='Status')),
                 ('is_active', models.BooleanField(default=False, verbose_name='Active')),
             ],

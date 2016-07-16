@@ -22,7 +22,7 @@ class Suscription(models.Model):
         _('Creation date'),
         auto_now_add=True
     )
-    id_customer = models.CharField(
+    openpay_id = models.CharField(
         _('Cuatomer ID'),
         max_length=25,
         blank=False,
