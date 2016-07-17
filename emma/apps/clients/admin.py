@@ -12,7 +12,7 @@ from . import models
 @admin.register(models.Client)
 class ClientAdmin(admin.ModelAdmin):
     form = ClientCreationForm
-    list_display = ('id', 'user', 'get_email', 'active_client')
+    list_display = ('id', 'user', 'get_email', 'user_type')
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
     exclude = ['id']
