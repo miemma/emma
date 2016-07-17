@@ -94,7 +94,7 @@ class AddCardView(GetAdultMixin, ClientRequiredMixin, View):
             token_id=request.POST['token_id'],
             device_session_id=request.POST['devsessionid']
         )
-        return redirect(reverse_lazy('clients:dashboard_add_card'))
+        return redirect(reverse_lazy('suscriptions:dashboard_payment_info'))
 
 
 class WelcomeView(GetAdultMixin, ClientRequiredMixin, View):

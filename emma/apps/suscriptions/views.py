@@ -68,7 +68,7 @@ class PaymentInfo(GetAdultMixin, ClientRequiredMixin, View):
             card = None
         if card is not None:
             card.delete()
-        return redirect(reverse_lazy('suscriptions:payment_info'))
+        return redirect(reverse_lazy('suscriptions:dashboard_payment_info'))
 
 
 class SuscriptionDetail(GetAdultMixin, ClientRequiredMixin, View):
