@@ -99,21 +99,18 @@ class AddCardView(GetAdultMixin, ClientRequiredMixin, View):
 
 class WelcomeView(ClientRequiredMixin, View):
     def get(self, request, **kwargs):
-
         client = request.user.client
-
-        if client.active_client:
-            if hasattr(client, 'suscriptions'):
-                if client.first_time_dashboard:
-                    client.first_time_dashboard = False
-                    client.save()
-                    ctx = {'view_profile':'true'}
-                    return TemplateResponse(request, 'clients/welcome.html', ctx)
-                else:
-                    return redirect(reverse('adults:dashboard_adult'))
-            else:
-                ctx = {'contract_service': 'true'}
-                return TemplateResponse(request, 'clients/welcome.html', ctx)
-        else:
+        if client.user_type == 'User type 1':
             ctx = {'make_call': 'true'}
             return TemplateResponse(request, 'clients/welcome.html', ctx)
+        elif client.user_type == 'User type 2':
+            ctx = {'contract_service': 'true'}
+            return TemplateResponse(request, 'clients/welcome.html', ctx)
+        elif client.user_type == 'User type 3' and hasattr(client, 'suscriptions'):
+            if client.first_time_dashboard:
+                client.first_time_dashboard = True
+                client.save()
+                ctx = {'view_profile': 'true'}
+                return TemplateResponse(request, 'clients/welcome.html', ctx)
+            else:
+                return redirect(reverse('adults:dashboard_adult'))
