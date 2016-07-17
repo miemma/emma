@@ -23,9 +23,14 @@ class Client(models.Model):
         blank=True,
         null=True
     )
-    active_client = models.BooleanField(
-        _('Active client'),
-        default=False
+    user_type = models.CharField(
+        _('User type'),
+        max_length=30,
+        choices=(
+            ('User type 1', 'User type 1'),
+            ('User type 2', 'User type 2'),
+            ('User type 3', 'User type 3'),
+        )
     )
     first_time_dashboard = models.BooleanField(
         _('First time dashboard'),
