@@ -83,25 +83,27 @@ class UserInformationForm(forms.Form):
 class ClientCreationForm(forms.ModelForm):
     class Meta:
         model = Client
-        fields = ['user', 'contact_number', 'active_client',
+        fields = ['user', 'contact_number', 'user_type',
                   'first_time_dashboard']
 
     def save(self, commit=True):
         client = super(ClientCreationForm, self).save(commit=False)
-        customer = openpay.Customer.create(
-            name=client.user.get_full_name(),
-            email=client.user.email,
-            requires_account=False,
-            status='active',
-        )
-        suscription = Suscription(
-            client=client,
-            openpay_id=customer.id,
-            status='active',
-            is_active=True,
-            date=datetime.today()
-        )
-        suscription.save()
-        if commit:
-            client.save()
+        client.save()
+
+        if client.user_type == 'User type 3':
+
+            customer = openpay.Customer.create(
+                name=client.user.get_full_name(),
+                email=client.user.email,
+                requires_account=False,
+                status='active',
+            )
+            suscription = Suscription(
+                client=client,
+                openpay_id=customer.id,
+                status='active',
+                is_active=True,
+                date=datetime.today()
+            )
+            suscription.save()
         return client
