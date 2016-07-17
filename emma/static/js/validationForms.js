@@ -557,5 +557,10 @@ $(document).ready(function () {
   });
   /* Cards list
   ---------------------------------------------------------------------------*/
-  $('.updatecard-form').validate();
+  $('.updatecard-form').validate({
+    submitHandler: function (form) {
+      $('#addCardLoader').show();
+      form.submit();
+    }
+  });
 });
