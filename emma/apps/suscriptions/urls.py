@@ -18,4 +18,8 @@ urlpatterns = [
     url(regex=r'^dashboard/informacion-pago/$',
         view=views.PaymentInfo.as_view(),
         name='dashboard_payment_info'),
+
+    url(regex=r'^dashboard/suscripcion/$',
+        view=views.SuscriptionDetail.as_view(),
+        name='dashboard_suscription'),
 ]
