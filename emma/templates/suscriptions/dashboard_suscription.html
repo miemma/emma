@@ -1,0 +1,148 @@
+{% extends "clients/dashboard_base.html" %}
+{% block content %}
+<div class="dashboard">
+<div class="dashboard-content" style="margin-left: 0">
+  <div class="dashboard-box centered-col">
+    <div class="dashboard-box-title border">
+      <div class="flex-grow-1 text-center">
+        <h2>Mi Suscripcion</h2>
+      </div>
+    </div>
+    <div class="dashboard-box-content flex-grow-1 margin-bottom-80">
+		<div class="row text-center">
+			<div class="col-lg-8">
+				<div class="row contract-comprobation-row-item padding-top-70">
+					<div class="col-lg-5 text-left">
+						<span class="contract-comprobation-label">
+							Nombre:
+						</span>
+					</div>
+					<div class="col-lg-6 text-left">
+						<span class="contract-comprobation-content">
+							{{ name }} {{ last_name }}
+						</span>
+					</div>
+				</div>
+				<div class="row contract-comprobation-row-item">
+					<div class="col-lg-5 text-left">
+						<span class="contract-comprobation-label">
+							Correo electrónico:
+						</span>
+					</div>
+					<div class="col-lg-6 text-left">
+						<span class="contract-comprobation-content">
+							{{ email }}
+						</span>
+					</div>
+				</div>
+				<div class="row contract-comprobation-row-item">
+					<div class="col-lg-5 text-left">
+						<span class="contract-comprobation-label">
+							Servicio:
+						</span>
+					</div>
+					<div class="col-lg-6 text-left">
+						<span class="contract-comprobation-content">
+							{{ service }}
+						</span>
+					</div>
+				</div>
+				<div class="row contract-comprobation-row-item">
+					<div class="col-lg-5 text-left">
+						<span class="contract-comprobation-label">
+							Taller:
+						</span>
+					</div>
+					<div class="col-lg-6 text-left">
+						<span class="contract-comprobation-content">
+							{{ workshops }}
+						</span>
+					</div>
+				</div>
+				<div class="row contract-comprobation-row-item">
+					<div class="col-lg-5 text-left">
+						<span class="contract-comprobation-label">
+							Dirección:
+						</span>
+					</div>
+					<div class="col-lg-6 text-left">
+						<span class="contract-comprobation-content">
+							{{ street }} {{ outdoor_number }}, {{ colony }},
+							{{ municipality }} {{ city }}. C.P. {{ postal_code }}
+						</span>
+					</div>
+				</div>
+				<div class="row margin-bottom-20"></div>
+				<div class="row contract-comprobation-row-item">
+					<div class="col-lg-5 text-left">
+						<span class="contract-comprobation-label">
+							Referencia
+						</span>
+					</div>
+					<div class="col-lg-6 text-left">
+						<span class="contract-comprobation-content">
+							{{ reference }}
+						</span>
+					</div>
+				</div>
+				<div class="row contract-comprobation-row-item">
+					<div class="col-lg-5 text-left">
+						<span class="contract-comprobation-label">
+							Dias
+						</span>
+					</div>
+					<div class="col-lg-6 text-left">
+						<span class="contract-comprobation-content">
+							{{ days }}
+						</span>
+					</div>
+				</div>
+				<div class="row contract-comprobation-row-item-title">
+					<div class="col-lg-5 text-left">
+						<span class="contract-comprobation-content-title">
+							Adulto Mayor
+						</span>
+					</div>
+				</div>
+				<div class="row contract-comprobation-row-item">
+					<div class="col-lg-5 text-left">
+						<span class="contract-comprobation-label">
+							Nombre:
+						</span>
+					</div>
+					<div class="col-lg-6 text-left">
+						<span class="contract-comprobation-content">
+							{{ adult_first_name }}
+						</span>
+					</div>
+				</div>
+				<div class="row contract-comprobation-row-item">
+					<div class="col-lg-5 text-left">
+						<span class="contract-comprobation-label">
+							Apellidos:
+						</span>
+					</div>
+					<div class="col-lg-6 text-left">
+						<span class="contract-comprobation-content">
+							{{ adult_last_name }}
+						</span>
+					</div>
+				</div>
+				<div class="row contract-comprobation-row-item padding-bottom-50">
+					<div class="col-lg-5 text-left">
+						<span class="contract-comprobation-label">
+							Fecha de Nacimiento:
+						</span>
+					</div>
+					<div class="col-lg-6 text-left">
+						<span class="contract-comprobation-content">
+							{{ age }}
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+  </div></div>
+</div>
+{% endblock %}
