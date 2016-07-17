@@ -7,6 +7,8 @@ from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 from django.views.generic import ListView, View
 
+from emma.apps.adults.models import AdultAddress, Adult
+from emma.apps.services.models import HiredService
 from emma.apps.suscriptions.models import Charge, Suscription, History
 from emma.core.mixins import ClientRequiredMixin, GetAdultMixin
 
@@ -67,3 +69,38 @@ class PaymentInfo(GetAdultMixin, ClientRequiredMixin, View):
         if card is not None:
             card.delete()
         return redirect(reverse_lazy('suscriptions:payment_info'))
+
+
+class SuscriptionDetail(ClientRequiredMixin, View):
+    template_name = 'suscriptions/dashboard_suscription.html'
+
+    def get(self, request):
+        service = HiredService.objects.get(
+            client=self.request.user.client
+        )
+
+        adult = Adult.objects.get(responsable=self.request.user.client)
+
+        address = AdultAddress.objects.get(
+            adult=adult)
+
+        ctx = {
+            'name': self.request.user.first_name,
+            'last_name': self.request.user.last_name,
+            'email': self.request.user.email,
+            'service': service.service.name,
+            'workshops': service.workshops,
+            'days': service.service_days,
+            'street': address.street,
+            'outdoor_number': address.outdoor_number,
+            'colony': address.colony,
+            'municipality': address.municipality,
+            'postal_code': address.postal_code,
+            'city': address.city,
+            'state': address.state,
+            'reference': address.reference,
+            'adult_first_name': adult.first_name,
+            'adult_last_name': adult.last_name,
+            'age': adult.birthday,
+        }
+        return TemplateResponse(request, self.template_name, ctx)
