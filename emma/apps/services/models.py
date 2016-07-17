@@ -122,42 +122,17 @@ class HiredService(models.Model):
     )
     service = models.ForeignKey(
         Service,
-        verbose_name=_('Hired Service'),
+        verbose_name=_('Service'),
     )
-    workshops = models.CharField(
+    workshops = models.TextField(
         _('Workshops'),
-        max_length=100,
         blank=False,
         null=False,
     )
-    num_workshops = models.IntegerField(
-        _('Number of Workshops'),
+    service_days = models.TextField(
+        _('Service Days'),
         blank=False,
         null=False,
-    )
-    start_date = models.CharField(
-        _('Start date'),
-        max_length=25,
-        blank=False,
-        null=False,
-    )
-    end_date = models.DateField(
-        _('End date'),
-        blank=True,
-        null=True,
-    )
-    reference = models.CharField(
-        _('Reference'),
-        max_length=25,
-        blank=False,
-        null=False
-    )
-    service_days = models.ForeignKey(
-        ServiceDays,
-        verbose_name=_('Service Days'),
-    )
-    active = models.BooleanField(
-        default=False
     )
     emma_assigned = models.ForeignKey(
         Emma,
