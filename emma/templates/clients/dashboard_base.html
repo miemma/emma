@@ -71,7 +71,12 @@
               {{ adult.first_name }}
             </a>
 	          {% if view_profile %}
-	            <img class="circle" src="{{ adult.photo.url }}" width="50px" height="50px"/>
+		          {% if adult %}
+		            <img class="circle" src="{{ adult.photo.url }}" width="50px" height="50px"/>
+			        {% else %}
+			          <img class="circle" src="http://www.freelanceme.net/Images/default%20profile%20picture.png" width="50px" height="50px"/>
+		          {% endif %}
+
 	          {% endif %}
           </li>
         </ul>
