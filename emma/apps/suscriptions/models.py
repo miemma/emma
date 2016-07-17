@@ -10,7 +10,6 @@ from emma.apps.clients.models import Client
 class Suscription(models.Model):
     id = models.BigIntegerField(
         _('ID'),
-        auto_created=True,
     )
     client = models.OneToOneField(
         Client,
@@ -23,7 +22,7 @@ class Suscription(models.Model):
         auto_now_add=True
     )
     openpay_id = models.CharField(
-        _('Cuatomer ID'),
+        _('Openpay ID'),
         max_length=25,
         blank=False,
         null=False
