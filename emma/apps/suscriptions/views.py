@@ -71,7 +71,7 @@ class PaymentInfo(GetAdultMixin, ClientRequiredMixin, View):
         return redirect(reverse_lazy('suscriptions:payment_info'))
 
 
-class SuscriptionDetail(ClientRequiredMixin, View):
+class SuscriptionDetail(GetAdultMixin, ClientRequiredMixin, View):
     template_name = 'suscriptions/dashboard_suscription.html'
 
     def get(self, request):
@@ -85,6 +85,7 @@ class SuscriptionDetail(ClientRequiredMixin, View):
             adult=adult)
 
         ctx = {
+            'adult': self.get_adult(request),
             'name': self.request.user.first_name,
             'last_name': self.request.user.last_name,
             'email': self.request.user.email,
