@@ -10,7 +10,7 @@
 					¡{{ user.first_name }} {{ user.last_name }},</span><br>
 					Bienvenido(a) a Emma!</div>
 
-				{% if contract_service %}
+				{% if request.user.client.user_type == 'User type 2' %}
 			  	<div class="welcome-paragraph">
 				  	A partir de hoy podrás contar con el mejor plan de acompañamiento para tu ser querido. En Emma estamos comprometidos tanto contigo como con tu familia de forma que encuentres a una compañera conable en menos de 12 horas, de forma sencilla, segura y sin fricciones.
 				  </div>
@@ -23,7 +23,7 @@
 						  Contratar servicio
 					  </a>
 				  </div>
-			  {% elif make_call %}
+			  {% elif request.user.client.user_type == 'User type 1' %}
 				  <div class="welcome-paragraph">
 				  	A partir de hoy podrás contar con el mejor plan de acompañamiento para tu ser querido. En Emma estamos comprometidos tanto contigo como con tu familia de forma que encuentres a una compañera conable en menos de 12 horas, de forma sencilla, segura y sin fricciones.
 				  </div>
@@ -46,7 +46,8 @@
 				  	En Emma trabajaremos día con día para que tu ser querido reciba el mejor plan de acompañamiento integral de parte de nuestras Emmas. Conoce nuestro portal, diseñado exclusivamente para ti.
 				  </div>
 				  <div>
-				  	<a href="#" class="emma-btn-light welcome-btn">Ver suscripción</a>
+				  	<a href="{{ dashboard_suscription }}"
+					     class="emma-btn-light welcome-btn">Ver suscripción</a>
 				  </div>
 			  {% endif %}
 		  </div>
