@@ -18,7 +18,11 @@
 		<form id="dashboard-adult-form" action="." method="post" enctype="multipart/form-data" class="dashboard-special-form">
 			<div class="dashboard-box adult-profile-box white">
 	      <div class="adult-profile-box-picture">
-	      	<div class="adult-picture-container form-image circle" style="background-image: url('{{ adult.photo.url }}')">
+		      {% if adult.photo %}
+		      <div class="adult-picture-container form-image circle" style="background-image: url('{{ adult.photo.url }}')">
+		      {% else %}
+          <div class="adult-picture-container form-image circle" style="background-image: url('http://www.freelanceme.net/Images/default%20profile%20picture.png')">
+		      {% endif %}
 	      		<div class="hide">
 							{{ adultform.photo }}
 	      		</div>
