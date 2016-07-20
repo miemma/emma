@@ -145,7 +145,7 @@ class MedicalInfo(models.Model):
         null=False,
     )
     policy_number = models.CharField(
-        _('Insurance Company'),
+        _('Policy Number'),
         max_length=25,
         blank=False,
         null=False,
