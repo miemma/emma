@@ -76,7 +76,7 @@ class ActiveClientRequiredMixin(object):
     @method_decorator(login_required(login_url=reverse_lazy('xauth:login')))
     def dispatch(self, request, *args, **kwargs):
         try:
-            Client.objects.get(user=request.user, active_client=True)
+            Client.objects.get(user=request.user, user_type='User type 2')
             return super(ActiveClientRequiredMixin, self).dispatch(
                 request, *args, **kwargs)
         except Client.DoesNotExist:
@@ -100,9 +100,12 @@ class ActiveSuscriptionRequiredMixin(object):
 class GetAdultMixin(object):
     def get_adult(self, request):
         client = request.user.client
-        if not 'adult_id' in request.session:
-            adult = Adult.objects.filter(responsable=client)[0]
+        if client.user_type != 'User type 3':
+            adult = None
         else:
-            adult = get_object_or_404(Adult, responsable=client, id=id)
+            if not 'adult_id' in request.session:
+                adult = Adult.objects.filter(responsable=client)[0]
+            else:
+                adult = get_object_or_404(Adult, responsable=client, id=id)
 
         return adult
