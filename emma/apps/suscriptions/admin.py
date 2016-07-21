@@ -17,7 +17,7 @@ class SuscriptionAdmin(admin.ModelAdmin):
 
 @admin.register(models.History)
 class HistoryAdmin(admin.ModelAdmin):
-    list_display = ('suscription', 'date', 'movement')
+    list_display = ('suscription', 'date',)
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
 
