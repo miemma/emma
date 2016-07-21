@@ -3,6 +3,7 @@
 
 from django.contrib import admin
 
+from emma.apps.services.forms import HiredServiceCreationForm
 from emma.core.utils import export_as_xls
 from . import models
 
@@ -29,7 +30,8 @@ class WorkshopAdmin(admin.ModelAdmin):
 
 @admin.register(models.HiredService)
 class HiredServiceAdmin(admin.ModelAdmin):
-    list_display = ('adult', 'client', 'service', 'workshops')
+    form = HiredServiceCreationForm
+    list_display = ('adult', 'client', 'service',)
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
 
