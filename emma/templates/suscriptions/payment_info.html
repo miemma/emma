@@ -18,7 +18,11 @@
 		    				<span class="card-brand-image">{{ card.brand | upper}}</span>
 		    				<div class="card-number flex-grow-1">{{ card.card_number }}</div>
 						    <input type="hidden" value="{{ card.id }}" name="card_id">
-		    				<button type="submit" class="dashboard-box-title-button cancel-button">eliminar</button>
+						    {% if forloop.last and forloop.first %}
+
+						    {% else %}
+                  <button type="submit" class="dashboard-box-title-button cancel-button">eliminar</button>
+						    {% endif %}
 		    			</div>
 		    		</form>
 					{% endfor %}
