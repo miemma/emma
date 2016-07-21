@@ -219,7 +219,7 @@ class SignupForm(forms.Form):
 
         user.save()
 
-        client = Client(user=user, change_password=True)
+        client = Client(user=user, user_type='User type 1')
         client.save()
 
         self.user_cache = user
