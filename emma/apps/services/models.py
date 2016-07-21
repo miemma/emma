@@ -124,10 +124,10 @@ class HiredService(models.Model):
         Service,
         verbose_name=_('Service'),
     )
-    workshops = models.TextField(
-        _('Workshops'),
+    workshops = models.ManyToManyField(
+        Workshop,
+        verbose_name=_('Workshops'),
         blank=False,
-        null=False,
     )
     service_days = models.TextField(
         _('Service Days'),
