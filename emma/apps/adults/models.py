@@ -9,6 +9,11 @@ from emma.apps.doctors.models import Doctor
 
 
 class AdultAddress(models.Model):
+    adult_name = models.CharField(
+        max_length=40,
+        blank=False,
+        null=False
+    )
     street = models.CharField(
         max_length=25,
         blank=False,
@@ -59,7 +64,7 @@ class AdultAddress(models.Model):
         verbose_name_plural = 'Addresses'
 
     def __unicode__(self):
-        return '%s' % self.postal_code
+        return 'Address - %s' % self.adult_name
 
 
 class EmergencyContact(models.Model):
