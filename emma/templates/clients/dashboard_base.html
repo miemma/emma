@@ -39,6 +39,30 @@
             </a>
           </li>
           {% endif %}
+          {% if request.user.client.user_type == 'User type 2' %}
+            <li class="header-navbar-list-item" hcolor="white">
+	            <a class="header-navbar-list-item-link" href="{% url 'services:contract_service_info' %}">
+	              Historial
+	            </a>
+	          </li>
+	          <li class="header-navbar-list-item" hcolor="white">
+            <a class="header-navbar-list-item-link" href="{% url 'services:contract_service_info' %}">
+              Mi <i>Emma</i>
+            </a>
+          </li>
+          {% endif %}
+          {% if request.user.client.user_type == 'User type 1' %}
+            <li class="header-navbar-list-item" hcolor="white">
+	            <a class="header-navbar-list-item-link" href="{% url 'landing:date' %}">
+	              Historial
+	            </a>
+	          </li>
+	          <li class="header-navbar-list-item" hcolor="white">
+            <a class="header-navbar-list-item-link" href="{% url 'landing:date' %}">
+              Mi <i>Emma</i>
+            </a>
+          </li>
+          {% endif %}
           <li class="header-navbar-list-item" hcolor="white">
             <a class="header-navbar-list-item-link"
                href="https://medium.com/@miemma" >
@@ -69,9 +93,26 @@
           {% endif %}
           
           <li class="header-navbar-list-item" hcolor="white">
-	          {% if request.user.client.user_type == 'User type 3' %}
-		          <a class="header-navbar-list-item-link" href="{{ dashboard_adult }}">
-	              {{ adult.first_name }}
+            {% if arequest.user.client.user_type == 'User type 1' %}
+	            <span data-toggle="tooltip" data-placement="bottom"
+	                  title="Antes de crear el perfil del adulto mayor personaliza
+                           tu servicio al programar una llamada!">
+		            Adulto
+	            </span>
+	            <img class="circle"
+		               src="http://www.freelanceme.net/Images/default%20profile%20picture.png"
+		               width="50px" height="50px" />
+            {% elif request.user.client.user_type == 'User type 2' %}
+	            <span data-toggle="tooltip" data-placement="bottom"
+	                  title="Para tener acceso a todas las funciones contrata tu servicio">
+		            Adulto
+	            </span>
+	            <img class="circle"
+		               src="http://www.freelanceme.net/Images/default%20profile%20picture.png"
+		               width="50px" height="50px" />
+            {% else %}
+	            <a class="header-navbar-list-item-link" href="{{ dashboard_adult }}">
+	              {{ adult.first_name | default_if_none:"Adulto" }}
 	            </a>
 		          {% if adult.photo %}
 			          <img class="circle" src="{{ adult.photo.url }}" width="50px" height="50px"/>
@@ -80,10 +121,9 @@
 			               src="http://www.freelanceme.net/Images/default%20profile%20picture.png"
 			               width="50px" height="50px" />
 		          {% endif %}
+            {% endif %}
+	          {% if request.user.client.user_type == 'User type 3' %}
 		        {% else %}
-		          <img class="circle"
-		               src="http://www.freelanceme.net/Images/default%20profile%20picture.png"
-		               width="50px" height="50px" />
 	          {% endif %}
           </li>
         </ul>
@@ -108,6 +148,11 @@
       <script src="//cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js" ></script>
       <script src="{% static 'js/validationForms.js' %}"></script>
       {% block js %}
+	      <script>
+	        $(document).ready(function(){
+					    $('[data-toggle="tooltip"]').tooltip();
+					});
+	      </script>
       {% endblock %}
       <!-- Start of Async HubSpot Analytics Code -->
       <script type="text/javascript">
