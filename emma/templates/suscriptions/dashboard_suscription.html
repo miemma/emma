@@ -59,7 +59,7 @@
 								{% if forloop.last %}
 									{{ workshop.name }}
 								{% else %}
-									{{ workshop.name }}, 
+									{{ workshop.name }},
 								{% endif %}
 							{% endfor %}
 
@@ -135,7 +135,7 @@
 						</span>
 					</div>
 				</div>
-				<div class="row contract-comprobation-row-item padding-bottom-50">
+				<div class="row contract-comprobation-row-item">
 					<div class="col-lg-5 text-left">
 						<span class="contract-comprobation-label">
 							Fecha de Nacimiento:
@@ -144,6 +144,49 @@
 					<div class="col-lg-6 text-left">
 						<span class="contract-comprobation-content">
 							{{ age }}
+						</span>
+					</div>
+				</div>
+				<div class="row contract-comprobation-row-item-title">
+					<div class="col-lg-5 text-left">
+						<span class="contract-comprobation-content-title">
+							Emmas
+						</span>
+					</div>
+				</div>
+				<div class="row contract-comprobation-row-item">
+					<div class="col-lg-5 text-left">
+						<span class="contract-comprobation-label">
+							Principal:
+						</span>
+					</div>
+					<div class="col-lg-6 text-left">
+						<span class="contract-comprobation-content">
+							{{ emma_principal.user.get_full_name }}
+						</span>
+					</div>
+				</div>
+				<div class="row contract-comprobation-row-item">
+					<div class="col-lg-5 text-left">
+						<span class="contract-comprobation-label">
+							Suplente:
+						</span>
+					</div>
+					<div class="col-lg-6 text-left">
+						<span class="contract-comprobation-content">
+							{{ emma_secundary.user.get_full_name }}
+						</span>
+					</div>
+				</div>
+				<div class="row contract-comprobation-row-item padding-bottom-50">
+					<div class="col-lg-5 text-left">
+						<span class="contract-comprobation-label">
+							Cordinadora:
+						</span>
+					</div>
+					<div class="col-lg-6 text-left">
+						<span class="contract-comprobation-content">
+							{{ emma_cordinator.user.get_full_name }}
 						</span>
 					</div>
 				</div>

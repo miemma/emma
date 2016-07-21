@@ -103,5 +103,8 @@ class SuscriptionDetail(GetAdultMixin, ClientRequiredMixin, View):
             'adult_first_name': adult.first_name,
             'adult_last_name': adult.last_name,
             'age': adult.birthday,
+            'emma_principal': service.emma_assigned,
+            'emma_secundary': service.emma_alternate,
+            'emma_cordinator': service.emma_cordinator,
         }
         return TemplateResponse(request, self.template_name, ctx)
