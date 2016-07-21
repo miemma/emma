@@ -55,7 +55,14 @@
 					</div>
 					<div class="col-lg-6 text-left">
 						<span class="contract-comprobation-content">
-							{{ workshops }}
+							{% for workshop in workshops.all %}
+								{% if forloop.last %}
+									{{ workshop.name }}
+								{% else %}
+									{{ workshop.name }}, 
+								{% endif %}
+							{% endfor %}
+
 						</span>
 					</div>
 				</div>
