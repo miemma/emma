@@ -222,9 +222,10 @@
 					<h2>Información médica</h2>
 				</div>
     	</div>
+			<form action="." method="post">
+			{% csrf_token %}
     	<div class="dashboard-box-content">
-				<form id="dashboard-medical-form-part-1" action="." method="post" class="dashboard-special-form">
-					{% csrf_token %}
+				<div id="dashboard-medical-form-part-1" class="dashboard-special-form">
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
 	    				<div class="col-md-11 col-sm-11 col-xs-11 centered-col flex">
@@ -265,9 +266,8 @@
 							</div>
 	    			</div>
 	    		</div>
-	    	</form>
-				<form id="dashboard-medical-form-part-2" action="." method="post" class="dashboard-special-form">
-					{% csrf_token %}
+	    	</div>
+				<div id="dashboard-medical-form-part-2" class="dashboard-special-form">
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
 	    				<div class="col-md-11 col-sm-11 col-xs-11 centered-col flex">
@@ -387,9 +387,8 @@
 		    			</div>
 	    			</div>
 	    		</div>
-	    	</form>
-				<form id="dashboard-medical-form-part-3" action="." method="post" class="dashboard-special-form">
-					{% csrf_token %}
+	    	</div>
+				<div id="dashboard-medical-form-part-3" class="dashboard-special-form">
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
 	    				<div class="col-md-11 col-sm-11 col-xs-11 centered-col flex">
@@ -449,9 +448,8 @@
 				      </div>
 	    			</div>
 	    		</div>
-	    	</form>
-				<form id="dashboard-medical-form-part-4" action="." method="post" class="dashboard-special-form">
-					{% csrf_token %}
+	    	</div>
+				<div id="dashboard-medical-form-part-4" action="." method="post" class="dashboard-special-form">
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
 	    				<div class="col-md-11 col-sm-11 col-xs-11 centered-col flex">
@@ -535,9 +533,8 @@
 				      </div>
 	    			</div>
 	    		</div>
-	    	</form>
-				<form id="dashboard-medical-form-part-5" action="." method="post" class="dashboard-special-form">
-					{% csrf_token %}
+	    	</div>
+				<div id="dashboard-medical-form-part-5" class="dashboard-special-form">
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
 	    				<div class="col-md-11 col-sm-11 col-xs-11 centered-col flex">
@@ -595,9 +592,8 @@
 				      </div>
 	    			</div>
 	    		</div>
-	    	</form>
-				<form id="dashboard-medical-form-part-6" action="." method="post" class="dashboard-special-form">
-					{% csrf_token %}
+	    	</div>
+				<div id="dashboard-medical-form-part-6" class="dashboard-special-form">
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
 	    				<div class="col-md-11 col-sm-11 col-xs-11 centered-col flex">
@@ -689,9 +685,8 @@
 				      </div>
 	    			</div>
 	    		</div>
-	    	</form>
-				<form id="dashboard-medical-form-part-7" action="." method="post" class="dashboard-special-form">
-					{% csrf_token %}
+	    	</div>
+				<div id="dashboard-medical-form-part-7" class="dashboard-special-form">
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
 	    				<div class="col-md-11 col-sm-11 col-xs-11 centered-col flex">
@@ -771,8 +766,9 @@
 				      </div>
 	    			</div>
 	    		</div>
-	    	</form>
+	    	</div>
     	</div>
+			</form>
     </div>
   </div>
 </div>

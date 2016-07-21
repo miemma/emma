@@ -258,7 +258,7 @@ class MedicalInfo(forms.Form):
             }
         ),
         validators=[validators.eval_blank],
-        required=True,
+        required=False,
         error_messages=error_messages,
         choices=(
             ('AB+', 'AB+',),
@@ -279,7 +279,7 @@ class MedicalInfo(forms.Form):
             }
         ),
         validators=[validators.eval_blank],
-        required=True,
+        required=False,
         error_messages=error_messages
     )
     emergency_contact_1_relation = forms.CharField(
@@ -290,7 +290,7 @@ class MedicalInfo(forms.Form):
             }
         ),
         validators=[validators.eval_blank],
-        required=True,
+        required=False,
         error_messages=error_messages
     )
     emergency_contact_1_cell_phone = forms.CharField(
@@ -301,7 +301,7 @@ class MedicalInfo(forms.Form):
             }
         ),
         validators=[validators.eval_blank],
-        required=True,
+        required=False,
         error_messages=error_messages
     )
     emergency_contact_1_home_phone = forms.CharField(
@@ -312,7 +312,7 @@ class MedicalInfo(forms.Form):
             }
         ),
         validators=[validators.eval_blank],
-        required=True,
+        required=False,
         error_messages=error_messages
     )
     emergency_contact_2_full_name = forms.CharField(
@@ -365,6 +365,7 @@ class MedicalInfo(forms.Form):
                 'class': 'radio-check-button',
             }
         ),
+        required=False,
     )
     exercise_pda = forms.BooleanField(
         widget=forms.CheckboxInput(
@@ -372,6 +373,7 @@ class MedicalInfo(forms.Form):
                 'class': 'radio-check-button',
             }
         ),
+        required=False,
     )
     has_medical_insurance = forms.BooleanField(
         widget=forms.CheckboxInput(
@@ -379,6 +381,7 @@ class MedicalInfo(forms.Form):
                 'class': 'radio-check-button',
             }
         ),
+        required=False,
     )
     insurance_company = forms.CharField(
         widget=forms.TextInput(
@@ -388,7 +391,7 @@ class MedicalInfo(forms.Form):
             }
         ),
         validators=[validators.eval_blank],
-        required=True,
+        required=False,
         error_messages=error_messages
     )
     policy_number = forms.CharField(
@@ -399,7 +402,7 @@ class MedicalInfo(forms.Form):
             }
         ),
         validators=[validators.eval_blank],
-        required=True,
+        required=False,
         error_messages=error_messages
     )
     policy_expiration_date = forms.DateField(
@@ -408,7 +411,7 @@ class MedicalInfo(forms.Form):
                 'class': 'emma-input',
             }
         ),
-        required=True,
+        required=False,
     )
     has_social_security = forms.BooleanField(
         widget=forms.CheckboxInput(
@@ -416,6 +419,7 @@ class MedicalInfo(forms.Form):
                 'class': 'radio-check-button',
             }
         ),
+        required=False,
     )
     social_security_number = forms.CharField(
         widget=forms.TextInput(
@@ -425,7 +429,7 @@ class MedicalInfo(forms.Form):
             }
         ),
         validators=[validators.eval_blank],
-        required=True,
+        required=False,
         error_messages=error_messages
     )
 
@@ -437,7 +441,7 @@ class MedicalInfo(forms.Form):
             }
         ),
         validators=[validators.eval_blank],
-        required=True,
+        required=False,
         error_messages=error_messages
     )
 
@@ -449,7 +453,7 @@ class MedicalInfo(forms.Form):
             }
         ),
         validators=[validators.eval_blank],
-        required=True,
+        required=False,
         error_messages=error_messages
     )
     doctor_cell_phone = forms.CharField(
@@ -460,7 +464,7 @@ class MedicalInfo(forms.Form):
             }
         ),
         validators=[validators.eval_blank],
-        required=True,
+        required=False,
         error_messages=error_messages
     )
     doctor_home_phone = forms.CharField(
@@ -501,7 +505,7 @@ class MedicalInfo(forms.Form):
                 'rows': 5
             }
         ),
-        required=True,
+        required=False,
         error_messages=error_messages
     )
     current_medications = forms.CharField(
@@ -512,7 +516,7 @@ class MedicalInfo(forms.Form):
                 'rows': 5
             }
         ),
-        required=True,
+        required=False,
         error_messages=error_messages
     )
     drug_allergy = forms.CharField(
@@ -523,7 +527,7 @@ class MedicalInfo(forms.Form):
                 'rows': 5
             }
         ),
-        required=True,
+        required=False,
         error_messages=error_messages
     )
     food_allergy = forms.CharField(
@@ -534,7 +538,7 @@ class MedicalInfo(forms.Form):
                 'rows': 5
             }
         ),
-        required=True,
+        required=False,
         error_messages=error_messages
     )
 
