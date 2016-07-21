@@ -5,6 +5,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from emma.apps.clients.models import Client
+from emma.apps.services.models import Service, Workshop
 
 
 class Suscription(models.Model):
@@ -57,13 +58,28 @@ class History(models.Model):
         verbose_name=_('Suscription'),
         related_name='movements'
     )
-    date = models.DateTimeField(
+    date = models.DateField(
         _('Creation date'),
-        auto_now_add=True
+        blank=False,
+        null=False
     )
-    movement = models.CharField(
-        _('Movement'),
-        max_length=200,
+    service = models.ForeignKey(
+        Service,
+        verbose_name='Service'
+    )
+    workshops = models.ManyToManyField(
+        Workshop,
+        verbose_name=_('Workshops'),
+        blank=False,
+    )
+    mood = models.CharField(
+        _('Mood'),
+        max_length=130,
+        blank=False,
+        null=False
+    )
+    comments = models.TextField(
+        _('Comments'),
         blank=False,
         null=False
     )
@@ -73,7 +89,7 @@ class History(models.Model):
         verbose_name_plural = _('Histories')
 
     def __unicode__(self):
-        return "%s - %s" % (self.suscription, self.movement)
+        return "%s - %s" % (self.suscription, self.suscription.client)
 
 
 class Charge(models.Model):
