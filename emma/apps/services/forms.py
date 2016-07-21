@@ -597,3 +597,12 @@ class ContractAdultInfo(forms.Form):
         service.adult = adult
 
         service.save()
+
+
+class HiredServiceCreationForm(forms.ModelForm):
+    class Meta:
+        mdodel = HiredService
+        fields = '__all__'
+        widgets = {
+            'workshops': forms.CheckboxSelectMultiple(),
+        }
