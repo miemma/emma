@@ -17,6 +17,40 @@
   {% block fbpixel %}
   {% endblock %}
   </head>
+  <style>
+		.dropdown {
+		    position: relative;
+		    display: inline-block;
+		}
+
+		.dropdown-content {
+		    display: none;
+		    position: absolute;
+		    background-color: #f9f9f9;
+		    min-width: 160px;
+		    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		    z-index: 1;
+				right: 0;
+
+		}
+		.dropdown-content p {
+		    height: 60px;
+				font-family: "Avenir LT Std Roman";
+		}
+		.dropdown-content p:hover {background-color: #f1f1f1}
+
+		.dropdown-content p a {
+	    text-decoration: none;
+			color: #0f0f0f;
+			text-underline: none;
+			padding: 25px;
+
+		}
+
+		.dropdown:hover .dropdown-content {
+		    display: block;
+		}
+	</style>
   <body>
     <div class="container-overflow">
       {% include "base/contact.html" %}
@@ -99,27 +133,99 @@
                            tu servicio al programar una llamada!">
 		            Adulto
 	            </span>
-	            <img class="circle"
-		               src="http://www.freelanceme.net/Images/default%20profile%20picture.png"
-		               width="50px" height="50px" />
+	            <div class="dropdown">
+							  <span>
+								  <img class="circle"
+				               src="http://www.freelanceme.net/Images/default%20profile%20picture.png"
+				               width="50px" height="50px" />
+							  </span>
+							  <div class="dropdown-content">
+							    <p>
+								    <a href="{% url 'landing:date' %}">Perfil</a>
+							    </p>
+								  <p>
+								    <a href="{% url 'landing:date' %}">Pagos</a>
+							    </p>
+								  <p>
+								    <a href="{% url 'landing:date' %}">Configuracion</a>
+							    </p>
+								  <p>
+								    <a href="{% url 'xauth:logout' %}">Cerrar sesión</a>
+							    </p>
+							  </div>
+							</div>
             {% elif request.user.client.user_type == 'User type 2' %}
 	            <span data-toggle="tooltip" data-placement="bottom"
 	                  title="Para tener acceso a todas las funciones contrata tu servicio">
 		            Adulto
 	            </span>
-	            <img class="circle"
-		               src="http://www.freelanceme.net/Images/default%20profile%20picture.png"
-		               width="50px" height="50px" />
+	            <div class="dropdown">
+							  <span>
+								  <img class="circle"
+				               src="http://www.freelanceme.net/Images/default%20profile%20picture.png"
+				               width="50px" height="50px" />
+							  </span>
+							  <div class="dropdown-content">
+							    <p>
+								    <a href="{% url 'services:contract_service_info' %}">Perfil</a>
+							    </p>
+								  <p>
+								    <a href="{% url 'services:contract_service_info' %}">Pagos</a>
+							    </p>
+								  <p>
+								    <a href="{% url 'services:contract_service_info' %}">Configuracion</a>
+							    </p>
+								  <p>
+								    <a href="{% url 'xauth:logout' %}">Cerrar sesión</a>
+							    </p>
+							  </div>
+							</div>
             {% else %}
 	            <a class="header-navbar-list-item-link" href="{{ dashboard_adult }}">
 	              {{ adult.first_name | default_if_none:"Adulto" }}
 	            </a>
 		          {% if adult.photo %}
-			          <img class="circle" src="{{ adult.photo.url }}" width="50px" height="50px"/>
+			          <div class="dropdown">
+							  <span>
+								  <img class="circle" src="{{ adult.photo.url }}" width="50px" height="50px"/>
+							  </span>
+							  <div class="dropdown-content">
+							    <p>
+								    <a href="{{ dashboard_adult }}">Perfil</a>
+							    </p>
+								  <p>
+								    <a href="{{dashboard_payment_info}}">Pagos</a>
+							    </p>
+								  <p>
+								    <a href="{{dashboard_client_detail}}">Configuracion</a>
+							    </p>
+								  <p>
+								    <a href="{% url 'xauth:logout' %}">Cerrar sesión</a>
+							    </p>
+							  </div>
+							</div>
 		          {% else %}
-			          <img class="circle"
-			               src="http://www.freelanceme.net/Images/default%20profile%20picture.png"
-			               width="50px" height="50px" />
+			          <div class="dropdown">
+								  <span>
+									  <img class="circle"
+					               src="http://www.freelanceme.net/Images/default%20profile%20picture.png"
+					               width="50px" height="50px" />
+								  </span>
+								  <div class="dropdown-content">
+								    <p>
+									    <a href="{{ dashboard_adult }}">Perfil</a>
+								    </p>
+									  <p>
+									    <a href="{{dashboard_payment_info}}">Pagos</a>
+								    </p>
+									  <p>
+									    <a href="{{dashboard_client_detail}}">Configuracion</a>
+								    </p>
+									  <p>
+									    <a href="{% url 'xauth:logout' %}">Cerrar sesión</a>
+								    </p>
+								  </div>
+								</div>
 		          {% endif %}
             {% endif %}
 	          {% if request.user.client.user_type == 'User type 3' %}
