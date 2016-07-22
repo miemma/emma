@@ -104,6 +104,8 @@ $(document).ready(function () {
       }
       form.find('.client-information-container')
         .css('width', '60%');
+      form.find('.long-form-auxiliar-button')
+        .removeClass('hide');
     });
 
     form.find('.cancel-button').click(function () {
@@ -131,6 +133,8 @@ $(document).ready(function () {
       }
       form.find('.client-information-container')
         .css('width', '');
+      form.find('.long-form-auxiliar-button')
+        .addClass('hide');
     });
   });
 
