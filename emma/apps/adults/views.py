@@ -99,7 +99,7 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
                 return render(request, self.template_name, ctx)
 
         else:
-            raise Http404("No se encontro la pagina")
+            raise Http404("No se encontró la pagina")
 
     @staticmethod
     def get_initial_adult_form(request, adult):

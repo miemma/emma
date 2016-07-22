@@ -55,13 +55,13 @@ class ContractServiceInfo(ActiveClientRequiredMixin, View):
             return redirect(self.success_url)
 
         except Service.DoesNotExist:
-            error = 'Ocurrio un error, intente de nuevo'
+            error = 'Ocurrió un error, intente de nuevo'
             ctx.update({
                 'error': error,
             })
             return render(request, self.template_name, ctx)
         except Workshop.DoesNotExist:
-            error = 'Ocurrio un error, intente de nuevo'
+            error = 'Ocurrió un error, intente de nuevo'
             ctx.update({
                 'error': error,
             })
@@ -218,7 +218,7 @@ class ContractPay(ActiveClientRequiredMixin, View):
 
         history = History(
             suscription=suscription,
-            movement="Suscripcion Creada"
+            movement="Suscripción Creada"
         )
         history.save()
 
