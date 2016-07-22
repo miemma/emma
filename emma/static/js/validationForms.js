@@ -85,6 +85,7 @@ $(document).ready(function () {
 
     form.find('.edit-button').click(function () {
       if (form.attr('id') == 'dashboard-adult-form') {
+        form.find('.dashboard-box').css('align-items', 'flex-start');
         form.find('.dashboard-box-title')
           .removeClass('border')
           .css('align-items', 'flex-start');
@@ -107,6 +108,7 @@ $(document).ready(function () {
 
     form.find('.cancel-button').click(function () {
       if (form.attr('id') == 'dashboard-adult-form') {
+        form.find('.dashboard-box').css('align-items', 'center');
         form.find('.dashboard-box-title')
           .addClass('border')
           .css('align-items', '');
