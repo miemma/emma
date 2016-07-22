@@ -4,29 +4,29 @@ $(document).ready(function () {
   // Mensajes de error
   jQuery.extend(jQuery.validator.messages, {
     required: "Este campo es obligatorio",
-    remote: "Please fix this field.",
-    email: "Ingresa una dirección de correo valida",
-    url: "Please enter a valid URL.",
-    date: "Please enter a valid date.",
-    dateISO: "Please enter a valid date (ISO).",
-    number: "Ingresa un numero valido",
-    digits: "Please enter only digits.",
-    creditcard: "Please enter a valid credit card number.",
-    equalTo: "Los valores deben coincidir.",
-    accept: "Please enter a value with a valid extension.",
-    maxlength: jQuery.validator.format("No ingreses mas de {0} caracteres."),
-    minlength: jQuery.validator.format("Ingresa al menos {0} caracter."),
-    rangelength: jQuery.validator.format("Please enter a value between {0} and {1} characters long."),
-    range: jQuery.validator.format("Inserte un valor entre {0} y {1}."),
-    max: jQuery.validator.format("Inserte un valor menor o igual que {0}."),
-    min: jQuery.validator.format("Inserte un valor mayor o igual que {0}.")
+    remote: "Please fix this field",
+    email: "Ingresa una dirección de correo válida",
+    url: "Ingresa una URL válida",
+    date: "Ingresa una fecha válida",
+    dateISO: "Ingresa una fecha válida (ISO)",
+    number: "Ingresa un número válido",
+    digits: "Solo se permiten números dígitos",
+    creditcard: "Ingresa un número de tarjeta válido",
+    equalTo: "Los valores deben coincidir",
+    accept: "Please enter a value with a valid extension",
+    maxlength: jQuery.validator.format("No ingreses más de {0} caracteres"),
+    minlength: jQuery.validator.format("Ingresa al menos {0} caracteres"),
+    rangelength: jQuery.validator.format("El texto debe tener entre {0} y {1} caracteres"),
+    range: jQuery.validator.format("Ingresa un valor entre {0} y {1}"),
+    max: jQuery.validator.format("Ingresa un valor menor o igual que {0}"),
+    min: jQuery.validator.format("Ingresa un valor mayor o igual que {0}")
   });
 
   jQuery.validator.addMethod("checkDateTime", function(value, element) {
 
     var date = new Date();
     var actual_time = (date.getHours() *60) + date.getMinutes();
-    console.log("El timepo en minutos actuales son: " + actual_time);
+    console.log("El tiempo en minutos actuales son: " + actual_time);
 
     var hours = parseInt($('#hourInput').val());
     var minutes = parseInt($('#timeInput').val());
@@ -49,7 +49,7 @@ $(document).ready(function () {
         return false
       }
     }
-  }, "La hora no es valida");
+  }, "La hora no es válida");
   
   jQuery.validator.setDefaults({
     highlight: function(element, errorClass) {
