@@ -16,7 +16,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Calle'
+                'placeholder': 'Ej. Insurgentes Norte'
             }
         ),
         required=True,
@@ -26,7 +26,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Num. Ext'
+                'placeholder': 'Ej. 26'
             }
         ),
         required=True,
@@ -36,7 +36,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Num. Int'
+                'placeholder': 'Ej. 8'
             }
         ),
         required=False,
@@ -46,7 +46,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Colonia'
+                'placeholder': 'Ej. La Paz'
             }
         ),
         required=True,
@@ -56,7 +56,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'Delegación'
+                'placeholder': 'Ej. Benito Juaréz'
             }
         ),
         required=True,
@@ -66,7 +66,7 @@ class ServiceData(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input contract-location-form-input',
-                'placeholder': 'C.P'
+                'placeholder': 'Ej. 07890'
             }
         ),
         required=True,
@@ -76,7 +76,7 @@ class ServiceData(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'class': 'emma-input contract-location-form-area',
-                'placeholder': 'Referencia',
+                'placeholder': 'Ej. Edificio color azul',
                 'rows': '4'
             }
         ),

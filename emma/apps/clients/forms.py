@@ -18,7 +18,7 @@ class UserInformationForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input show-as-text',
-                'placeholder': 'Nombre'
+                'placeholder': 'Ej. Fernando'
             }
         ),
     )
@@ -26,7 +26,7 @@ class UserInformationForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input show-as-text',
-                'placeholder': 'Apellido'
+                'placeholder': 'Ej. López Salazar'
             }
         ),
     )
@@ -34,7 +34,7 @@ class UserInformationForm(forms.Form):
         widget=forms.EmailInput(
             attrs={
                 'class': 'emma-input show-as-text',
-                'placeholder': 'Correo'
+                'placeholder': 'Ej. ejemplo@aaa.com'
             }
         ),
     )
@@ -42,7 +42,7 @@ class UserInformationForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input show-as-text',
-                'placeholder': 'Teléfono de contacto'
+                'placeholder': 'Ej. 5555555555'
             }
         ),
     )

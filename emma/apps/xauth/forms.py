@@ -18,7 +18,7 @@ class PasswordResetRequestForm(PasswdForm):
         widget=forms.TextInput(
             attrs={
                 'class': 'passwd-reset-req-form-input emma-input',
-                'placeholder': 'Correo electrónico'
+                'placeholder': 'Ej. ejemplo@aaa.com'
             }
         ),
     )
@@ -103,7 +103,7 @@ class LoginForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'login-form-input emma-input',
-                'placeholder': 'Correo electrónico',
+                'placeholder': 'Ej. ejemplo@aaa.com',
                 'required': 'true',
             }
         ),
@@ -150,7 +150,7 @@ class SignupForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'login-form-input emma-input',
-                'placeholder': 'Nombre'
+                'placeholder': 'Ej. Fernando'
             }
         ),
     )
@@ -158,7 +158,7 @@ class SignupForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'login-form-input emma-input',
-                'placeholder': 'Apellidos'
+                'placeholder': 'Ej. López Salazar'
             }
         ),
     )
@@ -166,7 +166,7 @@ class SignupForm(forms.Form):
         widget=forms.EmailInput(
             attrs={
                 'class': 'login-form-input emma-input',
-                'placeholder': 'Correo electrónico',
+                'placeholder': 'Ej. ejemplo@aaa.com',
             }
         ),
     )
