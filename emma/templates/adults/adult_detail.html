@@ -33,8 +33,10 @@
 	        <div class="dashboard-box-title small border">
 	          <h2 class="input-container flex multiple-fields">
 	          	<div class="fields-container hide">
-	          		{{ adultform.first_name }}
+	          		<span>Nombre del adulto:</span>
+	          		<div>{{ adultform.first_name }}
 	          		{{ adultform.last_name }}
+	          		</div>
 							</div>
 							<span class="value-container">
 		          	{{ adultform.first_name.value|default_if_none:"---" }} 

@@ -85,7 +85,10 @@ $(document).ready(function () {
 
     form.find('.edit-button').click(function () {
       if (form.attr('id') == 'dashboard-adult-form') {
-        form.find('.dashboard-box-title').removeClass('border');
+        form.find('.dashboard-box-title')
+          .removeClass('border')
+          .css('align-items', 'flex-start');
+        form.find('.dashboard-box-content').removeClass('margin-top-30');
       }
       $(this).addClass('hide');
       $(this).siblings('.cancel-button').removeClass('hide');
@@ -104,7 +107,10 @@ $(document).ready(function () {
 
     form.find('.cancel-button').click(function () {
       if (form.attr('id') == 'dashboard-adult-form') {
-        form.find('.dashboard-box-title').addClass('border');
+        form.find('.dashboard-box-title')
+          .addClass('border')
+          .css('align-items', '');
+        form.find('.dashboard-box-content').addClass('margin-top-30');
       }
       $(this).addClass('hide');
       $(this).siblings('.edit-button').removeClass('hide');
