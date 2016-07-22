@@ -198,7 +198,7 @@ class AdultInfo(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Ej. A dos calles de...',
+                'placeholder': 'Ej. Edificio color azul',
                 'rows': 5
             }
         ),
