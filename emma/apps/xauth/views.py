@@ -140,11 +140,11 @@ class PasswordResetRequestDone(TemplateView):
 class LoginView(NextUrlMixin, AuthRedirectMixin, FormView):
     template_name = 'xauth/login.html'
     form_class = LoginForm
-    success_url = reverse_lazy('users:select_card')
+    success_url = reverse_lazy('clients:dashboard_welcome')
 
     def form_valid(self, form):
         login(self.request, form.user_cache)
-        return redirect(reverse_lazy('clients:dashboard_welcome'))
+        return super(LoginView, self).form_valid(form)
 
     def form_invalid(self, form):
         return self.render_to_response(self.get_context_data())
