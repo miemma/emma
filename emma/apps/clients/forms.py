@@ -22,7 +22,15 @@ class UserInformationForm(forms.Form):
             }
         ),
     )
-    last_name = forms.CharField(
+    mother_last_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'emma-input show-as-text',
+                'placeholder': 'Ej. López Salazar'
+            }
+        ),
+    )
+    father_last_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input show-as-text',
@@ -69,7 +77,8 @@ class UserInformationForm(forms.Form):
         user = self.request.user
 
         user.first_name = cleaned_data.get('first_name')
-        user.last_name = cleaned_data.get('last_name')
+        user.father_last_name = cleaned_data.get('father_last_name')
+        user.mother_last_name = cleaned_data.get('mother_last_name')
         user.email = cleaned_data.get('email')
 
         client = Client.objects.get(user=user)

@@ -80,7 +80,8 @@ class ClientDetailView(GetAdultMixin, ClientRequiredMixin, View):
         form = UserInformationForm(
             initial=  {
                 'first_name': request.user.first_name,
-                'last_name': request.user.last_name,
+                'mother_last_name': request.user.mother_last_name,
+                'father_last_name': request.user.father_last_name,
                 'email': request.user.email,
                 'contact_number': request.user.client.contact_number,
             }
