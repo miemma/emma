@@ -67,6 +67,12 @@ class CoolUser(PermissionsMixin, AbstractBaseUser):
         )
         return full_name.strip()
 
+    def get_full_last_name(self):
+        last__name = '%s %s' % (
+            self.mother_last_name, self.father_last_name
+        )
+        return last__name.strip()
+
     def get_short_name(self):
         return self.first_name
 
