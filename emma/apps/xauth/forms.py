@@ -103,7 +103,7 @@ class LoginForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'login-form-input emma-input',
-                'placeholder': 'Ej. ejemplo@aaa.com',
+                'placeholder': 'Correo electrónico',
                 'required': 'true',
             }
         ),
