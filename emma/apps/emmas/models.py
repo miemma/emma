@@ -93,6 +93,13 @@ class Emma(models.Model):
         primary_key=True,
     )
 
+    phone = models.CharField(
+        _('Phone'),
+        max_length=30,
+        blank=False,
+        null=False,
+    )
+
     birthday = models.DateField(
         _('Birthday'),
         blank=False,
