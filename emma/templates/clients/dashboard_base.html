@@ -40,11 +40,11 @@
 		.dropdown-content p:hover {background-color: #f1f1f1}
 
 		.dropdown-content p a {
-	    text-decoration: none;
-			color: #0f0f0f;
-			text-underline: none;
-			padding: 25px;
-
+      color: #0f0f0f;
+      display: block;
+      line-height: 60px;
+			padding: 0 25px;
+      text-decoration: none;
 		}
 
 		.dropdown:hover .dropdown-content {
@@ -127,7 +127,7 @@
           {% endif %}
           
           <li class="header-navbar-list-item" hcolor="white">
-            {% if arequest.user.client.user_type == 'User type 1' %}
+            {% if request.user.client.user_type == 'User type 1' %}
 	            <span data-toggle="tooltip" data-placement="bottom"
 	                  title="Antes de crear el perfil del adulto mayor personaliza
                            tu servicio al programar una llamada!">
@@ -135,9 +135,7 @@
 	            </span>
 	            <div class="dropdown">
 							  <span>
-								  <img class="circle"
-				               src="http://www.freelanceme.net/Images/default%20profile%20picture.png"
-				               width="50px" height="50px" />
+								  <div class="circle navbar-adult-picture" style="background-image: url('http://www.freelanceme.net/Images/default%20profile%20picture.png')"></div>
 							  </span>
 							  <div class="dropdown-content">
 							    <p>
@@ -147,7 +145,7 @@
 								    <a href="{% url 'landing:date' %}">Pagos</a>
 							    </p>
 								  <p>
-								    <a href="{% url 'landing:date' %}">Configuracion</a>
+								    <a href="{% url 'landing:date' %}">Configuración</a>
 							    </p>
 								  <p>
 								    <a href="{% url 'xauth:logout' %}">Cerrar sesión</a>
@@ -161,9 +159,7 @@
 	            </span>
 	            <div class="dropdown">
 							  <span>
-								  <img class="circle"
-				               src="http://www.freelanceme.net/Images/default%20profile%20picture.png"
-				               width="50px" height="50px" />
+								  <div class="circle navbar-adult-picture" style="background-image: url('http://www.freelanceme.net/Images/default%20profile%20picture.png')"></div>
 							  </span>
 							  <div class="dropdown-content">
 							    <p>
@@ -173,7 +169,7 @@
 								    <a href="{% url 'services:contract_service_info' %}">Pagos</a>
 							    </p>
 								  <p>
-								    <a href="{% url 'services:contract_service_info' %}">Configuracion</a>
+								    <a href="{% url 'services:contract_service_info' %}">Configuración</a>
 							    </p>
 								  <p>
 								    <a href="{% url 'xauth:logout' %}">Cerrar sesión</a>
@@ -187,7 +183,7 @@
 		          {% if adult.photo %}
 			          <div class="dropdown">
 							  <span>
-								  <img class="circle" src="{{ adult.photo.url }}" width="50px" height="50px"/>
+								  <div class="circle navbar-adult-picture" style="background-image: url('{{ adult.photo.url }}')"></div>
 							  </span>
 							  <div class="dropdown-content">
 							    <p>
@@ -197,7 +193,7 @@
 								    <a href="{{dashboard_payment_info}}">Pagos</a>
 							    </p>
 								  <p>
-								    <a href="{{dashboard_client_detail}}">Configuracion</a>
+								    <a href="{{dashboard_client_detail}}">Configuración</a>
 							    </p>
 								  <p>
 								    <a href="{% url 'xauth:logout' %}">Cerrar sesión</a>
@@ -207,9 +203,7 @@
 		          {% else %}
 			          <div class="dropdown">
 								  <span>
-									  <img class="circle"
-					               src="http://www.freelanceme.net/Images/default%20profile%20picture.png"
-					               width="50px" height="50px" />
+									  <div class="circle navbar-adult-picture" style="background-image: url('{{ adult.photo.url }}')"></div>
 								  </span>
 								  <div class="dropdown-content">
 								    <p>
@@ -219,7 +213,7 @@
 									    <a href="{{dashboard_payment_info}}">Pagos</a>
 								    </p>
 									  <p>
-									    <a href="{{dashboard_client_detail}}">Configuracion</a>
+									    <a href="{{dashboard_client_detail}}">Configuración</a>
 								    </p>
 									  <p>
 									    <a href="{% url 'xauth:logout' %}">Cerrar sesión</a>

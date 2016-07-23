@@ -38,7 +38,7 @@ class ClientDetailView(GetAdultMixin, ClientRequiredMixin, View):
                 ctx = {
                     'password_form': UpdatePasswordForm(),
                     'user_form': self.get_user_initial_form(request),
-                    'success': 'El usuario ha sido actualizado'
+                    'success': 'La información del usuario ha sido actualizado'
                 }
             else:
                 ctx = {
@@ -62,7 +62,7 @@ class ClientDetailView(GetAdultMixin, ClientRequiredMixin, View):
                 }
             return TemplateResponse(request, self.template_name, ctx)
         else:
-            raise Http404("No se encontro la pagina")
+            raise Http404("No se encontró la pagina")
 
     def get_user_initial_form(self, request):
         form = UserInformationForm(

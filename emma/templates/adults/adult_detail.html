@@ -17,7 +17,7 @@
 		{% endif %}
 		<form id="dashboard-adult-form" action="." method="post" enctype="multipart/form-data" class="dashboard-special-form">
 			<div class="dashboard-box adult-profile-box white">
-	      <div class="adult-profile-box-picture">
+	      <div class="adult-profile-box-picture margin-top-30 margin-bottom-30">
 		      {% if adult.photo %}
 		      <div class="adult-picture-container form-image circle" style="background-image: url('{{ adult.photo.url }}')">
 		      {% else %}
@@ -33,8 +33,10 @@
 	        <div class="dashboard-box-title small border">
 	          <h2 class="input-container flex multiple-fields">
 	          	<div class="fields-container hide">
-	          		{{ adultform.first_name }}
+	          		<span>Nombre del adulto:</span>
+	          		<div>{{ adultform.first_name }}
 	          		{{ adultform.last_name }}
+	          		</div>
 							</div>
 							<span class="value-container">
 		          	{{ adultform.first_name.value|default_if_none:"---" }} 
@@ -138,6 +140,11 @@
 								<span>Referencias: </span>
 								{{ adultform.reference.value|default_if_none:"---" }}
 							</div>
+						</div>
+						<div class="text-center long-form-auxiliar-button hide">
+							<button type="submit" id="adult_form" name="adult_form" class="emma-btn-light">
+		            Guardar
+		          </button>
 						</div>
 	        </div>
 	      </div>
@@ -299,7 +306,7 @@
 				      </div>
 							<div class="columns">
 		    				<div class="dashboard-toggle-list-content-column">
-		    					<h4>Contacto #1</h4>
+		    					<h4>Contacto 1</h4>
 		    					<div class="input-container">
 		    						<div class="fields-container hide">
 		    							<b>Nombre completo: </b>
@@ -342,7 +349,7 @@
 		    					</div>
 		    				</div>
 								<div class="dashboard-toggle-list-content-column">
-		    					<h4>Contacto #2</h4>
+		    					<h4>Contacto 2</h4>
 		    					<div class="input-container">
 		    						<div class="fields-container hide">
 		    							<b>Nombre completo: </b>
@@ -421,7 +428,7 @@
 	              	</span>
 								</div>
 								<div class="value-container">
-								 <b>¿Conoce la ley de voluntad anticipada? </b>{{ medicalform.knows_pda.value|yesno:"Si, No," }}
+								 <b>¿Conoce la ley de voluntad anticipada? </b>{{ medicalform.knows_pda.value|yesno:"Sí, No," }}
 								</div>
 							</div>
 							<div class="input-container">
@@ -435,7 +442,7 @@
 	              	</span>
 								</div>
 								<div class="value-container">
-								 <b>¿Ejerce la ley de voluntad anticipada? </b>{{ medicalform.exercise_pda.value|yesno:"Si, No," }}
+								 <b>¿Ejerce la ley de voluntad anticipada? </b>{{ medicalform.exercise_pda.value|yesno:"Sí, No," }}
 								</div>
 							</div>
 							<div class="row text-center padding-top-30 form-loader">
@@ -482,7 +489,7 @@
 	              	</span>
 								</div>
 								<div class="value-container">
-									<b>¿Cuenta con seguro de gastos médicos mayores?</b> {{ medicalform.has_medical_insurance.value|yesno:"Si, No," }}
+									<b>¿Cuenta con seguro de gastos médicos mayores?</b> {{ medicalform.has_medical_insurance.value|yesno:"Sí, No," }}
 								</div>
 							</div>
 							<div class="input-container">
@@ -567,7 +574,7 @@
 	              	</span>
 								</div>
 								<div class="value-container">
-									<b>¿Cuenta con seguro social?</b> {{ medicalform.has_social_security.value|yesno:"Si, No," }}
+									<b>¿Cuenta con seguro social?</b> {{ medicalform.has_social_security.value|yesno:"Sí, No," }}
 								</div>
 							</div>
 							<div class="input-container">
@@ -675,6 +682,11 @@
 	            		{{ medicalform.doctor_professional_id.value|default_if_none:"---"}}
 								</div>
 							</div>
+							<div class="text-center margin-top-20 long-form-auxiliar-button hide">
+								<button type="submit" id="medical_form" name="medical_form" class="emma-btn-light">
+			            Guardar
+			          </button>
+							</div>
 							<div class="row text-center padding-top-30 form-loader">
 				        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
 				          <div id="movingBallG">
@@ -755,6 +767,11 @@
 	            		{{ medicalform.food_allergy.value|default_if_none:"---" }}
 	            		</p>
 								</div>
+							</div>
+							<div class="text-center margin-top-20 long-form-auxiliar-button hide">
+								<button type="submit" id="medical_form" name="adult_form" class="emma-btn-light">
+			            Guardar
+			          </button>
 							</div>
 							<div class="row text-center padding-top-30 form-loader">
 				        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">

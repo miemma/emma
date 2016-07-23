@@ -95,13 +95,13 @@
       &-content
         background transparent
         height 0
-        padding 0 80px
+        padding 0 4.5% 0 80px
         overflow hidden
         transition all .2s
         
         &.toggle
           height auto
-          padding 30px 80px 55px 80px
+          padding 30px 4.5% 55px 80px
           
         .columns
           .dashboard-toggle-list-content-column
@@ -117,6 +117,10 @@
         h4
           font-size 22px
           margin-bottom 5px
+    
+    .error
+      padding-left 15px
+      text-align left
 
   .input-container
     .fields-container
@@ -155,7 +159,7 @@
   .help
     cursor pointer
     cursor hand
-    margin 14px 0
+    margin 9px 0
     position relative
     
     &::before
@@ -244,3 +248,9 @@
       span
         padding-top 5px
         margin-right 10px
+        
+#addcard-form .input-container
+  margin-bottom 12px
+  
+  &.input-container-inline
+    padding-top 0

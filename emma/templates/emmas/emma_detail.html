@@ -3,7 +3,8 @@
 {% block content %}
 <div class="dashboard-emma-box">
 	<div class="dashboard-emma-picture-container">
-		<img src="{{ emma.profile_picture.url }}" alt="Emma" class="circle" width="180px">
+	<div class="emma-picture circle" style="background-image: url('{{ emma.profile_picture.url }}')">
+	</div>
 	</div>
 	<div class="dashboard-emma-data-box">
 		<div class="emma-role-selector">

@@ -31,9 +31,22 @@
   &-data
     flex-grow 1
     
+    .dashboard-box-title
+      .fields-container:not(.hide)
+        display block !important
+
+        span
+          color $gray
+          display block
+          font-size 19px
+          margin-bottom 8px
+          
+        div
+          display flex
+          margin-bottom 5px
+    
   .dashboard-box-title
-    border-width 0 0 2px 0
-    padding 20px 20px 0 0
+    padding 20px 5% 0 0
       
     .send-button
       height auto

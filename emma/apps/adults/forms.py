@@ -19,7 +19,7 @@ class AdultPreferences(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Descripcion',
+                'placeholder': 'Descripción',
                 'rows': 5
             }
         ),
@@ -81,7 +81,7 @@ class AdultInfo(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Nombre'
+                'placeholder': 'Nombre(s)'
             }
         ),
         validators=[validators.eval_blank],
@@ -92,7 +92,7 @@ class AdultInfo(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Apellido'
+                'placeholder': 'Apellido(s)'
             }
         ),
         validators=[validators.eval_blank],
@@ -176,7 +176,7 @@ class AdultInfo(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Delegacion'
+                'placeholder': 'Ej. La Joya'
             }
         ),
         validators=[validators.eval_blank],
@@ -187,7 +187,7 @@ class AdultInfo(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Codigo Postal'
+                'placeholder': 'Ej. 07890'
             }
         ),
         validators=[validators.eval_blank],
@@ -198,7 +198,7 @@ class AdultInfo(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Referencia',
+                'placeholder': 'Ej. Edificio color azul',
                 'rows': 5
             }
         ),
@@ -275,7 +275,7 @@ class MedicalInfo(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Nombre Completo'
+                'placeholder': 'Ej. Elena Henríquez Soliz'
             }
         ),
         validators=[validators.eval_blank],
@@ -286,7 +286,7 @@ class MedicalInfo(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Relacion con la persona mayor'
+                'placeholder': 'Ej. Hermana'
             }
         ),
         validators=[validators.eval_blank],
@@ -297,7 +297,7 @@ class MedicalInfo(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Teléfono móvil'
+                'placeholder': 'Ej. 5555555555'
             }
         ),
         validators=[validators.eval_blank],
@@ -308,7 +308,7 @@ class MedicalInfo(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Teléfono de casa'
+                'placeholder': 'Ej. 5555555555'
             }
         ),
         validators=[validators.eval_blank],
@@ -319,7 +319,7 @@ class MedicalInfo(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Nombre Completo'
+                'placeholder': 'Ej. Erik Zúñiga Hernádez'
             }
         ),
         validators=[validators.eval_blank],
@@ -330,7 +330,7 @@ class MedicalInfo(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Relacion con la persona mayor'
+                'placeholder': 'Ej. Primo(a)'
             }
         ),
         validators=[validators.eval_blank],
@@ -341,7 +341,7 @@ class MedicalInfo(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Teléfono móvil'
+                'placeholder': 'Ej. 5555555555'
             }
         ),
         validators=[validators.eval_blank],
@@ -352,7 +352,7 @@ class MedicalInfo(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Teléfono de casa'
+                'placeholder': 'Ej. 5555555555'
             }
         ),
         validators=[validators.eval_blank],
@@ -387,7 +387,7 @@ class MedicalInfo(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Compañia de seguros'
+                'placeholder': 'Ej. Aserta'
             }
         ),
         validators=[validators.eval_blank],
@@ -398,7 +398,7 @@ class MedicalInfo(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Número de poliza'
+                'placeholder': 'Ej. 111111111'
             }
         ),
         validators=[validators.eval_blank],
@@ -425,7 +425,7 @@ class MedicalInfo(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Número de seguridad social'
+                'placeholder': 'Ej. 111111'
             }
         ),
         validators=[validators.eval_blank],
@@ -437,7 +437,7 @@ class MedicalInfo(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Nombre'
+                'placeholder': 'Ej. Fernando'
             }
         ),
         validators=[validators.eval_blank],
@@ -449,7 +449,7 @@ class MedicalInfo(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Apellido'
+                'placeholder': 'Ej. López Salazar'
             }
         ),
         validators=[validators.eval_blank],
@@ -460,7 +460,7 @@ class MedicalInfo(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Teléfono móvil'
+                'placeholder': 'Ej. 5555555555'
             }
         ),
         validators=[validators.eval_blank],
@@ -471,7 +471,7 @@ class MedicalInfo(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Teléfono de casa'
+                'placeholder': 'Ej. 5555555555'
             }
         ),
         required=False,
@@ -481,7 +481,7 @@ class MedicalInfo(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Institución donde trabaja'
+                'placeholder': 'Ej. IMSS'
             }
         ),
         required=False,
@@ -491,7 +491,7 @@ class MedicalInfo(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Teléfono de casa'
+                'placeholder': 'Ej. 1111111'
             }
         ),
         required=False,
@@ -501,7 +501,7 @@ class MedicalInfo(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'class': 'emma-input',
-                'placeholder': '¿Qué enfermedades o padecimientos presenta?',
+                'placeholder': 'Ej. Diabetes, artritis, etc.',
                 'rows': 5
             }
         ),
@@ -512,7 +512,7 @@ class MedicalInfo(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Medicacion Actual',
+                'placeholder': 'Ej. Atropina, etc.',
                 'rows': 5
             }
         ),
@@ -523,7 +523,7 @@ class MedicalInfo(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Alergias a medicamentos',
+                'placeholder': 'Ej. Ibuprofeno, etc',
                 'rows': 5
             }
         ),
@@ -534,7 +534,7 @@ class MedicalInfo(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'Alergias a alimentos',
+                'placeholder': 'Ej. Chocolate, etc.',
                 'rows': 5
             }
         ),
