@@ -26,8 +26,13 @@ class CoolUser(PermissionsMixin, AbstractBaseUser):
         max_length=30,
         blank=False
     )
-    last_name = models.CharField(
-        _('Last name'),
+    mother_last_name = models.CharField(
+        _('Mother last name'),
+        max_length=30,
+        blank=False,
+    )
+    father_last_name = models.CharField(
+        _('Father last name'),
         max_length=30,
         blank=False,
     )
@@ -37,10 +42,6 @@ class CoolUser(PermissionsMixin, AbstractBaseUser):
         choices=TYPE_CHOICES,
         default='client',
         blank=False,
-    )
-    is_admin = models.BooleanField(
-        _('Staff'),
-        default=False,
     )
     is_active = models.BooleanField(
         _('Active'),
@@ -54,14 +55,16 @@ class CoolUser(PermissionsMixin, AbstractBaseUser):
     objects = CoolUserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'user_type']
+    REQUIRED_FIELDS = ['first_name', 'mother_last_name', 'father_last_name', 'user_type']
 
     class Meta:
         verbose_name = _('User')
         verbose_name_plural = _('Users')
 
     def get_full_name(self):
-        full_name = '%s %s' % (self.first_name, self.last_name)
+        full_name = '%s %s %s' % (
+            self.first_name, self.mother_last_name, self.father_last_name
+        )
         return full_name.strip()
 
     def get_short_name(self):
@@ -69,7 +72,7 @@ class CoolUser(PermissionsMixin, AbstractBaseUser):
 
     @property
     def is_staff(self):
-        return self.is_admin
+        return self.is_superuser
 
     def __unicode__(self):
         return "%s - %s" % (self.email, self.get_full_name())
