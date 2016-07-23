@@ -10,54 +10,69 @@ from emma.apps.doctors.models import Doctor
 
 class AdultAddress(models.Model):
     adult_name = models.CharField(
-        max_length=40,
+        _('Adult Name'),
+        max_length=50,
         blank=False,
         null=False
     )
     street = models.CharField(
-        max_length=25,
+        _('Street'),
+        max_length=50,
         blank=False,
         null=False
     )
     outdoor_number = models.CharField(
+        _('Outdoor Number'),
         max_length=25,
         blank=False,
         null=False
     )
     interior_number = models.CharField(
-        max_length=25,
+        _('Interior Number'),
+        max_length=50,
         blank=True,
         null=True
     )
     colony = models.CharField(
-        max_length=25,
+        _('Colony'),
+        max_length=50,
         blank=False,
         null=False
     )
     postal_code = models.PositiveIntegerField(
+        _('Postal Code'),
         blank=False,
         null=False
     )
     municipality = models.CharField(
-        max_length=25,
+        _('Municipality'),
+        max_length=50,
         blank=False,
         null=False
     )
     city = models.CharField(
-        max_length=25,
+        _('City'),
+        max_length=50,
         blank=False,
         null=False
     )
     state = models.CharField(
-        max_length=25,
+        _('State'),
+        max_length=50,
         blank=False,
         null=False
     )
-    reference = models.CharField(
-        max_length=25,
+    reference = models.TextField(
+        _('Reference'),
         blank=False,
         null=False
     )
+    google_maps_link = models.TextField(
+        _('Google Maps Link'),
+        blank=False,
+        null=False
+    )
+
 
     class Meta:
         verbose_name = 'Address'
