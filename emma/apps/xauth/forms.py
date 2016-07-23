@@ -150,15 +150,23 @@ class SignupForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'login-form-input emma-input',
-                'placeholder': 'Ej. Fernando'
+                'placeholder': 'Nombre'
             }
         ),
     )
-    last_name = forms.CharField(
+    mother_last_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
                 'class': 'login-form-input emma-input',
-                'placeholder': 'Ej. López Salazar'
+                'placeholder': 'Apellido materno'
+            }
+        ),
+    )
+    father_last_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'login-form-input emma-input',
+                'placeholder': 'Apellido paterno'
             }
         ),
     )
@@ -166,7 +174,7 @@ class SignupForm(forms.Form):
         widget=forms.EmailInput(
             attrs={
                 'class': 'login-form-input emma-input',
-                'placeholder': 'Ej. ejemplo@aaa.com',
+                'placeholder': 'Correo electrónico',
             }
         ),
     )
@@ -210,7 +218,8 @@ class SignupForm(forms.Form):
         user = CoolUser(
             email=cleaned_data.get('email'),
             first_name=cleaned_data.get('name'),
-            last_name=cleaned_data.get('last_name'),
+            mother_last_name=cleaned_data.get('mother_last_name'),
+            father_last_name=cleaned_data.get('father_last_name'),
             user_type='client',
             is_active=False,
         )

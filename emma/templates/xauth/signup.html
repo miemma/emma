@@ -31,6 +31,18 @@
               {{ form.last_name.errors.as_text|cut:"*" }}
             </div>
           {% endif %}
+          {{ form.mother_last_name }}
+	        {% if form.mother_last_name.errors %}
+            <div class="alert alert-danger form-alert" role="alert">
+              {{ form.mother_last_name.errors.as_text|cut:"*" }}
+            </div>
+          {% endif %}
+          {{ form.father_last_name }}
+	        {% if form.father_last_name.errors %}
+            <div class="alert alert-danger form-alert" role="alert">
+              {{ form.father_last_name.errors.as_text|cut:"*" }}
+            </div>
+          {% endif %}
 	        {{ form.email }}
 	        {% if form.email.errors %}
             <label class="error">
