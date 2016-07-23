@@ -155,14 +155,9 @@ class DateEmailView(ClientRequiredMixin, View):
 
     @staticmethod
     def post(request):
-        if request.user.is_authenticated():
-            email = request.user.email
-            name = request.user.first_name
-            last_name = request.user.last_name
-        else:
-            email = request.POST.get('email')
-            name = request.POST.get('name')
-            last_name = request.POST.get('last_name')
+        email = request.user.email
+        name = request.user.first_name
+        last_name = request.user.get_full_last_name
 
         number = request.POST.get('number')
         minute = request.POST.get('minute')
