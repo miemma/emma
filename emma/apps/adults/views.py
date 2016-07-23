@@ -6,9 +6,11 @@ from django.http import Http404
 from django.shortcuts import redirect, render
 from django.template.response import TemplateResponse
 from django.views.generic import View
+from django.conf import settings
 
 from emma.apps.adults.forms import AdultInfo, MedicalInfo, AdultPreferences
 from emma.core.mixins import ClientRequiredMixin, GetAdultMixin
+from emma.core.utils import send_email
 
 
 class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
@@ -60,6 +62,15 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
 
             if adultform.is_valid():
                 adultform.save()
+                send_email(
+                    subject='email/subjects/notification_edit_adult.txt',
+                    body='email/notification_edit_adult.html',
+                    context={
+                        'user_full_name': request.user.get_full_name,
+                        'adult_full_name': 'dadas',
+                    },
+                    to_email=[settings.DEFAULT_EMAIL_TO],
+                )
                 messages.info(self.request, 'Información del adulto actualizda')
                 return redirect(reverse_lazy('adults:dashboard_adult',
                                              kwargs={'id': id}))
@@ -79,9 +90,17 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
         elif 'preference_form' in request.POST:
 
             preferenceform = AdultPreferences(request.POST, **kwargs)
-
             if preferenceform.is_valid():
                 preferenceform.save()
+                send_email(
+                    subject='email/subjects/notification_edit_adult.txt',
+                    body='email/notification_edit_adult.html',
+                    context={
+                        'user_full_name': request.user.get_full_name,
+                        'adult_full_name': self.get_adult(request).first_name,
+                    },
+                    to_email=[settings.DEFAULT_EMAIL_TO],
+                )
                 messages.info(self.request, 'Información del adulto actualizda')
                 return redirect(reverse_lazy('adults:dashboard_adult',
                                              kwargs={'id': id}))
