@@ -257,8 +257,8 @@
         <div class="row text-center how-detail-row-btn">
           <div class="col-xs-10 col-sm-5 col-md-4 col-lg-5">
 	          {% if request.user.client %}
-					    <a href="{% url adults:dashboard_adult %}" class="emma-btn-dark how-detail-btn">
-				        Pagar
+					    <a href="{% url 'clients:dashboard_welcome' %}" class="emma-btn-dark how-detail-btn">
+				        Dashboard
 				      </a>
 				    {% else %}
 					    <a href="{% url 'landing:date' %}" class="emma-btn-dark how-detail-btn">
