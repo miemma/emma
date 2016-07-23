@@ -40,11 +40,11 @@
 		.dropdown-content p:hover {background-color: #f1f1f1}
 
 		.dropdown-content p a {
-	    text-decoration: none;
-			color: #0f0f0f;
-			text-underline: none;
-			padding: 25px;
-
+      color: #0f0f0f;
+      display: block;
+      line-height: 60px;
+			padding: 0 25px;
+      text-decoration: none;
 		}
 
 		.dropdown:hover .dropdown-content {
@@ -145,7 +145,7 @@
 								    <a href="{% url 'landing:date' %}">Pagos</a>
 							    </p>
 								  <p>
-								    <a href="{% url 'landing:date' %}">Configuracion</a>
+								    <a href="{% url 'landing:date' %}">Configuración</a>
 							    </p>
 								  <p>
 								    <a href="{% url 'xauth:logout' %}">Cerrar sesión</a>
@@ -169,7 +169,7 @@
 								    <a href="{% url 'services:contract_service_info' %}">Pagos</a>
 							    </p>
 								  <p>
-								    <a href="{% url 'services:contract_service_info' %}">Configuracion</a>
+								    <a href="{% url 'services:contract_service_info' %}">Configuración</a>
 							    </p>
 								  <p>
 								    <a href="{% url 'xauth:logout' %}">Cerrar sesión</a>
@@ -193,7 +193,7 @@
 								    <a href="{{dashboard_payment_info}}">Pagos</a>
 							    </p>
 								  <p>
-								    <a href="{{dashboard_client_detail}}">Configuracion</a>
+								    <a href="{{dashboard_client_detail}}">Configuración</a>
 							    </p>
 								  <p>
 								    <a href="{% url 'xauth:logout' %}">Cerrar sesión</a>
@@ -213,7 +213,7 @@
 									    <a href="{{dashboard_payment_info}}">Pagos</a>
 								    </p>
 									  <p>
-									    <a href="{{dashboard_client_detail}}">Configuracion</a>
+									    <a href="{{dashboard_client_detail}}">Configuración</a>
 								    </p>
 									  <p>
 									    <a href="{% url 'xauth:logout' %}">Cerrar sesión</a>
