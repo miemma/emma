@@ -99,27 +99,21 @@
                            tu servicio al programar una llamada!">
 		            Adulto
 	            </span>
-	            <img class="circle"
-		               src="http://www.freelanceme.net/Images/default%20profile%20picture.png"
-		               width="50px" height="50px" />
+	            <div class="circle navbar-adult-picture" style="background-image: url('http://www.freelanceme.net/Images/default%20profile%20picture.png')"></div>
             {% elif request.user.client.user_type == 'User type 2' %}
 	            <span data-toggle="tooltip" data-placement="bottom"
 	                  title="Para tener acceso a todas las funciones contrata tu servicio">
 		            Adulto
 	            </span>
-	            <img class="circle"
-		               src="http://www.freelanceme.net/Images/default%20profile%20picture.png"
-		               width="50px" height="50px" />
+	            <div class="circle navbar-adult-picture" style="background-image: url('http://www.freelanceme.net/Images/default%20profile%20picture.png')"></div>
             {% else %}
 	            <a class="header-navbar-list-item-link" href="{{ dashboard_adult }}">
 	              {{ adult.first_name | default_if_none:"Adulto" }}
 	            </a>
 		          {% if adult.photo %}
-			          <img class="circle" src="{{ adult.photo.url }}" width="50px" height="50px"/>
+			          <div class="circle navbar-adult-picture" style="background-image: url('{{ adult.photo.url }}')"></div>
 		          {% else %}
-			          <img class="circle"
-			               src="http://www.freelanceme.net/Images/default%20profile%20picture.png"
-			               width="50px" height="50px" />
+			          <div class="circle navbar-adult-picture" style="background-image: url('http://www.freelanceme.net/Images/default%20profile%20picture.png')"></div>
 		          {% endif %}
             {% endif %}
 	          {% if request.user.client.user_type == 'User type 3' %}
