@@ -14,17 +14,32 @@
           <thead>
             <tr>
               <th>Fecha</th>
-              <th>Acción</th><!--
+              <th>Servicio</th>
               <th>Talleres</th>
               <th>Estado de ánimo del adulto mayor</th>
-              <th>Comentarios adicionales</th> -->
+              <th>Comentarios adicionales</th>
             </tr>
           </thead>
           <tbody>
             {% for history in histories %}
             <tr>
               <td>{{ history.date }}</td>
-              <td>{{ history.movement }}</td>
+              <td>{{ history.service }}</td>
+              <td>
+	              {% for workshop in history.workshops.all %}
+									{% if forloop.last %}
+										{{ workshop.name }}
+									{% else %}
+										{{ workshop.name }},
+									{% endif %}
+								{% endfor %}
+              </td>
+              <td>
+	              {{ history.mood }}
+              </td>
+              <td>
+	              {{ history.comments }}
+              </td>
             </tr>
             {% endfor %}
             <!-- <tr>
