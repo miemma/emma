@@ -26,26 +26,38 @@
 				    {% csrf_token %}
 				    <div class="input-container">
 							<div class="fields-container hide">
-								<b>Nombre: </b>
+								<b>Nombre(s): </b>
 								<div>
 								{{ user_form.first_name }}
 								</div>
 							</div>
 							<div class="value-container">
-								<b>Nombre: </b>
+								<b>Nombre(s): </b>
 								{{ user_form.first_name.value|default_if_none:"" }}
 							</div>
 						</div>
 						<div class="input-container">
 							<div class="fields-container hide">
-								<b>Apellido: </b>
+								<b>Apellido Paterno: </b>
 								<div>
-								{{ user_form.last_name }}
+								{{ user_form.father_last_name }}
 								</div>
 							</div>
 							<div class="value-container">
-								<b>Apellido: </b>
-								{{ user_form.last_name.value|default_if_none:"" }}
+								<b>Apellido Paterno: </b>
+								{{ user_form.father_last_name.value|default_if_none:"" }}
+							</div>
+						</div>
+						<div class="input-container">
+							<div class="fields-container hide">
+								<b>Apellido Materno: </b>
+								<div>
+								{{ user_form.mother_last_name }}
+								</div>
+							</div>
+							<div class="value-container">
+								<b>Apellido Materno: </b>
+								{{ user_form.mother_last_name.value|default_if_none:"" }}
 							</div>
 						</div>
 						<div class="input-container">
