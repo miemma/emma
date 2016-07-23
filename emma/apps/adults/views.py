@@ -41,6 +41,15 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
 
             if medicalform.is_valid():
                 medicalform.save()
+                send_email(
+                    subject='email/subjects/notification_edit_adult_med.txt',
+                    body='email/notification_edit_adult_med.html',
+                    context={
+                        'user_full_name': request.user.get_full_name,
+                        'adult_full_name': self.get_adult(request).first_name,
+                    },
+                    to_email=[settings.DEFAULT_EMAIL_TO],
+                )
                 messages.info(self.request, 'Información médica actualizada')
                 return redirect(reverse_lazy('adults:dashboard_adult',
                                              kwargs={'id': id}))
