@@ -11,6 +11,7 @@ from django.conf import settings
 
 from emma.apps.clients.models import PotentialClient
 from emma.apps.services.models import ScheduledCall
+from emma.core.mixins import ClientRequiredMixin
 from emma.core.utils import send_email
 
 
@@ -143,7 +144,7 @@ class JoinEmailView(View):
         return redirect(reverse('landing:success'))
 
 
-class DateEmailView(View):
+class DateEmailView(ClientRequiredMixin, View):
     @staticmethod
     def get(request):
         today = date.today()
