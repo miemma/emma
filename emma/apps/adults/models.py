@@ -223,14 +223,14 @@ class Adult(models.Model):
     first_name = models.CharField(
         _('First name'),
         max_length=25,
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
     )
     last_name = models.CharField(
         _('Last name'),
         max_length=25,
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
     )
     photo = models.ImageField(
         _('Profile picture'),
@@ -240,15 +240,12 @@ class Adult(models.Model):
     )
     birthday = models.DateField(
         _('Birthday'),
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
     )
     address = models.ForeignKey(
         AdultAddress,
         verbose_name=_('Address'),
-        blank=True,
-        null=True,
-
     )
     responsable = models.ForeignKey(
         Client,
@@ -256,24 +253,22 @@ class Adult(models.Model):
     )
     description = models.TextField(
         _('Description'),
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
     )
     familiar_structure = models.TextField(
         _('Familiar Structure'),
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
     )
     personality = models.TextField(
         _('Personality'),
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
     )
     medical_information = models.OneToOneField(
         MedicalInfo,
         verbose_name=_('Medical Information'),
-        null=True,
-        blank=True,
     )
     is_candidate = models.BooleanField(
         _('Candidate'),
