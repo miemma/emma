@@ -3,6 +3,7 @@
 
 from django.contrib import admin
 
+from emma.apps.adults.forms import MedicalInfoAdmin
 from emma.core.utils import export_as_xls
 
 from . import models
@@ -17,6 +18,7 @@ class AdultAdmin(admin.ModelAdmin):
 
 @admin.register(models.MedicalInfo)
 class MedicalInfoAdmin(admin.ModelAdmin):
+    form = MedicalInfoAdmin
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
 

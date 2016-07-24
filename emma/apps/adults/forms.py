@@ -606,3 +606,23 @@ class MedicalInfo(forms.Form):
         doctor.professional_id = cleaned_data.get('professional_id')
 
         doctor.save()
+
+
+class MedicalInfoAdmin(forms.ModelForm):
+    class Meta:
+        model = medical_info
+        fields = '__all__'
+        widgets = {
+            'blood_type': forms.Select(
+                choices=(
+                    ('AB+', 'AB+',),
+                    ('AB-', 'AB-',),
+                    ('A+', 'A+',),
+                    ('A-', 'A-',),
+                    ('B+', 'B+',),
+                    ('B-', 'B-',),
+                    ('O+', 'O+',),
+                    ('O-', 'O-',),
+                )
+            )
+        }
