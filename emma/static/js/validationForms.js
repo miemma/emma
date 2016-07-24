@@ -507,16 +507,16 @@ $(document).ready(function () {
   $('#dashboard-medical-form-part-4').validate({
     rules: {
       has_medical_insurance: {
-        required: true
+        required: false
       },
       insurance_company: {
-        required: false
+        required: '#id_has_medical_insurance:checked'
       },
       policy_number: {
-        required: false
+        required: '#id_has_medical_insurance:checked'
       },
       policy_expiration_date: {
-        required: false
+        required: '#id_has_medical_insurance:checked'
       }
     }
   });
@@ -527,7 +527,7 @@ $(document).ready(function () {
         required: false
       },
       social_security_number: {
-        required: false
+        required: '#id_has_social_security:checked'
       }
     }
   });
