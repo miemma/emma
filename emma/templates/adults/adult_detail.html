@@ -229,10 +229,9 @@
 					<h2>Información médica</h2>
 				</div>
     	</div>
-			<form action="." method="post">
-			{% csrf_token %}
     	<div class="dashboard-box-content">
-				<div id="dashboard-medical-form-part-1" class="dashboard-special-form">
+				<form id="dashboard-medical-form-part-1" action="." method="post" class="dashboard-special-form">
+					{% csrf_token %}
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
 	    				<div class="col-md-11 col-sm-11 col-xs-11 centered-col flex">
@@ -250,7 +249,7 @@
 			          <div class="dashboard-box-title-button edit-button">
 			            editar
 			          </div>
-			          <button type="submit" id="medical_form" name="medical_form" class="dashboard-box-title-button send-button hide">
+			          <button type="submit" id="medicalbasic_form" name="medicalbasic_form" class="dashboard-box-title-button send-button hide">
 			            guardar
 			          </button>
 							</div>
@@ -273,8 +272,9 @@
 							</div>
 	    			</div>
 	    		</div>
-	    	</div>
-				<div id="dashboard-medical-form-part-2" class="dashboard-special-form">
+	    	</form>
+				<form id="dashboard-medical-form-part-2" action="." method="post" class="dashboard-special-form">
+					{% csrf_token %}
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
 	    				<div class="col-md-11 col-sm-11 col-xs-11 centered-col flex">
@@ -292,7 +292,7 @@
 			          <div class="dashboard-box-title-button edit-button">
 			            editar
 			          </div>
-			          <button type="submit" id="medical_form" name="medical_form" class="dashboard-box-title-button send-button hide">
+			          <button type="submit" id="medicalcontacts_form" name="medicalcontacts_form" class="dashboard-box-title-button send-button hide">
 			            guardar
 			          </button>
 							</div>
@@ -394,8 +394,9 @@
 		    			</div>
 	    			</div>
 	    		</div>
-	    	</div>
-				<div id="dashboard-medical-form-part-3" class="dashboard-special-form">
+	    	</form>
+				<form id="dashboard-medical-form-part-3" action="." method="post" class="dashboard-special-form">
+					{% csrf_token %}
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
 	    				<div class="col-md-11 col-sm-11 col-xs-11 centered-col flex">
@@ -413,7 +414,7 @@
 			          <div class="dashboard-box-title-button edit-button">
 			            editar
 			          </div>
-			          <button type="submit" id="medical_form" name="medical_form" class="dashboard-box-title-button send-button hide">
+			          <button type="submit" id="medicalpda_form" name="medicalpda_form" class="dashboard-box-title-button send-button hide">
 			            guardar
 			          </button>
 							</div>
@@ -455,8 +456,9 @@
 				      </div>
 	    			</div>
 	    		</div>
-	    	</div>
-				<div id="dashboard-medical-form-part-4" action="." method="post" class="dashboard-special-form">
+	    	</form>
+				<form id="dashboard-medical-form-part-4" action="." method="post" class="dashboard-special-form">
+					{% csrf_token %}
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
 	    				<div class="col-md-11 col-sm-11 col-xs-11 centered-col flex">
@@ -474,7 +476,7 @@
 			          <div class="dashboard-box-title-button edit-button">
 			            editar
 			          </div>
-			          <button type="submit" id="medical_form" name="medical_form" class="dashboard-box-title-button send-button hide">
+			          <button type="submit" id="medicalinsurance_form" name="medicalinsurance_form" class="dashboard-box-title-button send-button hide">
 			            guardar
 			          </button>
 							</div>
@@ -540,8 +542,9 @@
 				      </div>
 	    			</div>
 	    		</div>
-	    	</div>
-				<div id="dashboard-medical-form-part-5" class="dashboard-special-form">
+	    	</form>
+				<form id="dashboard-medical-form-part-5" action="." method="post" class="dashboard-special-form">
+					{% csrf_token %}
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
 	    				<div class="col-md-11 col-sm-11 col-xs-11 centered-col flex">
@@ -559,7 +562,7 @@
 			          <div class="dashboard-box-title-button edit-button">
 			            editar
 			          </div>
-			          <button type="submit" id="medical_form" name="medical_form" class="dashboard-box-title-button send-button hide">
+			          <button type="submit" id="medicalss_form" name="medicalss_form" class="dashboard-box-title-button send-button hide">
 			            guardar
 			          </button>
 							</div>
@@ -599,8 +602,9 @@
 				      </div>
 	    			</div>
 	    		</div>
-	    	</div>
-				<div id="dashboard-medical-form-part-6" class="dashboard-special-form">
+	    	</form>
+				<form id="dashboard-medical-form-part-6" action="." method="post" class="dashboard-special-form">
+					{% csrf_token %}
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
 	    				<div class="col-md-11 col-sm-11 col-xs-11 centered-col flex">
@@ -618,7 +622,7 @@
 			          <div class="dashboard-box-title-button edit-button">
 			            editar
 			          </div>
-			          <button type="submit" id="medical_form" name="medical_form" class="dashboard-box-title-button send-button hide">
+			          <button type="submit" id="medicaldoctor_form" name="medicaldoctor_form" class="dashboard-box-title-button send-button hide">
 			            guardar
 			          </button>
 							</div>
@@ -697,8 +701,9 @@
 				      </div>
 	    			</div>
 	    		</div>
-	    	</div>
-				<div id="dashboard-medical-form-part-7" class="dashboard-special-form">
+	    	</form>
+				<form id="dashboard-medical-form-part-7" action="." method="post" class="dashboard-special-form">
+					{% csrf_token %}
 	    		<div class="dashboard-toggle-list">
 	    			<div class="dashboard-toggle-list-title">
 	    				<div class="col-md-11 col-sm-11 col-xs-11 centered-col flex">
@@ -716,7 +721,7 @@
 			          <div class="dashboard-box-title-button edit-button">
 			            editar
 			          </div>
-			          <button type="submit" id="medical_form" name="medical_form" class="dashboard-box-title-button send-button hide">
+			          <button type="submit" id="medicaldiseases_form" name="medicaldiseases_form" class="dashboard-box-title-button send-button hide">
 			            guardar
 			          </button>
 							</div>
@@ -783,9 +788,8 @@
 				      </div>
 	    			</div>
 	    		</div>
-	    	</div>
+	    	</form>
     	</div>
-			</form>
     </div>
   </div>
 </div>
