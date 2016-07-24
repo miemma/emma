@@ -49,11 +49,13 @@ class ClientDetailView(GetAdultMixin, ClientRequiredMixin, View):
                 ctx = {
                     'password_form': UpdatePasswordForm(),
                     'user_form': self.get_user_initial_form(request),
+                    'adult': self.get_adult(request),
                     'success': 'La información del usuario ha sido actualizado'
                 }
             else:
                 ctx = {
                     'password_form': UpdatePasswordForm(),
+                    'adult': self.get_adult(request),
                     'user_form': user_form,
                 }
 
@@ -65,12 +67,14 @@ class ClientDetailView(GetAdultMixin, ClientRequiredMixin, View):
                 ctx = {
                     'password_form': UpdatePasswordForm(),
                     'user_form': self.get_user_initial_form(request),
-                    'success': 'La contraseña ha sido actualizada'
+                    'success': 'La contraseña ha sido actualizada',
+                    'adult': self.get_adult(request),
                 }
             else:
                 ctx = {
                     'password_form': password_form,
                     'user_form': self.get_user_initial_form(request),
+                    'adult': self.get_adult(request),
                 }
             return TemplateResponse(request, self.template_name, ctx)
         else:
