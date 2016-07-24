@@ -1,11 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
+import uuid
+
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from emma.apps.clients.models import Client
 from emma.apps.services.models import Service, Workshop
+
+
+def get_file_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = "%s.%s" % (uuid.uuid4(), ext)
+    return os.path.join('reports', filename)
 
 
 class Suscription(models.Model):
@@ -82,6 +91,12 @@ class History(models.Model):
         _('Comments'),
         blank=False,
         null=False
+    )
+    file = models.FileField(
+        _('File'),
+        blank=False,
+        null=False,
+        upload_to=get_file_path,
     )
 
     class Meta:
