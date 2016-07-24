@@ -105,9 +105,8 @@ class Emma(models.Model):
         blank=False,
         null=False
     )
-    main_occupation = models.CharField(
+    main_occupation = models.TextField(
         _('Main occupation'),
-        max_length=30,
         blank=False,
         null=False,
     )
