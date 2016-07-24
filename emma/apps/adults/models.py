@@ -127,8 +127,8 @@ class MedicalInfo(models.Model):
     blood_type = models.CharField(
         _('Blood Type'),
         max_length=25,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
     emergency_contact_1 = models.ForeignKey(
         EmergencyContact,
@@ -143,8 +143,8 @@ class MedicalInfo(models.Model):
     hospital_preferably = models.CharField(
         _('Hospital Preferably'),
         max_length=25,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
     knows_pda = models.BooleanField(
         _('Knows PDA'),
@@ -160,31 +160,30 @@ class MedicalInfo(models.Model):
     )
     insurance_company = models.CharField(
         _('Insurance Company'),
-        max_length=25,
-        blank=False,
-        null=False,
+        max_length=100,
+        blank=True,
+        null=True,
     )
     policy_number = models.CharField(
         _('Policy Number'),
-        max_length=25,
-        blank=False,
-        null=False,
+        max_length=100,
+        blank=True,
+        null=True,
     )
     policy_expiration_date = models.DateField(
         _('Policy Experation Date'),
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
     has_social_security = models.BooleanField(
         _('Has Social Security'),
-        blank=False,
-        null=False,
+        default=True
     )
     social_security_number = models.CharField(
         _('Social Security Number'),
-        max_length=25,
-        blank=False,
-        null=False,
+        max_length=100,
+        blank=True,
+        null=True,
     )
     doctor = models.ForeignKey(
         Doctor,
@@ -192,23 +191,23 @@ class MedicalInfo(models.Model):
     )
     diseases = models.TextField(
         _('Diseases'),
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
     current_medications = models.TextField(
         _('Current Medications'),
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
     drug_allergy = models.TextField(
         _('Drug Allergy'),
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
     food_allergy = models.TextField(
         _('Food Allergy'),
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
 
     class Meta:
