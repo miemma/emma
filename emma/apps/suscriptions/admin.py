@@ -3,6 +3,7 @@
 
 from django.contrib import admin
 
+from emma.apps.suscriptions.forms import HistoryFormAdmin
 from emma.core.utils import export_as_xls
 from . import models
 
@@ -17,6 +18,7 @@ class SuscriptionAdmin(admin.ModelAdmin):
 
 @admin.register(models.History)
 class HistoryAdmin(admin.ModelAdmin):
+    form = HistoryFormAdmin
     list_display = ('suscription', 'date',)
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
