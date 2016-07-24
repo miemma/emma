@@ -8,7 +8,10 @@ from django.template.response import TemplateResponse
 from django.views.generic import View
 from django.conf import settings
 
-from emma.apps.adults.forms import AdultInfo, MedicalInfo, AdultPreferences
+from emma.apps.adults.forms import AdultInfo, AdultPreferences, \
+    MedicalInformationBasic, MedicalInformationContacts, MedicalInformationPDA, \
+    MedicalInformationInsurance, MedicalInformationSS, MedicalInformationDoctor, \
+    MedicaInformationDiseases
 from emma.core.mixins import ClientRequiredMixin, GetAdultMixin
 from emma.core.utils import send_email
 
@@ -20,7 +23,25 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
         adultform = self.get_initial_adult_form(
             request, self.get_adult(request)
         )
-        medicalform = self.get_initial_medical_form(
+        medicalbasicform = self.get_initial_medical_basic_form(
+            request, self.get_adult(request)
+        )
+        medicalcontactsform = self.get_initial_medical_contacts_form(
+            request, self.get_adult(request)
+        )
+        medicalpdaform = self.get_initial_medical_pda_form(
+            request, self.get_adult(request)
+        )
+        medicalinsuranceform = self.get_initial_medical_insurance_form(
+            request, self.get_adult(request)
+        )
+        medicalssform = self.get_initial_medical_ss_form(
+            request, self.get_adult(request)
+        )
+        medicaldoctorform = self.get_initial_medical_doctor_form(
+            request, self.get_adult(request)
+        )
+        medicaldiseasesform = self.get_initial_medical_diseases_form(
             request, self.get_adult(request)
         )
         preferenceform = self.get_initial_preferences_form(
@@ -28,7 +49,13 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
         )
         ctx = {
             'adultform': adultform,
-            'medicalform': medicalform,
+            'medicalbasicform': medicalbasicform,
+            'medicalcontactsform': medicalcontactsform,
+            'medicalpdaform': medicalpdaform,
+            'medicalinsuranceform': medicalinsuranceform,
+            'medicalssform': medicalssform,
+            'medicaldoctorform': medicaldoctorform,
+            'medicaldiseasesform': medicaldiseasesform,
             'preferenceform': preferenceform,
             'adult': self.get_adult(request)
         }
@@ -36,11 +63,11 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
 
     def post(self, request, id, **kwargs):
         kwargs = {'request': request, 'adult_id': id}
-        if 'medical_form' in request.POST:
-            medicalform = MedicalInfo(request.POST, **kwargs)
+        if 'medicalbasic_form' in request.POST:
+            medicalbasicform = MedicalInformationBasic(request.POST, **kwargs)
 
-            if medicalform.is_valid():
-                medicalform.save()
+            if medicalbasicform.is_valid():
+                medicalbasicform.save()
                 send_email(
                     subject='email/subjects/notification_edit_adult_med.txt',
                     body='email/notification_edit_adult_med.html',
@@ -58,13 +85,320 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
                     'adultform': self.get_initial_adult_form(
                         request, self.get_adult(request)
                     ),
-                    'medicalform': medicalform,
                     'preferenceform': self.get_initial_preferences_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalbasicform': medicalbasicform,
+                    'medicalcontactsform': self.get_initial_medical_contacts_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalpdaform': self.get_initial_medical_pda_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalinsuranceform': self.get_initial_medical_insurance_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalssform': self.get_initial_medical_ss_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicaldoctorform': self.get_initial_medical_doctor_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicaldiseasesform': self.get_initial_medical_diseases_form(
                         request, self.get_adult(request)
                     ),
                     'adult': self.get_adult(request)
                 }
                 return render(request, self.template_name, ctx)
+
+        elif 'medicalcontacts_form' in request.POST:
+            medicalcontactsform = MedicalInformationContacts(request.POST, **kwargs)
+
+            if medicalcontactsform.is_valid():
+                medicalcontactsform.save()
+                send_email(
+                    subject='email/subjects/notification_edit_adult_med.txt',
+                    body='email/notification_edit_adult_med.html',
+                    context={
+                        'user_full_name': request.user.get_full_name,
+                        'adult_full_name': self.get_adult(request).first_name,
+                    },
+                    to_email=[settings.DEFAULT_EMAIL_TO],
+                )
+                messages.info(self.request, 'Información médica actualizada')
+                return redirect(reverse_lazy('adults:dashboard_adult',
+                                             kwargs={'id': id}))
+            else:
+                ctx = {
+                    'adultform': self.get_initial_adult_form(
+                        request, self.get_adult(request)
+                    ),
+                    'preferenceform': self.get_initial_preferences_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalbasicform': self.get_initial_medical_basic_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalcontactsform': medicalcontactsform,
+                    'medicalpdaform': self.get_initial_medical_pda_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalinsuranceform': self.get_initial_medical_insurance_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalssform': self.get_initial_medical_ss_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicaldoctorform': self.get_initial_medical_doctor_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicaldiseasesform': self.get_initial_medical_diseases_form(
+                        request, self.get_adult(request)
+                    ),
+                    'adult': self.get_adult(request)
+                }
+                return render(request, self.template_name, ctx)
+
+        elif 'medicalpda_form' in request.POST:
+            medicalpdaform = MedicalInformationPDA(request.POST, **kwargs)
+
+            if medicalpdaform.is_valid():
+                medicalpdaform.save()
+                send_email(
+                    subject='email/subjects/notification_edit_adult_med.txt',
+                    body='email/notification_edit_adult_med.html',
+                    context={
+                        'user_full_name': request.user.get_full_name,
+                        'adult_full_name': self.get_adult(request).first_name,
+                    },
+                    to_email=[settings.DEFAULT_EMAIL_TO],
+                )
+                messages.info(self.request, 'Información médica actualizada')
+                return redirect(reverse_lazy('adults:dashboard_adult',
+                                             kwargs={'id': id}))
+            else:
+                ctx = {
+                    'adultform': self.get_initial_adult_form(
+                        request, self.get_adult(request)
+                    ),
+                    'preferenceform': self.get_initial_preferences_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalbasicform': self.get_initial_medical_basic_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalcontactsform': self.get_initial_medical_contacts_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalpdaform': medicalpdaform,
+                    'medicalinsuranceform': self.get_initial_medical_insurance_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalssform': self.get_initial_medical_ss_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicaldoctorform': self.get_initial_medical_doctor_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicaldiseasesform': self.get_initial_medical_diseases_form(
+                        request, self.get_adult(request)
+                    ),
+                    'adult': self.get_adult(request)
+                }
+                return render(request, self.template_name, ctx)
+
+        elif 'medicalinsurance_form' in request.POST:
+            medicalinsuranceform = MedicalInformationInsurance(request.POST, **kwargs)
+
+            if medicalinsuranceform.is_valid():
+                medicalinsuranceform.save()
+                send_email(
+                    subject='email/subjects/notification_edit_adult_med.txt',
+                    body='email/notification_edit_adult_med.html',
+                    context={
+                        'user_full_name': request.user.get_full_name,
+                        'adult_full_name': self.get_adult(request).first_name,
+                    },
+                    to_email=[settings.DEFAULT_EMAIL_TO],
+                )
+                messages.info(self.request, 'Información médica actualizada')
+                return redirect(reverse_lazy('adults:dashboard_adult',
+                                             kwargs={'id': id}))
+            else:
+                ctx = {
+                    'adultform': self.get_initial_adult_form(
+                        request, self.get_adult(request)
+                    ),
+                    'preferenceform': self.get_initial_preferences_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalbasicform': self.get_initial_medical_basic_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalcontactsform': self.get_initial_medical_contacts_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalpdaform': self.get_initial_medical_pda_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalinsuranceform': medicalinsuranceform,
+                    'medicalssform': self.get_initial_medical_ss_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicaldoctorform': self.get_initial_medical_doctor_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicaldiseasesform': self.get_initial_medical_diseases_form(
+                        request, self.get_adult(request)
+                    ),
+                    'adult': self.get_adult(request)
+                }
+                return render(request, self.template_name, ctx)
+
+        elif 'medicalss_form' in request.POST:
+            medicalssform = MedicalInformationSS(request.POST, **kwargs)
+
+            if medicalssform.is_valid():
+                medicalssform.save()
+                send_email(
+                    subject='email/subjects/notification_edit_adult_med.txt',
+                    body='email/notification_edit_adult_med.html',
+                    context={
+                        'user_full_name': request.user.get_full_name,
+                        'adult_full_name': self.get_adult(request).first_name,
+                    },
+                    to_email=[settings.DEFAULT_EMAIL_TO],
+                )
+                messages.info(self.request, 'Información médica actualizada')
+                return redirect(reverse_lazy('adults:dashboard_adult',
+                                             kwargs={'id': id}))
+            else:
+                ctx = {
+                    'adultform': self.get_initial_adult_form(
+                        request, self.get_adult(request)
+                    ),
+                    'preferenceform': self.get_initial_preferences_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalbasicform': self.get_initial_medical_basic_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalcontactsform': self.get_initial_medical_contacts_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalpdaform': self.get_initial_medical_pda_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalinsuranceform': self.get_initial_medical_insurance_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalssform': medicalssform,
+                    'medicaldoctorform': self.get_initial_medical_doctor_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicaldiseasesform': self.get_initial_medical_diseases_form(
+                        request, self.get_adult(request)
+                    ),
+                    'adult': self.get_adult(request)
+                }
+                return render(request, self.template_name, ctx)
+
+        elif 'medicaldoctor_form' in request.POST:
+            medicaldoctorform = MedicalInformationDoctor(request.POST, **kwargs)
+
+            if medicaldoctorform.is_valid():
+                medicaldoctorform.save()
+                send_email(
+                    subject='email/subjects/notification_edit_adult_med.txt',
+                    body='email/notification_edit_adult_med.html',
+                    context={
+                        'user_full_name': request.user.get_full_name,
+                        'adult_full_name': self.get_adult(request).first_name,
+                    },
+                    to_email=[settings.DEFAULT_EMAIL_TO],
+                )
+                messages.info(self.request, 'Información médica actualizada')
+                return redirect(reverse_lazy('adults:dashboard_adult',
+                                             kwargs={'id': id}))
+            else:
+                ctx = {
+                    'adultform': self.get_initial_adult_form(
+                        request, self.get_adult(request)
+                    ),
+                    'preferenceform': self.get_initial_preferences_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalbasicform': self.get_initial_medical_basic_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalcontactsform': self.get_initial_medical_contacts_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalpdaform': self.get_initial_medical_pda_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalinsuranceform': self.get_initial_medical_insurance_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalssform': self.get_initial_medical_ss_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicaldoctorform': medicaldoctorform,
+                    'medicaldiseasesform': self.get_initial_medical_diseases_form(
+                        request, self.get_adult(request)
+                    ),
+                    'adult': self.get_adult(request)
+                }
+                return render(request, self.template_name, ctx)
+
+        elif 'medicaldiseases_form' in request.POST:
+            medicaldiseasesform = MedicaInformationDiseases(request.POST, **kwargs)
+
+            if medicaldiseasesform.is_valid():
+                medicaldiseasesform.save()
+                send_email(
+                    subject='email/subjects/notification_edit_adult_med.txt',
+                    body='email/notification_edit_adult_med.html',
+                    context={
+                        'user_full_name': request.user.get_full_name,
+                        'adult_full_name': self.get_adult(request).first_name,
+                    },
+                    to_email=[settings.DEFAULT_EMAIL_TO],
+                )
+                messages.info(self.request, 'Información médica actualizada')
+                return redirect(reverse_lazy('adults:dashboard_adult',
+                                             kwargs={'id': id}))
+            else:
+                ctx = {
+                    'adultform': self.get_initial_adult_form(
+                        request, self.get_adult(request)
+                    ),
+                    'preferenceform': self.get_initial_preferences_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalbasicform': self.get_initial_medical_basic_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalcontactsform': self.get_initial_medical_contacts_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalpdaform': self.get_initial_medical_pda_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalinsuranceform': self.get_initial_medical_insurance_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalssform': self.get_initial_medical_ss_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicaldoctorform': self.get_initial_medical_doctor_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicaldiseasesform': medicaldiseasesform,
+                    'adult': self.get_adult(request)
+                }
+                return render(request, self.template_name, ctx)
+
         elif 'adult_form' in request.POST:
 
             adultform = AdultInfo(request.POST, request.FILES, **kwargs)
@@ -86,13 +420,31 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
             else:
                 ctx = {
                     'adultform': adultform,
-                    'medicalform': self.get_initial_medical_form(
-                        request, self.get_adult(request)
-                    ),
                     'preferenceform': self.get_initial_preferences_form(
                         request, self.get_adult(request)
                     ),
-                    'adult': self.get_adult(request)
+                    'adult': self.get_adult(request),
+                    'medicalbasicform': self.get_initial_medical_basic_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalcontactsform': self.get_initial_medical_contacts_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalpdaform': self.get_initial_medical_pda_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalinsuranceform': self.get_initial_medical_insurance_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalssform': self.get_initial_medical_ss_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicaldoctorform': self.get_initial_medical_doctor_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicaldiseasesform': self.get_initial_medical_diseases_form(
+                        request, self.get_adult(request)
+                    ),
                 }
                 return render(request, self.template_name, ctx)
 
@@ -118,10 +470,28 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
                     'adultform': self.get_initial_adult_form(
                         request, self.get_adult(request)
                     ),
-                    'medicalform': self.get_initial_medical_form(
+                    'preferenceform': preferenceform,
+                    'medicalbasicform': self.get_initial_medical_basic_form(
                         request, self.get_adult(request)
                     ),
-                    'preferenceform': preferenceform,
+                    'medicalcontactsform': self.get_initial_medical_contacts_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalpdaform': self.get_initial_medical_pda_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalinsuranceform': self.get_initial_medical_insurance_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalssform': self.get_initial_medical_ss_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicaldoctorform': self.get_initial_medical_doctor_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicaldiseasesform': self.get_initial_medical_diseases_form(
+                        request, self.get_adult(request)
+                    ),
                     'adult': self.get_adult(request)
                 }
                 return render(request, self.template_name, ctx)
@@ -149,11 +519,19 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
         return form
 
     @staticmethod
-    def get_initial_medical_form(request, adult):
-        form = MedicalInfo(
+    def get_initial_medical_basic_form(request, adult):
+        form = MedicalInformationBasic(
             initial={
                 'blood_type':
                     adult.medical_information.blood_type,
+            }
+        )
+        return form
+
+    @staticmethod
+    def get_initial_medical_contacts_form(request, adult):
+        form = MedicalInformationContacts(
+            initial={
                 'emergency_contact_1_full_name':
                     adult.medical_information.emergency_contact_1.full_name,
                 'emergency_contact_1_relation':
@@ -170,10 +548,26 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
                     adult.medical_information.emergency_contact_2.cell_phone,
                 'emergency_contact_2_home_phone':
                     adult.medical_information.emergency_contact_2.home_phone,
+            }
+        )
+        return form
+
+    @staticmethod
+    def get_initial_medical_pda_form(request, adult):
+        form = MedicalInformationPDA(
+            initial={
                 'knows_pda':
                     adult.medical_information.knows_pda,
                 'exercise_pda':
                     adult.medical_information.exercise_pda,
+            }
+        )
+        return form
+
+    @staticmethod
+    def get_initial_medical_insurance_form(request, adult):
+        form = MedicalInformationInsurance(
+            initial={
                 'has_medical_insurance':
                     adult.medical_information.has_medical_insurance,
                 'insurance_company':
@@ -182,10 +576,26 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
                     adult.medical_information.policy_number,
                 'policy_expiration_date':
                     adult.medical_information.policy_expiration_date,
+            }
+        )
+        return form
+
+    @staticmethod
+    def get_initial_medical_ss_form(request, adult):
+        form = MedicalInformationSS(
+            initial={
                 'has_social_security':
                     adult.medical_information.has_social_security,
                 'social_security_number':
                     adult.medical_information.social_security_number,
+            }
+        )
+        return form
+
+    @staticmethod
+    def get_initial_medical_doctor_form(request, adult):
+        form = MedicalInformationDoctor(
+            initial={
                 'doctor_first_name':
                     adult.medical_information.doctor.first_name,
                 'doctor_last_name':
@@ -198,6 +608,14 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
                     adult.medical_information.doctor.working_institution,
                 'doctor_professional_id':
                     adult.medical_information.doctor.professional_id,
+            }
+        )
+        return form
+
+    @staticmethod
+    def get_initial_medical_diseases_form(request, adult):
+        form = MedicaInformationDiseases(
+            initial={
                 'diseases':
                     adult.medical_information.diseases,
                 'current_medications':
