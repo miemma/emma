@@ -18,6 +18,7 @@
               <th>Talleres</th>
               <th>Estado de ánimo<br>del adulto mayor</th>
               <th>Comentarios adicionales</th>
+	            <th></th>
             </tr>
           </thead>
           <tbody>
@@ -28,9 +29,11 @@
               <td>
 	              {% for workshop in history.workshops.all %}
 									{% if forloop.last %}
-										{{ workshop.name }}
+										<p>{{ workshop.name }}</p>
 									{% else %}
+										<p>
 										{{ workshop.name }},
+										</p>
 									{% endif %}
 								{% endfor %}
               </td>
@@ -40,6 +43,11 @@
               <td>
 	              {{ history.comments }}
               </td>
+            <td>
+	            <a class="dashboard-history-file" href="{{ history.file.url }}" download target="_blank">
+		            <i class="fa fa-download" aria-hidden="true"></i>
+	            </a>
+            </td>
             </tr>
             {% endfor %}
             <!-- <tr>
