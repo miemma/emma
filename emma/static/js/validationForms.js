@@ -531,6 +531,22 @@ $(document).ready(function () {
       }
     }
   });
+  if (!$('.dependency-base').is(':checked')) {
+    $('.dependency-base')
+      .closest('.input-container')
+      .siblings('.input-container')
+      .hide();
+  }
+  $('.dependency-base').change(function () {
+    var dependentFields = $(this)
+        .closest('.input-container')
+        .siblings('.input-container');
+    if (!$(this).is(':checked')) {
+      dependentFields.hide();
+    } else {
+      dependentFields.show();
+    }
+  });
 
   $('#dashboard-medical-form-part-6').validate({
     rules: {

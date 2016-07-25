@@ -541,7 +541,7 @@ class MedicalInformationSS(forms.Form):
     has_social_security = forms.BooleanField(
         widget=forms.CheckboxInput(
             attrs={
-                'class': 'radio-check-button',
+                'class': 'radio-check-button dependency-base',
             }
         ),
         required=False,

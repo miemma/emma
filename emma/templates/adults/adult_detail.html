@@ -36,6 +36,7 @@
 	          		<span>Nombre del adulto:</span>
 	          		<div>{{ adultform.first_name }}
 	          		{{ adultform.last_name }}
+	          		{{ adultform.last_name }}
 	          		</div>
 							</div>
 							<span class="value-container">
@@ -585,12 +586,10 @@
 									<b>Número de seguridad social:</b>
 	              	{{ medicalssform.social_security_number }}
 								</div>
-								{% if medicalssform.has_social_security.value == True %}
 								<div class="value-container">
 									<b>Número de seguridad social: </b>
 	              	{{ medicalssform.social_security_number.value|default_if_none:"---"}}
 								</div>
-								{% endif %}
 							</div>
 							<div class="row text-center padding-top-30 form-loader">
 				        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
