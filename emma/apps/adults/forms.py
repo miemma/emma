@@ -429,7 +429,7 @@ class MedicalInformationPDA(forms.Form):
     knows_pda = forms.BooleanField(
         widget=forms.CheckboxInput(
             attrs={
-                'class': 'radio-check-button',
+                'class': 'radio-check-button dependency-base',
             }
         ),
         required=False,
