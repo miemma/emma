@@ -56,6 +56,17 @@ $(document).ready(function () {
       $(element).removeClass(errorClass);
     },
     submitHandler: function (form) {
+      if ($(form).find('.dependency-base')) {
+        if (!$(form).find('.dependency-base').is(':checked')) {
+          var siblingFields = $(form).find('.dependency-base')
+            .closest('.input-container')
+            .siblings('.input-container')
+            .find('input, select').toArray();
+          siblingFields.forEach(function (elem) {
+            $(elem).val(null);
+          });
+        }
+      }
       if ($(form).find('.form-loader').length) {
         $(form).find('.form-loader').show();
       }
