@@ -120,6 +120,17 @@ $(document).ready(function () {
       $(this).siblings('.edit-button').removeClass('hide');
       $(this).siblings('.send-button').addClass('hide');
       form[0].reset();
+      if ($('.dependency-base').is(':checked')) {
+        $('.dependency-base')
+          .closest('.input-container')
+          .siblings('.input-container')
+          .show();
+      } else {
+        $('.dependency-base')
+          .closest('.input-container')
+          .siblings('.input-container')
+          .hide();
+      }
       form.find('.input-container .fields-container')
         .addClass('hide');
       form.find('.input-container .value-container')
@@ -136,6 +147,23 @@ $(document).ready(function () {
       form.find('.long-form-auxiliar-button')
         .addClass('hide');
     });
+  });
+
+  if (!$('.dependency-base').is(':checked')) {
+    $('.dependency-base')
+      .closest('.input-container')
+      .siblings('.input-container')
+      .hide();
+  }
+  $('.dependency-base').change(function () {
+    var dependentFields = $(this)
+        .closest('.input-container')
+        .siblings('.input-container');
+    if ($(this).is(':checked')) {
+      dependentFields.show();
+    } else {
+      dependentFields.hide();
+    }
   });
 
   /* Contract Adult Form
@@ -529,22 +557,6 @@ $(document).ready(function () {
       social_security_number: {
         required: '#id_has_social_security:checked'
       }
-    }
-  });
-  if (!$('.dependency-base').is(':checked')) {
-    $('.dependency-base')
-      .closest('.input-container')
-      .siblings('.input-container')
-      .hide();
-  }
-  $('.dependency-base').change(function () {
-    var dependentFields = $(this)
-        .closest('.input-container')
-        .siblings('.input-container');
-    if (!$(this).is(':checked')) {
-      dependentFields.hide();
-    } else {
-      dependentFields.show();
     }
   });
 
