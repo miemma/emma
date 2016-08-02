@@ -57,9 +57,9 @@
       <header class="header-navbar dashboard-navbar">
         <input type="checkbox" id="navbar-trigger" />
         <label class="fa fa-bars" for="navbar-trigger"></label>
-        <a href="{% url 'landing:home' %}">
-          <img class="header-navbar-logo" src="{% static "img/icons/logo_2.png" %}"/>
-        </a>
+				<a href="{% url 'clients:dashboard_welcome' %}">
+			    <img class="header-navbar-logo" src="{% static "img/icons/logo_2.png" %}"/>
+			  </a>
         <ul class="header-navbar-list">
           {% if request.user.client.user_type == 'User type 3' %}
             <li class="header-navbar-list-item" hcolor="white">
