@@ -131,22 +131,13 @@
 	            <span data-toggle="tooltip" data-placement="bottom"
 	                  title="Antes de crear el perfil del adulto mayor personaliza
                            tu servicio al programar una llamada!">
-		            Adulto
+		            Adulto Mayor
 	            </span>
 	            <div class="dropdown">
 							  <span>
 								  <div class="circle navbar-adult-picture" style="background-image: url('http://www.freelanceme.net/Images/default%20profile%20picture.png')"></div>
 							  </span>
 							  <div class="dropdown-content">
-							    <p>
-								    <a href="{% url 'landing:date' %}">Perfil</a>
-							    </p>
-								  <p>
-								    <a href="{% url 'landing:date' %}">Pagos</a>
-							    </p>
-								  <p>
-								    <a href="{% url 'landing:date' %}">Configuración</a>
-							    </p>
 								  <p>
 								    <a href="{% url 'xauth:logout' %}">Cerrar sesión</a>
 							    </p>
@@ -155,22 +146,13 @@
             {% elif request.user.client.user_type == 'User type 2' %}
 	            <span data-toggle="tooltip" data-placement="bottom"
 	                  title="Para tener acceso a todas las funciones contrata tu servicio">
-		            Adulto
+		            Adulto Mayor
 	            </span>
 	            <div class="dropdown">
 							  <span>
 								  <div class="circle navbar-adult-picture" style="background-image: url('http://www.freelanceme.net/Images/default%20profile%20picture.png')"></div>
 							  </span>
 							  <div class="dropdown-content">
-							    <p>
-								    <a href="{% url 'services:contract_service_info' %}">Perfil</a>
-							    </p>
-								  <p>
-								    <a href="{% url 'services:contract_service_info' %}">Pagos</a>
-							    </p>
-								  <p>
-								    <a href="{% url 'services:contract_service_info' %}">Configuración</a>
-							    </p>
 								  <p>
 								    <a href="{% url 'xauth:logout' %}">Cerrar sesión</a>
 							    </p>
