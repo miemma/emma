@@ -9,5 +9,4 @@
     {% endif %}
   </li>
 	<li class="dashboard-menu-item {%if request.path == dashboard_client_detail %}active{%endif%}"><a href="{{dashboard_client_detail}}">Configuración</a></li>
-  <li class="dashboard-menu-item"><a href="{% url 'xauth:logout' %}">Cerrar sesión</a></li>
 </ul>
