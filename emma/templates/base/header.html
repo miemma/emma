@@ -7,18 +7,29 @@
   </a>
   <ul class="header-navbar-list">
     <li class="header-navbar-list-item" hcolor="white">
-      <a class="header-navbar-list-item-link" href="{% url 'landing:faq' %}">
+	    {% if request.path == '/faq/' %}
+	    <a class="header-navbar-list-item-link yellow-link " href="{% url 'landing:faq' %}">
+	    {% else %}
+	    <a class="header-navbar-list-item-link" href="{% url 'landing:faq' %}">
+	    {% endif %}
         Cómo funciona
       </a>
     </li>
     <li class="header-navbar-list-item" hcolor="white">
-      <a class="header-navbar-list-item-link"
-         href="{% url 'landing:services' %}">
+      {% if request.path == '/servicios/' %}
+	    <a class="header-navbar-list-item-link yellow-link" href="{% url 'landing:services' %}">
+	    {% else %}
+	    <a class="header-navbar-list-item-link" href="{% url 'landing:services' %}">
+	    {% endif %}
         Servicios
       </a>
     </li>
     <li class="header-navbar-list-item" hcolor="white">
-      <a class="header-navbar-list-item-link" href="{% url 'landing:about' %}">
+	    {% if request.path == '/acerca/' %}
+	    <a class="header-navbar-list-item-link yellow-link" href="{% url 'landing:about' %}">
+	    {% else %}
+	    <a class="header-navbar-list-item-link" href="{% url 'landing:about' %}">
+	    {% endif %}
         Acerca de Emma
       </a>
     </li>
