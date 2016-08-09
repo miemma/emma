@@ -81,18 +81,14 @@ class Service(models.Model):
     )
 
     class Meta:
-        verbose_name = _('Service')
-        verbose_name_plural = _('Services')
+        verbose_name = _('Plan')
+        verbose_name_plural = _('Plans')
 
     def __unicode__(self):
         return "%s" % self.name
 
 
 class Workshop(models.Model):
-    service = models.ForeignKey(
-        Service,
-        verbose_name=_('Service')
-    )
     name = models.CharField(
         _('Name'),
         max_length=40,
@@ -122,7 +118,7 @@ class HiredService(models.Model):
     )
     service = models.ForeignKey(
         Service,
-        verbose_name=_('Service'),
+        verbose_name=_('Plan'),
     )
     workshops = models.ManyToManyField(
         Workshop,
