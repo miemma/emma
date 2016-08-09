@@ -8,6 +8,7 @@ Production settings
 
 from .base import *
 import dj_database_url
+import openpay
 
 # DEBUG
 # -----------------------------------------------------------------------------
@@ -66,3 +67,10 @@ GOOGLE_ANALYTICS_CODE = """
 
     </script>
 """
+
+# OPENPAY DEV CONFIGURATION
+# -----------------------------------------------------------------------------
+openpay.api_key = "sk_2ed3e30960384907a0c73444ce6ea1a4"
+openpay.verify_ssl_certs = False
+openpay.merchant_id = "mg0kzdwsiduimlfaudun"
+openpay.production = False
