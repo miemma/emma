@@ -23,7 +23,7 @@ class ServiceAdmin(admin.ModelAdmin):
 
 @admin.register(models.Workshop)
 class WorkshopAdmin(admin.ModelAdmin):
-    list_display = ('service', 'name')
+    list_display = ('name',)
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
 
