@@ -7,8 +7,10 @@
 				<img src="{% static 'img/icons/bench.png' %}" alt="" class="welcome-bench-image"> <br>
 				<div class="welcome-title margin-top-20 margin-bottom-30">
 					<span class="welcome-text-bold">
-					¡{{ user.first_name }} {{ user.last_name }},</span><br>
-					Bienvenido(a) a Emma!</div>
+						¡{{ user.get_full_name }},
+					</span> <br>
+					Bienvenido(a) a Emma!
+				</div>
 
 				{% if request.user.client.user_type == 'User type 2' %}
 			  	<div class="welcome-paragraph">

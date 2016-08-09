@@ -87,7 +87,7 @@ class SuscriptionDetail(GetAdultMixin, ClientRequiredMixin, View):
         ctx = {
             'adult': self.get_adult(request),
             'name': self.request.user.first_name,
-            'last_name': self.request.user.last_name,
+            'last_name': self.request.user.get_full_last_name,
             'email': self.request.user.email,
             'service': service.service.name,
             'workshops': service.workshops,
