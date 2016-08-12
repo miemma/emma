@@ -148,7 +148,7 @@ class JoinEmailView(View):
             from_email="Emma - Reclutamiento <postmaster@%s>" % (
                 settings.MAILGUN_SERVER_NAME
             ),
-            to_email=[settings.DEFAULT_JOIN_EMAIL_TO],
+            to_email=[settings.DEFAULT_EMAIL_TO,settings.DEFAULT_JOIN_EMAIL_TO],
             context=ctx
         )
 
