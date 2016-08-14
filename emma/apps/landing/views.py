@@ -10,6 +10,7 @@ from django.views.generic import View, TemplateView
 from django.conf import settings
 
 from emma.apps.clients.models import PotentialClient
+from emma.apps.emmas.models import PotentialEmma
 from emma.apps.services.models import ScheduledCall
 from emma.core.mixins import ClientRequiredMixin
 from emma.core.utils import send_email
@@ -110,6 +111,7 @@ class JoinEmailView(View):
         ctx = {
             'name': name,
             'last_name': last_name,
+            'email': email,
             'age': age,
             'phone_movile': phone_movile,
             'phone': phone,
@@ -124,13 +126,29 @@ class JoinEmailView(View):
             'smartphone': smartphone,
         }
 
+        potential_emma =  PotentialEmma(
+            first_name=name,
+            last_name=last_name,
+            age=age,
+            movile_phone=phone_movile,
+            phone=phone_movile,
+            school_grade=education,
+            address='%s %s %s %s %s' % (
+                city, state, litte_city, colony, postal_code
+            ),
+            how_met_emma=xknow,
+            has_facebook=facebook,
+            has_smathphone=smartphone
+        )
+        potential_emma.save()
+
         send_email(
             subject='email/subjects/join_emma.txt',
             body='email/join_emma.html',
             from_email="Emma - Reclutamiento <postmaster@%s>" % (
                 settings.MAILGUN_SERVER_NAME
             ),
-            to_email=[settings.DEFAULT_EMAIL_TO, 'fernanda@miemma.com'],
+            to_email=[settings.DEFAULT_EMAIL_TO,settings.DEFAULT_JOIN_EMAIL_TO],
             context=ctx
         )
 

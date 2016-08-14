@@ -54,6 +54,7 @@ MEDIA_URL = '/media/'
 # EMAIL CONFIGURATION
 # -----------------------------------------------------------------------------
 DEFAULT_EMAIL_TO = "info@miemma.com"
+DEFAULT_JOIN_EMAIL_TO = "fernanda@miemma.com"
 
 GOOGLE_ANALYTICS_CODE = """
     <script>

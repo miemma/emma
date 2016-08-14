@@ -44,6 +44,7 @@ MEDIA_URL = '/media/'
 # EMAIL CONFIGURATION
 # -----------------------------------------------------------------------------
 DEFAULT_EMAIL_TO = "devsemma@gmail.com"
+DEFAULT_JOIN_EMAIL_TO = "devsemma@gmail.com"
 
 openpay.api_key = "sk_2ed3e30960384907a0c73444ce6ea1a4"
 openpay.verify_ssl_certs = False

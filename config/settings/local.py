@@ -71,6 +71,7 @@ MEDIA_URL = '/media/'
 # EMAIL CONFIGURATION
 # -----------------------------------------------------------------------------
 DEFAULT_EMAIL_TO = "devsemma@gmail.com"
+DEFAULT_JOIN_EMAIL_TO = "devsemma@gmail.com"
 
 # OPENPAY DEV CONFIGURATION
 # -----------------------------------------------------------------------------

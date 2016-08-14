@@ -42,9 +42,8 @@ class PotentialEmma(models.Model):
         null=False,
         blank=False,
     )
-    address = models.CharField(
+    address = models.TextField(
         _('Address'),
-        max_length=100,
         null=False,
         blank=False,
     )
@@ -68,12 +67,8 @@ class PotentialEmma(models.Model):
         verbose_name_plural = _('Potential Emmas')
 
     def __unicode__(self):
-        return '%s' % self.user
+        return '%s %s' % (self.first_name, self.last_name)
 
-    def save(self, *args, **kwargs):
-        parent_id = self.user.id
-        self.id = parent_id
-        super(PotentialEmma, self).save(*args, **kwargs)
 
 
 class Emma(models.Model):
