@@ -10,35 +10,37 @@ from django.utils.translation import ugettext_lazy as _
 class PotentialEmma(models.Model):
     first_name = models.CharField(
         _('First Name'),
-        max_length=25,
+        max_length=100,
         null=False,
         blank=False,
     )
     last_name = models.CharField(
         _('Last Name'),
-        max_length=25,
+        max_length=100,
         null=False,
         blank=False,
     )
     age = models.CharField(
         _('Age'),
-        max_length=10,
+        max_length=100,
         null=False,
         blank=False,
     )
-    movile_phone = models.PositiveIntegerField(
+    movile_phone = models.CharField(
         _('Movile phone'),
+        max_length=100,
         null=False,
         blank=False,
     )
-    phone = models.PositiveIntegerField(
+    phone = models.CharField(
         _('Phone'),
+        max_length=100,
         null=False,
         blank=False,
     )
     school_grade = models.CharField(
         _('School grade'),
-        max_length=15,
+        max_length=100,
         null=False,
         blank=False,
     )
@@ -49,7 +51,7 @@ class PotentialEmma(models.Model):
     )
     how_met_emma = models.CharField(
         _('How met Emma'),
-        max_length=15,
+        max_length=100,
         null=False,
         blank=False,
     )
