@@ -106,7 +106,15 @@ class JoinEmailView(View):
             xknow += '%s, ' % str(x)
         xknow = xknow[:-1]
         facebook = request.POST.get('join-facebook-value')
+        if facebook == 'si':
+            bool_facebook = True
+        else:
+            bool_facebook = False
         smartphone = request.POST.get('join-smartphone-value')
+        if smartphone == 'si':
+            bool_smartphone = True
+        else:
+            bool_smartphone = False
 
         ctx = {
             'name': name,
@@ -137,8 +145,8 @@ class JoinEmailView(View):
                 city, state, litte_city, colony, postal_code
             ),
             how_met_emma=xknow,
-            has_facebook=facebook,
-            has_smathphone=smartphone
+            has_facebook=bool_facebook,
+            has_smathphone=bool_smartphone
         )
         potential_emma.save()
 
