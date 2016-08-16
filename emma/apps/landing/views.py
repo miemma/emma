@@ -160,13 +160,6 @@ class JoinEmailView(View):
             context=ctx
         )
 
-        customer = PotentialClient(
-            name='%s %s' % (name, last_name),
-            email=email,
-            source='Unete a emma'
-        )
-        customer.save()
-
         return redirect(reverse('landing:success'))
 
 
