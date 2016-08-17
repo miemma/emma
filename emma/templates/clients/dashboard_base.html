@@ -164,9 +164,9 @@
 	            </a>
 		          {% if adult.photo %}
 			          <div class="dropdown">
-							  <span>
+							  <a class="header-navbar-list-item-link" href="{{ dashboard_adult }}">
 								  <div class="circle navbar-adult-picture" style="background-image: url('{{ adult.photo.url }}')"></div>
-							  </span>
+							  </a>
 							  <div class="dropdown-content">
 							    <p>
 								    <a href="{{ dashboard_adult }}">Perfil</a>
@@ -184,9 +184,9 @@
 							</div>
 		          {% else %}
 			          <div class="dropdown">
-								  <span>
+								  <a class="header-navbar-list-item-link" href="{{ dashboard_adult }}">
 									  <div class="circle navbar-adult-picture" style="background-image: url('{{ adult.photo.url }}')"></div>
-								  </span>
+								  </a>
 								  <div class="dropdown-content">
 								    <p>
 									    <a href="{{ dashboard_adult }}">Perfil</a>
