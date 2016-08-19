@@ -3,6 +3,7 @@
 
 from django.contrib import admin
 
+from emma.apps.emmas.forms import EmmaCreationForm
 from emma.core.utils import export_as_xls
 
 from . import models
@@ -23,6 +24,7 @@ class PotentialEmmaAdmin(admin.ModelAdmin):
 
 @admin.register(models.Emma)
 class EmmaAdmin(admin.ModelAdmin):
+    form = EmmaCreationForm
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
     exclude = ['id']
