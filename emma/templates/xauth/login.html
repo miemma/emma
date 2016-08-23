@@ -34,7 +34,7 @@
 	  </div>
     <div class="row text-center">
       <div class="col-lg-5 col-md-6 col-sm-8 col-xs-10">
-        <form class="login-form" action="." method="post" id="login-form">
+        <form class="login-form hide-in-mobile" action="." method="post" id="login-form">
           {% csrf_token %}
           {% if next %}
 	          <input type="hidden" name="next" value="{{ next }}">
@@ -75,7 +75,7 @@
 						</div>
             </div>
           </div>
-          <div class="row text-center">
+          <div class="row text-center hide-in-mobile">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <button class="emma-btn-dark login-btn">
                 Iniciar sesión
@@ -83,6 +83,26 @@
             </div>
           </div>
         </form>
+        <div class="login-form show-in-mobile">
+          <h2>Visitanos desde tu computadora</h2>
+          <p>Parece que estás accediendo desde un dispositivo móvil. Para que tu experiencia de usuario sea óptima, accede desde tu computadora.</p>
+          <div class="row text-center">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <a class="login-link" href="{% url 'xauth:signup' %}">
+                ¿Aun no tienes una cuenta?
+                <span class="color-yellow">Regístrate</span>
+              </a>
+            </div>
+          </div>
+          <div class="row text-center">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <a class="login-link-2"
+                 href="{% url 'xauth:reset_password_form' %}">
+                ¿Olvidaste tu contraseña?
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

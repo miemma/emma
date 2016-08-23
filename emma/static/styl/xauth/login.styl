@@ -55,3 +55,31 @@
       padding 0.7em
       width 100%
       margin 0.4em auto
+
+
+.show-in-mobile
+  display none
+  
+.login-form.show-in-mobile
+  margin-bottom 150px
+  margin-top -60px
+  
+  h2
+    font-family "Avenir LT Std Roman"
+    font-size 26px
+    font-weight bold
+    text-align center
+    color $dark_gray
+    
+  p
+    font-family "Avenir LT Std Roman"
+    font-size 22px
+    margin-bottom 20px
+    margin-top 10px
+
+@media screen and (max-width: 1025px)
+  .hide-in-mobile
+    display none
+    
+  .show-in-mobile
+    display block

@@ -14,9 +14,13 @@
 	    		{% for card in cards %}
 		    		<form action="." method="post" class="updatecard-form">
 				      {% csrf_token %}
-		    			<div class="flex">
+		    			<div class="{%if forloop.last and forloop.first%}text-center{%else%}flex{%endif%}">
 		    				<span class="card-brand-image">{{ card.brand | upper}}</span>
+		    				{% if forloop.last and forloop.first %}
+		    				<span class="card-number">{{ card.card_number }}</span>
+		    				{% else %}
 		    				<div class="card-number flex-grow-1">{{ card.card_number }}</div>
+		    				{% endif %}
 						    <input type="hidden" value="{{ card.id }}" name="card_id">
 						    {% if forloop.last and forloop.first %}
 

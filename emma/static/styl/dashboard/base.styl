@@ -66,8 +66,7 @@
       display block
       height 100%
       width 100%
-      padding 30px 40px
-      
+
       &:hover
         background $light_gray
         color $gray
@@ -75,7 +74,13 @@
 .dashboard-menu
   position absolute
   width 295px
-        
+  
+  a
+    padding 30px 40px
+
+.dashboard-submenu a
+  padding 23px 40px
+
 .dashboard-menu .dashboard-menu-item
   &:first-child
     border-width 0 0 1px 0
@@ -110,7 +115,99 @@
   
   #dashboard-container
     margin-top 65px
+
+  .dashboard-navbar 
+    label[for="navbar-trigger"]
+      display none
+
+    label[for="navbar-trigger"]::before
+      cursor pointer
+      font-size 30px
+      position absolute
+      right 15px
+      top 20px
+      z-index 3
+
+    .header-navbar-list
+      display inline-block
+      height 100%
+      position initial
+      text-align right
+      top initial
+
+      &-item
+        display inline-block !important
+        height 100%
+        line-height 67px
+        margin 0 15px !important
+        overflow hidden
+        width auto !important
+
+    #navbar-trigger
+      &:checked
+        & ~ ul
+          height auto
+
+          li
+            height 50px
+            margin-top -1px
+        & + label
+          color $orange
+      &:not(:checked)
+        & + label
+          color #333
+
+@media screen and (max-width: 1025px)
+  .dashboard-navbar .header-navbar-list
+    text-align center
     
+    .header-navbar-list-item
+      margin 0
+  
+  #dashboard-container
+    margin-top 65px
+
+  .dashboard-navbar 
+    label[for="navbar-trigger"]
+      display inline-block
+
+    label[for="navbar-trigger"]::before
+      cursor pointer
+      font-size 30px
+      position absolute
+      right 15px
+      top 20px
+      z-index 3
+
+    .header-navbar-list
+      display block
+      height 0
+      position absolute
+      text-align center
+      top 65px
+
+      &-item
+        display block !important
+        height 0
+        line-height 50px
+        margin 0 !important
+        width 100%
+
+    #navbar-trigger
+      &:checked
+        & ~ ul
+          height auto
+
+          li
+            height 50px
+            margin-top -1px
+        & + label
+          color $orange
+      &:not(:checked)
+        & + label
+          color #333
+
+
 @media screen and (max-width: 992px)
   .dashboard
     display block

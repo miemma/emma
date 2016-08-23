@@ -48,14 +48,12 @@
     color $dark_gray
     
     .preferences-form-icon
-      display inline-block
-      height 40px
+      height 40px !important
       margin-right 20px
-      width 40px
+      width 40px !important
       
     .preferences-form-data
-      display inline-block
-      width auto
+      flex-grow 1
 
       b
         font-family "Avenir LT Std Heavy"
@@ -159,7 +157,7 @@
   .help
     cursor pointer
     cursor hand
-    margin 9px 0
+    margin 12px 0
     position relative
     
     &::before
@@ -167,10 +165,10 @@
       border-radius 50%
       color white
       display inline-block
-      font-size 26px
-      width 36px
-      height 36px
-      padding 5px
+      font-size 22px
+      width 34px
+      height 34px
+      padding 6px
       text-align center
       
     .emma-tooltip

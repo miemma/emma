@@ -93,44 +93,44 @@ class Emma(models.Model):
     phone = models.CharField(
         _('Phone'),
         max_length=30,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
 
     birthday = models.DateField(
         _('Birthday'),
-        blank=False,
-        null=False
+        blank=True,
+        null=True
     )
     main_occupation = models.TextField(
         _('Main occupation'),
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
 
     general_description = models.TextField(
         _('General Description'),
         max_length=500,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
     qualities = models.TextField(
         _('Qualities'),
         max_length=500,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
     experience_with_seniors = models.TextField(
         _('Experience with Seniors'),
         max_length=500,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
     characteristics = models.TextField(
         _('Characteristics'),
         max_length=500,
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
 
     class Meta:
