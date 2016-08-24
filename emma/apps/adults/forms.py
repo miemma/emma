@@ -6,7 +6,7 @@ from django import forms
 from django.shortcuts import get_object_or_404
 
 from emma.apps.adults.models import Adult, AdultAddress, \
-    MedicalInfo as medical_info
+    MedicalInfo as medical_info, AdultHobbie
 from emma.core import validators
 from emma.core.messages import error_messages
 
@@ -772,3 +772,42 @@ class MedicalInfoAdmin(forms.ModelForm):
                 )
             )
         }
+
+
+class AdultHobbieAdd(forms.Form):
+    hobbie = forms.CharField(
+        widget=forms.Textarea(
+            attrs={
+                'class': 'emma-input',
+                'placeholder': 'New Hobbie'
+            }
+        ),
+        validators=[validators.eval_blank],
+        required=True,
+        error_messages=error_messages
+    )
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        self.adult_id = kwargs.pop('adult_id', None)
+        super(AdultHobbieAdd, self).__init__(*args, **kwargs)
+
+    def save(self):
+        cleaned_data = super(AdultHobbieAdd, self).clean()
+
+        client = self.request.user.client
+
+        if not self.adult_id:
+            adult = Adult.objects.filter(responsable=client)[0]
+        else:
+            adult = get_object_or_404(Adult,
+                                      responsable=client,
+                                      id=int(self.adult_id))
+
+        hobbie = AdultHobbie(
+            adult=adult,
+            hobbie=cleaned_data.get('hobbie'),
+        )
+
+        hobbie.save()
+
