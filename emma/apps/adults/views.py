@@ -11,7 +11,7 @@ from django.conf import settings
 from emma.apps.adults.forms import AdultInfo, AdultPreferences, \
     MedicalInformationBasic, MedicalInformationContacts, MedicalInformationPDA, \
     MedicalInformationInsurance, MedicalInformationSS, MedicalInformationDoctor, \
-    MedicaInformationDiseases
+    MedicaInformationDiseases, AdultHobbieAdd
 from emma.core.mixins import ClientRequiredMixin, GetAdultMixin
 from emma.core.utils import send_email
 
@@ -47,6 +47,7 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
         preferenceform = self.get_initial_preferences_form(
             request, self.get_adult(request)
         )
+        hobbieform = AdultHobbieAdd()
         ctx = {
             'adultform': adultform,
             'medicalbasicform': medicalbasicform,
@@ -57,6 +58,7 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
             'medicaldoctorform': medicaldoctorform,
             'medicaldiseasesform': medicaldiseasesform,
             'preferenceform': preferenceform,
+            'hobbieform':hobbieform,
             'adult': self.get_adult(request)
         }
         return TemplateResponse(request, self.template_name, ctx)
@@ -107,7 +109,49 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
                     'medicaldiseasesform': self.get_initial_medical_diseases_form(
                         request, self.get_adult(request)
                     ),
-                    'adult': self.get_adult(request)
+                    'adult': self.get_adult(request),
+                    'hobbieform': AdultHobbieAdd()
+                }
+                return render(request, self.template_name, ctx)
+
+        elif 'hobbie_form' in request.POST:
+            hobbieform = AdultHobbieAdd(request.POST, **kwargs)
+            if hobbieform.is_valid():
+                hobbieform.save()
+                messages.info(self.request, 'Hobbie añadido')
+                return redirect(reverse_lazy('adults:dashboard_adult',
+                                             kwargs={'id': id}))
+            else:
+                ctx = {
+                    'adultform': self.get_initial_adult_form(
+                        request, self.get_adult(request)
+                    ),
+                    'preferenceform': self.get_initial_preferences_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalbasicform': self.get_initial_medical_basic_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalcontactsform': self.get_initial_medical_contacts_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalpdaform': self.get_initial_medical_pda_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalinsuranceform': self.get_initial_medical_insurance_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicalssform': self.get_initial_medical_ss_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicaldoctorform': self.get_initial_medical_doctor_form(
+                        request, self.get_adult(request)
+                    ),
+                    'medicaldiseasesform': self.get_initial_medical_diseases_form(
+                        request, self.get_adult(request)
+                    ),
+                    'adult': self.get_adult(request),
+                    'hobbieform': hobbieform,
                 }
                 return render(request, self.template_name, ctx)
 
@@ -155,7 +199,8 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
                     'medicaldiseasesform': self.get_initial_medical_diseases_form(
                         request, self.get_adult(request)
                     ),
-                    'adult': self.get_adult(request)
+                    'adult': self.get_adult(request),
+                    'hobbieform': AdultHobbieAdd()
                 }
                 return render(request, self.template_name, ctx)
 
@@ -203,7 +248,8 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
                     'medicaldiseasesform': self.get_initial_medical_diseases_form(
                         request, self.get_adult(request)
                     ),
-                    'adult': self.get_adult(request)
+                    'adult': self.get_adult(request),
+                    'hobbieform': AdultHobbieAdd()
                 }
                 return render(request, self.template_name, ctx)
 
@@ -251,7 +297,8 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
                     'medicaldiseasesform': self.get_initial_medical_diseases_form(
                         request, self.get_adult(request)
                     ),
-                    'adult': self.get_adult(request)
+                    'adult': self.get_adult(request),
+                    'hobbieform': AdultHobbieAdd()
                 }
                 return render(request, self.template_name, ctx)
 
@@ -299,7 +346,8 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
                     'medicaldiseasesform': self.get_initial_medical_diseases_form(
                         request, self.get_adult(request)
                     ),
-                    'adult': self.get_adult(request)
+                    'adult': self.get_adult(request),
+                    'hobbieform': AdultHobbieAdd()
                 }
                 return render(request, self.template_name, ctx)
 
@@ -347,7 +395,8 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
                     'medicaldiseasesform': self.get_initial_medical_diseases_form(
                         request, self.get_adult(request)
                     ),
-                    'adult': self.get_adult(request)
+                    'adult': self.get_adult(request),
+                    'hobbieform': AdultHobbieAdd()
                 }
                 return render(request, self.template_name, ctx)
 
@@ -395,7 +444,8 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
                         request, self.get_adult(request)
                     ),
                     'medicaldiseasesform': medicaldiseasesform,
-                    'adult': self.get_adult(request)
+                    'adult': self.get_adult(request),
+                    'hobbieform': AdultHobbieAdd()
                 }
                 return render(request, self.template_name, ctx)
 
@@ -424,6 +474,7 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
                         request, self.get_adult(request)
                     ),
                     'adult': self.get_adult(request),
+                    'hobbieform': AdultHobbieAdd(),
                     'medicalbasicform': self.get_initial_medical_basic_form(
                         request, self.get_adult(request)
                     ),
@@ -492,7 +543,8 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
                     'medicaldiseasesform': self.get_initial_medical_diseases_form(
                         request, self.get_adult(request)
                     ),
-                    'adult': self.get_adult(request)
+                    'adult': self.get_adult(request),
+                    'hobbieform': AdultHobbieAdd()
                 }
                 return render(request, self.template_name, ctx)
 
