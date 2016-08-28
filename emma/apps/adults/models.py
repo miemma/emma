@@ -268,6 +268,8 @@ class Adult(models.Model):
     medical_information = models.OneToOneField(
         MedicalInfo,
         verbose_name=_('Medical Information'),
+        blank=True,
+        null=True
     )
     is_candidate = models.BooleanField(
         _('Candidate'),
