@@ -220,15 +220,21 @@
 						</p>
 						{% endfor %}
 	    		</div>
-		      <div>
-			      <form action="." method="post">
-			        {{ hobbieform.as_p }}
-				      <button type="submit" name="hobbie_form">Enviar</button>
-			      </form>
-		      </div>
 	    	</div>
 	    </div>
 	  </form>
+    <form action="." method="post">
+      {% csrf_token %}
+      {% for hobbie in adult.adulthobbie_set.all %}
+        <input type="text" value="{{ hobbie.hobbie }}" name="hobbie-{{ hobbie.id }}">
+      {% endfor %}
+      <button type="submit" name="adult_hobbie_edit">Enviar</button>
+    </form>
+    <form action="." method="post">
+	    {% csrf_token %}
+      {{ hobbieform.as_p }}
+      <button type="submit" name="hobbie_form">Enviar</button>
+    </form>
     {% if adult.medical_information %}
 		<div class="dashboard-box margin-top-20 margin-bottom-50">
     	<div class="dashboard-box-title small border">
