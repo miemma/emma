@@ -61,6 +61,7 @@ LOCAL_APPS = (
     'emma.apps.adults',
     'emma.apps.doctors',
     'emma.apps.xauth',
+    'emma.apps.newsletter',
 )
 
 INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS + LOCAL_APPS
