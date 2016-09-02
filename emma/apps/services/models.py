@@ -7,7 +7,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from emma.apps.adults.models import Adult
 from emma.apps.clients.models import Client
-from emma.apps.emmas.models import Emma
+from emma.apps.emmas.models import Emma, EmmaCordinator
+
 
 class ServiceDays(models.Model):
     name = models.CharField(
@@ -145,7 +146,7 @@ class HiredService(models.Model):
         null=True
     )
     emma_cordinator = models.ForeignKey(
-        Emma,
+        EmmaCordinator,
         verbose_name=_('Cordinator'),
         related_name='cordinator',
         blank=True,
