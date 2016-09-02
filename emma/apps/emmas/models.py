@@ -211,3 +211,36 @@ class EmmaHobbie(models.Model):
 
     def __unicode__(self):
         return '%s %s' % (self.emma, self.hobbie)
+
+
+class EmmaCordinator(models.Model):
+    id = models.BigIntegerField(
+        _('ID'),
+        auto_created=True,
+    )
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        verbose_name=_('User'),
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
+    profile_picture = models.ImageField(
+        upload_to='profile_pictures',
+        blank=False,
+        null=False,
+    )
+
+    phone = models.CharField(
+        _('Phone'),
+        max_length=30,
+        blank=False,
+        null=False,
+    )
+
+    def __unicode__(self):
+        return '%s' % (self.user)
+
+    def save(self, *args, **kwargs):
+        parent_id = self.user.id
+        self.id = parent_id
+        super(EmmaCordinator, self).save(*args, **kwargs)
