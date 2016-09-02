@@ -29,6 +29,12 @@ class EmmaAdmin(admin.ModelAdmin):
     export_as_xls.short_description = "Export selected objects to XLS"
     exclude = ['id']
 
+@admin.register(models.EmmaCordinator)
+class EmmaAdmin(admin.ModelAdmin):
+    actions = [export_as_xls]
+    export_as_xls.short_description = "Export selected objects to XLS"
+    exclude = ['id']
+
 
 @admin.register(models.EmmaStudies)
 class EmmaStudiesAdmin(admin.ModelAdmin):
