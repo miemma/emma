@@ -779,7 +779,8 @@ class AdultHobbieAdd(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'class': 'emma-input',
-                'placeholder': 'New Hobbie'
+                'placeholder': 'Añadir nuevo hobbie',
+                'rows': 2
             }
         ),
         validators=[validators.eval_blank],

@@ -39,25 +39,28 @@
 .dashboard-box-title.yellow
   background-color #fdf0cc
   
-.emma-hobbies, .adult-hobbies-columns
+.emma-hobbies
   column-count 2
   column-gap 100px
   
   .emma-hobbie-item:not(:first-child)
     margin-top 30px
-    
-  .adult-hobbie-item:not(:first-child):not(:nth-child(2))
-    margin-top 20px
 
+.adult-hobbies-columns
+  display block
+  
   .adult-hobbie-item
-    font-size 17px
-    
-  &.value-container,
-  &.fields-container
-    column-gap 50px
-    
-  &.value-container .adult-hobbie-item
-    width 50%
+    display inline-block
+    vertical-align top
+    width calc(50% - 50px)
     
     &:nth-child(even)
       margin-left 50px
+      width calc(50% - 25px)
+      
+    &:not(:first-child):not(:nth-child(2))
+      margin-top 15px
+      
+  &.value-container
+    .adult-hobbie-item:not(:first-child):not(:nth-child(2))
+      margin-top 25px

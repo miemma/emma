@@ -232,13 +232,6 @@
 	    		{% csrf_token %}
 	    		<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-top-30 padding-bottom-30 adult-hobbies">
 		    		<div class="input-container">
-							<div class="fields-container hide adult-hobbies-columns">
-		    				{% for hobbie in adult.adulthobbie_set.all %}
-								<p class="adult-hobbie-item">
-									<textarea class="emma-input" type="text" name="hobbie-{{ hobbie.id }}">{{ hobbie.hobbie }}</textarea>
-								</p>
-								{% endfor %}
-							</div>
 							<div class="value-container flex adult-hobbies-columns">
 								{% for hobbie in adult.adulthobbie_set.all %}
 								<p class="adult-hobbie-item">
@@ -246,16 +239,47 @@
 								</p>
 								{% endfor %}
 							</div>
+							<div class="fields-container hide adult-hobbies-columns">
+		    				{% for hobbie in adult.adulthobbie_set.all %}
+								<p class="adult-hobbie-item">
+									<textarea class="emma-input" type="text" name="hobbie-{{ hobbie.id }}">{{ hobbie.hobbie }}</textarea>
+								</p>
+								{% endfor %}
+								<p class="adult-hobbie-item">
+									<a class="href="#" class="emma-btn dark-btn" data-toggle="modal" data-target="#new-hobbie">Agregar nuevo hobbie</a>
+								</p>
+								<!-- <p class="adult-hobbie-item">
+									<form action="." method="post">
+										{% csrf_token %}
+										{{ hobbieform.hobbie }}
+										<button class="emma-btn dark-btn" type="submit" name="hobbie_form">Enviar</button>
+									</form>
+								</p> -->
+							</div>
 						</div>
 	    		</div>
     		</form>
     	</div>
     </div>
-    <form action="." method="post">
-	    {% csrf_token %}
-      {{ hobbieform.as_p }}
-      <button type="submit" name="hobbie_form">Enviar</button>
-    </form>
+    <div id="new-hobbie" class="modal fade" role="dialog">
+    	<div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+		      </div>
+		      <div class="modal-body">
+		        ...
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="emma-btn" data-dismiss="modal">Close</button>
+		        <button type="emma-btn btn" class="emma-btn btn-dark">Save changes</button>
+		      </div>
+		    </div>
+		  </div>
+    </div>
     {% if adult.medical_information %}
 		<div class="dashboard-box margin-top-20 margin-bottom-50">
     	<div class="dashboard-box-title small border">
