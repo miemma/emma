@@ -14,20 +14,20 @@
 			<a class="emma-role-selector-item {%if request.path == dashboard_alternative_emma%}active{%endif%}" href="{{dashboard_alternative_emma}}">
 				Suplente
 			</a>
-			<a class="emma-role-selector-item" href="#">
+			<a class="emma-role-selector-item {%if request.path == dashboard_coordinator_emma%}active{%endif%}" href="{{ dashboard_coordinator_emma }}">
 				Coordinadora
 			</a>
 		</div>
 		<div class="dashboard-box margin-top-20">
 			<div class="dashboard-box-title small no-button border">
 				<div class="col-md-11 col-sm-11 col-xs-11 centered-col">
-					<h2>{{ emma.user.first_name }} {{ emma.user.last_name }}</h2>
+					<h2>{{ emma.user.get_full_name }}</h2>
 				</div>
 			</div>
 			<div class="dashboard-box-content white padding-top-30 padding-bottom-30">
 				<div class="col-md-11 col-sm-11 col-xs-11 centered-col">
 					<b>Edad:</b> {{ emma.birthday|age }} años <br>
-					<b>Ocupación principal:</b> <br>
+					<b>Ocupación principal:</b> {{ emma.main_occupation }} <br>
 					<b>Estudios y cursos previos:</b>
 					<div class="margin-top-10 row">
 						<p class="col-md-6 col-sm-6 col-xs-6">
