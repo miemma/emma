@@ -39,15 +39,25 @@
 .dashboard-box-title.yellow
   background-color #fdf0cc
   
-.emma-hobbies, .adult-hobbies
+.emma-hobbies, .adult-hobbies-columns
   column-count 2
   column-gap 100px
   
   .emma-hobbie-item:not(:first-child)
     margin-top 30px
     
-  .adult-hobbie-item:not(:first-child)
+  .adult-hobbie-item:not(:first-child):not(:nth-child(2))
     margin-top 20px
 
   .adult-hobbie-item
     font-size 17px
+    
+  &.value-container,
+  &.fields-container
+    column-gap 50px
+    
+  &.value-container .adult-hobbie-item
+    width 50%
+    
+    &:nth-child(even)
+      margin-left 50px

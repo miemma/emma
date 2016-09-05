@@ -150,23 +150,28 @@
 	      </div>
     	</div>
     </form>
-    <form id="dashboard-preferences-form" action="." method="post" class="dashboard-special-form">
-	    <div class="dashboard-box margin-top-20">
-	    	<div class="dashboard-box-title small border">
-	    		<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-0 flex">
-						<h2>Información personal</h2>
-						<div class="dashboard-box-title-button cancel-button hide">
+    <div class="dashboard-box margin-top-20">
+    	<div class="dashboard-box-title small border">
+    		<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-0 flex">
+					<h2>Información personal</h2>
+				</div>
+    	</div>
+    	<div class="dashboard-box-content">
+    		<form id="dashboard-preferences-form" action="." method="post" class="dashboard-special-form">
+	    		<div class="dashboard-box-title small internal-title border">
+	    			<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-0 flex">
+	    				<h2>Información básica</h2>
+	    				<div class="dashboard-box-title-button cancel-button hide">
 	            cancelar
-	          </div>
-	          <div class="dashboard-box-title-button edit-button">
-	            editar
-	          </div>
-	          <button type="submit" id="preference_form" name="preference_form" class="dashboard-box-title-button send-button hide">
-	            guardar
-	          </button>
-					</div>
-	    	</div>
-	    	<div class="dashboard-box-content">
+		          </div>
+		          <div class="dashboard-box-title-button edit-button" >
+		            editar
+		          </div>
+		          <button type="submit" id="preference_form" name="preference_form" class="dashboard-box-title-button send-button hide">
+		            guardar
+		          </button>
+	    			</div>
+	    		</div>
 	    		<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-top-30 padding-bottom-20">
 						{% csrf_token %}
 						<div class="row text-center form-loader">
@@ -208,28 +213,44 @@
 							</div>
 						</div>
 	    		</div>
+	    	</form>
+	    	<form action="." method="post" class="dashboard-special-form">
 	    		<div class="dashboard-box-title small internal-title border">
-	    			<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-0">
+	    			<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-0 flex">
 	    				<h2>Intereses y pasatiempos</h2>
+							<div class="dashboard-box-title-button cancel-button hide">
+		            cancelar
+		          </div>
+		          <div class="dashboard-box-title-button edit-button">
+		            editar
+		          </div>
+		          <button type="submit" id="adult_hobbie_edit" name="adult_hobbie_edit" class="dashboard-box-title-button send-button hide">
+		            guardar
+		          </button>
 	    			</div>
 	    		</div>
+	    		{% csrf_token %}
 	    		<div class="col-md-11 col-sm-11 col-xs-11 centered-col padding-top-30 padding-bottom-30 adult-hobbies">
-						{% for hobbie in adult.adulthobbie_set.all %}
-						<p class="adult-hobbie-item">
-							{{ hobbie.hobbie }}
-						</p>
-						{% endfor %}
+		    		<div class="input-container">
+							<div class="fields-container hide adult-hobbies-columns">
+		    				{% for hobbie in adult.adulthobbie_set.all %}
+								<p class="adult-hobbie-item">
+									<textarea class="emma-input" type="text" name="hobbie-{{ hobbie.id }}">{{ hobbie.hobbie }}</textarea>
+								</p>
+								{% endfor %}
+							</div>
+							<div class="value-container flex adult-hobbies-columns">
+								{% for hobbie in adult.adulthobbie_set.all %}
+								<p class="adult-hobbie-item">
+									{{ hobbie.hobbie }}
+								</p>
+								{% endfor %}
+							</div>
+						</div>
 	    		</div>
-	    	</div>
-	    </div>
-	  </form>
-    <form action="." method="post">
-      {% csrf_token %}
-      {% for hobbie in adult.adulthobbie_set.all %}
-        <input type="text" value="{{ hobbie.hobbie }}" name="hobbie-{{ hobbie.id }}">
-      {% endfor %}
-      <button type="submit" name="adult_hobbie_edit">Enviar</button>
-    </form>
+    		</form>
+    	</div>
+    </div>
     <form action="." method="post">
 	    {% csrf_token %}
       {{ hobbieform.as_p }}
