@@ -1,0 +1,40 @@
+{% extends "clients/dashboard_base.html" %}
+{% load age_filter_tag %}
+{% block content %}
+<div class="dashboard-emma-box">
+	<div class="dashboard-emma-picture-container">
+	<div class="emma-picture circle" style="background-image: url('{{ emma.profile_picture.url }}')">
+	</div>
+	</div>
+	<div class="dashboard-emma-data-box">
+		<div class="emma-role-selector">
+			<a class="emma-role-selector-item {%if request.path == dashboard_main_emma%}active{%endif%}" href="{{dashboard_main_emma}}">
+				Titular
+			</a>
+			<a class="emma-role-selector-item {%if request.path == dashboard_alternative_emma%}active{%endif%}" href="{{dashboard_alternative_emma}}">
+				Suplente
+			</a>
+			<a class="emma-role-selector-item {%if request.path == dashboard_coordinator_emma%}active{%endif%}" href="{{ dashboard_coordinator_emma }}">
+				Coordinadora
+			</a>
+		</div>
+		<div class="dashboard-box margin-top-20">
+			<div class="dashboard-box-title small no-button border">
+				<div class="col-md-11 col-sm-11 col-xs-11 centered-col">
+					<h2>{{ emma.user.get_full_name }}</h2>
+				</div>
+			</div>
+			<div class="dashboard-box-content white padding-top-30 padding-bottom-30">
+				<div class="col-md-11 col-sm-11 col-xs-11 centered-col">
+					<b>Contacto:</b> {{ emma.user.email }}<br>
+					<b>Whatsapp:</b> {{ emma.phone }}<br><br>
+					¡Hola! mi nombre es {{ emma.user.first_name }} y yo seré la encargada de <br>
+					coordinar tu experiencia en emma <br><br>
+					Siéntete con la confianza de contactarme para cualquier <br>
+					duda o aclaracion respecto a las sesiones de tu ser querido
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
