@@ -8,7 +8,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('emmas', '0014_emmacordinator'),
+        ('emmas', '0014_emmacoordinator'),
         ('emmas', '0014_auto_20160818_2148'),
     ]
 

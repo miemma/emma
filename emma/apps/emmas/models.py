@@ -213,7 +213,7 @@ class EmmaHobbie(models.Model):
         return '%s %s' % (self.emma, self.hobbie)
 
 
-class EmmaCordinator(models.Model):
+class EmmaCoordinator(models.Model):
     id = models.BigIntegerField(
         _('ID'),
         auto_created=True,
@@ -243,4 +243,4 @@ class EmmaCordinator(models.Model):
     def save(self, *args, **kwargs):
         parent_id = self.user.id
         self.id = parent_id
-        super(EmmaCordinator, self).save(*args, **kwargs)
+        super(EmmaCoordinator, self).save(*args, **kwargs)

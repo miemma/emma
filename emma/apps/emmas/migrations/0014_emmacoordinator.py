@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='EmmaCordinator',
+            name='EmmaCoordinator',
             fields=[
                 ('id', models.BigIntegerField(auto_created=True, verbose_name='ID')),
                 ('profile_picture', models.ImageField(upload_to=b'profile_pictures')),

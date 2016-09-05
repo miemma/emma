@@ -16,6 +16,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='hiredservice',
             name='emma_cordinator',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='cordinator', to='emmas.EmmaCordinator', verbose_name='Cordinator'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='cordinator', to='emmas.EmmaCoordinator', verbose_name='Cordinator'),
         ),
     ]
