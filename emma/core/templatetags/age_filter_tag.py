@@ -10,7 +10,7 @@ register = template.Library()
 @register.filter
 def age(bdays):
     if not isinstance(bdays, datetime.date):
-        bday = datetime.datetime.strptime(bdays, "%Y-%m-%d")
+        bday = datetime.datetime.strptime(bdays, "'%d/%m/%Y'")
     else:
         bday = bdays
     d = datetime.date.today()
