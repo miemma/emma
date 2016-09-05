@@ -15,7 +15,8 @@ class EmmaCreationForm(forms.ModelForm):
 
     def clean_profile_picture(self):
         picture = self.cleaned_data.get("profile_picture")
-        if picture._size > 5*1024*1024:
-            raise forms.ValidationError(
-                "The image max size is 5MB")
+        if hasattr(picture,'._size'):
+            if picture._size > 5*1024*1024:
+                raise forms.ValidationError(
+                    "The image max size is 5MB")
         return picture
