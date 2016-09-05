@@ -77,6 +77,18 @@ $(document).ready(function () {
     }
   });
 
+  $('#cancel-new-hobbie').click(function () {
+    $(this).closest('form')[0].reset();
+  });
+
+  $('#cancel-new-hobbie').click(function () {
+    $(this).closest('form')[0].reset();
+  });
+
+  $('#new-hobbie-form').submit(function () {
+    $('#dashboard-hobbies')[0].reset();
+  });
+
   /* Special forms
   ---------------------------------------------------------------------------*/
   $('.dashboard-special-form').toArray().forEach(function (elem, index) {
