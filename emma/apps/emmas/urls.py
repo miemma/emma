@@ -10,8 +10,12 @@ urlpatterns = [
     url(regex='^dashboard/emma-titular/$',
         view=views.MainEmmaView.as_view(),
         name='dashboard_main_emma'),
+
     url(regex='^dashboard/emma-alternativa/$',
         view=views.SecondEmmaView.as_view(),
         name='dashboard_alternative_emma'),
 
+    url(regex='^dashboard/emma-coordinadora/$',
+        view=views.CoordinatorEmmaView.as_view(),
+        name='dashboard_coordinator_emma'),
 ]

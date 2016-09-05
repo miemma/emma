@@ -32,3 +32,16 @@ class SecondEmmaView(GetAdultMixin, ClientRequiredMixin, View):
             'adult': self.get_adult(request),
         }
         return TemplateResponse(request, self.template_name, ctx)
+
+
+class CoordinatorEmmaView(GetAdultMixin, ClientRequiredMixin, View):
+    template_name = 'emmas/emma_coordinator.html'
+
+    def get(self, request):
+        service = HiredService.objects.get(adult=self.get_adult(request))
+        emma = service.emma_cordinator
+        ctx = {
+            'emma': emma,
+            'adult': self.get_adult(request),
+        }
+        return TemplateResponse(request, self.template_name, ctx)
