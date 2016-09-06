@@ -94,8 +94,8 @@ class History(models.Model):
     )
     file = models.FileField(
         _('File'),
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
         upload_to=get_file_path,
     )
 
