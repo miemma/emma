@@ -10,6 +10,10 @@ from django.utils.translation import ugettext_lazy as _
 from emma.apps.clients.models import Client
 from emma.apps.services.models import Service, Workshop
 
+PAY_CHOICES = (
+    ('paid', 'Paid'),
+    ('pending', 'Pending'),
+)
 
 def get_file_path(instance, filename):
     ext = filename.split('.')[-1]
@@ -111,6 +115,11 @@ class Charge(models.Model):
         _('Creation date'),
         auto_now_add=True
     )
+    plan = models.ForeignKey(
+        Service,
+        verbose_name=_('Plan'),
+        related_name='plan'
+    )
     amount = models.FloatField(
         _('Amount'),
         blank=False,
@@ -121,14 +130,22 @@ class Charge(models.Model):
         _('Status'),
         max_length=25,
         blank=False,
-        null=False
+        null=False,
+        choices=PAY_CHOICES,
     )
-    descripcion = models.TextField(
-        _('Description'),
-        max_length=30,
+    card = models.CharField(
+        _('Card'),
+        max_length=25,
         blank=False,
-        null=False
+        null=False,
     )
+    file = models.FileField(
+        _('File'),
+        blank=False,
+        null=False,
+        upload_to='reports',
+    )
+
 
     class Meta:
         verbose_name = _('Charge')
