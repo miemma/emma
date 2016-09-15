@@ -16,22 +16,33 @@
           <table class="table dashboard-history-table">
             <thead>
               <tr>
-                <th>Fecha</th>
-                <th>Tipo de suscripción</th>
-                <th>Talleres o Servicios</th>
+                <th>Mes</th>
+                <th>Plan</th>
                 <th>Monto</th>
+	              <th>Status</th>
                 <th>Tarjeta</th>
+                <th>Recibo</th>
               </tr>
             </thead>
             <tbody>
               {% for charge in charges %}
               <tr>
-                <td>{{ charge.date }}</td>
-                <td>{{ charge.status }}</td>
-                <td>{{ charge.suscription }}</td>
-                <td>{{ hichargeschargetory.amount }}</td>
-                <td>{{ charge.description }}</td>
-              </tr>
+                <td>{{ charge.date | date:"F Y" }}</td>
+                <td>{{ charge.plan }}</td>
+                <td>${{ charge.amount }}</td>
+	              {% if charge.get_status_display == "Paid" %}
+		              <td class="green">Pagado</td>
+	              {% else %}
+	                <td class="red">Pendiente</td>
+	              {% endif %}
+                <td>{{ charge.card }}</td>
+	              {% if charge.file %}
+		             <td>
+			            <a class="dashboard-history-file" href="{{ charge.file.url }}" download target="_blank">
+				            <i class="fa fa-download" aria-hidden="true"></i>
+			            </a>
+		            </td>
+	            {% endif %}
               {% endfor %}
               <!-- <tr>
                 <td>22 junio 2016</td>
