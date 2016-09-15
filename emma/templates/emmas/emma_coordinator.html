@@ -1,6 +1,7 @@
 {% extends "clients/dashboard_base.html" %}
 {% load age_filter_tag %}
 {% block content %}
+{% load  static from staticfiles %}
 <div class="dashboard-emma-box">
 	<div class="dashboard-emma-picture-container">
 	<div class="emma-picture circle" style="background-image: url('{{ emma.profile_picture.url }}')">
@@ -26,8 +27,8 @@
 			</div>
 			<div class="dashboard-box-content white padding-top-30 padding-bottom-30">
 				<div class="col-md-11 col-sm-11 col-xs-11 centered-col">
-					<b>Contacto:</b> {{ emma.user.email }}<br>
-					<b>Whatsapp:</b> {{ emma.phone }}<br><br>
+					<img src="{% static "img/icons/iconos-03.png" %}" class="emma-coordinator-icon-large"><b>Contacto:</b> {{ emma.user.email }}<br>
+					<img src="{% static "img/icons/iconos-02.png" %}" class="emma-coordinator-icon"><b>Whatsapp:</b> {{ emma.phone }}<br><br>
 					¡Hola! Mi nombre es {{ emma.user.first_name }} y yo seré la encargada de <br>
 					coordinar tu experiencia en Emma. <br><br>
 					Siéntete en confianza de contactarme para cualquier <br>
