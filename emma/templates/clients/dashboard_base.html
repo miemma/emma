@@ -186,7 +186,7 @@
 		          {% else %}
 			          <div class="dropdown">
 								  <a class="header-navbar-list-item-link" href="{{ dashboard_adult }}">
-									  <div class="circle navbar-adult-picture" style="background-image: url('{{ adult.photo.url }}')"></div>
+									  <div class="circle navbar-adult-picture" style="background-image: url('http://www.sbsc.in/images/dummy-profile-pic.png')"></div>
 								  </a>
 								  <div class="dropdown-content">
 								    <p>
@@ -205,8 +205,6 @@
 								</div>
 		          {% endif %}
             {% endif %}
-	          {% if request.user.client.user_type == 'User type 3' %}
-		        {% else %}
 	          {% endif %}
           </li>
         </ul>
