@@ -13,18 +13,17 @@
         <table class="table dashboard-history-table">
           <thead>
             <tr>
-              <th>Fecha</th>
-              <th>Servicio</th>
-              <th>Talleres</th>
-              <th>Estado de ánimo</th>
-              <th>Observaciones</th>
-	            <th></th>
+              <th>Mes</th>
+              <th>Plan</th>
+              <th>Taller</th>
+              <th>Observaciones generales</th>
+	            <th>Reporte detallado</th>
             </tr>
           </thead>
           <tbody>
             {% for history in histories %}
             <tr>
-              <td>{{ history.date }}</td>
+              <td>{{ history.date | date:"F Y" }}</td>
               <td>{{ history.service }}</td>
               <td>
 	              {% for workshop in history.workshops.all %}
@@ -36,9 +35,6 @@
 										</p>
 									{% endif %}
 								{% endfor %}
-              </td>
-              <td>
-	              {{ history.mood }}
               </td>
               <td>
 	              {{ history.comments }}
