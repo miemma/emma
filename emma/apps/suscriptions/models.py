@@ -81,12 +81,6 @@ class History(models.Model):
         verbose_name=_('Workshops'),
         blank=False,
     )
-    mood = models.CharField(
-        _('Mood'),
-        max_length=130,
-        blank=False,
-        null=False
-    )
     comments = models.TextField(
         _('Comments'),
         blank=False,
@@ -100,8 +94,8 @@ class History(models.Model):
     )
 
     class Meta:
-        verbose_name = _('History')
-        verbose_name_plural = _('Histories')
+        verbose_name = _('Report')
+        verbose_name_plural = _('Reports')
 
     def __unicode__(self):
         return "%s - %s" % (self.suscription, self.suscription.client)
