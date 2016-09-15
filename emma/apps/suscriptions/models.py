@@ -96,7 +96,7 @@ class History(models.Model):
         _('File'),
         blank=True,
         null=True,
-        upload_to=get_file_path,
+        upload_to='reports',
     )
 
     class Meta:
