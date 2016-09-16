@@ -13,6 +13,13 @@ class BlogSubscriber(models.Model):
         null = False
     )
 
+    source = models.CharField(
+        _('Source'),
+        max_length=50,
+        blank=False,
+        null=False
+    )
+
     class Meta:
         verbose_name = 'Blog Subscriber'
         verbose_name_plural = 'Blog Subscribers'
