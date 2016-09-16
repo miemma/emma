@@ -259,7 +259,7 @@ class NewsletterView(View):
         source = request.POST.get('source')
         email = request.POST.get('email')
         endpoint = urlparse.urljoin(
-            settings.MAILCHIMP_API_ROOT, 'lists/%s/members/' % settings.MAILCHIMP_LIST_ID
+            settings.MAILCHIMP_API_ROOT, 'lists/%s/members/' % settings.MAILCHIMP_NEWSLETTER_LIST
         )
         data = {
             "email_address": request.POST.get('email'),
