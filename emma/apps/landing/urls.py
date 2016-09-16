@@ -47,4 +47,8 @@ urlpatterns = [
     url(regex=r'^enviar-mail/$',
         view=views.ContactEmailView.as_view(),
         name='send_contact_mail'),
+
+    url(regex=r'^subscribe/$',
+        view=views.NewsletterView.as_view(),
+        name='subscribe'),
 ]
