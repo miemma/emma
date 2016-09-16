@@ -9,7 +9,7 @@ from datetime import date
 
 import requests
 from django.core.urlresolvers import reverse
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import redirect, render
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
@@ -251,6 +251,9 @@ class NewsletterView(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super(NewsletterView, self).dispatch(request, *args, **kwargs)
+
+    def get(self, request):
+        return HttpResponse('This is a get')
 
     def post(self, request):
         source = request.POST.get('source')
