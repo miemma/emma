@@ -2,15 +2,23 @@
 # -*- coding: utf-8 -*
 
 from __future__ import print_function
+
+import json
+import urlparse
 from datetime import date
 
+import requests
 from django.core.urlresolvers import reverse
+from django.http import JsonResponse
 from django.shortcuts import redirect, render
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import View, TemplateView
 from django.conf import settings
 
 from emma.apps.clients.models import PotentialClient
 from emma.apps.emmas.models import PotentialEmma
+from emma.apps.newsletter.models import BlogSubscriber
 from emma.apps.services.models import ScheduledCall
 from emma.core.mixins import ClientRequiredMixin
 from emma.core.utils import send_email
@@ -237,3 +245,36 @@ class DateEmailView(ClientRequiredMixin, View):
         customer.save()
 
         return redirect(reverse('landing:success'))
+
+
+class NewsletterView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super(NewsletterView, self).dispatch(request, *args, **kwargs)
+
+    def post(self, request):
+        source = request.POST.get('source')
+        email = request.POST.get('email')
+        endpoint = urlparse.urljoin(
+            settings.MAILCHIMP_API_ROOT, 'lists/%s/members/' % settings.MAILCHIMP_LIST_ID
+        )
+        data = {
+            "email_address": request.POST.get('email'),
+            "status": "subscribed",
+        }
+        data = json.dumps(data)
+        response = requests.post(
+            endpoint, auth=('apikey', settings.MAILCHIMP_API_KEY), data=data)
+        if email:
+            try:
+                subscriber = BlogSubscriber.objects.get(
+                    email=email,
+                    source=source,
+                )
+            except BlogSubscriber.DoesNotExist:
+                subscriber = BlogSubscriber(
+                    email=email,
+                    source=source,
+                )
+                subscriber.save()
+        return JsonResponse(response.json())
