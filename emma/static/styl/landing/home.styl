@@ -1,10 +1,18 @@
 .info-1
   background-image url("../img/cover_1.png")
   background-size cover
-  min-height 730px
+  height calc(100vh - 40px)
   color #fff
   overflow-x hidden
   overflow-y auto
+  position relative
+  
+  .info-text-container
+    left 0
+    position absolute
+    top 50%
+    transform translateY(calc(-50% + 40px))
+    width 100%
 
   &-title
     font-size 55px
@@ -34,34 +42,32 @@
     display block
 
   &-row
-    &-title
-      padding-top 207px
     &-subtitle
       margin-top 2em
     &-btn
       padding-top 10px
-      margin 5em 0 3.4em 0
+      margin 5em 0 0 0
 
 
 .mentions
   background-color white
-  padding-bottom 5em
+  padding 2.3em 0 3em 0
 
   &-0
-    height 51px
+    height 43px
     display block
     margin 0 auto 0 auto
     padding-top 5px
   &-1
-    height 26px
+    height 21px
     display block
     margin 0px 15px 0 auto
   &-2
-    height 26px
+    height 21px
     display block
     margin 0 auto
   &-3
-    height 26px
+    height 21px
     display block
     margin 0px auto 0 auto
 
