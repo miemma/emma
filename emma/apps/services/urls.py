@@ -11,6 +11,10 @@ urlpatterns = [
         view=views.ContractPlan.as_view(),
         name='contract_plan'),
 
+    url(regex='^contratar/detalles/$',
+        view=views.ContractPlanDetails.as_view(),
+        name='contract_plan'),
+
     url(regex='^contratar/ubicacion/$',
         view=views.ContractLocation.as_view(),
         name='contract_location'),
