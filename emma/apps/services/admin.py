@@ -41,3 +41,8 @@ class ScheduledCallAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'date_time', 'number')
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
+
+
+@admin.register(models.ServiceContractProcess)
+class ScheduledCallAdmin(admin.ModelAdmin):
+    pass
