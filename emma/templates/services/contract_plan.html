@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Contratar plan</title>
+</head>
+<body>
+	<h1>Selecciona el plan</h1>
+	<p>
+		{% for plan in plans %}
+			<p>
+				<form action="." method="post">
+					<h2>{{ plan.name }}</h2>
+					{% csrf_token %}
+					<input type="hidden" name="plan" value="{{ plan.id }}">
+					<button type="submit">Seleccionar</button>
+				</form>
+			</p>
+		{% endfor %}
+</body>
+</html>

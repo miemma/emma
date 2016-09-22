@@ -11,61 +11,36 @@ from emma.apps.adults.models import Adult, AdultAddress
 from emma.apps.doctors.models import Doctor
 from emma.apps.clients.models import Client, ContractProcess
 from emma.apps.services.forms import ServiceData, ContractAdultInfo
-from emma.apps.services.models import Service, Workshop, HiredService
+from emma.apps.services.models import Service, Workshop, HiredService, \
+    ServiceContractProcess
 from emma.apps.suscriptions.models import Suscription, History
 from emma.core.mixins import RequestFormMixin, ActiveClientRequiredMixin
 
 from datetime import datetime, date
 
 
-class ContractServiceInfo(ActiveClientRequiredMixin, View):
-    template_name = 'services/contract_service_info.html'
-    services = Service.objects.all()
+class ContractPlan(ActiveClientRequiredMixin, View):
     success_url = reverse_lazy('services:contract_location')
 
-    def get(self, request, **kwargs):
+    def get_context(self, request):
+        plans = Service.objects.all()
         ctx = {
-            'services': self.services
+            'plans': plans
         }
-        return TemplateResponse(request, self.template_name, ctx)
+        return ctx
+
+    def get(self, request, **kwargs):
+        ctx = self.get_context(request)
+        return TemplateResponse(request, 'services/contract_plan.html', ctx)
 
     def post(self, request):
-        id_service = request.POST.get('contract-service')
-        workshop_list = request.POST.getlist('contract-service-workshop')
-        ctx = {
-            'services': self.services
-        }
-        try:
-            service = self.services.get(id=id_service)
-            for workshop in workshop_list:
-                Workshop.objects.get(id=workshop, service=service)
-            try:
-                contract_process = ContractProcess.objects.get(
-                    client=request.user.client
-                )
-                contract_process.id_service = id_service
-                contract_process.workshop_list = workshop_list
-            except ContractProcess.DoesNotExist:
-                contract_process = ContractProcess(
-                    client=request.user.client,
-                    id_service=id_service,
-                    workshop_list=workshop_list
-                )
-            contract_process.save()
-            return redirect(self.success_url)
-
-        except Service.DoesNotExist:
-            error = 'Ocurrió un error, intente de nuevo'
-            ctx.update({
-                'error': error,
-            })
-            return render(request, self.template_name, ctx)
-        except Workshop.DoesNotExist:
-            error = 'Ocurrió un error, intente de nuevo'
-            ctx.update({
-                'error': error,
-            })
-            return render(request, self.template_name, ctx)
+        plan = Service.objects.get(id=request.POST.get('plan'))
+        service = ServiceContractProcess(
+            user=request.user.client,
+            plan=plan
+        )
+        service.save()
+        return HttpResponse(plan)
 
 
 class ContractLocation(ActiveClientRequiredMixin, RequestFormMixin, FormView):
