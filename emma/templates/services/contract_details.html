@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Detalles del plan</title>
+</head>
+<body>
+	<p>
+		<h2>Seleccion del taller</h2>
+		<ul>
+			<li>
+				{% for workshop in workshops %}
+					<label for="workshop-{{ workshop.id }}">{{ workshop.name }}</label>
+					<input name="workshop" type="checkbox" value="{{ workshop.id }}" id="workshop-{{ workshop.id }}">
+				{% endfor %}
+			</li>
+		</ul>
+	</p>
+</body>
+</html>

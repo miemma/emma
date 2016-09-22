@@ -43,6 +43,19 @@ class ContractPlan(ActiveClientRequiredMixin, View):
         return HttpResponse(plan)
 
 
+class ContractPlanDetails(ActiveClientRequiredMixin, View):
+    def get_context(self, request):
+        workshops = Workshop.objects.all()
+        ctx = {
+            'workshops': workshops
+        }
+        return ctx
+
+    def get(self, request, **kwargs):
+        ctx = self.get_context(request)
+        return TemplateResponse(request, 'services/contract_details.html', ctx)
+
+
 class ContractLocation(ActiveClientRequiredMixin, RequestFormMixin, FormView):
     template_name = 'services/contract_location.html'
     form_class = ServiceData
