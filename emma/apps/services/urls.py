@@ -7,9 +7,9 @@ from . import views
 
 urlpatterns = [
 
-    url(regex='^contratar/informacion-servicio/$',
-        view=views.ContractServiceInfo.as_view(),
-        name='contract_service_info'),
+    url(regex='^contratar/plan/$',
+        view=views.ContractPlan.as_view(),
+        name='contract_plan'),
 
     url(regex='^contratar/ubicacion/$',
         view=views.ContractLocation.as_view(),
