@@ -10,13 +10,6 @@ from emma.apps.adults.models import Adult
 from emma.apps.clients.models import Client
 from emma.apps.emmas.models import Emma, EmmaCoordinator
 
-PLANS = (
-    ('basic', 'Basico'),
-    ('introductory', 'Introductorio'),
-    ('pro', 'Pro'),
-)
-
-
 
 class ServiceDays(models.Model):
     name = models.CharField(
