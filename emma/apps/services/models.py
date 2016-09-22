@@ -4,10 +4,18 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.conf import settings
 
 from emma.apps.adults.models import Adult
 from emma.apps.clients.models import Client
 from emma.apps.emmas.models import Emma, EmmaCoordinator
+
+PLANS = (
+    ('basic', 'Basico'),
+    ('introductory', 'Introductorio'),
+    ('pro', 'Pro'),
+)
+
 
 
 class ServiceDays(models.Model):
@@ -192,3 +200,19 @@ class ScheduledCall(models.Model):
 
     def __unicode__(self):
         return '%s - %s' % (self.name, self.email)
+
+
+class ServiceContractProcess(models.Model):
+    user = models.OneToOneField(
+        Client,
+        verbose_name=_('Client'),
+        on_delete=models.CASCADE,
+        primary_key=True
+    )
+    plan = models.ForeignKey(
+        Service
+    )
+
+    class Meta:
+        verbose_name = _('Service contract process')
+        verbose_name_plural = _('Service contract process')
