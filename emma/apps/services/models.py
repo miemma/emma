@@ -76,10 +76,26 @@ class Service(models.Model):
         blank=False,
         null=False
     )
+    max_weekly_sessions = models.IntegerField(
+        blank=True,
+        null=True
+    )
+    weekly_hours = models.IntegerField(
+        blank=True,
+        null=True
+    )
     price = models.PositiveSmallIntegerField(
         _('Price'),
         blank=False,
         null=False
+    )
+    allows_workshops = models.BooleanField(
+        _('Allows workshops'),
+        default=False,
+    )
+    allows_activities = models.BooleanField(
+        _('Allows activities'),
+        default=False,
     )
 
     class Meta:
