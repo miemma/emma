@@ -12,7 +12,7 @@ from emma.apps.doctors.models import Doctor
 from emma.apps.clients.models import Client, ContractProcess
 from emma.apps.services.forms import ServiceData, ContractAdultInfo
 from emma.apps.services.models import Service, Workshop, HiredService, \
-    ServiceContractProcess
+    ServiceContractProcess, ServiceDay, Activity
 from emma.apps.suscriptions.models import Suscription, History
 from emma.core.mixins import RequestFormMixin, ActiveClientRequiredMixin
 
@@ -46,14 +46,48 @@ class ContractPlan(ActiveClientRequiredMixin, View):
 class ContractPlanDetails(ActiveClientRequiredMixin, View):
     def get_context(self, request):
         workshops = Workshop.objects.all()
+        activities = Activity.objects.all()
+        service = ServiceContractProcess.objects.get(
+            user=request.user.client,
+        )
+        weekly_sessions = range(1, service.plan.max_weekly_sessions + 1)
+        weekly_hours = range(1, service.plan.weekly_hours + 1)
         ctx = {
-            'workshops': workshops
+            'workshops': workshops,
+            'activities': activities,
+            'service': service,
+            'weekly_sessions': weekly_sessions,
+            'weekly_hours': weekly_hours
         }
         return ctx
 
     def get(self, request, **kwargs):
         ctx = self.get_context(request)
         return TemplateResponse(request, 'services/contract_details.html', ctx)
+
+    def post(self, request, **kwargs):
+        days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+        contract_process = ServiceContractProcess.objects.get(user=request.user.client)
+        for x in days:
+            if request.POST.get('%s_day' % x):
+                workshop_activity = request.POST.get('%s_workshop_activity' % x).split('-')
+                try:
+                    content = Workshop.objects.get(id=workshop_activity[0], name=workshop_activity[1])
+                except Workshop.DoesNotExist:
+                    try:
+                        content = Activity.objects.get(id=workshop_activity[0], name=workshop_activity[1])
+                    except Activity.DoesNotExist:
+                        raise Http404
+                service_day = ServiceDay(
+                    day=request.POST.get('%s_day' % x),
+                    start_time=request.POST.get('%s_start_time' % x),
+                    duration=request.POST.get('%s_weekly_sessions' % x),
+                    content_object=content
+                )
+                service_day.save()
+                contract_process.service_days.add(service_day)
+                contract_process.save()
+        return HttpResponse('Hola')
 
 
 class ContractLocation(ActiveClientRequiredMixin, RequestFormMixin, FormView):
