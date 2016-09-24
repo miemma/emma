@@ -142,7 +142,7 @@ class JoinEmailView(View):
             'smartphone': smartphone,
         }
 
-        potential_emma =  PotentialEmma(
+        potential_emma = PotentialEmma(
             first_name=name,
             last_name=last_name,
             age=age,
@@ -164,7 +164,8 @@ class JoinEmailView(View):
             from_email="Emma - Reclutamiento <postmaster@%s>" % (
                 settings.MAILGUN_SERVER_NAME
             ),
-            to_email=[settings.DEFAULT_EMAIL_TO,settings.DEFAULT_JOIN_EMAIL_TO],
+            to_email=[settings.DEFAULT_EMAIL_TO,
+                      settings.DEFAULT_JOIN_EMAIL_TO],
             context=ctx
         )
 
@@ -206,7 +207,6 @@ class DateEmailView(ClientRequiredMixin, View):
 
         }
 
-
         send_email(
             subject='email/subjects/call_schedule.txt',
             body='email/call_schedule.html',
@@ -216,7 +216,6 @@ class DateEmailView(ClientRequiredMixin, View):
             to_email=[settings.DEFAULT_EMAIL_TO],
             context=ctx
         )
-
 
         send_email(
             subject='email/subjects/notification_call.txt',
@@ -259,7 +258,8 @@ class NewsletterView(View):
         source = request.POST.get('source')
         email = request.POST.get('email')
         endpoint = urlparse.urljoin(
-            settings.MAILCHIMP_API_ROOT, 'lists/%s/members/' % settings.MAILCHIMP_NEWSLETTER_LIST
+            settings.MAILCHIMP_API_ROOT,
+            'lists/%s/members/' % settings.MAILCHIMP_NEWSLETTER_LIST
         )
         data = {
             "email_address": request.POST.get('email'),
@@ -281,3 +281,7 @@ class NewsletterView(View):
                 )
                 subscriber.save()
         return JsonResponse(response.json())
+
+
+class AlternativeJoinEmmaView(TemplateView):
+    template_name = 'landing/alternative_join.html'
