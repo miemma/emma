@@ -5,7 +5,7 @@ from django import forms
 
 from emma.apps.adults.models import Adult, AdultAddress
 from emma.apps.services.models import HiredService, Service, Workshop, \
-    ServiceDays
+    ServiceDay
 from emma.apps.clients.models import ContractProcess
 from emma.core import validators
 from emma.core.messages import error_messages
@@ -433,7 +433,7 @@ class ServiceData(forms.Form):
             self.cleaned_data.get('day_1_morning'),
         )
 
-        service_days = ServiceDays(
+        service_days = ServiceDay(
             name="Service Days - %s" % self.request.user.email,
             service_day_1=day_1
         )
