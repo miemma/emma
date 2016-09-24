@@ -5,16 +5,326 @@
 	<title>Detalles del plan</title>
 </head>
 <body>
-	<p>
-		<h2>Seleccion del taller</h2>
-		<ul>
-			<li>
-				{% for workshop in workshops %}
-					<label for="workshop-{{ workshop.id }}">{{ workshop.name }}</label>
-					<input name="workshop" type="checkbox" value="{{ workshop.id }}" id="workshop-{{ workshop.id }}">
-				{% endfor %}
-			</li>
-		</ul>
-	</p>
+	<form action="." method="post">
+		{% csrf_token %}
+		<h1>Plan {{ service.plan.name }}</h1>
+
+		{% if service.plan.allows_workshops %}
+			<p>
+				<h2>Seleccion del taller</h2>
+				<ul>
+					{% for workshop in workshops %}
+					<li>
+						<label for="workshop-{{ workshop.id }}">{{ workshop.name }}</label>
+						<input name="workshop" type="checkbox" value="{{ workshop.id }}" id="workshop-{{ workshop.id }}">
+					</li>
+					{% endfor %}
+				</ul>
+			</p>
+		{% endif %}
+
+		{% if service.plan.allows_activities %}
+			<p>
+				<h2>Selecciona la actividad</h2>
+				<ul>
+					{% for activity in activities %}
+					<li>
+						<label for="activity-{{ activity.id }}">{{ activity.name }}</label>
+						<input name="activity" type="checkbox" value="{{ activity.id }}" id="workshop-{{ activity.id }}">
+					</li>
+					{% endfor %}
+				</ul>
+			</p>
+		{% endif %}
+
+		<table>
+			<tr>
+				<th>Dia</th>
+				<th>Hora de inicio</th>
+				<th>Duracion de la sesion</th>
+				<th>Taller o actividad</th>
+			</tr>
+			<tr>
+				<td>
+					<label for="day-monday">Lunes</label>
+					<input name="monday_day" type="checkbox" value="monday" id="day-monday">
+				</td>
+				<td>
+					<select name="monday_start_time">
+						<option value="9:00">9:00</option>
+						<option value="10:00">10:00</option>
+						<option value="11:00">11:00</option>
+						<option value="12:00">12:00</option>
+						<option value="13:00">13:00</option>
+						<option value="14:00">14:00</option>
+						<option value="15:00">15:00</option>
+						<option value="16:00">16:00</option>
+						<option value="17:00">17:00</option>
+						<option value="18:00">18:00</option>
+						<option value="19:00">19:00</option>
+						<option value="20:00">20:00</option>
+					</select>
+				</td>
+				<td>
+					<select name="monday_weekly_sessions">
+						{% for j in weekly_hours  %}
+							<option>{{ j }}</option>
+						{% endfor %}
+					</select>
+				</td>
+				<td>
+					<select name="monday_workshop_activity">
+						{% for workshop in workshops %}
+							<option value="{{ workshop.id }}-{{ workshop.name }}">{{ workshop.name }}</option>
+						{% endfor %}
+						{% for activity in activities %}
+							<option value="{{ activity.id }}-{{ activity.name }}">{{ activity.name }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="day-tuesday">Martes</label>
+					<input name="tuesday_day" type="checkbox" value="tuesday" id="day-tuesday">
+				</td>
+				<td>
+					<select name="tuesday_start_time">
+						<option value="9:00">9:00</option>
+						<option value="10:00">10:00</option>
+						<option value="11:00">11:00</option>
+						<option value="12:00">12:00</option>
+						<option value="13:00">13:00</option>
+						<option value="14:00">14:00</option>
+						<option value="15:00">15:00</option>
+						<option value="16:00">16:00</option>
+						<option value="17:00">17:00</option>
+						<option value="18:00">18:00</option>
+						<option value="19:00">19:00</option>
+						<option value="20:00">20:00</option>
+					</select>
+				</td>
+				<td>
+					<select name="tuesday_weekly_sessions">
+						{% for j in weekly_hours  %}
+							<option>{{ j }}</option>
+						{% endfor %}
+					</select>
+				</td>
+				<td>
+					<select name="tuesday_workshop_activity" id="workshop_activity">
+						{% for workshop in workshops %}
+							<option value="{{ workshop.id }}-{{ workshop.name }}">{{ workshop.name }}</option>
+						{% endfor %}
+						{% for activity in activities %}
+							<option value="{{ activity.id }}-{{ activity.name }}">{{ activity.name }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="day-wednesday">Miercoles</label>
+					<input name="wednesday_day" type="checkbox" value="wednesday" id="day-wednesday">
+				</td>
+				<td>
+					<select name="wednesday_start_time">
+						<option value="9:00">9:00</option>
+						<option value="10:00">10:00</option>
+						<option value="11:00">11:00</option>
+						<option value="12:00">12:00</option>
+						<option value="13:00">13:00</option>
+						<option value="14:00">14:00</option>
+						<option value="15:00">15:00</option>
+						<option value="16:00">16:00</option>
+						<option value="17:00">17:00</option>
+						<option value="18:00">18:00</option>
+						<option value="19:00">19:00</option>
+						<option value="20:00">20:00</option>
+					</select>
+				</td>
+				<td>
+					<select name="wednesday_weekly_sessions">
+						{% for j in weekly_hours  %}
+							<option>{{ j }}</option>
+						{% endfor %}
+					</select>
+				</td>
+				<td>
+					<select name="wednesday_workshop_activity">
+						{% for workshop in workshops %}
+							<option value="{{ workshop.id }}-{{ workshop.name }}">{{ workshop.name }}</option>
+						{% endfor %}
+						{% for activity in activities %}
+							<option value="{{ activity.id }}-{{ activity.name }}">{{ activity.name }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="day-thursday">Jueves</label>
+					<input name="thursday_day" type="checkbox" value="thursday" id="day-thursday">
+				</td>
+				<td>
+					<select name="wednesday_start_time" id="start_time">
+						<option value="9:00">9:00</option>
+						<option value="10:00">10:00</option>
+						<option value="11:00">11:00</option>
+						<option value="12:00">12:00</option>
+						<option value="13:00">13:00</option>
+						<option value="14:00">14:00</option>
+						<option value="15:00">15:00</option>
+						<option value="16:00">16:00</option>
+						<option value="17:00">17:00</option>
+						<option value="18:00">18:00</option>
+						<option value="19:00">19:00</option>
+						<option value="20:00">20:00</option>
+					</select>
+				</td>
+				<td>
+					<select name="wednesday_weekly_sessions">
+						{% for j in weekly_hours  %}
+							<option>{{ j }}</option>
+						{% endfor %}
+					</select>
+				</td>
+				<td>
+					<select name="wednesday_workshop_activity">
+						{% for workshop in workshops %}
+							<option value="{{ workshop.id }}-{{ workshop.name }}">{{ workshop.name }}</option>
+						{% endfor %}
+						{% for activity in activities %}
+							<option value="{{ activity.id }}-{{ activity.name }}">{{ activity.name }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="day-friday">Viernes</label>
+					<input name="friday_day" type="checkbox" value="thursday" id="day-friday">
+				</td>
+				<td>
+					<select name="friday_start_time">
+						<option value="9:00">9:00</option>
+						<option value="10:00">10:00</option>
+						<option value="11:00">11:00</option>
+						<option value="12:00">12:00</option>
+						<option value="13:00">13:00</option>
+						<option value="14:00">14:00</option>
+						<option value="15:00">15:00</option>
+						<option value="16:00">16:00</option>
+						<option value="17:00">17:00</option>
+						<option value="18:00">18:00</option>
+						<option value="19:00">19:00</option>
+						<option value="20:00">20:00</option>
+					</select>
+				</td>
+				<td>
+					<select name="friday_start_timeweekly_sessions">
+						{% for j in weekly_hours  %}
+							<option>{{ j }}</option>
+						{% endfor %}
+					</select>
+				</td>
+				<td>
+					<select name="friday_start_timeworkshop_activity">
+						{% for workshop in workshops %}
+							<option value="{{ workshop.id }}-{{ workshop.name }}">{{ workshop.name }}</option>
+						{% endfor %}
+						{% for activity in activities %}
+							<option value="{{ activity.id }}-{{ activity.name }}">{{ activity.name }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="day-saturday">Sabado</label>
+					<input name="saturday_day" type="checkbox" value="saturday" id="day-saturday">
+				</td>
+				<td>
+					<select name="saturday_start_time">
+						<option value="9:00">9:00</option>
+						<option value="10:00">10:00</option>
+						<option value="11:00">11:00</option>
+						<option value="12:00">12:00</option>
+						<option value="13:00">13:00</option>
+						<option value="14:00">14:00</option>
+						<option value="15:00">15:00</option>
+						<option value="16:00">16:00</option>
+						<option value="17:00">17:00</option>
+						<option value="18:00">18:00</option>
+						<option value="19:00">19:00</option>
+						<option value="20:00">20:00</option>
+					</select>
+				</td>
+				<td>
+					<select name="saturday_weekly_sessions">
+						{% for j in weekly_hours  %}
+							<option>{{ j }}</option>
+						{% endfor %}
+					</select>
+				</td>
+				<td>
+					<select name="saturday_workshop_activity">
+						{% for workshop in workshops %}
+							<option value="{{ workshop.id }}-{{ workshop.name }}">{{ workshop.name }}</option>
+						{% endfor %}
+						{% for activity in activities %}
+							<option value="{{ activity.id }}-{{ activity.name }}">{{ activity.name }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="day-sunday">Domingo</label>
+					<input name="sunday_day" type="checkbox" value="sunday" id="day-sunday">
+				</td>
+				<td>
+					<select name="sunday_start_time">
+						<option value="9:00">9:00</option>
+						<option value="10:00">10:00</option>
+						<option value="11:00">11:00</option>
+						<option value="12:00">12:00</option>
+						<option value="13:00">13:00</option>
+						<option value="14:00">14:00</option>
+						<option value="15:00">15:00</option>
+						<option value="16:00">16:00</option>
+						<option value="17:00">17:00</option>
+						<option value="18:00">18:00</option>
+						<option value="19:00">19:00</option>
+						<option value="20:00">20:00</option>
+					</select>
+				</td>
+				<td>
+					<select name="sunday_weekly_sessions" id="select-xt">
+						{% for j in weekly_hours  %}
+							<option>{{ j }}</option>
+						{% endfor %}
+					</select>
+				</td>
+				<td>
+					<select name="sunday_workshop_activity" id="workshop_activity">
+						{% for workshop in workshops %}
+							<option value="{{ workshop.id }}-{{ workshop.name }}">{{ workshop.name }}</option>
+						{% endfor %}
+						{% for activity in activities %}
+							<option value="{{ activity.id }}-{{ activity.name }}">{{ activity.name }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+		</table>
+		<p>
+			<h2>Resumen</h2>
+			<p>
+				Aqui ira el resumen dinamico de los detalles
+			</p>
+		</p>
+		<button type="submit">Siguiente</button>
+	</form>
 </body>
 </html>
