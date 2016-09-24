@@ -4,69 +4,23 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.conf import settings
+from django.contrib.contenttypes.fields import GenericForeignKey
 
 from emma.apps.adults.models import Adult
 from emma.apps.clients.models import Client
 from emma.apps.emmas.models import Emma, EmmaCoordinator
 
+from django.contrib.contenttypes.models import ContentType
 
-class ServiceDays(models.Model):
-    name = models.CharField(
-        _('Name'),
-        max_length=50,
-        blank=False,
-        null=False
-    )
-    service_day_1 = models.CharField(
-        _('Day 1 of service'),
-        max_length=25,
-        blank=False,
-        null=False
-    )
-    service_day_2 = models.CharField(
-        _('Day 2 of service'),
-        max_length=25,
-        blank=True,
-        null=True
-    )
-    service_day_3 = models.CharField(
-        _('Day 3 of service'),
-        max_length=25,
-        blank=True,
-        null=True
-    )
-    service_day_4 = models.CharField(
-        _('Day 4 of service'),
-        max_length=25,
-        blank=True,
-        null=True
-    )
-    service_day_5 = models.CharField(
-        _('Day 5 of service'),
-        max_length=25,
-        blank=True,
-        null=True
-    )
-    service_day_6 = models.CharField(
-        _('Day 6 of service'),
-        max_length=25,
-        blank=True,
-        null=True
-    )
-    service_day_7 = models.CharField(
-        _('Day 7 of service'),
-        max_length=25,
-        blank=True,
-        null=True
-    )
-
-    class Meta:
-        verbose_name = _('Service Days')
-        verbose_name_plural = _('Service Days')
-
-    def __unicode__(self):
-        return self.name
+DAYS = (
+    (('monday'),('Lunes')),
+    (('tuesday'),('Martes')),
+    (('wednesday'),('Miercoles')),
+    (('thurday'),('Jueves')),
+    (('friday'),('Viernes')),
+    (('saturday'),('Sabado')),
+    (('sunday'),('Domingo')),
+)
 
 
 class Service(models.Model):
@@ -97,6 +51,11 @@ class Service(models.Model):
         _('Allows activities'),
         default=False,
     )
+    max_hours_per_month = models.IntegerField(
+        _('Max hours per month'),
+        blank=True,
+        null=True
+    )
 
     class Meta:
         verbose_name = _('Plan')
@@ -117,6 +76,22 @@ class Workshop(models.Model):
     class Meta:
         verbose_name = _('Workshop')
         verbose_name_plural = _('Workshops')
+
+    def __unicode__(self):
+        return "%s" % self.name
+
+
+class Activity(models.Model):
+    name = models.CharField(
+        _('Name'),
+        max_length=40,
+        blank=False,
+        null=False
+    )
+
+    class Meta:
+        verbose_name = _('Activity')
+        verbose_name_plural = _('Activities')
 
     def __unicode__(self):
         return "%s" % self.name
@@ -211,6 +186,53 @@ class ScheduledCall(models.Model):
         return '%s - %s' % (self.name, self.email)
 
 
+class ServiceDay(models.Model):
+    day = models.CharField(
+        blank=False,
+        null=False,
+        default="",
+        choices=DAYS,
+        max_length=30,
+    )
+
+    start_time = models.CharField(
+        blank=False,
+        null=False,
+        default="",
+        max_length=30,
+    )
+
+    duration = models.IntegerField(
+        blank=False,
+        null=False,
+        default=1
+    )
+
+    limit = models.Q(app_label='services', model='workshop') | \
+            models.Q(app_label='services', model='activity')
+
+    content_type = models.ForeignKey(
+        ContentType,
+        verbose_name=_('Workshop or Activity'),
+        limit_choices_to=limit,
+        null=True,
+        blank=True,
+    )
+
+    object_id = models.PositiveIntegerField(
+        verbose_name=_('Activity or workshop ID'),
+        null=True,
+    )
+    content_object = GenericForeignKey('content_type', 'object_id')
+
+    class Meta:
+        verbose_name = _('Service Days')
+        verbose_name_plural = _('Service Days')
+
+    def __unicode__(self):
+        return self.get_day_display()
+
+
 class ServiceContractProcess(models.Model):
     user = models.OneToOneField(
         Client,
@@ -221,6 +243,7 @@ class ServiceContractProcess(models.Model):
     plan = models.ForeignKey(
         Service
     )
+    service_days = models.ManyToManyField(ServiceDay)
 
     class Meta:
         verbose_name = _('Service contract process')
