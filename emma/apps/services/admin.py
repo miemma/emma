@@ -8,11 +8,10 @@ from emma.core.utils import export_as_xls
 from . import models
 
 
-# @admin.register(models.ServiceDays)
-# class ServiceDaysAdmin(admin.ModelAdmin):
-#    list_display = ('name',)
-#    actions = [export_as_xls]
-#    export_as_xls.short_description = "Export selected objects to XLS"
+@admin.register(models.ServiceDay)
+class ServiceDayAdmin(admin.ModelAdmin):
+    actions = [export_as_xls]
+    export_as_xls.short_description = "Export selected objects to XLS"
 
 @admin.register(models.Service)
 class ServiceAdmin(admin.ModelAdmin):
@@ -23,6 +22,13 @@ class ServiceAdmin(admin.ModelAdmin):
 
 @admin.register(models.Workshop)
 class WorkshopAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    actions = [export_as_xls]
+    export_as_xls.short_description = "Export selected objects to XLS"
+
+
+@admin.register(models.Activity)
+class ActivityAdmin(admin.ModelAdmin):
     list_display = ('name',)
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
