@@ -11,17 +11,45 @@
 			<div class="step">5</div>
 		</div>
 	</div>
-	<h1>Selecciona el plan</h1>
+	<h2 class="step-title">Tu Plan</h2>
+	<p class="plans-introductory-text">
+		Desde una hora de Emma con fines de entretenimiento hasta un plan
+especializado con seguimiento geriátrico.
+	</p>
+	<p class="plans-introductory-text">
+	Siempre encontrarás un plan acorde a las necesidades de tu ser querido:</p>
 	<p>
-		{% for plan in plans %}
-			<p>
-				<form action="." method="post">
-					<h2>{{ plan.name }}</h2>
-					{% csrf_token %}
-					<input type="hidden" name="plan" value="{{ plan.id }}">
-					<button type="submit">Seleccionar</button>
-				</form>
-			</p>
-		{% endfor %}
+	<div class="plans-selector">
+		<form>
+			{% csrf_token %}
+			<input type="hidden" name="plan">
+			{% for plan in plans %}
+			<div class="plan-item">
+				<span class="plan-title">{{ plan.name }}</span>
+				<div class="plan-content-wrapper">
+					<div class="plan-content">
+						<span class="price">
+						{{plan.price}}<sup class="sup">MXN</sup></span>
+						<p class="description">
+							Hasta {{plan.max_hours_per_month}} hrs. de acompañamiento mensuales
+						</p>
+						<button data-plan="{{ plan.id }}" class="emma-btn emma-btn-light" type="submit">Seleccionar</button>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</form>
+		<div class="plan-item custom">
+			<span class="plan-title">Personalizado</span>
+			<div class="plan-content-wrapper">
+				<div class="plan-content">
+					<p class="description">
+						¿Te gustaría tener un plan a tu medida?
+					</p>
+					<a href="#" class="emma-btn emma-btn-light">Crealo aquí</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 {% endblock %}

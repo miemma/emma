@@ -1,0 +1,85 @@
+#hiring-flow
+  .plans-introductory-text
+    margin 0 auto
+    max-width 670px
+    margin-top 20px
+    width 90%
+    
+  .plans-selector
+    margin 0 auto
+    margin-top 80px
+    width 90%
+    
+    form
+      display inline-block
+      vertical-align middle
+      
+      &::after
+        border-color #ddd
+        border-style solid
+        border-width 0 2px 0 0
+        content ' '
+        display inline-block
+        height 324px
+        margin 0 25px
+        width 1px
+        vertical-align middle
+    
+    .plan-item
+      background white
+      display inline-block
+      vertical-align middle
+      width 240px
+      
+      &:not(:first-of-type)
+        margin-left 10px
+        
+      .plan-title
+        border-color $light_gray
+        border-style solid
+        border-width 0 0 2px 0
+        display block
+        font-size 21px
+        padding 12px 0 10px 0
+      
+      .plan-content-wrapper
+        align-items center
+        display flex
+        height 270px
+        padding 0 30px
+        
+        .plan-content
+          text-align center
+          width 100%
+          
+          .price
+            display block
+            font-family 'Avenir LT Std Heavy'
+            font-size 27px
+            line-height 0.9
+            
+            .sup
+              font-size 10px
+              margin-left 2px
+              top 0
+              vertical-align top
+              line-height 0.7
+          
+          .description
+            color $gray
+            font-size 13px
+            margin 23px 0 27px 0
+            
+          .emma-btn
+            display inline-block
+            font-size 15px
+            padding 7px 25px
+            
+      &.custom .plan-content-wrapper
+        padding 0 45px
+        
+        .plan-content
+          .description
+            font-size 15px
+            margin 10px 0 60px 0
+
