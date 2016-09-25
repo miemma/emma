@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static from staticfiles%}
+{% load humanize %}
 {% block content %}
 <div id="hiring-flow">
 	<div class="steps-box-wrapper">
@@ -29,9 +29,9 @@ especializado con seguimiento geriátrico.
 				<div class="plan-content-wrapper">
 					<div class="plan-content">
 						<span class="price">
-						{{plan.price}}<sup class="sup">MXN</sup></span>
+						${{ plan.price|intcomma:False }}<sup class="sup">MXN</sup></span>
 						<p class="description">
-							Hasta {{plan.max_hours_per_month}} hrs. de acompañamiento mensuales
+							Hasta {{ plan.max_hours_per_month }} hrs. de acompañamiento mensuales
 						</p>
 						<button data-plan="{{ plan.id }}" class="emma-btn emma-btn-light" type="submit">Seleccionar</button>
 					</div>
@@ -49,6 +49,17 @@ especializado con seguimiento geriátrico.
 					<a href="#" class="emma-btn emma-btn-light">Crealo aquí</a>
 				</div>
 			</div>
+		</div>
+	</div>
+	<a href="#" class="emma-btn compare-plans-btn">Comparar planes</a>
+	<div class="white-box">
+		<div class="plans-table-container">
+		</div>
+		<div class="on-demand-container">
+			<p>
+				<span>Envíanos tu solicitud y pide una <i>Emma</i> por única vez</span>
+				<a href="#" class="emma-btn emma-btn-light">Solicitar una Emma</a>
+			</p>
 		</div>
 	</div>
 </div>
