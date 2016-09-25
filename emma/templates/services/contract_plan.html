@@ -21,7 +21,7 @@ especializado con seguimiento geriátrico.
 	Siempre encontrarás un plan acorde a las necesidades de tu ser querido:</p>
 	<p>
 	<div class="plans-selector">
-		<form id="select-plan-form">
+		<form id="select-plan-form" method="post" action=".">
 			{% csrf_token %}
 			<input type="hidden" name="plan">
 			{% for plan in plans %}
