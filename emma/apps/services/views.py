@@ -160,4 +160,8 @@ class ContractPay(ActiveClientRequiredMixin, View):
 
 class ContractComprobation(ActiveClientRequiredMixin, View):
     def get(self, request):
-        return TemplateResponse(request, 'services/contract_comprobation.html')
+        contract_service = ServiceContractProcess.objects.get(user=request.user.client)
+        ctx = {
+            'contract_service': contract_service
+        }
+        return TemplateResponse(request, 'services/contract_comprobation.html', ctx)
