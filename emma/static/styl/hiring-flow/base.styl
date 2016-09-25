@@ -3,7 +3,7 @@
   margin-top 86px
   padding 80px 20px
   
-  .steps-container
+  .steps-box-wrapper
     margin 0 auto
     max-width 500px
     width 90%
@@ -13,3 +13,26 @@
       content ' '
       display block
       height 1px
+      transform translateY(24.5px)
+      
+    .steps
+      display flex
+      justify-content space-between
+      width 100%
+      
+      .step
+        background white
+        border-radius 50%
+        display inline-block
+        color $gray
+        font-family 'Avenir LT Std Medium'
+        font-size 18px
+        height 50px
+        line-height 50px
+        text-align center
+        width 50px
+        z-index 2
+        
+        &.active
+          background $yellow
+          color white
