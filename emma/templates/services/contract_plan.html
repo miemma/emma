@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load humanize %}
+{% load static from staticfiles %}
 {% block content %}
 <div id="hiring-flow">
 	<div class="steps-box-wrapper">
@@ -20,7 +21,7 @@ especializado con seguimiento geriátrico.
 	Siempre encontrarás un plan acorde a las necesidades de tu ser querido:</p>
 	<p>
 	<div class="plans-selector">
-		<form>
+		<form id="select-plan-form">
 			{% csrf_token %}
 			<input type="hidden" name="plan">
 			{% for plan in plans %}
@@ -63,4 +64,7 @@ especializado con seguimiento geriátrico.
 		</div>
 	</div>
 </div>
+{% endblock %}
+{% block js %}
+<script src="{% static "js/send-plan-option.js" %}"></script>
 {% endblock %}
