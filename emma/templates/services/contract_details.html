@@ -19,25 +19,19 @@
 		<div class="box white">
 			<div class="box-title">Selecciona tus talleres</div>
 			<div class="box-content">
-				<ul>
+				<div class="workshops-list">
 					{% for workshop in workshops %}
-					<li>
-
-					<span class="radio-container contract-location-body-radio-cont">
-		            <input id="workshop_{{ workshop.id }}" class="radio-input"
-		                   type="checkbox" value="{{ workshop.id }}"
-		                   name="contract-service-workshop"
-		                   data-service="{{ workshop.service.id }}">
-		             <label class="radio-label"
-		                    for="workshop_{{ workshop.id }}">
-			             {{ workshop.name }}
-		             </label>
-		          </span>
-						<label for="workshop-{{ workshop.id }}">{{ workshop.name }}</label>
-						<input name="workshop" type="checkbox" value="{{ workshop.id }}" id="workshop-{{ workshop.id }}">
-					</li>
+					<span class="radio-container workshop-item">
+	          <input id="workshop-{{ workshop.id }}" class="radio-input"
+	                 type="checkbox" value="{{ workshop.id }}"
+	                 name="workshop" />
+	           <label class="radio-label"
+	                  for="workshop-{{ workshop.id }}">
+	             {{ workshop.name }}
+	           </label>
+	        </span>
 					{% endfor %}
-				</ul>
+				</div>
 			</div>
 		</div>
 		{% endif %}
@@ -46,14 +40,19 @@
 		<div class="box white">
 			<div class="box-title">Selecciona tus actividades</div>
 			<div class="box-content">
-				<ul>
+				<div class="activities-list">
 					{% for activity in activities %}
-					<li>
-						<label for="activity-{{ activity.id }}">{{ activity.name }}</label>
-						<input name="activity" type="checkbox" value="{{ activity.id }}" id="workshop-{{ activity.id }}">
-					</li>
+					<span class="radio-container activity-item">
+	          <input id="activity-{{ activity.id }}" class="radio-input"
+	                 type="checkbox" value="{{ activity.id }}"
+	                 name="workshop" />
+	           <label class="radio-label"
+	                  for="activity-{{ activity.id }}">
+	             {{ activity.name }}
+	           </label>
+	        </span>
 					{% endfor %}
-				</ul>
+				</div>
 			</div>
 		</div>
 		{% endif %}
