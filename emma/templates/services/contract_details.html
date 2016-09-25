@@ -22,6 +22,17 @@
 				<ul>
 					{% for workshop in workshops %}
 					<li>
+
+					<span class="radio-container contract-location-body-radio-cont">
+		            <input id="workshop_{{ workshop.id }}" class="radio-input"
+		                   type="checkbox" value="{{ workshop.id }}"
+		                   name="contract-service-workshop"
+		                   data-service="{{ workshop.service.id }}">
+		             <label class="radio-label"
+		                    for="workshop_{{ workshop.id }}">
+			             {{ workshop.name }}
+		             </label>
+		          </span>
 						<label for="workshop-{{ workshop.id }}">{{ workshop.name }}</label>
 						<input name="workshop" type="checkbox" value="{{ workshop.id }}" id="workshop-{{ workshop.id }}">
 					</li>
