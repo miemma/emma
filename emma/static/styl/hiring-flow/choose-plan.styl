@@ -93,7 +93,7 @@
     padding 9px 16px
   
   .plans-table-container
-    padding 110px 70px 90px 70px
+    padding 110px 70px 75px 70px
     
     .plans-characteristics-table
       border 1px solid $dashboard_background
@@ -198,22 +198,57 @@
             transition padding 0.2s
 
   .on-demand-container
-    padding 70px 0 85px 0
-    margin-bottom -70px
+    .on-demand-title
+      font-size 27px
+      
+    .on-demand-images
+      display flex
+      margin-top 40px
+      
+      .image-item
+        background-color $gray
+        background-blend-mode multiply
+        height 330px
+        position relative
+        transition background-color 0.2s
+        width 33.3333%
+        
+        &:hover
+          background-color rgba(black, 0.7)
 
-    p
-      margin 0 auto
-      width 60%
-      
-      span
-        display block
-        font-size 21px
-      
-      .emma-btn
-        display inline-block
-        font-size 14px
-        margin-top 30px
-        padding 9px 30px
+          .hover-text
+            opacity 1
+        
+        .hover-text
+          color white
+          display block
+          font-size 34px
+          line-height 1.2
+          opacity 0
+          padding 0 65px
+          position absolute
+          transition opacity 0.2s
+          transform translateY(-50%)
+          top 50%
+          width 100%
+
+    .button-container
+      padding 70px 0 85px 0
+      margin-bottom -70px
+
+      p
+        margin 0 auto
+        width 60%
+        
+        span
+          display block
+          font-size 21px
+        
+        .emma-btn
+          display inline-block
+          font-size 14px
+          margin-top 30px
+          padding 9px 30px
         
 @media screen and (max-width: 768px)
   .plans-characteristics-table td
