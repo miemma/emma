@@ -90,133 +90,44 @@ class ContractPlanDetails(ActiveClientRequiredMixin, View):
         return HttpResponse('Hola')
 
 
-class ContractLocation(ActiveClientRequiredMixin, RequestFormMixin, FormView):
-    template_name = 'services/contract_location.html'
-    form_class = ServiceData
-    success_url = reverse_lazy('services:contract_adult')
-
+class ContractEmmaPreference(ActiveClientRequiredMixin, View):
     def get(self, request, **kwargs):
-        contract_process = ContractProcess.objects.get(
-            client=self.request.user.client
-        )
-        if not contract_process.id_service or not contract_process.workshop_list:
-            return redirect(reverse_lazy('services:contract_service_info'))
-        if not contract_process.service_days:
-            contract_process.service_days = 1
-            contract_process.save()
-        return super(ContractLocation, self).get(self, request, **kwargs)
-
-    def form_valid(self, form):
-        form.save()
-        contract_process = ContractProcess.objects.get(
-            client=self.request.user.client
-        )
-        contract_process.service_setup = True
+        return TemplateResponse(request, 'services/contract_emma.html')
+    def post(self, request, **kwargs):
+        contract_process = ServiceContractProcess.objects.get(user=request.user.client)
+        gender = request.POST.get('gender')
+        contract_process.emma_type = gender
+        languages = request.POST.getlist('language')
+        str_languages = ""
+        for language in languages:
+            str_languages += '%s, ' % str(language)
+        str_languages = str_languages[:-2]
+        contract_process.languages = str_languages
+        knowledges = request.POST.getlist('knowledge')
+        str_knowledges = ""
+        for knowledge in knowledges:
+            str_knowledges += '%s, ' % str(knowledge)
+        str_knowledges = str_knowledges[:-2]
+        contract_process.knowledges = str_knowledges
+        skills = request.POST.getlist('skill')
+        str_skills = ""
+        for skill in skills:
+            str_skills += '%s, ' % str(skill)
+        str_skills = str_skills[:-2]
+        contract_process.skills = str_skills
+        certifications = request.POST.getlist('certification')
+        str_certifications = ""
+        for cartification in certifications:
+            str_certifications += '%s, ' % str(cartification)
+        str_certifications = str_certifications[:-2]
+        contract_process.certifications = str_certifications
         contract_process.save()
-        return super(ContractLocation, self).form_valid(form)
-
-    def get_context_data(self, **kwargs):
-        context = super(ContractLocation, self).get_context_data(**kwargs)
-        contract_process = ContractProcess.objects.get(
-            client=self.request.user.client
-        )
-        service = Service.objects.get(
-            id=contract_process.id_service
-        )
-        workshop_list = []
-        for x in contract_process.workshop_list:
-            if x.isdigit():
-                workshop_list.append(x)
-        workshops = []
-        for workshop in workshop_list:
-            work = Workshop.objects.get(id=workshop, service=service)
-            workshops.append(work)
-        context['service'] = service
-        context['workshops'] = workshops
-        context['days'] = contract_process.service_days
-        return context
-
-
-class ContractAdult(ActiveClientRequiredMixin, RequestFormMixin, FormView):
-    template_name = 'services/contract_adult.html'
-    form_class = ContractAdultInfo
-    success_url = reverse_lazy('services:contract_comprobation')
-
-    def get(self, request, **kwargs):
-        contract_process = ContractProcess.objects.get(
-            client=self.request.user.client
-        )
-        if contract_process.service_setup is not True:
-            return redirect(reverse_lazy('services:contract_location'))
-        return super(ContractAdult, self).get(self, request, **kwargs)
-
-    def form_valid(self, form):
-        form.save()
-        contract_process = ContractProcess.objects.get(
-            client=self.request.user.client
-        )
-        contract_process.adult_setup = True
-        contract_process.save()
-        return super(ContractAdult, self).form_valid(form)
-
-
-class ContractComprobation(ActiveClientRequiredMixin, View):
-    template_name = 'services/contract_confirmation.html'
-
-    def get(self, request, **kwargs):
-        contract_process = ContractProcess.objects.get(
-            client=self.request.user.client
-        )
-        if contract_process.adult_setup is not True:
-            return redirect('services:contract_adult')
-
-        service = HiredService.objects.get(
-            client=self.request.user.client
-        )
-
-        address = AdultAddress.objects.get(id=contract_process.adult_address_id)
-
-        adult = Adult.objects.get(responsable=self.request.user.client)
-
-        ctx = {
-            'name': self.request.user.first_name,
-            'last_name': self.request.user.last_name,
-            'email': self.request.user.email,
-            'service': service.service.name,
-            'workshops': service.workshops,
-            'street': address.street,
-            'outdoor_number': address.outdoor_number,
-            'colony': address.colony,
-            'municipality': address.municipality,
-            'postal_code': address.postal_code,
-            'city': address.city,
-            'state': address.state,
-            'reference': address.reference,
-            'day_1': service.service_days.service_day_1,
-            'day_2': service.service_days.service_day_2,
-            'day_3': service.service_days.service_day_3,
-            'day_4': service.service_days.service_day_4,
-            'day_5': service.service_days.service_day_5,
-            'day_6': service.service_days.service_day_6,
-            'day_7': service.service_days.service_day_7,
-            'adult_first_name': adult.first_name,
-            'adult_last_name': adult.last_name,
-            'age': adult.birthday,
-        }
-
-        return TemplateResponse(request, self.template_name, ctx)
+        return HttpResponse('Hola')
 
 
 class ContractPay(ActiveClientRequiredMixin, View):
-    template_name = 'services/contract_payment.html'
-
     def get(self, request):
-        contract_process = ContractProcess.objects.get(
-            client=self.request.user.client
-        )
-        if contract_process.adult_setup is not True:
-            return redirect('services:contract_adult')
-        return render(request, self.template_name)
+        return render(request, 'services/contract_pay.html')
 
     def post(self, request):
         client = Client.objects.get(user=request.user)
@@ -238,49 +149,15 @@ class ContractPay(ActiveClientRequiredMixin, View):
 
         suscription.save()
 
-        history = History(
-            suscription=suscription,
-            movement="Suscripción Creada"
-        )
-        history.save()
-
         card = customer.cards.create(
             token_id=request.POST['token_id'],
             device_session_id=request.POST['devsessionid']
         )
 
-        contract_process = ContractProcess.objects.get(
-            client=self.request.user.client
-        ).delete()
 
         return redirect(reverse_lazy('landing:success_contract'))
 
 
-class ContractAddDay(View):
-    @staticmethod
-    def get(request):
-        raise Http404("Page not found")
-
-    @staticmethod
-    def post(request):
-        contract_process = ContractProcess.objects.get(
-            client=request.user.client
-        )
-        contract_process.service_days +=1
-        contract_process.save()
-        return HttpResponse('Add Day')
-
-
-class ContractRemoveDay(View):
-    @staticmethod
-    def get(request):
-        raise Http404("Page not found")
-
-    @staticmethod
-    def post(request):
-        contract_process = ContractProcess.objects.get(
-            client=request.user.client
-        )
-        contract_process.service_days -= 1
-        contract_process.save()
-        return HttpResponse('Remove Day')
+class ContractComprobation(ActiveClientRequiredMixin, View):
+    def get(self, request):
+        return TemplateResponse(request, 'services/contract_comprobation.html')

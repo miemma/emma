@@ -1,0 +1,70 @@
+{% load static from staticfiles %}
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Pago</title>
+  <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+</head>
+<body>
+	<form action="." method="post" id="contract-pay-form" name="contract-pay-form">
+      {% csrf_token %}
+      <input type="hidden" name="token_id" id="token_id" />
+      <input type="text" name="customer_name"
+             data-openpay-card="holder_name" required
+             placeholder="Titular de la tarjeta" />
+      <input type="text" name="card_number"
+             data-openpay-card="card_number" required
+             placeholder="Numero de la tarjeta" />
+      <input type="text" name="card_cvc"
+             data-openpay-card="cvv2" required
+             placeholder="CVC" />
+
+	    <input type="text" name="card_month"
+	           data-openpay-card="expiration_month"
+	           placeholder="MM" required
+	           size="2" maxlength='2' />
+	    <input type="text" name="card_year"
+	           data-openpay-card="expiration_year"
+	           placeholder="AA" required
+	           size="2" maxlength='2' />
+
+      <input type='hidden' name='devsessionid' id='devsessionid'>
+
+      <input type="button" id="contract-pay-button" value="Pagar" />
+
+			<p id="contract-pay-alert" style="display: none;">
+				La tarjeta fue declinada
+			</p>
+
+    </form>
+</body>
+<script type="text/javascript" src="https://openpay.s3.amazonaws.com/openpay.v1.min.js"></script>
+<script type='text/javascript' src="https://openpay.s3.amazonaws.com/openpay-data.v1.min.js"></script>
+<script>
+	$(document).ready(function() {
+	  OpenPay.setId('mg0kzdwsiduimlfaudun');
+	  OpenPay.setApiKey('pk_106c640a77f94dd49bae11cf94937075');
+	  OpenPay.setSandboxMode(true);
+		OpenPay.deviceData.setup("contract-pay-form", "devsessionid");
+	});
+	var success_callbak = function(response) {
+		console.log("Bien echo");
+		var token_id = response.data.id;
+		$('#token_id').val(token_id);
+		$('.contract-pay-alert').hide();
+		$('#contract-pay-form').submit();
+	};
+
+	var error_callbak = function(response) {
+		console.log("Error");
+		$('.contract-pay-alert').show();
+	};
+	$('#contract-pay-button').on('click', function(event) {
+		$('#contract-pay-alert').hide();
+		OpenPay.token.extractFormAndCreate(
+			'contract-pay-form', success_callbak, error_callbak
+		);
+});
+</script>
+</html>

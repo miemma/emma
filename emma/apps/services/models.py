@@ -245,6 +245,37 @@ class ServiceContractProcess(models.Model):
     )
     service_days = models.ManyToManyField(ServiceDay)
 
+    emma_type = models.CharField(
+        _('Emma preference'),
+        blank=True,
+        null=True,
+        max_length=30,
+        choices=(
+            (('emma'),('Emma')),
+            (('frank'), ('Frank')),
+        )
+    )
+    languages = models.TextField(
+        _('Languages'),
+        blank=True,
+        null=True,
+    )
+    knowledges = models.TextField(
+        _('Knowledges'),
+        blank=True,
+        null=True,
+    )
+    skills = models.TextField(
+        _('Skills'),
+        blank=True,
+        null=True,
+    )
+    certifications = models.TextField(
+        _('Certifications'),
+        blank=True,
+        null=True,
+    )
+
     class Meta:
         verbose_name = _('Service contract process')
         verbose_name_plural = _('Service contract process')

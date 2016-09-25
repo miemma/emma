@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Contratacion de la emma</title>
+</head>
+<body>
+	<h1>
+		Contratacion de la Emma
+	</h1>
+	<form action="." method="post">
+		{% csrf_token %}
+		<p>
+			<h2>Genero de preferencia</h2>
+			<label for="gender-emma">Emma</label>
+			<input type="radio" name="gender" value="emma" id="gender-emma">
+			<label for="gender-frank">Frank</label>
+			<input type="radio" name="gender" value="emma" id="gender-frank">
+		</p>
+		<p>
+			<h2>Idioma</h2>
+			<label for="language-spa">Español</label>
+			<input type="checkbox" name="language" value="spanish" id="language-spa">
+			<label for="language-eng">Ingles</label>
+			<input type="checkbox" name="language" value="english" id="language-eng">
+			<label for="language-fre">Frances</label>
+			<input type="checkbox" name="language" value="french" id="language-fre">
+		</p>
+		<p>
+			<h2>Conocimientos y destrezas</h2>
+			<h3>Conocimientos</h3>
+			<label for="know-his">Historia</label>
+			<input type="checkbox" name="knowledge" value="history" id="know-his">
+			<label for="know-ar">Arte</label>
+			<input type="checkbox" name="knowledge" value="art" id="know-ar">
+			<label for="know-lec">Lectura</label>
+			<input type="checkbox" name="knowledge" value="reading" id="know-lec">
+			<label for="know-pol">Politica</label>
+			<input type="checkbox" name="knowledge" value="politics" id="know-pol">
+			<label for="know-cin">Cine</label>
+			<input type="checkbox" name="knowledge" value="cinema" id="know-cin">
+			<label for="know-dep">Deportes</label>
+			<input type="checkbox" name="knowledge" value="sports" id="know-dep">
+			<label for="know-cul">Cultura general</label>
+			<input type="checkbox" name="knowledge" value="general culture" id="know-cul">
+			<label for="know-sci">Ciencia</label>
+			<input type="checkbox" name="knowledge" value="science" id="know-sci">
+			<label for="know-mus">Musica</label>
+			<input type="checkbox" name="knowledge" value="music" id="know-mus">
+			<h3>Destrezas</h3>
+			<label for="skill-knit">Tejer/Bordar</label>
+			<input type="checkbox" name="skill" value="knit" id="skill-knit">
+			<label for="skill-cook">Cocinar</label>
+			<input type="checkbox" name="skill" value="cook" id="skill-cook">
+			<label for="skill-manual">Manualidades</label>
+			<input type="checkbox" name="skill" value="crafts" id="skill-manual">
+			<label for="skill-paint">Pintar</label>
+			<input type="checkbox" name="skill" value="paint" id="skill-paint">
+		</p>
+		<p>
+			<h2>Certificaciones especiales</h2>
+			<label for="certification-aid">Primeros auxilios</label>
+			<input type="checkbox" name="certification" value="first aid" id="certification-aid">
+			<label for="certification-alz">Trato Alzhaimer</label>
+			<input type="checkbox" name="certification" value="alzheimer treatment" id="certification-alz">
+			<label for="certification-dep">Depresión</label>
+			<input type="checkbox" name="certification" value="depression" id="certification-dep">
+			<label for="certification-can">Cáncer</label>
+			<input type="checkbox" name="certification" value="cancer" id="certification-can">
+		</p>
+		<button type="submit">Siguiente</button>
+	</form>
+</body>
+</html>
