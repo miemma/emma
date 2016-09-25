@@ -135,7 +135,7 @@
           vertical-align middle
           
           &:first-child
-            max-width 170px !important
+            max-width 170px
             text-align left
             word-wrap break-word
             
@@ -148,7 +148,7 @@
         padding-left 60px
         
       th:first-child
-        max-width 270px !important
+        max-width 260px
         
       .tooltip-container
         border-radius 50%
@@ -214,3 +214,11 @@
         font-size 14px
         margin-top 30px
         padding 9px 30px
+        
+@media screen and (max-width: 768px)
+  .plans-characteristics-table td
+    max-width initial !important
+    
+    &:not(:first-child):not(:nth-child(2))
+      padding-left 40px !important
+      padding-right 40px !important
