@@ -1,17 +1,24 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Detalles del plan</title>
-</head>
-<body>
-	<form action="." method="post">
+{% extends "base.html" %}
+{% block content %}
+<div id="hiring-flow">
+	<div class="steps-box-wrapper">
+		<div class="steps">
+			<div class="step">1</div>
+			<div class="step active">2</div>
+			<div class="step">3</div>
+			<div class="step">4</div>
+			<div class="step">5</div>
+		</div>
+	</div>
+	<h2 class="step-title">Detalles</h2>
+	<h3 class="plan-type-title">Plan {{ service.plan.name|lower }}</h3>
+	<form class="white-boxes-container plan-detail-boxes" action="." method="post">
 		{% csrf_token %}
-		<h1>Plan {{ service.plan.name }}</h1>
 
 		{% if service.plan.allows_workshops %}
-			<p>
-				<h2>Seleccion del taller</h2>
+		<div class="box white">
+			<div class="box-title">Selecciona tus talleres</div>
+			<div class="box-content">
 				<ul>
 					{% for workshop in workshops %}
 					<li>
@@ -20,12 +27,14 @@
 					</li>
 					{% endfor %}
 				</ul>
-			</p>
+			</div>
+		</div>
 		{% endif %}
 
 		{% if service.plan.allows_activities %}
-			<p>
-				<h2>Selecciona la actividad</h2>
+		<div class="box white">
+			<div class="box-title">Selecciona tus actividades</div>
+			<div class="box-content">
 				<ul>
 					{% for activity in activities %}
 					<li>
@@ -34,14 +43,18 @@
 					</li>
 					{% endfor %}
 				</ul>
-			</p>
+			</div>
+		</div>
 		{% endif %}
 
-		<table>
+		<div class="box white">
+			<div class="box-title">Selecciona tus horarios (te quedan -- horas)</div>
+			<div class="box-content">
+				<table>
 			<tr>
-				<th>Dia</th>
+				<th>Dia de la semana</th>
 				<th>Hora de inicio</th>
-				<th>Duracion de la sesion</th>
+				<th>Duracion de la sesión</th>
 				<th>Taller o actividad</th>
 			</tr>
 			<tr>
@@ -318,13 +331,16 @@
 				</td>
 			</tr>
 		</table>
-		<p>
-			<h2>Resumen</h2>
-			<p>
-				Aqui ira el resumen dinamico de los detalles
-			</p>
-		</p>
-		<button type="submit">Siguiente</button>
+			</div>
+		</div>
+		<div class="box white">
+			<div class="box-title">Resumen</div>
+			<div class="box-content">
+				{ RESUMEN }
+			</div>
+		</div>
+
+		<button type="submit" class="emma-btn emma-btn-light plan-detail-submit-button">Siguiente</button>
 	</form>
-</body>
-</html>
+</div>
+{% endblock %}
