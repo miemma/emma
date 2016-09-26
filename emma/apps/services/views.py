@@ -19,7 +19,7 @@ from datetime import datetime
 
 
 class ContractPlan(ActiveClientRequiredMixin, View):
-    success_url = reverse_lazy('services:contract_location')
+    success_url = reverse_lazy('services:contract_details')
 
     def get_context(self, request):
         plans = Service.objects.all()
@@ -34,12 +34,17 @@ class ContractPlan(ActiveClientRequiredMixin, View):
 
     def post(self, request):
         plan = Service.objects.get(id=request.POST.get('plan'))
-        service = ServiceContractProcess(
-            user=request.user.client,
-            plan=plan
-        )
-        service.save()
-        return HttpResponse(plan)
+        try:
+            ServiceContractProcess.objects.get(
+                user=request.user.client
+            ).delete()
+        except ServiceContractProcess.DoesNotExist:
+            service = ServiceContractProcess(
+                user=request.user.client,
+                plan=plan
+            )
+            service.save()
+        return redirect(self.success_url)
 
 
 class ContractPlanDetails(ActiveClientRequiredMixin, View):
