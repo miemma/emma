@@ -11,7 +11,7 @@ from django.views.generic import View
 
 from emma.apps.clients.models import Client
 from emma.apps.services.models import Service, Workshop, \
-    ServiceContractProcess, ServiceDay, Activity
+    ServiceContractProcess, ServiceDay, Activity, HiredService
 from emma.apps.suscriptions.models import Suscription, Charge
 from emma.core.mixins import ActiveClientRequiredMixin
 
@@ -21,27 +21,28 @@ from datetime import datetime
 class ContractPlan(ActiveClientRequiredMixin, View):
     success_url = reverse_lazy('services:contract_details')
 
-    def get_context(self, request):
+    @staticmethod
+    def get_context(request):
         plans = Service.objects.all()
         ctx = {
             'plans': plans
         }
         return ctx
 
-    def get(self, request, **kwargs):
+    def get(self, request):
         ctx = self.get_context(request)
         return TemplateResponse(request, 'services/contract_plan.html', ctx)
 
     def post(self, request):
         plan = Service.objects.get(id=request.POST.get('plan'))
         try:
-            ServiceContractProcess.objects.get(
-                user=request.user.client
+            HiredService.objects.get(
+                client=request.user.client
             ).delete()
-        except ServiceContractProcess.DoesNotExist:
-            service = ServiceContractProcess(
-                user=request.user.client,
-                plan=plan
+        except HiredService.DoesNotExist:
+            service = HiredService(
+                client=request.user.client,
+                service=plan,
             )
             service.save()
         return redirect(self.success_url)

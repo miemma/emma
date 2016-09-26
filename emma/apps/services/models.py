@@ -173,7 +173,7 @@ class HiredService(models.Model):
         verbose_name_plural = _('Hired services')
 
     def __unicode__(self):
-        return '%s - %s - %s' % (self.adult, self.service, self.workshops)
+        return '%s - %s' % (self.adult, self.service)
 
 
 class ScheduledCall(models.Model):
