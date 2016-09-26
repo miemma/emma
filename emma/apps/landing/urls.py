@@ -30,7 +30,7 @@ urlpatterns = [
         view=views.SuccessPayTemplateView.as_view(),
         name='success_pay'),
 
-    url(regex=r'^contratacion-completada/$',
+    url(regex=r'^contratar/completado/$',
         view=views.SuccessContractTemplateView.as_view(),
         name='success_contract'),
 
