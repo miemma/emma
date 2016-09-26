@@ -243,7 +243,6 @@ class ServiceContractProcess(models.Model):
     plan = models.ForeignKey(
         Service
     )
-    service_days = models.ManyToManyField(ServiceDay)
 
     emma_type = models.CharField(
         _('Emma preference'),
