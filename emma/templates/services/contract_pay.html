@@ -46,7 +46,7 @@
 
       <input type='hidden' name='devsessionid' id='devsessionid'>
 
-      <button type="submit" id="contract-pay-button" class="emma-btn emma-btn-light payment-button">Pagar</button>
+      <button type="button" id="contract-pay-button" class="emma-btn emma-btn-light payment-button">Pagar</button>
 
 			<p id="contract-pay-alert" style="display: none;">
 				La tarjeta fue declinada
@@ -69,13 +69,13 @@
 		console.log("Bien echo");
 		var token_id = response.data.id;
 		$('#token_id').val(token_id);
-		$('.contract-pay-alert').hide();
+		$('#contract-pay-alert').hide();
 		$('#contract-pay-form').submit();
 	};
 
 	var error_callbak = function(response) {
 		console.log("Error");
-		$('.contract-pay-alert').show();
+		$('#contract-pay-alert').show();
 	};
 	$('#contract-pay-button').on('click', function(event) {
 		$('#contract-pay-alert').hide();
