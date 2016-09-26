@@ -113,16 +113,38 @@ class HiredService(models.Model):
         Service,
         verbose_name=_('Plan'),
     )
-    workshops = models.ManyToManyField(
-        Workshop,
-        verbose_name=_('Workshops'),
-        blank=False,
+
+    emma_type = models.CharField(
+        _('Emma preference'),
+        blank=True,
+        null=True,
+        max_length=30,
+        choices=(
+            (('emma'), ('Emma')),
+            (('frank'), ('Frank')),
+        )
     )
-    service_days = models.TextField(
-        _('Service Days'),
-        blank=False,
-        null=False,
+    languages = models.TextField(
+        _('Languages'),
+        blank=True,
+        null=True,
     )
+    knowledges = models.TextField(
+        _('Knowledges'),
+        blank=True,
+        null=True,
+    )
+    skills = models.TextField(
+        _('Skills'),
+        blank=True,
+        null=True,
+    )
+    certifications = models.TextField(
+        _('Certifications'),
+        blank=True,
+        null=True,
+    )
+
     emma_assigned = models.ForeignKey(
         Emma,
         verbose_name=_('Emma assigned'),
@@ -144,6 +166,7 @@ class HiredService(models.Model):
         blank=True,
         null=True
     )
+
 
     class Meta:
         verbose_name = _('Hired service')
@@ -186,7 +209,12 @@ class ScheduledCall(models.Model):
         return '%s - %s' % (self.name, self.email)
 
 
+class ServiceContractProcess():
+    pass
+
+
 class ServiceDay(models.Model):
+
     day = models.CharField(
         blank=False,
         null=False,
@@ -231,50 +259,3 @@ class ServiceDay(models.Model):
 
     def __unicode__(self):
         return self.get_day_display()
-
-
-class ServiceContractProcess(models.Model):
-    user = models.OneToOneField(
-        Client,
-        verbose_name=_('Client'),
-        on_delete=models.CASCADE,
-        primary_key=True
-    )
-    plan = models.ForeignKey(
-        Service
-    )
-
-    emma_type = models.CharField(
-        _('Emma preference'),
-        blank=True,
-        null=True,
-        max_length=30,
-        choices=(
-            (('emma'),('Emma')),
-            (('frank'), ('Frank')),
-        )
-    )
-    languages = models.TextField(
-        _('Languages'),
-        blank=True,
-        null=True,
-    )
-    knowledges = models.TextField(
-        _('Knowledges'),
-        blank=True,
-        null=True,
-    )
-    skills = models.TextField(
-        _('Skills'),
-        blank=True,
-        null=True,
-    )
-    certifications = models.TextField(
-        _('Certifications'),
-        blank=True,
-        null=True,
-    )
-
-    class Meta:
-        verbose_name = _('Service contract process')
-        verbose_name_plural = _('Service contract process')
