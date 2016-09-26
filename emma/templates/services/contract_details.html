@@ -12,20 +12,20 @@
 		</div>
 	</div>
 	<h2 class="step-title">Detalles</h2>
-	<h3 class="plan-type-title">Plan {{ service.plan.name|lower }}</h3>
-	{% if service.plan.allows_workshops and service.plan.allows_activities %}
-	<div ng-controller="planDetailController" ng-init="init(true, true, {{ service.plan.max_hours_per_month }}, {{ service.plan.max_weekly_sessions }})">
-	{% elif service.plan.allows_workshops %}
-	<div ng-controller="planDetailController" ng-init="init(true, false, {{ service.plan.max_hours_per_month }}, {{ service.plan.max_weekly_sessions }})">
-	{% elif service.plan.allows_activities %}
-	<div ng-controller="planDetailController" ng-init="init(false, true, {{ service.plan.max_hours_per_month }}, {{ service.plan.max_weekly_sessions }})">
+	<h3 class="plan-type-title">Plan {{ service.service.name|lower }}</h3>
+	{% if service.service.allows_workshops and service.service.allows_activities %}
+	<div ng-controller="planDetailController" ng-init="init(true, true, {{ service.service.max_hours_per_month }}, {{ service.service.max_weekly_sessions }})">
+	{% elif service.service.allows_workshops %}
+	<div ng-controller="planDetailController" ng-init="init(true, false, {{ service.service.max_hours_per_month }}, {{ service.service.max_weekly_sessions }})">
+	{% elif service.service.allows_activities %}
+	<div ng-controller="planDetailController" ng-init="init(false, true, {{ service.service.max_hours_per_month }}, {{ service.service.max_weekly_sessions }})">
 	{% else %}
-	<div ng-controller="planDetailController" ng-init="init(false, false, {{ service.plan.max_hours_per_month }}, {{ service.plan.max_weekly_sessions }})">
+	<div ng-controller="planDetailController" ng-init="init(false, false, {{ service.service.max_hours_per_month }}, {{ service.service.max_weekly_sessions }})">
 	{% endif %}
 		<form class="white-boxes-container plan-detail-boxes" action="." method="post">
 			{% csrf_token %}
 
-			{% if service.plan.allows_workshops %}
+			{% if service.service.allows_workshops %}
 			<div class="box white language-box">
 				<div class="box-title">Selecciona tus talleres</div>
 				<div class="box-content">
@@ -47,7 +47,7 @@
 			</div>
 			{% endif %}
 
-			{% if service.plan.allows_activities %}
+			{% if service.service.allows_activities %}
 			<div class="box white">
 				<div class="box-title">Selecciona tus actividades</div>
 				<div class="box-content">
