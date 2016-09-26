@@ -1,44 +1,61 @@
+{% extends "base.html" %}
 {% load static from staticfiles %}
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Pago</title>
-  <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
-</head>
-<body>
+{% block content %}
+<div id="hiring-flow">
+  <div class="steps-box-wrapper">
+    <div class="steps">
+      <div class="step">1</div>
+      <div class="step">2</div>
+      <div class="step">3</div>
+      <div class="step active">4</div>
+      <div class="step">5</div>
+    </div>
+  </div>
+  <h2 class="step-title">Pago</h2>
+  <span class="payment-legend">Ingresa tus datos en el siguiente formulario:</span>
 	<form action="." method="post" id="contract-pay-form" name="contract-pay-form">
       {% csrf_token %}
       <input type="hidden" name="token_id" id="token_id" />
-      <input type="text" name="customer_name"
-             data-openpay-card="holder_name" required
-             placeholder="Titular de la tarjeta" />
-      <input type="text" name="card_number"
-             data-openpay-card="card_number" required
-             placeholder="Numero de la tarjeta" />
-      <input type="text" name="card_cvc"
+      <div class="row">
+        <input type="text" name="customer_name"
+               data-openpay-card="holder_name" required
+               placeholder="Nombre titular"
+               class="emma-input col-md-12 margin-top-40" />
+        <input type="text" name="card_number"
+               data-openpay-card="card_number" required
+               placeholder="Número de tarjeta"
+               class="emma-input col-md-12 margin-top-10" />
+      </div>
+      <span class="form-inner-span">Fecha de vencimiento</span>
+      <div class="row multiple-inputs">
+        <input type="text" name="card_month"
+             data-openpay-card="expiration_month"
+             placeholder="Mes" required
+             size="2" maxlength='2'
+             class="emma-input col-md-3" />
+        <input type="text" name="card_year"
+             data-openpay-card="expiration_year"
+             placeholder="Año" required
+             size="2" maxlength='2'
+             class="emma-input col-md-3" />
+        <input type="text" name="card_cvc"
              data-openpay-card="cvv2" required
-             placeholder="CVC" />
-
-	    <input type="text" name="card_month"
-	           data-openpay-card="expiration_month"
-	           placeholder="MM" required
-	           size="2" maxlength='2' />
-	    <input type="text" name="card_year"
-	           data-openpay-card="expiration_year"
-	           placeholder="AA" required
-	           size="2" maxlength='2' />
+             placeholder="CVC"
+             class="emma-input col-md-3 margin-top-10" />
+      </div>
 
       <input type='hidden' name='devsessionid' id='devsessionid'>
 
-      <input type="button" id="contract-pay-button" value="Pagar" />
+      <button type="submit" id="contract-pay-button" class="emma-btn emma-btn-light payment-button">Pagar</button>
 
 			<p id="contract-pay-alert" style="display: none;">
 				La tarjeta fue declinada
 			</p>
 
     </form>
-</body>
+</div>
+{% endblock %}
+{% block js %}
 <script type="text/javascript" src="https://openpay.s3.amazonaws.com/openpay.v1.min.js"></script>
 <script type='text/javascript' src="https://openpay.s3.amazonaws.com/openpay-data.v1.min.js"></script>
 <script>
@@ -67,4 +84,4 @@
 		);
 });
 </script>
-</html>
+{% endblock %}

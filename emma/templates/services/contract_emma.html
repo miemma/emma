@@ -1,74 +1,258 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Contratacion de la emma</title>
-</head>
-<body>
-	<h1>
-		Contratacion de la Emma
-	</h1>
-	<form action="." method="post">
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% block content %}
+<div id="hiring-flow">
+	<div class="steps-box-wrapper">
+		<div class="steps">
+			<div class="step">1</div>
+			<div class="step">2</div>
+			<div class="step active">3</div>
+			<div class="step">4</div>
+			<div class="step">5</div>
+		</div>
+	</div>
+	<h2 class="step-title">Tu Emma</h2>
+	<form class="white-boxes-container emma-info-boxes" action="." method="post">
 		{% csrf_token %}
-		<p>
-			<h2>Genero de preferencia</h2>
-			<label for="gender-emma">Emma</label>
-			<input type="radio" name="gender" value="emma" id="gender-emma">
-			<label for="gender-frank">Frank</label>
-			<input type="radio" name="gender" value="emma" id="gender-frank">
-		</p>
-		<p>
-			<h2>Idioma</h2>
-			<label for="language-spa">Español</label>
-			<input type="checkbox" name="language" value="spanish" id="language-spa">
-			<label for="language-eng">Ingles</label>
-			<input type="checkbox" name="language" value="english" id="language-eng">
-			<label for="language-fre">Frances</label>
-			<input type="checkbox" name="language" value="french" id="language-fre">
-		</p>
-		<p>
-			<h2>Conocimientos y destrezas</h2>
-			<h3>Conocimientos</h3>
-			<label for="know-his">Historia</label>
-			<input type="checkbox" name="knowledge" value="history" id="know-his">
-			<label for="know-ar">Arte</label>
-			<input type="checkbox" name="knowledge" value="art" id="know-ar">
-			<label for="know-lec">Lectura</label>
-			<input type="checkbox" name="knowledge" value="reading" id="know-lec">
-			<label for="know-pol">Politica</label>
-			<input type="checkbox" name="knowledge" value="politics" id="know-pol">
-			<label for="know-cin">Cine</label>
-			<input type="checkbox" name="knowledge" value="cinema" id="know-cin">
-			<label for="know-dep">Deportes</label>
-			<input type="checkbox" name="knowledge" value="sports" id="know-dep">
-			<label for="know-cul">Cultura general</label>
-			<input type="checkbox" name="knowledge" value="general culture" id="know-cul">
-			<label for="know-sci">Ciencia</label>
-			<input type="checkbox" name="knowledge" value="science" id="know-sci">
-			<label for="know-mus">Musica</label>
-			<input type="checkbox" name="knowledge" value="music" id="know-mus">
-			<h3>Destrezas</h3>
-			<label for="skill-knit">Tejer/Bordar</label>
-			<input type="checkbox" name="skill" value="knit" id="skill-knit">
-			<label for="skill-cook">Cocinar</label>
-			<input type="checkbox" name="skill" value="cook" id="skill-cook">
-			<label for="skill-manual">Manualidades</label>
-			<input type="checkbox" name="skill" value="crafts" id="skill-manual">
-			<label for="skill-paint">Pintar</label>
-			<input type="checkbox" name="skill" value="paint" id="skill-paint">
-		</p>
-		<p>
-			<h2>Certificaciones especiales</h2>
-			<label for="certification-aid">Primeros auxilios</label>
-			<input type="checkbox" name="certification" value="first aid" id="certification-aid">
-			<label for="certification-alz">Trato Alzhaimer</label>
-			<input type="checkbox" name="certification" value="alzheimer treatment" id="certification-alz">
-			<label for="certification-dep">Depresión</label>
-			<input type="checkbox" name="certification" value="depression" id="certification-dep">
-			<label for="certification-can">Cáncer</label>
-			<input type="checkbox" name="certification" value="cancer" id="certification-can">
-		</p>
-		<button type="submit">Siguiente</button>
+		<div class="white box gender-box">
+			<div class="box-title">Género de preferencia</div>
+			<div class="box-content">
+				<div>
+					<span class="radio-container">
+	          <input id="gender-emma" class="radio-input"
+	                 type="radio" value="emma"
+	                 name="gender" />
+	           <label class="radio-label"
+	                  for="gender-emma">
+	             Emma
+	           </label>
+	        </span>
+	        <span class="radio-container">
+	          <input id="gender-frank" class="radio-input"
+	                 type="radio" value="frank"
+	                 name="gender"  />
+	           <label class="radio-label"
+	                  for="gender-frank">
+	             Frank
+	           </label>
+	        </span>
+	      </div>
+			</div>
+		</div>
+		<div class="white box language-box">
+			<div class="box-title">Idioma</div>
+			<div class="box-content">
+				<div>
+					<span class="radio-container">
+	          <input id="language-spa" class="radio-input"
+	                 type="checkbox" value="spanish"
+	                 name="language" />
+	           <label class="radio-label"
+	                  for="language-spa">
+	             Español
+	           </label>
+	        </span>
+	        <span class="radio-container">
+	          <input id="language-eng" class="radio-input"
+	                 type="checkbox" value="english"
+	                 name="language"  />
+	           <label class="radio-label"
+	                  for="language-eng">
+	             Inglés
+	           </label>
+	        </span>
+	        <span class="radio-container">
+	          <input id="language-fre" class="radio-input"
+	                 type="checkbox" value="french"
+	                 name="language"  />
+	           <label class="radio-label"
+	                  for="language-fre">
+	             Francés
+	           </label>
+	        </span>
+        </div>
+			</div>
+		</div>
+		<div class="white box skills-box">
+			<div class="box-title">Conocimientos y destrezas</div>
+			<div class="box-content">
+				<div class="knowledges-skills-container">
+					<div class="knowledges">
+					<h3 class="title">Conocimientos</h3>
+						<span class="radio-container">
+		          <input id="know-his" class="radio-input"
+		                 type="checkbox" value="history"
+		                 name="knowledge"  />
+		           <label class="radio-label"
+		                  for="know-his">
+		             Historia
+		           </label>
+		        </span>
+						<span class="radio-container">
+		          <input id="know-dep" class="radio-input"
+		                 type="checkbox" value="sports"
+		                 name="knowledge"  />
+		           <label class="radio-label"
+		                  for="know-dep">
+		             Deportes
+		           </label>
+		        </span>
+						<span class="radio-container">
+		          <input id="know-ar" class="radio-input"
+		                 type="checkbox" value="art"
+		                 name="knowledge"  />
+		           <label class="radio-label"
+		                  for="know-ar">
+		             Arte
+		           </label>
+		        </span>
+		        <span class="radio-container">
+		          <input id="know-cul" class="radio-input"
+		                 type="checkbox" value="general culture"
+		                 name="knowledge"  />
+		           <label class="radio-label"
+		                  for="know-cul">
+		             Cultura general
+		           </label>
+		        </span>
+		        <span class="radio-container">
+		          <input id="know-lec" class="radio-input"
+		                 type="checkbox" value="reading"
+		                 name="knowledge"  />
+		           <label class="radio-label"
+		                  for="know-lec">
+		             Lectura
+		           </label>
+		        </span>
+						<span class="radio-container">
+		          <input id="know-sci" class="radio-input"
+		                 type="checkbox" value="science"
+		                 name="knowledge"  />
+		           <label class="radio-label"
+		                  for="know-sci">
+		             Ciencia
+		           </label>
+		        </span>
+						<span class="radio-container">
+		          <input id="know-pol" class="radio-input"
+		                 type="checkbox" value="politics"
+		                 name="knowledge"  />
+		           <label class="radio-label"
+		                  for="know-pol">
+		             Política
+		           </label>
+		        </span>
+		        <span class="radio-container">
+		          <input id="know-mus" class="radio-input"
+		                 type="checkbox" value="music"
+		                 name="knowledge"  />
+		           <label class="radio-label"
+		                  for="know-mus">
+		             Música
+		           </label>
+		        </span>
+		        <span class="radio-container">
+		          <input id="know-cin" class="radio-input"
+		                 type="checkbox" value="cinema"
+		                 name="knowledge"  />
+		           <label class="radio-label"
+		                  for="know-cin">
+		             Cine
+		           </label>
+		        </span>
+		      </div>
+		      <div class="skills">
+						<h3 class="title">Destrezas</h3>
+						<span class="radio-container">
+		          <input id="skill-knit" class="radio-input"
+		                 type="checkbox" value="knit"
+		                 name="skill"  />
+		           <label class="radio-label"
+		                  for="skill-knit">
+		             Tejer/Bordar
+		           </label>
+		        </span>
+		        <span class="radio-container">
+		          <input id="skill-cook" class="radio-input"
+		                 type="checkbox" value="cook"
+		                 name="skill"  />
+		           <label class="radio-label"
+		                  for="skill-cook">
+		             Cocinar
+		           </label>
+		        </span>
+						<span class="radio-container">
+		          <input id="skill-manual" class="radio-input"
+		                 type="checkbox" value="crafts"
+		                 name="skill"  />
+		           <label class="radio-label"
+		                  for="skill-manual">
+		             Manualidades
+		           </label>
+		        </span>
+		        <span class="radio-container">
+		          <input id="skill-paint" class="radio-input"
+		                 type="checkbox" value="paint"
+		                 name="skill"  />
+		           <label class="radio-label"
+		                  for="skill-paint">
+		             Pintar
+		           </label>
+		        </span>
+		      </div>
+	      </div>
+			</div>
+		</div>
+		<div class="white box certifications-box">
+			<div class="box-title">Certificaciones especiales</div>
+			<div class="box-content">
+				<div>
+					<span class="radio-container">
+	          <input id="certification-aid" class="radio-input"
+	                 type="checkbox" value="first aid"
+	                 name="certification"  />
+	           <label class="radio-label"
+	                  for="certification-aid">
+	             Primeros auxilios
+	           </label>
+	        </span>
+	        <span class="radio-container">
+	          <input id="certification-alz" class="radio-input"
+	                 type="checkbox" value="alzheimer"
+	                 name="certification"  />
+	           <label class="radio-label"
+	                  for="certification-alz">
+	             Trato Alzhaimer
+	           </label>
+	        </span>
+					<span class="radio-container">
+	          <input id="certification-dep" class="radio-input"
+	                 type="checkbox" value="depression"
+	                 name="certification"  />
+	           <label class="radio-label"
+	                  for="certification-dep">
+	             Depresión
+	           </label>
+	        </span>
+	        <span class="radio-container">
+	          <input id="certification-can" class="radio-input"
+	                 type="checkbox" value="cancer"
+	                 name="certification"  />
+	           <label class="radio-label"
+	                  for="certification-can">
+	             Cáncer
+	           </label>
+	        </span>
+	      </div>
+			</div>
+		</div>
+		<div class="big-text">
+			En Emma haremos un gran esfuerzo por encontrar al mejor candidato que cumpla tus preferencias
+		</div>
+		<div class="small-text">
+			*No garantizamos que los acompañantes sean expertos en los temas seleccionados.
+		</div>
+		<button type="submit" class="emma-btn emma-btn-light">Siguiente</button>
 	</form>
-</body>
-</html>
+</div>
+{% endblock %}

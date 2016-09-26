@@ -44,8 +44,45 @@
     font-size 34px
     margin-top 45px
     
+  .white-boxes-container
+    margin 0 auto
+    width 90%
+    
+    .box
+      &:not(:first-child)
+        margin-top 26px
+      
+      .box-title
+        border-color #ccc
+        border-style solid
+        border-width 0 0 2px 0
+        color $dark_gray
+        font-size 26.5px
+        line-height 56px
+        
+      .box-content
+        font-size 20px
+        
+        >div, >p
+          margin 0 auto
+          width 90%
+        
+      .radio-label
+        font-weight normal
+      
+      .radio-label::before
+        border solid 2px #bbb
+        font-size 18px
+        height 18px
+        line-height 18px
+        width 18px
+        
+      .radio-container
+        font-size inherit
+        float none
+    
 @import "choose-plan"
-// @import "details"
-// @import "emma"
-// @import "payment"
-// @import "confirmation"
+@import "details"
+@import "emma"
+@import "payment"
+@import "confirmation"

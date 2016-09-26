@@ -1,0 +1,72 @@
+#hiring-flow
+  .plan-type-title
+    color #444
+    font-size 26px
+    
+  .plan-detail-boxes
+    margin-top 55px
+    max-width 840px
+    
+    .workshops-list, .activities-list
+      display flex
+      flex-flow row wrap
+      max-width 620px
+      min-width 260px
+      padding 30px 0 50px 0
+      
+      .workshop-item, .activity-item
+        box-sizing border-box !important
+        flex-basis 50%
+        margin-top 16px
+        padding-left 60px
+        
+    .timetable-container
+      min-width 260px
+      padding 30px 0
+        
+      th
+        color $dark_gray
+        font-family 'Avenir LT Std Heavy'
+        font-size 21px
+        padding-bottom 10px !important
+        
+      th, td
+        text-align center
+        padding 0 10px
+        
+        *
+          width 100%
+          
+      td
+        padding-top 10px
+        vertical-align middle
+        
+        input.radio-input
+          float left
+          height 0
+          
+          &:disabled + label::before
+            background $light_gray
+          
+        .radio-container
+          display block
+          text-align left
+          
+        select:disabled
+          background $light_gray
+          
+  .white-boxes-container .box.summary-box
+    margin-top 110px
+    
+    .box-content
+      padding 40px 0 60px 0
+      
+      p
+        min-width 260px
+        text-align left
+        max-width 580px
+        
+  .plan-detail-submit-button
+    font-size 21px
+    margin 50px 0 70px 0
+    padding 9px 60px
