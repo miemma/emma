@@ -100,10 +100,11 @@ class ContractPlanDetails(ActiveClientRequiredMixin, View):
 
 
 class ContractEmmaPreference(ActiveClientRequiredMixin, View):
+    succes_url = reverse_lazy('services:contract_payment')
     def get(self, request, **kwargs):
         return TemplateResponse(request, 'services/contract_emma.html')
     def post(self, request, **kwargs):
-        contract_process = ServiceContractProcess.objects.get(user=request.user.client)
+        contract_process = HiredService.objects.get(client=request.user.client)
         gender = request.POST.get('gender')
         contract_process.emma_type = gender
         languages = request.POST.getlist('language')
@@ -131,10 +132,11 @@ class ContractEmmaPreference(ActiveClientRequiredMixin, View):
         str_certifications = str_certifications[:-2]
         contract_process.certifications = str_certifications
         contract_process.save()
-        return HttpResponse('Hola')
+        return redirect(self.succes_url)
 
 
 class ContractPay(ActiveClientRequiredMixin, View):
+    success_url = reverse_lazy('services:contract_comprobation')
     def get(self, request):
         return render(request, 'services/contract_pay.html')
 
@@ -164,21 +166,22 @@ class ContractPay(ActiveClientRequiredMixin, View):
         )
 
 
-        return redirect(reverse_lazy('landing:success_contract'))
+        return redirect()
 
 
 class ContractComprobation(ActiveClientRequiredMixin, View):
+    success_url = reverse_lazy('landing:success_contract')
     def get(self, request):
 
         suscription = Suscription.objects.get(client=request.user.client)
         customer = openpay.Customer.retrieve(suscription.openpay_id)
         cards = customer.cards.all()
 
-        contract_service = ServiceContractProcess.objects.get(user=request.user.client)
-        service_days = contract_service.service_days
+        contract_service = HiredService.objects.get(client=request.user.client)
+        service_days = ServiceDay.objects.filter(service=contract_service)
         activities = []
         workshops = []
-        for x in service_days.all():
+        for x in service_days:
             if x.content_object.__class__ is Activity:
                 activities.append(x.content_object)
             if x.content_object.__class__ is Workshop:
@@ -197,31 +200,33 @@ class ContractComprobation(ActiveClientRequiredMixin, View):
         cards = customer.cards.all()
         card = cards.data[0]
 
-        contract_service = ServiceContractProcess.objects.get(
-            user=request.user.client)
+        contract_service = HiredService.objects.get(
+            client=request.user.client)
 
         try:
             charge = openpay.Charge.create(
                 source_id=card.id,
                 method="card",
-                amount=contract_service.plan.price,
+                amount=contract_service.service.price,
                 currency="MXN",
-                description="Cargo por plan %s de emma" % contract_service.plan.name,
+                description="Cargo por plan %s de emma" % contract_service.service.name,
                 customer=customer.id,
                 device_session_id=request.POST.get('devsessionid')
 
             )
 
-            if charge.status == 'completed':
-                charge_reg = Charge(
-                    suscription=suscription,
-                    plan=contract_service.plan,
-                    amount=contract_service.plan.price,
-                    status='paid',
-                    card=card.card_number,
-
-                )
-                charge_reg.save()
-
         except openpay.CardError:
             return HttpResponse('Error de tarjeta')
+
+        if charge.status == 'completed':
+            charge_reg = Charge(
+                suscription=suscription,
+                plan=contract_service.service,
+                amount=contract_service.service.price,
+                status='paid',
+                card=card.card_number,
+
+            )
+            charge_reg.save()
+
+        return redirect(self.success_url)
