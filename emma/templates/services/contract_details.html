@@ -93,7 +93,7 @@
 					        </span>
 								</td>
 								<td>
-									<select name="{$ day.htmlValue $}_start_time" ng-disabled="day.disabled || !day.isSelected">
+									<select class="emma-input" name="{$ day.htmlValue $}_start_time" ng-disabled="day.disabled || !day.isSelected">
 										<option value="">Seleccionar...</option>
 										<option value="9:00">9:00 AM</option>
 										<option value="10:00">10:00 AM</option>
@@ -110,12 +110,12 @@
 									</select>
 								</td>
 								<td>
-									<select ng-model="day.hours" name="{$ day.htmlValue $}_weekly_sessions" ng-disabled="day.disabled || !day.isSelected" ng-options="item.value as item.text for item in plan.sessionNumbers">
+									<select class="emma-input" ng-model="day.hours" name="{$ day.htmlValue $}_weekly_sessions" ng-disabled="day.disabled || !day.isSelected" ng-options="item.value as item.text for item in plan.sessionNumbers" ng-change="disableDays()">
 										<option value="">Seleccionar...</option>
 									</select>
 								</td>
 								<td>
-									<select name="{$ day.htmlValue $}_workshop_activity" ng-disabled="day.disabled || !day.isSelected">
+									<select class="emma-input" name="{$ day.htmlValue $}_workshop_activity" ng-disabled="day.disabled || !day.isSelected">
 										<option value="">Selecionar...</option>
 										<option ng-repeat="item in getMergedLists()" value="{$ item.id $}-{$ item.name $}" ng-show="item.isSelected">{$ item.name $}</option>
 									</select>

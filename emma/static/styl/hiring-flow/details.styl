@@ -28,6 +28,7 @@
         color $dark_gray
         font-family 'Avenir LT Std Heavy'
         font-size 21px
+        padding-bottom 10px !important
         
       th, td
         text-align center
@@ -35,6 +36,24 @@
         
         *
           width 100%
+          
+      td
+        padding-top 10px
+        vertical-align middle
+        
+        input.radio-input
+          float left
+          height 0
+          
+          &:disabled + label::before
+            background $light_gray
+          
+        .radio-container
+          display block
+          text-align left
+          
+        select:disabled
+          background $light_gray
           
   .white-boxes-container .box.summary-box
     margin-top 110px

@@ -112,17 +112,30 @@ angular.module('emmaHiringFlow')
     };
 
     $scope.disableDays = function () {
-      var selectedDays = $filter('filter')($scope.weekDays, {isSelected: true}).length;
-      if (selectedDays >= $scope.plan.maxWeeklySessions) {
+      var selectedDays = $filter('filter')($scope.weekDays, {isSelected: true});
+      var totalHours = 0;
+
+      if (selectedDays.length >= $scope.plan.maxWeeklySessions) {
         $scope.weekDays = angular.forEach($scope.weekDays, function (element) {
           if (!element.isSelected) {
             element.disabled = true;
           }
         });
       } else {
-        $scope.weekDays = angular.forEach($scope.weekDays, function (element) {
-          element.disabled = false;
+        angular.forEach(selectedDays, function (element) {
+          totalHours += element.hours;
         });
+        if (totalHours > $scope.plan.maxMonthlyHours) {
+          $scope.weekDays = angular.forEach($scope.weekDays, function (element) {
+            if (!element.isSelected) {
+              element.disabled = true;
+            }
+          });
+        } else {
+          $scope.weekDays = angular.forEach($scope.weekDays, function (element) {
+            element.disabled = false;
+          });
+        }
       }
     };
   });
