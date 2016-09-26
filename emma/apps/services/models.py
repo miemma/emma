@@ -214,6 +214,9 @@ class ServiceContractProcess():
 
 
 class ServiceDay(models.Model):
+    service = models.ForeignKey(
+        HiredService
+    )
 
     day = models.CharField(
         blank=False,
