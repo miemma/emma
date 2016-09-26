@@ -1,12 +1,18 @@
+{% extends "base.html" %}
 {% load static from staticfiles %}
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Pago</title>
-  <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
-</head>
-<body>
+{% block content %}
+<div id="hiring-flow">
+  <div class="steps-box-wrapper">
+    <div class="steps">
+      <div class="step">1</div>
+      <div class="step">2</div>
+      <div class="step">3</div>
+      <div class="step active">4</div>
+      <div class="step">5</div>
+    </div>
+  </div>
+  <h2 class="step-title">Pago</h2>
+  <span class="payment-legend">Ingresa tus datos en el siguiente formulario:</span>
 	<form action="." method="post" id="contract-pay-form" name="contract-pay-form">
       {% csrf_token %}
       <input type="hidden" name="token_id" id="token_id" />
@@ -38,7 +44,9 @@
 			</p>
 
     </form>
-</body>
+</div>
+{% endblock %}
+{% block js %}
 <script type="text/javascript" src="https://openpay.s3.amazonaws.com/openpay.v1.min.js"></script>
 <script type='text/javascript' src="https://openpay.s3.amazonaws.com/openpay-data.v1.min.js"></script>
 <script>
@@ -67,4 +75,4 @@
 		);
 });
 </script>
-</html>
+{% endblock %}
