@@ -50,5 +50,5 @@ class ScheduledCallAdmin(admin.ModelAdmin):
 
 
 @admin.register(models.ServiceContractProcess)
-class ScheduledCallAdmin(admin.ModelAdmin):
-    pass
+class ServiceContractProcessAdmin(admin.ModelAdmin):
+    list_display = ('user', 'plan')
