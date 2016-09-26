@@ -1,0 +1,95 @@
+{% load static from staticfiles %}
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Comprobacion</title>
+</head>
+<body>
+	<h1>Confirmacion </h1>
+	{% if contract_service.plan.allows_workshops %}
+		<p>
+			<h2>Talleres seleccionados</h2>
+			<ul>
+				{% for workshop in workshops %}
+					<li>
+						{{ workshop.name }}
+					</li>
+				{% endfor %}
+			</ul>
+		</p>
+	{% endif %}
+	{% if contract_service.plan.allows_activities %}
+		<p>
+			<h2>Actividades seleccionados</h2>
+			<ul>
+				{% for activity in activities %}
+					<li>
+						{{ activity.name }}
+					</li>
+				{% endfor %}
+			</ul>
+		</p>
+	{% endif %}
+	<p>
+		<h2>Dias de servicio</h2>
+		<table>
+			<tr>
+				<th>Dia</th>
+				<th>Hora de inicio</th>
+				<th>Duracion de la sesion</th>
+				<th>Taller o actividad</th>
+			</tr>
+			{% for day in contract_service.service_days.all %}
+				<tr>
+					<th>{{ day.get_day_display }}</th>
+					<th>{{ day.start_time }}</th>
+					<th>{{ day.duration }}</th>
+					<th>{{ day.content_object.name }}</th>
+				</tr>
+			{% endfor %}
+		</table>
+	</p>
+	<h3>Genero de preferencia: {{ contract_service.get_emma_type_display }}</h3>
+	<h3>Idiomas: {{ contract_service.languages }}</h3>
+	<h3>Conocimientos: {{ contract_service.knowledges }}</h3>
+	<h3>Destrezas: {{ contract_service.skills }}</h3>
+	<h3>Certificaciones: {{ contract_service.certifications }}</h3>
+
+	<h2>Resumen de pago</h2>
+	<h3>Titular: {{ card.holder_name }}</h3>
+	<h3>Numero: {{ card.card_number }}</h3>
+	<h3>Fecha de vencimiento: {{ card.expiration_month }}/{{ card.expiration_year}}</h3>
+
+	<form action="" method="post" name="comprobation_form" id="comprobation_form">
+		{% csrf_token %}
+		<input type='hidden' name='devsessionid' id='devsessionid'>
+		<button id="submit_button">Finalizar</button>
+	</form>
+
+</body>
+<script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+<script type="text/javascript" src="https://openpay.s3.amazonaws.com/openpay.v1.min.js"></script>
+<script type='text/javascript' src="https://openpay.s3.amazonaws.com/openpay-data.v1.min.js"></script>
+<script>
+	$(document).ready(function() {
+	  OpenPay.setId('mg0kzdwsiduimlfaudun');
+	  OpenPay.setApiKey('pk_106c640a77f94dd49bae11cf94937075');
+	  OpenPay.setSandboxMode(true);
+		OpenPay.deviceData.setup("comprobation_form", "devsessionid");
+	});
+	var success_callbak = function(response) {
+		console.log("Bien echo");
+		$('#comprobation_form').submit();
+	};
+
+	var error_callbak = function(response) {
+		console.log("Error");
+	};
+	$('#submit_button').on('click', function(event) {
+		OpenPay.token.extractFormAndCreate(
+			'comprobation_form', success_callbak, error_callbak
+		)
+	});
+</script>
+</html>
