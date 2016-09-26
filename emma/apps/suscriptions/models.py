@@ -141,9 +141,9 @@ class Charge(models.Model):
     )
     file = models.FileField(
         _('File'),
-        blank=False,
-        null=False,
-        upload_to='reports',
+        blank=True,
+        null=True,
+        upload_to='charges_files',
     )
 
 
