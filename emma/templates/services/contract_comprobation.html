@@ -17,10 +17,10 @@
 			<div class="box-content">
 				<div>
 					<div class="info-section">
-						{% if contract_service.plan.allows_workshops %}
+						{% if contract_service.service.allows_workshops %}
 						<span class="line">
 							<b>Taller(es) seleccionados:</b>
-							<span>aaaa
+							<span>
 								{% for workshop in workshops %}
 									{% if not forloop.last %}
 										{{ workshop.name }},
@@ -31,10 +31,10 @@
 							</span>
 						</span>
 						{% endif %}
-						{% if contract_service.plan.allows_activities %}
+						{% if contract_service.service.allows_activities %}
 						<span class="line">
 							<b>Actividad(es) seleccionadas:</b>
-							<span>bbb
+							<span>
 								{% for activity in activities %}
 									{% if not forloop.last %}
 										{{ activity.name }},
