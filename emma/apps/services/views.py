@@ -49,14 +49,16 @@ class ContractPlan(ActiveClientRequiredMixin, View):
 
 
 class ContractPlanDetails(ActiveClientRequiredMixin, View):
-    def get_context(self, request):
+    success_url = reverse_lazy('services:contract_emma')
+    @staticmethod
+    def get_context(request):
         workshops = Workshop.objects.all()
         activities = Activity.objects.all()
-        service = ServiceContractProcess.objects.get(
-            user=request.user.client,
+        service = HiredService.objects.get(
+            client=request.user.client,
         )
-        weekly_sessions = range(1, service.plan.max_weekly_sessions + 1)
-        weekly_hours = range(1, service.plan.weekly_hours + 1)
+        weekly_sessions = range(1, service.service.max_weekly_sessions + 1)
+        weekly_hours = range(1, service.service.weekly_hours + 1)
         ctx = {
             'workshops': workshops,
             'activities': activities,
@@ -66,15 +68,16 @@ class ContractPlanDetails(ActiveClientRequiredMixin, View):
         }
         return ctx
 
-    def get(self, request, **kwargs):
+    def get(self, request):
         ctx = self.get_context(request)
         return TemplateResponse(request, 'services/contract_details.html', ctx)
 
-    def post(self, request, **kwargs):
+    def post(self, request):
         days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
-        contract_process = ServiceContractProcess.objects.get(user=request.user.client)
+        contract_process = HiredService.objects.get(client=request.user.client)
         for x in days:
             if request.POST.get('%s_day' % x):
+                """
                 workshop_activity = request.POST.get('%s_workshop_activity' % x).split('-')
                 try:
                     content = Workshop.objects.get(id=workshop_activity[0], name=workshop_activity[1])
@@ -83,16 +86,17 @@ class ContractPlanDetails(ActiveClientRequiredMixin, View):
                         content = Activity.objects.get(id=workshop_activity[0], name=workshop_activity[1])
                     except Activity.DoesNotExist:
                         raise Http404
+                """
                 service_day = ServiceDay(
+                    service=contract_process,
                     day=request.POST.get('%s_day' % x),
                     start_time=request.POST.get('%s_start_time' % x),
-                    duration=request.POST.get('%s_weekly_sessions' % x),
-                    content_object=content
+                    # duration=request.POST.get('%s_weekly_sessions' % x),
+                    duration=1,
+                    content_object=Workshop.objects.get(id=1)
                 )
                 service_day.save()
-                contract_process.service_days.add(service_day)
-                contract_process.save()
-        return HttpResponse('Hola')
+        return redirect(self.success_url)
 
 
 class ContractEmmaPreference(ActiveClientRequiredMixin, View):
