@@ -125,11 +125,16 @@
 					</div>
 				</div>
 			</div>
-			<div class="box white">
+			<div class="box white summary-box">
 				<div class="box-title">Resumen</div>
 				<div class="box-content">
-					Taller(es) seleccionados: <span ng-repeat="item in plan.workshops"><span ng-if="item.isSelected">{$ item.name $}</span></span> <br>
-					Actividad(es) seleccionados: <span ng-repeat="item in plan.activities"><span ng-if="item.isSelected">{$ item.name $}</span></span>
+					<p>
+						Taller(es) seleccionados: <span ng-repeat="item in plan.workshops"><span ng-if="item.isSelected">{$ item.name $}</span></span> <br>
+						Actividad(es) seleccionados: <span ng-repeat="item in plan.activities"><span ng-if="item.isSelected">{$ item.name $}</span></span> <br>
+						Número de sesiones semanales: <span></span> <br>
+						Cantidad total de horas semanales: <span></span> <br>
+						Detalle de día y hora: <span></span>
+					</p>
 				</div>
 			</div>
 
