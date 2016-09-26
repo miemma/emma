@@ -8,14 +8,69 @@
         padding 50px 0
         
         >div
+          max-width 600px
           text-align center
-          width 60%
           
         .radio-container
           display inline-block
           
           &:not(:first-child)
             margin-left 15px
+    
+    .skills-box
+      .box-content
+        padding 30px 0
+        
+        .knowledges-skills-container
+          display flex
+          max-width 670px
+          
+        .title
+          color #555
+          font-size 23px
+          margin-bottom 20px
+          text-align center
+          
+        .knowledges
+          flex-basis 60%
+          text-align left
+          
+          .title
+            margin-right 80px
+          
+          .radio-container
+            display inline-block
+            margin-top 15px
+            max-width 210px
+            min-width 160px
+            width auto
+          
+        .skills
+          flex-basis 40%
+          position relative
+          
+          .title
+            margin-left 40px
+            margin-bottom 50px
+          
+          &::before
+            background $light_gray
+            content ' '
+            display block
+            height 86%
+            left 0
+            margin-left -10px
+            position absolute
+            top 50%
+            transform translateY(-50%)
+            width 2px
+            
+          .radio-container
+            display block
+            margin 0 auto
+            margin-top 15px
+            padding-left 20px
+            width 200px
             
     .certifications-box
       .box-content
@@ -23,12 +78,28 @@
         
         >div
           text-align center
-          width 60%
+          max-width 500px
         
         .radio-container
           display inline-block
           margin-top 15px
           width calc(50% - 5px)
-        
-    .box-content > div
+          
+    .big-text
+      color $dark_gray
+      font-size 26px
+      line-height 1.25
       margin 0 auto
+      max-width 620px
+      padding 35px 0
+      width 96%
+      
+    .small-text
+      color $gray
+      font-size 21.5px
+      margin-top 32px
+      
+    .emma-btn
+      font-size 21px
+      margin-top 55px
+      padding 9px 70px
