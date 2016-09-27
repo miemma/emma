@@ -119,9 +119,10 @@
 				<div class="box-content">
 					<p>
 						Taller(es) y actividad(es) seleccionados: <span ng-repeat="item in mergedLists"><span ng-if="item.isSelected">{$ item.name $}<span ng-if="!$last">, </span></span></span> <br>
-						Número de sesiones semanales: <span></span> <br>
-						Cantidad total de horas semanales: <span></span> <br>
-						Detalle de día y hora: <span></span>
+						Número de sesiones semanales: <span>{$ (sessions|filter:{selected:true}).length $}</span> <br>
+						Cantidad total de horas semanales: <span> {$ usedHours $}</span> <br>
+						Detalle de día y hora:
+						<div ng-repeat="session in sessions | filter: {selected:true}">{$ session.dayName $}: {$ session.initialHour $} - {$ session.duration $} horas</div>
 					</p>
 				</div>
 			</div>

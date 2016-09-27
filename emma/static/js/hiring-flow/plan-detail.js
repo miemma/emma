@@ -129,6 +129,8 @@ angular.module('emmaHiringFlow')
       }
     ];
 
+    $scope.usedHours = 0;
+
     $scope.init = function (allowsWorkshops, allowsActivities, maxMonthlyHours, maxWeeklySessions) {
       $scope.plan.allowsWorkshops = allowsWorkshops;
       $scope.plan.allowsActivities = allowsActivities;
@@ -167,11 +169,11 @@ angular.module('emmaHiringFlow')
 
     $scope.getHoursLeft = function () {
       var selectedDays = $filter('filter')($scope.sessions, {selected: true});
-      var usedHours = 0;
+      $scope.usedHours = 0;
       angular.forEach(selectedDays, function(element) {
-        usedHours += element.duration;
+        $scope.usedHours += element.duration;
       });
-      return ($scope.plan.maxMonthlyHours / 4) - usedHours;
+      return ($scope.plan.maxMonthlyHours / 4) - $scope.usedHours;
     };
 
     $scope.mergeLists = function () {
