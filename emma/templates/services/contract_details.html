@@ -100,7 +100,7 @@
 									</select>
 								</td>
 								<td>
-									<select class="emma-input" ng-model="day.duration" name="{$ day.htmlValue $}_weekly_sessions" ng-disabled="day.disabled || !day.selected" ng-options="item.value as item.text for item in plan.sessionNumbers track by item.value" ng-change="disableDays(day, 'duration')">
+									<select class="emma-input" ng-model="day.duration" name="{$ day.htmlValue $}_weekly_sessions" ng-disabled="day.disabled || !day.selected" ng-options="item.value as item.text for item in plan.sessionNumbers track by item.value" ng-change="disableDays(day)">
 										<option value="">Seleccionar...</option>
 									</select>
 								</td>
@@ -118,8 +118,7 @@
 				<div class="box-title">Resumen</div>
 				<div class="box-content">
 					<p>
-						Taller(es) seleccionados: <span ng-repeat="item in plan.workshops"><span ng-if="item.isSelected">{$ item.name $}</span></span> <br>
-						Actividad(es) seleccionados: <span ng-repeat="item in plan.activities"><span ng-if="item.isSelected">{$ item.name $}</span></span> <br>
+						Taller(es) y actividad(es) seleccionados: <span ng-repeat="item in mergedLists"><span ng-if="item.isSelected">{$ item.name $}<span ng-if="!$last">, </span></span></span> <br>
 						Número de sesiones semanales: <span></span> <br>
 						Cantidad total de horas semanales: <span></span> <br>
 						Detalle de día y hora: <span></span>

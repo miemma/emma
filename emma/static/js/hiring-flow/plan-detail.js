@@ -182,6 +182,7 @@ angular.module('emmaHiringFlow')
     $scope.disableDays = function (day) {
       var selectedDays = $filter('filter')($scope.sessions, {selected: true});
       var totalHours = 0;
+      var validDuration = $scope.getHoursLeft() >= 0;
       var checkDays = true;
       angular.forEach(selectedDays, function (element) {
         if ((element.duration == 0 || element.duration == null) 
@@ -189,7 +190,7 @@ angular.module('emmaHiringFlow')
           checkDays = false;
         }
       });
-      if (checkDays) {
+      if (checkDays && validDuration) {
         if (selectedDays.length >= $scope.plan.maxWeeklySessions) {
           $scope.sessions = angular.forEach($scope.sessions, function (element) {
             if (!element.selected) {
@@ -213,8 +214,14 @@ angular.module('emmaHiringFlow')
           }
         }
       } else {
-        console.log('Antes de elegir un nuevo día, completa la información del anterior!');
-        day.selected = false;
+        if (!validDuration) {
+          console.log('Parece que te excederas de las horas permitidas en tu plan.');
+          day.duration = 0;
+        }
+        if (!checkDays) {
+          console.log('Antes de elegir un nuevo día, completa la información del anterior!');
+          day.selected = false;
+        }
       }
     };
   });
