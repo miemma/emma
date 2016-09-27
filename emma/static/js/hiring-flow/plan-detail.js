@@ -10,55 +10,122 @@ angular.module('emmaHiringFlow')
       sessionNumbers: []
     };
 
-    $scope.weekDays = [
+    $scope.mergedLists = [];
+
+    $scope.schedules = [
       {
-        text: 'Lunes',
+        htmlValue: '9:00',
+        text: '9:00 AM'
+      },
+      {
+        htmlValue: '10:00',
+        text: '10:00 AM'
+      },
+      {
+        htmlValue: '11:00',
+        text: '11:00 AM'
+      },
+      {
+        htmlValue: '12:00',
+        text: '12:00 PM'
+      },
+      {
+        htmlValue: '13:00',
+        text: '1:00 PM'
+      },
+      {
+        htmlValue: '14:00',
+        text: '2:00 PM'
+      },
+      {
+        htmlValue: '15:00',
+        text: '3:00 PM'
+      },
+      {
+        htmlValue: '16:00',
+        text: '4:00 PM'
+      },
+      {
+        htmlValue: '17:00',
+        text: '5:00 PM'
+      },
+      {
+        htmlValue: '18:00',
+        text: '6:00 PM'
+      },
+      {
+        htmlValue: '19:00',
+        text: '7:00 PM'
+      },
+      {
+        htmlValue: '20:00',
+        text: '8:00 PM'
+      }
+    ];
+
+    $scope.sessions = [
+      {
+        dayName: 'Lunes',
         htmlValue: 'monday',
-        isSelected: false,
+        selected: false,
         disabled: false,
-        hours: 0
+        initialHour: '',
+        duration: 0,
+        selectedWorkshop: ''
       },
       {
-        text: 'Martes',
+        dayName: 'Martes',
         htmlValue: 'tuesday',
-        isSelected: false,
+        selected: false,
         disabled: false,
-        hours: 0
+        initialHour: '',
+        duration: 0,
+        selectedWorkshop: ''
       },
       {
-        text: 'Miércoles',
+        dayName: 'Miércoles',
         htmlValue: 'wednesday',
-        isSelected: false,
+        selected: false,
         disabled: false,
-        hours: 0
+        initialHour: '',
+        duration: 0,
+        selectedWorkshop: ''
       },
       {
-        text: 'Jueves',
+        dayName: 'Jueves',
         htmlValue: 'thursday',
-        isSelected: false,
+        selected: false,
         disabled: false,
-        hours: 0
+        initialHour: '',
+        duration: 0,
+        selectedWorkshop: ''
       },
       {
-        text: 'Viernes',
+        dayName: 'Viernes',
         htmlValue: 'friday',
-        isSelected: false,
+        selected: false,
         disabled: false,
-        hours: 0
+        initialHour: '',
+        duration: 0,
+        selectedWorkshop: ''
       },
       {
-        text: 'Sábado',
+        dayName: 'Sábado',
         htmlValue: 'saturday',
-        isSelected: false,
+        selected: false,
         disabled: false,
-        hours: 0
+        initialHour: '',
+        duration: 0,
+        selectedWorkshop: ''
       },
       {
-        text: 'Domingo',
+        dayName: 'Domingo',
         htmlValue: 'sunday',
-        isSelected: false,
+        selected: false,
         disabled: false,
-        hours: 0
+        initialHour: '',
+        duration: 0,
+        selectedWorkshop: ''
       }
     ];
 
@@ -75,7 +142,7 @@ angular.module('emmaHiringFlow')
       if ($scope.plan.allowsWorkshops) {
         angular.forEach(angular.element('[data-workshop-name]'), function (elem) {
           $scope.plan.workshops.push({
-            id: $scope.plan.workshops.length,
+            id: $scope.plan.workshops.length + 1,
             name: angular.element(elem).attr('data-workshop-name'),
             isSelected: false
           });
@@ -84,7 +151,7 @@ angular.module('emmaHiringFlow')
       if ($scope.plan.allowsActivities) {
         angular.forEach(angular.element('[data-activity-name]'), function (elem) {
           $scope.plan.activities.push({
-            id: $scope.plan.activities.length,
+            id: $scope.plan.activities.length + 1,
             name: angular.element(elem).attr('data-activity-name'),
             isSelected: false
           });
@@ -99,43 +166,55 @@ angular.module('emmaHiringFlow')
     };
 
     $scope.getHoursLeft = function () {
-      var selectedDays = $filter('filter')($scope.weekDays, {isSelected: true});
+      var selectedDays = $filter('filter')($scope.sessions, {selected: true});
       var usedHours = 0;
       angular.forEach(selectedDays, function(element) {
-        usedHours += element.hours;
+        usedHours += element.duration;
       });
-      return $scope.plan.maxMonthlyHours - usedHours;
+      return ($scope.plan.maxMonthlyHours / 4) - usedHours;
     };
 
-    $scope.getMergedLists = function () {
-      return $scope.plan.workshops.concat($scope.plan.activities);
+    $scope.mergeLists = function () {
+      $scope.mergedLists = $filter('filter')($scope.plan.workshops.concat($scope.plan.activities),
+          {isSelected: true});
     };
 
-    $scope.disableDays = function () {
-      var selectedDays = $filter('filter')($scope.weekDays, {isSelected: true});
+    $scope.disableDays = function (day) {
+      var selectedDays = $filter('filter')($scope.sessions, {selected: true});
       var totalHours = 0;
-
-      if (selectedDays.length >= $scope.plan.maxWeeklySessions) {
-        $scope.weekDays = angular.forEach($scope.weekDays, function (element) {
-          if (!element.isSelected) {
-            element.disabled = true;
-          }
-        });
-      } else {
-        angular.forEach(selectedDays, function (element) {
-          totalHours += element.hours;
-        });
-        if (totalHours > $scope.plan.maxMonthlyHours) {
-          $scope.weekDays = angular.forEach($scope.weekDays, function (element) {
-            if (!element.isSelected) {
+      var checkDays = true;
+      angular.forEach(selectedDays, function (element) {
+        if ((element.duration == 0 || element.duration == null) 
+            && day !== element) {
+          checkDays = false;
+        }
+      });
+      if (checkDays) {
+        if (selectedDays.length >= $scope.plan.maxWeeklySessions) {
+          $scope.sessions = angular.forEach($scope.sessions, function (element) {
+            if (!element.selected) {
               element.disabled = true;
             }
           });
         } else {
-          $scope.weekDays = angular.forEach($scope.weekDays, function (element) {
-            element.disabled = false;
+          angular.forEach(selectedDays, function (element) {
+            totalHours += element.duration;
           });
+          if (totalHours * 4 >= $scope.plan.maxMonthlyHours) {
+            $scope.sessions = angular.forEach($scope.sessions, function (element) {
+              if (!element.selected) {
+                element.disabled = true;
+              }
+            });
+          } else {
+            $scope.sessions = angular.forEach($scope.sessions, function (element) {
+              element.disabled = false;
+            });
+          }
         }
+      } else {
+        console.log('Antes de elegir un nuevo día, completa la información del anterior!');
+        day.selected = false;
       }
     };
   });

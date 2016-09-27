@@ -35,7 +35,8 @@
 		          <input id="workshop-{{ workshop.id }}" class="radio-input"
 		                 type="checkbox" value="{{ workshop.id }}"
 		                 name="workshop" ng-model="plan.workshops[{{ forloop.counter0 }}].isSelected"
-		                 data-workshop-name="{{ workshop.name }}" />
+		                 data-workshop-name="{{ workshop.name }}" 
+		                 ng-change="mergeLists()" />
 		           <label class="radio-label"
 		                  for="workshop-{{ workshop.id }}">
 		             {{ workshop.name }}
@@ -57,7 +58,8 @@
 		          <input id="activity-{{ activity.id }}" class="radio-input"
 		                 type="checkbox" value="{{ activity.id }}"
 		                 name="workshop" ng-model="plan.activities[{{ forloop.counter0 }}].isSelected"
-		                 data-activity-name="{{ activity.name }}" />
+		                 data-activity-name="{{ activity.name }}" 
+		                 ng-change="mergeLists()" />
 		           <label class="radio-label"
 		                  for="activity-{{ activity.id }}">
 		             {{ activity.name }}
@@ -80,44 +82,31 @@
 								<th>Duracion de la sesión</th>
 								<th>Taller o actividad</th>
 							</tr>
-							<tr ng-repeat="day in weekDays">
+							<tr ng-repeat="day in sessions">
 								<td>
 									<span class="radio-container activity-item">
 					          <input id="day-{$ day.htmlValue $}" class="radio-input"
 			                 type="checkbox" value="{$ day.htmlValue $}"
-			                 name="{$ day.htmlValue $}_day" ng-model="day.isSelected" ng-change="disableDays()" ng-disabled="day.disabled" />
+			                 name="{$ day.htmlValue $}_day" ng-model="day.selected" ng-change="disableDays(day)" ng-disabled="day.disabled" />
 				           	<label class="radio-label"
 		                  	for="day-{$ day.htmlValue $}">
-			             		{$ day.text $}
+			             		{$ day.dayName $}
 				           	</label>
 					        </span>
 								</td>
 								<td>
-									<select class="emma-input" name="{$ day.htmlValue $}_start_time" ng-disabled="day.disabled || !day.isSelected">
-										<option value="">Seleccionar...</option>
-										<option value="9:00">9:00 AM</option>
-										<option value="10:00">10:00 AM</option>
-										<option value="11:00">11:00 AM</option>
-										<option value="12:00">12:00 PM</option>
-										<option value="13:00">1:00 PM</option>
-										<option value="14:00">2:00 PM</option>
-										<option value="15:00">3:00 PM</option>
-										<option value="16:00">4:00 PM</option>
-										<option value="17:00">5:00 PM</option>
-										<option value="18:00">6:00 PM</option>
-										<option value="19:00">7:00 PM</option>
-										<option value="20:00">8:00 PM</option>
-									</select>
-								</td>
-								<td>
-									<select class="emma-input" ng-model="day.hours" name="{$ day.htmlValue $}_weekly_sessions" ng-disabled="day.disabled || !day.isSelected" ng-options="item.value as item.text for item in plan.sessionNumbers" ng-change="disableDays()">
+									<select ng-model="day.initialHour" class="emma-input" name="{$ day.htmlValue $}_start_time" ng-disabled="day.disabled || !day.selected" ng-options="item.htmlValue as item.text for item in schedules track by item.htmlValue">
 										<option value="">Seleccionar...</option>
 									</select>
 								</td>
 								<td>
-									<select class="emma-input" name="{$ day.htmlValue $}_workshop_activity" ng-disabled="day.disabled || !day.isSelected">
+									<select class="emma-input" ng-model="day.duration" name="{$ day.htmlValue $}_weekly_sessions" ng-disabled="day.disabled || !day.selected" ng-options="item.value as item.text for item in plan.sessionNumbers track by item.value" ng-change="disableDays(day, 'duration')">
+										<option value="">Seleccionar...</option>
+									</select>
+								</td>
+								<td>
+									<select ng-model="day.selectedWorkshop" class="emma-input" name="{$ day.htmlValue $}_workshop_activity" ng-disabled="day.disabled || !day.selected" ng-options="item.id+'-'+item.name as item.name for item in mergedLists track by item.id+'-'+item.name">
 										<option value="">Selecionar...</option>
-										<option ng-repeat="item in getMergedLists()" value="{$ item.id $}-{$ item.name $}" ng-show="item.isSelected">{$ item.name $}</option>
 									</select>
 								</td>
 							</tr>
