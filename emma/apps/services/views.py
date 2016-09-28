@@ -230,3 +230,8 @@ class ContractComprobation(ActiveClientRequiredMixin, View):
             charge_reg.save()
 
         return redirect(self.success_url)
+
+
+class ContractUnique(View):
+    def get(self, request):
+        return TemplateResponse(request, 'services/contract_unique.html')

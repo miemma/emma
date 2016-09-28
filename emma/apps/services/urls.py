@@ -27,5 +27,9 @@ urlpatterns = [
         view=views.ContractComprobation.as_view(),
         name='contract_comprobation'),
 
+    url(regex='^contratar/unica/$',
+        view=views.ContractUnique.as_view(),
+        name='contract_unique'),
+
 
 ]
