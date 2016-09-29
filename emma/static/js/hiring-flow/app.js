@@ -33,7 +33,7 @@ angular.module('emmaHiringFlow', [])
       type = type || '';
       pluralLetter = pluralLetter || '';
       dependsOn = dependsOn || null;
-      var number = typeof content == Number ? content : 0,
+      var number = typeof content == 'number' ? content : 0,
         singularText = '',
         pluralText = '';
       if (type == 'time') {

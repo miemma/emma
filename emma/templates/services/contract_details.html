@@ -72,7 +72,7 @@
 			{% endif %}
 
 			<div class="box white">
-				<div class="box-title">Selecciona tus horarios (te quedan {$ getHoursLeft() $} horas)</div>
+				<div class="box-title">Selecciona tus horarios (te {$ 'queda'|pluralize:'':getHoursLeft():'n' $} {$ getHoursLeft()|pluralize:'time' $})</div>
 				<div class="box-content">
 					<div class="timetable-container">
 						<table class="timetable">
@@ -130,16 +130,16 @@
 						</span>
 						<span class="line">
 							<b>Número de sesiones semanales:</b>
-							<span>{$ (sessions|filter:{selected:true}).length $}</span>
+							<span>{$ (sessions|filter:{selected:true}).length|pluralize:'session' $}</span>
 						</span>
 						<span class="line">
 							<b>Cantidad total de horas semanales:</b>
-							<span> {$ usedHours $}</span>
+							<span> {$ usedHours|pluralize:'time' $}</span>
 						</span>
 						<span class="line">
 							<b>Detalle de día y hora:</b>
 							<span class="line indented" ng-repeat="session in sessions | filter: {selected:true}">
-								{$ session.dayName $}: {$ session.initialHour $} - {$ session.duration $} horas
+								{$ session.dayName $}: {$ session.initialHour|timeFormat $} - {$ session.duration|pluralize:'time' $}
 							</span>
 						</span>
 					</p>
