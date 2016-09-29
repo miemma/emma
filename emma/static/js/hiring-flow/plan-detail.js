@@ -178,7 +178,7 @@ angular.module('emmaHiringFlow')
         angular.forEach(selectedDays, function(element) {
           $scope.usedHours += element.duration;
         });
-        return parseInt(($scope.plan.maxMonthlyHours / 4) - $scope.usedHours);
+        return parseInt(($scope.plan.maxMonthlyHours / 4)) - $scope.usedHours;
       };
 
       $scope.mergeLists = function () {
