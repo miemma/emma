@@ -262,3 +262,76 @@ class ServiceDay(models.Model):
 
     def __unicode__(self):
         return self.get_day_display()
+
+
+class UniqueService(models.Model):
+    client = models.ForeignKey(
+        Client,
+        verbose_name=_('Client')
+    )
+    description = models.TextField(
+        _('Description'),
+        blank=True,
+        null=True,
+    )
+    day = models.CharField(
+        _('Day'),
+        blank=True,
+        null=True,
+        max_length=30
+    )
+    month = models.CharField(
+        _('Month'),
+        blank=True,
+        null=True,
+        max_length=30
+    )
+    street = models.CharField(
+        _('Street'),
+        blank=True,
+        null=True,
+        max_length=100
+    )
+    num_ext = models.CharField(
+        _('Num. Ext.'),
+        blank=True,
+        null=True,
+        max_length=30
+    )
+    num_int = models.CharField(
+        _('Num. Int.'),
+        blank=True,
+        null=True,
+        max_length=30
+    )
+    colony = models.CharField(
+        _('Colony'),
+        blank=True,
+        null=True,
+        max_length=100
+    )
+    delegation = models.CharField(
+        _('Delegation'),
+        blank=True,
+        null=True,
+        max_length=100
+    )
+    cp = models.CharField(
+        _('Postal Code'),
+        blank=True,
+        null=True,
+        max_length=30
+    )
+    time = models.CharField(
+        _('Time'),
+        blank=True,
+        null=True,
+        max_length=30
+    )
+    duration = models.CharField(
+        _('Duration'),
+        blank=True,
+        null=True,
+        max_length=30
+    )
+
