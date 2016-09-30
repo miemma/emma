@@ -48,3 +48,7 @@ class ScheduledCallAdmin(admin.ModelAdmin):
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
 
+
+@admin.register(models.UniqueService)
+class UniqueServiceAdmin(admin.ModelAdmin):
+    list_display = ('client', 'description', 'day', 'month', 'time', 'duration')
