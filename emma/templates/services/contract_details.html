@@ -4,11 +4,11 @@
 <div id="hiring-flow" ng-app="emmaHiringFlow">
 	<div class="steps-box-wrapper">
 		<div class="steps">
-			<div class="step">1</div>
-			<div class="step active">2</div>
-			<div class="step">3</div>
-			<div class="step">4</div>
-			<div class="step">5</div>
+			<a href="{% url 'services:contract_plan' %}" class="step previous" title="Ir al paso 1">1</a>
+			<span class="step active">2</span>
+			<span class="step">3</span>
+			<span class="step">4</span>
+			<span class="step">5</span>
 		</div>
 	</div>
 	<h2 class="step-title">Detalles</h2>
@@ -72,8 +72,17 @@
 			{% endif %}
 
 			<div class="box white">
-				<div class="box-title">Selecciona tus horarios (te quedan {$ getHoursLeft() $} horas)</div>
+				<div class="box-title">Selecciona tus horarios</div>
 				<div class="box-content">
+					<div class="time-left-container">
+						Te quedan 
+						<span class="yellow-text">{$ getHoursLeft()*4 $}</span> 
+						{$ 'hora'|pluralizeBy:getHoursLeft()*4:'horas' $} 
+						al mes y 
+						<span class="yellow-text">{$ getSessionsLeft() $}</span> 
+						{$ 'sesión'|pluralizeBy:getSessionsLeft():'sesiones' $} 
+						a la semana
+					</div>
 					<div class="timetable-container">
 						<table class="timetable">
 							<tr>
@@ -118,11 +127,30 @@
 				<div class="box-title">Resumen</div>
 				<div class="box-content">
 					<p>
-						Taller(es) y actividad(es) seleccionados: <span ng-repeat="item in mergedLists"><span ng-if="item.isSelected">{$ item.name $}<span ng-if="!$last">, </span></span></span> <br>
-						Número de sesiones semanales: <span>{$ (sessions|filter:{selected:true}).length $}</span> <br>
-						Cantidad total de horas semanales: <span> {$ usedHours $}</span> <br>
-						Detalle de día y hora:
-						<div ng-repeat="session in sessions | filter: {selected:true}">{$ session.dayName $}: {$ session.initialHour $} - {$ session.duration $} horas</div>
+						<span class="line">
+							<b>Taller(es) y actividad(es) seleccionados:</b>
+							<span class="line">
+								<span ng-repeat="item in mergedLists">
+									<span ng-if="item.isSelected">
+										{$ item.name $}<span ng-if="!$last">, </span>
+									</span>
+								</span>
+							</span>
+						</span>
+						<span class="line">
+							<b>Número de sesiones semanales:</b>
+							<span>{$ (sessions|filter:{selected:true}).length|pluralize:'sesión':'sesiones' $}</span>
+						</span>
+						<span class="line">
+							<b>Cantidad total de horas semanales:</b>
+							<span> {$ usedHours|pluralize:'hora':'horas' $}</span>
+						</span>
+						<span class="line">
+							<b>Detalle de día y hora:</b>
+							<span class="line indented" ng-repeat="session in sessions | filter: {selected:true}">
+								{$ session.dayName $}: {$ session.initialHour|timeFormat $} - {$ session.duration|pluralize:'hora':'horas' $}
+							</span>
+						</span>
 					</p>
 				</div>
 			</div>

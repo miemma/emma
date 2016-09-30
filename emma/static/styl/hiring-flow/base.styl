@@ -25,13 +25,14 @@
       width 100%
       
       .step
-        background white
+        background $border_gray
         border-radius 50%
         display inline-block
         color $gray
         font-size 16px
         height 48px
         line-height 48px
+        pointer-events none
         text-align center
         width 46px
         z-index 2
@@ -39,6 +40,10 @@
         &.active
           background $yellow
           color white
+          
+        &.previous
+          background white
+          pointer-events initial 
           
   .step-title
     font-size 34px

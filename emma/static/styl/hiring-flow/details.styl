@@ -20,6 +20,16 @@
         margin-top 16px
         padding-left 60px
         
+    .time-left-container
+      font-size 27px
+      max-width 350px
+      min-width 260px
+      padding 40px 0 10px 0
+      width 70%
+      
+      .yellow-text
+        color $yellow
+        
     .timetable-container
       min-width 260px
       padding 30px 0
@@ -65,6 +75,21 @@
         min-width 260px
         text-align left
         max-width 580px
+        
+      .line
+        display block
+        
+        b
+          color #555
+          margin-right 3px
+          font-family 'Avenir LT Std Heavy'
+          font-weight normal
+        
+        &.indented
+          padding-left 15px
+          
+        &:not(:first-child)
+          margin-top 6px
         
   .plan-detail-submit-button
     font-size 21px
