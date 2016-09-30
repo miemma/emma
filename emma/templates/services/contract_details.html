@@ -76,11 +76,12 @@
 				<div class="box-content">
 					<div class="time-left-container">
 						Te quedan 
-						<span class="yellow-text">{$ getHoursLeft() $}</span> 
-						{$ 'hora'|pluralizeBy:getHoursLeft():'horas' $} y 
+						<span class="yellow-text">{$ getHoursLeft()*4 $}</span> 
+						{$ 'hora'|pluralizeBy:getHoursLeft()*4:'horas' $} 
+						al mes y 
 						<span class="yellow-text">{$ getSessionsLeft() $}</span> 
 						{$ 'sesión'|pluralizeBy:getSessionsLeft():'sesiones' $} 
-						por semana
+						a la semana
 					</div>
 					<div class="timetable-container">
 						<table class="timetable">
