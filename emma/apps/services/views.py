@@ -11,7 +11,7 @@ from django.views.generic import View
 
 from emma.apps.clients.models import Client
 from emma.apps.services.models import Service, Workshop, \
-    ServiceContractProcess, ServiceDay, Activity, HiredService
+    ServiceDay, Activity, HiredService, UniqueService
 from emma.apps.suscriptions.models import Suscription, Charge
 from emma.core.mixins import ActiveClientRequiredMixin
 
@@ -232,7 +232,9 @@ class ContractComprobation(ActiveClientRequiredMixin, View):
         return redirect(self.success_url)
 
 
-class ContractUnique(View):
+class ContractUnique(ActiveClientRequiredMixin, View):
+    success_url = reverse_lazy('landing:success_contract')
+
     def get(self, request):
         return TemplateResponse(request, 'services/contract_unique.html')
     def post(self, request):
@@ -241,9 +243,28 @@ class ContractUnique(View):
         month = request.POST.get('month')
         street = request.POST.get('street')
         num_ext = request.POST.get('num_ext')
+        num_int = request.POST.get('num_int')
         colony = request.POST.get('colony')
         delegation = request.POST.get('delegation')
         cp = request.POST.get('cp')
         time = request.POST.get('time')
         duration = request.POST.get('duration')
-        return HttpResponse('POST')
+
+        service = UniqueService(
+            client=request.user.client,
+            description=description,
+            day=day,
+            month=month,
+            street=street,
+            num_ext=num_ext,
+            num_int=num_int,
+            colony=colony,
+            delegation=delegation,
+            cp=cp,
+            time=time,
+            duration=duration
+        )
+
+        service.save()
+
+        return redirect(self.success_url)
