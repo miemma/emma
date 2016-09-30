@@ -235,3 +235,15 @@ class ContractComprobation(ActiveClientRequiredMixin, View):
 class ContractUnique(View):
     def get(self, request):
         return TemplateResponse(request, 'services/contract_unique.html')
+    def post(self, request):
+        description = request.POST.get('description')
+        day = request.POST.get('day')
+        month = request.POST.get('month')
+        street = request.POST.get('street')
+        num_ext = request.POST.get('num_ext')
+        colony = request.POST.get('colony')
+        delegation = request.POST.get('delegation')
+        cp = request.POST.get('cp')
+        time = request.POST.get('time')
+        duration = request.POST.get('duration')
+        return HttpResponse('POST')
