@@ -40,11 +40,13 @@ class ContractPlan(ActiveClientRequiredMixin, View):
                 client=request.user.client
             ).delete()
         except HiredService.DoesNotExist:
-            service = HiredService(
-                client=request.user.client,
-                service=plan,
-            )
-            service.save()
+            pass
+
+        service = HiredService(
+            client=request.user.client,
+            service=plan,
+        )
+        service.save()
         return redirect(self.success_url)
 
 
