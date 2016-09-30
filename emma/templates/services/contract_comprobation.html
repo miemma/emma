@@ -4,11 +4,11 @@
 <div id="hiring-flow">
 	<div class="steps-box-wrapper">
 		<div class="steps">
-			<div class="step">1</div>
-			<div class="step">2</div>
-			<div class="step">3</div>
-			<div class="step">4</div>
-			<div class="step active">5</div>
+			<span class="step">1</span>
+			<span class="step">2</span>
+			<span class="step">3</span>
+			<span class="step">4</span>
+			<span class="step active">5</span>
 		</div>
 	</div>
 	<div class="white-boxes-container comprobation-boxes">
@@ -17,10 +17,10 @@
 			<div class="box-content">
 				<div>
 					<div class="info-section">
-						{% if contract_service.service.allows_workshops %}
+						{% if contract_service.service.allows_workshops and workshops|length > 0 %}
 						<span class="line">
 							<b>Taller(es) seleccionados:</b>
-							<span>
+							<span class="line">
 								{% for workshop in workshops %}
 									{% if not forloop.last %}
 										{{ workshop.name }},
@@ -31,10 +31,10 @@
 							</span>
 						</span>
 						{% endif %}
-						{% if contract_service.service.allows_activities %}
+						{% if contract_service.service.allows_activities and activities|length > 0 %}
 						<span class="line">
 							<b>Actividad(es) seleccionadas:</b>
-							<span>
+							<span class="line">
 								{% for activity in activities %}
 									{% if not forloop.last %}
 										{{ activity.name }},
@@ -74,11 +74,11 @@
 						</span>
 						<span class="line">
 							<b>Conocimientos y destrezas especiales:</b>
-							<span>{{ contract_service.knowledges }}{{ contract_service.skills }}</span>
+							<span class="line">{{ contract_service.knowledges }}{{ contract_service.skills }}</span>
 						</span>
 						<span class="line">
 							<b>Certificaciones especiales:</b>
-							<span>{{ contract_service.certifications }}</span>
+							<span class="line">{{ contract_service.certifications }}</span>
 						</span>
 					</div>
 					<div class="info-section">
