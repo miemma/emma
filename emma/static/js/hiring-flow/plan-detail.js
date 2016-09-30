@@ -3,8 +3,9 @@ angular.module('emmaHiringFlow')
     '$scope', 
     '$filter', 
     'timeFormatFilter', 
-    'pluralizeFilter',
-    function ($scope, $filter, timeFormat, pluralize) {
+    'pluralizeFilter', 
+    'pluralizeByFilter', 
+    function ($scope, $filter, timeFormat, pluralizeBy) {
       $scope.plan = {
         allowsWorkshops: false,
         allowsActivities: false,
@@ -179,6 +180,11 @@ angular.module('emmaHiringFlow')
           $scope.usedHours += element.duration;
         });
         return parseInt(($scope.plan.maxMonthlyHours / 4)) - $scope.usedHours;
+      };
+
+      $scope.getSessionsLeft = function () {
+        var selectedDays = $filter('filter')($scope.sessions, {selected: true});
+        return $scope.plan.maxWeeklySessions - selectedDays.length;
       };
 
       $scope.mergeLists = function () {

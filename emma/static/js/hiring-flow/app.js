@@ -28,29 +28,23 @@ angular.module('emmaHiringFlow', [])
     };
   })
   .filter('pluralize', function () {
-    return function (content, type, dependsOn, pluralLetter) {
-      content = content || null;
-      type = type || '';
-      pluralLetter = pluralLetter || '';
-      dependsOn = dependsOn || null;
-      var number = typeof content == 'number' ? content : 0,
-        singularText = '',
-        pluralText = '';
-      if (type == 'time') {
-        singularText = 'hora';
-        pluralText = 'horas';
-      } else if (type == 'session') {
-        singularText = 'sesión';
-        pluralText = 'sesiones';
-      } else if (type == '') {
-        singularText = content;
-        pluralText = content + pluralLetter;
+    return function (content, singularText, pluralText) {
+      content = content || 0;
+      singularText = singularText || '';
+      pluralText = pluralText || '';
+      if (content == 1) {
+        return content + ' ' + singularText;
+      } else {
+        return content + ' ' + pluralText;
       }
-      if (number == 1) {
-        return number + ' ' + singularText;
-      } else if (pluralLetter == '') {
-        return number + ' ' + pluralText;
-      } else if (dependsOn == 1) {
+    };
+  })
+  .filter('pluralizeBy', function () {
+    return function (singularText, dependsOn, pluralText) {
+      singularText = singularText || '';
+      dependsOn = dependsOn || 0;
+      pluralText = pluralText || '';
+      if (dependsOn == 1) {
         return singularText;
       } else {
         return pluralText;
