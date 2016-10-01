@@ -100,39 +100,8 @@
 			</div>
 		</div>
 	</div>
-	
 
-	<form action="" method="post" name="comprobation_form" id="comprobation_form">
-		{% csrf_token %}
-		<input type='hidden' name='devsessionid' id='devsessionid'>
-		<button id="submit_button" type="submit" class="emma-btn emma-btn-light finish-button">Finalizar</button>
-	</form>
+	<a href="{% url 'landing:success_contract' %}" class="emma-btn emma-btn-light finish-button margin-top-50" style="display: inline-block">Finalizar</a>
 
 </div>
-{% endblock %}
-{% block js %}
-<script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
-<script type="text/javascript" src="https://openpay.s3.amazonaws.com/openpay.v1.min.js"></script>
-<script type='text/javascript' src="https://openpay.s3.amazonaws.com/openpay-data.v1.min.js"></script>
-<script>
-	$(document).ready(function() {
-	  OpenPay.setId('mg0kzdwsiduimlfaudun');
-	  OpenPay.setApiKey('pk_106c640a77f94dd49bae11cf94937075');
-	  OpenPay.setSandboxMode(true);
-		OpenPay.deviceData.setup("comprobation_form", "devsessionid");
-		console.log("hola")
-	});
-	var success_callbak = function(response) {
-		$('#comprobation_form').submit();
-	};
-
-	var error_callbak = function(response) {
-		console.log("Error");
-	};
-	$('#submit_button').on('click', function(event) {
-		OpenPay.token.extractFormAndCreate(
-			'comprobation_form', success_callbak, error_callbak
-		)
-	});
-</script>
 {% endblock %}
