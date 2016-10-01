@@ -72,6 +72,10 @@ class ContractPlanDetails(ActiveClientRequiredMixin, View):
 
     def get(self, request):
         ctx = self.get_context(request)
+        contract_process = HiredService.objects.get(client=request.user.client)
+        days = ServiceDay.objects.filter(service=contract_process)
+        for x in days:
+            x.delete()
         return TemplateResponse(request, 'services/contract_details.html', ctx)
 
     def post(self, request):
@@ -79,7 +83,7 @@ class ContractPlanDetails(ActiveClientRequiredMixin, View):
         contract_process = HiredService.objects.get(client=request.user.client)
         for x in days:
             if request.POST.get('%s_day' % x):
-                """
+                # """
                 workshop_activity = request.POST.get('%s_workshop_activity' % x).split('-')
                 try:
                     content = Workshop.objects.get(id=workshop_activity[0], name=workshop_activity[1])
@@ -88,14 +92,14 @@ class ContractPlanDetails(ActiveClientRequiredMixin, View):
                         content = Activity.objects.get(id=workshop_activity[0], name=workshop_activity[1])
                     except Activity.DoesNotExist:
                         raise Http404
-                """
+                # """
                 service_day = ServiceDay(
                     service=contract_process,
                     day=request.POST.get('%s_day' % x),
                     start_time=request.POST.get('%s_start_time' % x),
-                    # duration=request.POST.get('%s_weekly_sessions' % x),
-                    duration=1,
-                    content_object=Workshop.objects.get(id=1)
+                    duration=request.POST.get('%s_weekly_sessions' % x),
+                    #duration=1,
+                    content_object=content
                 )
                 service_day.save()
         return redirect(self.success_url)
@@ -144,6 +148,8 @@ class ContractPay(ActiveClientRequiredMixin, View):
 
     def post(self, request):
         client = Client.objects.get(user=request.user)
+        contract_service = HiredService.objects.get(
+            client=client)
 
         customer = openpay.Customer.create(
             name=request.user.get_full_name(),
@@ -166,6 +172,32 @@ class ContractPay(ActiveClientRequiredMixin, View):
             token_id=request.POST['token_id'],
             device_session_id=request.POST['devsessionid']
         )
+
+        try:
+            charge = openpay.Charge.create(
+                source_id=card.id,
+                method="card",
+                amount=contract_service.service.price,
+                currency="MXN",
+                description="Cargo por plan %s de emma" % contract_service.service.name,
+                customer=customer.id,
+                device_session_id=request.POST.get('devsessionid')
+
+            )
+
+        except openpay.CardError:
+            return HttpResponse('Error de tarjeta')
+
+        if charge.status == 'completed':
+            charge_reg = Charge(
+                suscription=suscription,
+                plan=contract_service.service,
+                amount=contract_service.service.price,
+                status='paid',
+                card=card.card_number,
+
+            )
+            charge_reg.save()
 
 
         return redirect()
@@ -195,43 +227,6 @@ class ContractComprobation(ActiveClientRequiredMixin, View):
             'card': cards.data[0]
         }
         return TemplateResponse(request, 'services/contract_comprobation.html', ctx)
-
-    def post(self, request):
-        suscription = Suscription.objects.get(client=request.user.client)
-        customer = openpay.Customer.retrieve(suscription.openpay_id)
-        cards = customer.cards.all()
-        card = cards.data[0]
-
-        contract_service = HiredService.objects.get(
-            client=request.user.client)
-
-        try:
-            charge = openpay.Charge.create(
-                source_id=card.id,
-                method="card",
-                amount=contract_service.service.price,
-                currency="MXN",
-                description="Cargo por plan %s de emma" % contract_service.service.name,
-                customer=customer.id,
-                device_session_id=request.POST.get('devsessionid')
-
-            )
-
-        except openpay.CardError:
-            return HttpResponse('Error de tarjeta')
-
-        if charge.status == 'completed':
-            charge_reg = Charge(
-                suscription=suscription,
-                plan=contract_service.service,
-                amount=contract_service.service.price,
-                status='paid',
-                card=card.card_number,
-
-            )
-            charge_reg.save()
-
-        return redirect(self.success_url)
 
 
 class ContractUnique(ActiveClientRequiredMixin, View):
