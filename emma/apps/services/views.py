@@ -200,7 +200,7 @@ class ContractPay(ActiveClientRequiredMixin, View):
             charge_reg.save()
 
 
-        return redirect()
+        return redirect(self.success_url)
 
 
 class ContractComprobation(ActiveClientRequiredMixin, View):
