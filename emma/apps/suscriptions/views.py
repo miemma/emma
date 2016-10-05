@@ -8,7 +8,7 @@ from django.template.response import TemplateResponse
 from django.views.generic import ListView, View
 
 from emma.apps.adults.models import AdultAddress, Adult
-from emma.apps.services.models import HiredService
+from emma.apps.services.models import HiredService, ServiceDay
 from emma.apps.suscriptions.models import Charge, Suscription, History
 from emma.core.mixins import ClientRequiredMixin, GetAdultMixin
 
@@ -79,6 +79,10 @@ class SuscriptionDetail(GetAdultMixin, ClientRequiredMixin, View):
             client=self.request.user.client
         )
 
+        days = ServiceDay.objects.filter(
+            service=service
+        )
+
         adult = Adult.objects.get(responsable=self.request.user.client)
 
         address = AdultAddress.objects.get(
@@ -88,10 +92,9 @@ class SuscriptionDetail(GetAdultMixin, ClientRequiredMixin, View):
             'adult': self.get_adult(request),
             'name': self.request.user.first_name,
             'last_name': self.request.user.get_full_last_name,
+            'days': days,
             'email': self.request.user.email,
             'service': service.service.name,
-            'workshops': service.workshops,
-            'days': service.service_days,
             'street': address.street,
             'outdoor_number': address.outdoor_number,
             'colony': address.colony,
