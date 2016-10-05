@@ -48,19 +48,13 @@
 						<span class="line">
 							<b>Días de la semana y horas:</b>
 						</span>
-						<span class="line session">
-								<b>Sesión 1:</b>
-								<span>
-									Lunes 4:00 PM - 2 horas
-								</span>
-							</span>
 						{% for day in contract_service.service_days.all %}
-							<span class="line session">
-								<b>Sesión {{ forloop.counter }}:</b>
-								<span>
-									{{ day.get_day_display }} {{ day.start_time }} | {{ day.duration }}
-								</span>
+						<span class="line session">
+							<b>Sesión {{ forloop.counter }}:</b>
+							<span>
+								{{ day.get_day_display }} {{ day.start_time }} | {{ day.duration }}
 							</span>
+						</span>
 						{% endfor %}
 					</div>
 					<div class="info-section">
@@ -94,6 +88,10 @@
 						<span class="line">
 							<span>Fecha de vencimiento:</span>
 							<span>{{ card.expiration_month }}/{{ card.expiration_year}}</span>
+						</span>
+						<span class="line">
+							<span>Monto:</span>
+							<span>${{ contract_service.service.price }}<sup style="font-size:13px">MXN</sup></span>
 						</span>
 					</div>
 				</div>
