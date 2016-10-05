@@ -18,4 +18,8 @@ urlpatterns = [
     url(regex='^dashboard/emma-coordinadora/$',
         view=views.CoordinatorEmmaView.as_view(),
         name='dashboard_coordinator_emma'),
+
+    url(regex='^dashboard/emma-pendiente/$',
+        view=views.StandEmma.as_view(),
+        name='dashboard_standby_emma'),
 ]

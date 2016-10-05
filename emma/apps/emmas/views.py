@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from django.template.response import TemplateResponse
-from django.views.generic import View
 
-from emma.apps.adults.models import Adult
+from django.core.urlresolvers import reverse_lazy
+from django.shortcuts import redirect
+from django.template.response import TemplateResponse
+from django.views.generic import View, TemplateView
+
 from emma.apps.services.models import HiredService
 from emma.core.mixins import ClientRequiredMixin, GetAdultMixin
 
@@ -14,11 +16,14 @@ class MainEmmaView(GetAdultMixin, ClientRequiredMixin, View):
     def get(self, request):
         service = HiredService.objects.get(adult=self.get_adult(request))
         emma = service.emma_assigned
-        ctx = {
-            'emma': emma,
-            'adult': self.get_adult(request),
-        }
-        return TemplateResponse(request, self.template_name, ctx)
+        if emma:
+            ctx = {
+                'emma': emma,
+                'adult': self.get_adult(request),
+            }
+            return TemplateResponse(request, self.template_name, ctx)
+        else:
+            return redirect(reverse_lazy('emmas:dashboard_standby_emma'))
 
 
 class SecondEmmaView(GetAdultMixin, ClientRequiredMixin, View):
@@ -45,3 +50,7 @@ class CoordinatorEmmaView(GetAdultMixin, ClientRequiredMixin, View):
             'adult': self.get_adult(request),
         }
         return TemplateResponse(request, self.template_name, ctx)
+
+
+class StandEmma(ClientRequiredMixin, TemplateView):
+    template_name = 'emmas/stand_emma.html'
