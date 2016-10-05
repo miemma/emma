@@ -50,25 +50,6 @@
 				<div class="row contract-comprobation-row-item">
 					<div class="col-lg-5 text-left">
 						<span class="contract-comprobation-label">
-							Taller:
-						</span>
-					</div>
-					<div class="col-lg-6 text-left">
-						<span class="contract-comprobation-content">
-							{% for workshop in workshops.all %}
-								{% if forloop.last %}
-									{{ workshop.name }}
-								{% else %}
-									{{ workshop.name }},
-								{% endif %}
-							{% endfor %}
-
-						</span>
-					</div>
-				</div>
-				<div class="row contract-comprobation-row-item">
-					<div class="col-lg-5 text-left">
-						<span class="contract-comprobation-label">
 							Dirección:
 						</span>
 					</div>
@@ -100,7 +81,11 @@
 					</div>
 					<div class="col-lg-6 text-left">
 						<span class="contract-comprobation-content">
-							{{ days }}
+							{% for x in days %}
+								<p>
+									{{ x.get_day_display }} - {{ x.content_object }} - {{ x.start_time }} - {{ x.duration }} hora(s)
+								</p>
+							{% endfor %}
 						</span>
 					</div>
 				</div>
@@ -149,6 +134,7 @@
 					</div>
 				</div>
 				<hr class="dashboard-suscription-separator">
+				{% if emma_principal %}
 				<div class="row contract-comprobation-row-item-title">
 					<div class="col-lg-5 text-left">
 						<span class="contract-comprobation-content-title">
@@ -223,20 +209,7 @@
 						</span>
 					</div>
 				</div>
-				<!--
-				<div class="row contract-comprobation-row-item padding-bottom-50">
-					<div class="col-lg-5 text-left">
-						<span class="contract-comprobation-label">
-							Cordinadora:
-						</span>
-					</div>
-					<div class="col-lg-6 text-left">
-						<span class="contract-comprobation-content">
-							{{ emma_cordinator.user.get_full_name }}
-						</span>
-					</div>
-				</div>
-				-->
+				{% endif %}
 			</div>
 		</div>
     </div>
