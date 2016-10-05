@@ -76,12 +76,12 @@
           {% endif %}
           {% if request.user.client.user_type == 'User type 2' %}
             <li class="header-navbar-list-item" hcolor="white">
-	            <a class="header-navbar-list-item-link" href="{% url 'services:contract_service_info' %}">
+	            <a class="header-navbar-list-item-link" href="{% url 'services:contract_plan' %}">
 	              Historial
 	            </a>
 	          </li>
 	          <li class="header-navbar-list-item" hcolor="white">
-            <a class="header-navbar-list-item-link" href="{% url 'services:contract_service_info' %}">
+            <a class="header-navbar-list-item-link" href="{% url 'services:contract_plan' %}">
               Mi <i>Emma</i>
             </a>
           </li>
@@ -107,7 +107,7 @@
           {% if request.user.client.user_type == 'User type 2' %}
           <li class="header-navbar-list-item" hcolor="white">
             <a class="header-navbar-list-item-link"
-               href="{% url 'services:contract_service_info' %}">
+               href="{% url 'services:contract_plan' %}">
              Contratar servicio
             </a>
           </li>
