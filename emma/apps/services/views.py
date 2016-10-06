@@ -144,8 +144,20 @@ class ContractEmmaPreference(ActiveClientRequiredMixin, View):
 
 class ContractPay(ActiveClientRequiredMixin, View):
     success_url = reverse_lazy('services:contract_comprobation')
+
+    @staticmethod
+    def get_context(request):
+        service = HiredService.objects.get(
+            client=request.user.client,
+        )
+        ctx = {
+            'service_price': service.service.price
+        }
+        return ctx
+
     def get(self, request):
-        return render(request, 'services/contract_pay.html')
+        ctx = self.get_context(request)
+        return TemplateResponse(request, 'services/contract_pay.html', ctx)
 
     def post(self, request):
         client = Client.objects.get(user=request.user)
