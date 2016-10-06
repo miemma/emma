@@ -21,7 +21,7 @@ especializado con seguimiento geriátrico.
 	Siempre encontrarás un plan acorde a las necesidades de tu ser querido:</p>
 	<p>
 	<div class="plans-selector">
-		<form id="select-plan-form" method="post" action=".">
+		<form id="select-plan-form" class="loader-form" method="post" action=".">
 			{% csrf_token %}
 			<input type="hidden" name="plan">
 			{% for plan in plans %}
@@ -51,6 +51,14 @@ especializado con seguimiento geriátrico.
 				</div>
 			</div>
 		</div>
+    <div class="row text-center padding-top-30 form-loader">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
+        <div id="movingBallG">
+          <div class="movingBallLineG"></div>
+          <div id="movingBallG_1" class="movingBallG"></div>
+        </div>
+      </div>
+    </div>
 	</div>
 	<a href="#characteristics-table" class="emma-btn compare-plans-btn">Comparar planes</a>
 	<div class="white">
