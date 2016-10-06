@@ -150,7 +150,7 @@ angular.module('emmaHiringFlow')
         if ($scope.plan.allowsWorkshops) {
           angular.forEach(angular.element('[data-workshop-name]'), function (elem) {
             $scope.plan.workshops.push({
-              id: $scope.plan.workshops.length + 1,
+              id: angular.element(elem).attr('value'),
               name: angular.element(elem).attr('data-workshop-name'),
               isSelected: false
             });
@@ -159,7 +159,7 @@ angular.module('emmaHiringFlow')
         if ($scope.plan.allowsActivities) {
           angular.forEach(angular.element('[data-activity-name]'), function (elem) {
             $scope.plan.activities.push({
-              id: $scope.plan.activities.length + 1,
+              id: angular.element(elem).attr('value'),
               name: angular.element(elem).attr('data-activity-name'),
               isSelected: false
             });
