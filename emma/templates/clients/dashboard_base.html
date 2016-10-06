@@ -209,7 +209,7 @@
         </ul>
       </header>
       <div id="content-no-navbar-wrapper">
-        <div id="dashboard-container">
+        <div {% if not '/contratar/' in request.path %}id="dashboard-container"{% endif %}>
           {% block content %}
           {% endblock content %}
         </div>
