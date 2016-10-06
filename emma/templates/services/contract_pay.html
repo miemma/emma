@@ -46,6 +46,15 @@
 
       <input type='hidden' name='devsessionid' id='devsessionid'>
 
+      <div class="row text-center padding-top-30 form-loader">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
+          <div id="movingBallG">
+            <div class="movingBallLineG"></div>
+            <div id="movingBallG_1" class="movingBallG"></div>
+          </div>
+        </div>
+      </div>
+
       <button type="button" id="contract-pay-button" class="emma-btn emma-btn-light payment-button">Pagar</button>
 
 			<p id="contract-pay-alert" style="display: none;">
@@ -71,14 +80,20 @@
 		$('#token_id').val(token_id);
 		$('#contract-pay-alert').hide();
 		$('#contract-pay-form').submit();
+    $('#contract-pay-form .form-loader').hide();
+    $('#contract-pay-button').removeAttr('disabled');
 	};
 
 	var error_callbak = function(response) {
 		console.log("Error");
 		$('#contract-pay-alert').show();
+    $('#contract-pay-form .form-loader').hide();
+    $('#contract-pay-button').removeAttr('disabled');
 	};
 	$('#contract-pay-button').on('click', function(event) {
 		$('#contract-pay-alert').hide();
+    $('#contract-pay-form .form-loader').show();
+    $('#contract-pay-button').attr('disabled', 'disabled');
 		OpenPay.token.extractFormAndCreate(
 			'contract-pay-form', success_callbak, error_callbak
 		);
