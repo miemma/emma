@@ -106,17 +106,17 @@
 								</td>
 								<td>
 									<select ng-model="day.initialHour" class="emma-input" name="{$ day.htmlValue $}_start_time" ng-disabled="day.disabled || !day.selected" ng-options="item.htmlValue as item.text for item in schedules track by item.htmlValue">
-										<option value="">Seleccionar...</option>
+										<option value="">--------------------</option>
 									</select>
 								</td>
 								<td>
 									<select class="emma-input" ng-model="day.duration" name="{$ day.htmlValue $}_weekly_sessions" ng-disabled="day.disabled || !day.selected" ng-options="item.value as item.text for item in plan.sessionNumbers track by item.value" ng-change="disableDays(day)">
-										<option value="">Seleccionar...</option>
+										<option value="">--------------------</option>
 									</select>
 								</td>
 								<td>
 									<select ng-model="day.selectedWorkshop" class="emma-input" name="{$ day.htmlValue $}_workshop_activity" ng-disabled="day.disabled || !day.selected" ng-options="item.id+'-'+item.name as item.name for item in mergedLists track by item.id+'-'+item.name">
-										<option value="">Selecionar...</option>
+										<option value="">--------------------</option>
 									</select>
 								</td>
 							</tr>
