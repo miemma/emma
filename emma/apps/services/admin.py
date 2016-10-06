@@ -22,14 +22,14 @@ class ServiceAdmin(admin.ModelAdmin):
 
 @admin.register(models.Workshop)
 class WorkshopAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('id', 'name',)
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
 
 
 @admin.register(models.Activity)
 class ActivityAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('id', 'name',)
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
 
