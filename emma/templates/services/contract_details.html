@@ -22,7 +22,7 @@
 	{% else %}
 	<div ng-controller="planDetailController" ng-init="init(false, false, {{ service.service.max_hours_per_month }}, {{ service.service.max_weekly_sessions }})">
 	{% endif %}
-		<form class="white-boxes-container plan-detail-boxes" action="." method="post">
+		<form id="schedule-form" class="white-boxes-container plan-detail-boxes" action="." method="post">
 			{% csrf_token %}
 
 			{% if service.service.allows_workshops %}
@@ -158,6 +158,15 @@
 					</p>
 				</div>
 			</div>
+			
+			<div class="row text-center padding-top-30 form-loader">
+	      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
+	        <div id="movingBallG">
+	          <div class="movingBallLineG"></div>
+	          <div id="movingBallG_1" class="movingBallG"></div>
+	        </div>
+	      </div>
+	    </div>
 
 			<button type="submit" class="emma-btn emma-btn-light plan-detail-submit-button">Siguiente</button>
 		</form>
@@ -168,4 +177,5 @@
 <script src="{% static 'lib/angular/angular.min.js' %}"></script>
 <script src="{% static 'js/hiring-flow/app.js' %}"></script>
 <script src="{% static 'js/hiring-flow/plan-detail.js' %}"></script>
+<script src="{% static 'js/hiring-flow/formloaders.js' %}"></script>
 {% endblock %}

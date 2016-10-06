@@ -7,3 +7,10 @@ $('#select-plan-form button[type="submit"]').click(function (e) {
   $(form).siblings('.form-loader').show();
   form.submit();
 });
+
+$('#schedule-form').submit(function (e) {
+  e.preventDefault();
+  var form = $(this);
+  form.find('.form-loader').show();
+  form.find('[type="submit"]').attr('disabled', 'disabled');
+});
