@@ -201,6 +201,7 @@ class ContractPay(ActiveClientRequiredMixin, View):
             charge_reg.save()
 
             contract_service.adult = Adult.objects.filter(responsable=client)[0]
+            contract_service.save()
 
             client.user_type = 'User type 3'
             client.save()
@@ -208,7 +209,7 @@ class ContractPay(ActiveClientRequiredMixin, View):
         return redirect(self.success_url)
 
 
-class ContractComprobation(ActiveClientRequiredMixin, View):
+class ContractComprobation(View):
     success_url = reverse_lazy('landing:success_contract')
     def get(self, request):
 
