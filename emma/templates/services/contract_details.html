@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load humanize %}
 {% load static from staticfiles %}
 {% block content %}
 <div id="hiring-flow" ng-app="emmaHiringFlow">
@@ -129,7 +130,7 @@
 					<p>
 						<span class="line">
 							<b>Precio del plan:</b>
-							<span>${{ service.service.price }}<sup style="font-size: 12px">MXN</sup></span>
+							<span>${{ service.service.price|intcomma:False }}<sup style="font-size: 12px">MXN</sup></span>
 						</span>
 						<span class="line">
 							<b>Taller(es) y actividad(es) seleccionados:</b>
