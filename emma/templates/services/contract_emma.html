@@ -12,7 +12,7 @@
 		</div>
 	</div>
 	<h2 class="step-title">Tu Emma</h2>
-	<form class="white-boxes-container emma-info-boxes" action="." method="post">
+	<form id="emma-form" class="white-boxes-container emma-info-boxes" action="." method="post">
 		{% csrf_token %}
 		<div class="white box gender-box">
 			<div class="box-title">Género de preferencia</div>
@@ -252,7 +252,18 @@
 		<div class="small-text">
 			*No garantizamos que los acompañantes sean expertos en los temas seleccionados.
 		</div>
+		<div class="row text-center padding-top-30 form-loader">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
+        <div id="movingBallG">
+          <div class="movingBallLineG"></div>
+          <div id="movingBallG_1" class="movingBallG"></div>
+        </div>
+      </div>
+    </div>
 		<button type="submit" class="emma-btn emma-btn-light">Siguiente</button>
 	</form>
 </div>
+{% endblock %}
+{% block js %}
+<script src="{% static 'js/hiring-flow/formloaders.js' %}"></script>
 {% endblock %}
