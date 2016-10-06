@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load humanize %}
 {% load static from staticfiles %}
 {% block content %}
 <div id="hiring-flow">
@@ -63,8 +64,8 @@
 							<span>{{ contract_service.get_emma_type_display }}</span>
 						</span>
 						<span class="line">
-							<b>Idioma(s):</b>
-							<span>{{ contract_service.languages }}</span>
+							<b>Idiomas adicionales:</b>
+							<span class="line">{{ contract_service.languages }}</span>
 						</span>
 						<span class="line">
 							<b>Conocimientos y destrezas especiales:</b>
@@ -91,7 +92,7 @@
 						</span>
 						<span class="line">
 							<span>Monto:</span>
-							<span>${{ contract_service.service.price }}<sup style="font-size:13px">MXN</sup></span>
+							<span>${{ contract_service.service.price|intcomma:False }}<sup style="font-size:13px">MXN</sup></span>
 						</span>
 					</div>
 				</div>
