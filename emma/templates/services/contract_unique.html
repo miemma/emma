@@ -3,7 +3,7 @@
 {% load static from staticfiles %}
 {% block content %}
 <div id="hiring-flow" class="on-demand">
-	<form action="." method="post">
+	<form id="on-demand-form" action="." method="post">
 		{% csrf_token %}
 		<h1>Solicitud única de Emma</h1>
 		<textarea class="emma-input center-placeholder" name="description" placeholder="Descripción de la actividad"></textarea>
@@ -76,7 +76,7 @@
 			</div>
 		</div>
 		
-		<h2>Duracion estimada de la actividad</h2>
+		<h2>Duración estimada de la actividad</h2>
 		<div class="row text-center duration-row">
 			<div class="col-md-2">
 				<select class="emma-input" name="duration">
