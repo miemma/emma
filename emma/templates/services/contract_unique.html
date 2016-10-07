@@ -2,60 +2,96 @@
 {% load humanize %}
 {% load static from staticfiles %}
 {% block content %}
-<div id="hiring-flow">
-	<h1>Solicitud única de Emma</h1>
+<div id="hiring-flow" class="on-demand">
 	<form action="." method="post">
 		{% csrf_token %}
-		<textarea name="description" cols="30" rows="10" placeholder="Descripcion de la actividad"></textarea><br>
-		¿Cuándo se llevará a cabo?
-		<input type="text" name="day" placeholder="Dia">
-		<select name="month">
-			<option value="">Mes</option>
-			<option value="january">Enero</option>
-			<option value="february">Febrero</option>
-			<option value="march">Marzo</option>
-			<option value="april">Abril</option>
-			<option value="may">Mayo</option>
-			<option value="june">Junio</option>
-			<option value="july">Julio</option>
-			<option value="august">Agosto</option>
-			<option value="september">Septiembre</option>
-			<option value="october">Octubre</option>
-			<option value="november">Noviembre</option>
-			<option value="december">Diciembre</option>
-		</select><br>
-		<h4>¿Cuál es la dirección del adulto mayor?</h4>
-		<input type="text" name="street" placeholder="Calle">
-		<input type="text" name="num_ext" placeholder="Num. Ext">
-		<input type="text" name="num_int" placeholder="Num. Int"><br>
-		<input type="text" name="colony" placeholder="Colonia">
-		<input type="text" name="delegation" placeholder="Delegación">
-		<input type="text" name="cp" placeholder="C.P">
-		<h4>¿A qué hora deseas que se lleve a cabo la actividad?</h4>
-		<select name="time">
-			<option value="">Hora</option>
-			<option value="10:00">10:00</option>
-			<option value="11:00">11:00</option>
-			<option value="12:00">12:00</option>
-			<option value="13:00">13:00</option>
-			<option value="14:00">14:00</option>
-			<option value="15:00">15:00</option>
-			<option value="16:00">16:00</option>
-			<option value="17:00">17:00</option>
-			<option value="18:00">18:00</option>
-			<option value="19:00">19:00</option>
-			<option value="20:00">20:00</option>
-			<option value="21:00">21:00</option>
-		</select>
-		<h4>Duracion estimada de la actividad</h4>
-		<select name="duration">
-			<option value="1">1</option>
-			<option value="1.5">1.5</option>
-			<option value="2">2</option>
-			<option value="2.5">2.5</option>
-			<option value="3">3</option>
-		</select><br><br>
-		<button type="submit">Solicitar una Emma</button>
+		<h1>Solicitud única de Emma</h1>
+		<textarea class="emma-input center-placeholder" name="description" placeholder="Descripción de la actividad"></textarea>
+		<h2>¿Cuándo se llevaría a cabo?</h2>
+		<div class="row text-center">
+			<div class="col-md-2">
+				<input class="emma-input text-center" type="text" name="day" placeholder="Día">
+			</div>
+			<div class="col-md-2">
+				<select name="month" class="emma-input col-md-2">
+					<option value="">Mes</option>
+					<option value="january">Enero</option>
+					<option value="february">Febrero</option>
+					<option value="march">Marzo</option>
+					<option value="april">Abril</option>
+					<option value="may">Mayo</option>
+					<option value="june">Junio</option>
+					<option value="july">Julio</option>
+					<option value="august">Agosto</option>
+					<option value="september">Septiembre</option>
+					<option value="october">Octubre</option>
+					<option value="november">Noviembre</option>
+					<option value="december">Diciembre</option>
+				</select>
+			</div>
+		</div>
+		<h2>¿Cuál es la dirección del adulto mayor?</h2>
+		<div class="row">
+			<div class="col-md-6">
+				<input class="emma-input" type="text" name="street" placeholder="Calle">
+			</div>
+			<div class="col-md-3">
+				<input class="emma-input" type="text" name="num_ext" placeholder="Num. Ext">
+			</div>
+			<div class="col-md-3">
+				<input class="emma-input" type="text" name="num_int" placeholder="Num. Int">
+			</div>
+		</div>
+		<div class="row addres-2-row">
+			<div class="col-md-5">
+				<input class="emma-input" type="text" name="colony" placeholder="Colonia">
+			</div>
+			<div class="col-md-4">
+				<input class="emma-input" type="text" name="delegation" placeholder="Delegación">
+			</div>
+			<div class="col-md-3">
+				<input class="emma-input" type="text" name="cp" placeholder="C.P">
+			</div>
+		</div>
+		<div class="row text-center margin-top-60 margin-bottom-60">
+			<div class="col-md-4">
+				<h2>¿A qué hora deseas que se lleve a cabo la actividad?</h2>
+			</div>
+			<div class="col-md-2">
+				<select class="emma-input" name="time">
+					<option value="">Hora</option>
+					<option value="10:00">10:00</option>
+					<option value="11:00">11:00</option>
+					<option value="12:00">12:00</option>
+					<option value="13:00">13:00</option>
+					<option value="14:00">14:00</option>
+					<option value="15:00">15:00</option>
+					<option value="16:00">16:00</option>
+					<option value="17:00">17:00</option>
+					<option value="18:00">18:00</option>
+					<option value="19:00">19:00</option>
+					<option value="20:00">20:00</option>
+					<option value="21:00">21:00</option>
+				</select>
+			</div>
+		</div>
+		
+		<h2>Duracion estimada de la actividad</h2>
+		<div class="row text-center duration-row">
+			<div class="col-md-2">
+				<select class="emma-input" name="duration">
+					<option value="1">1</option>
+					<option value="1.5">1.5</option>
+					<option value="2">2</option>
+					<option value="2.5">2.5</option>
+					<option value="3">3</option>
+				</select>
+			</div>
+			<div class="col-md-1">
+		 		Hora(s)
+			</div>
+		</div>
+		<button class="emma-btn emma-btn-light" type="submit">Solicitar una Emma</button>
 	</form>
 </div>
 {% endblock %}
