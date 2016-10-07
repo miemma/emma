@@ -3,11 +3,14 @@
 {% load static from staticfiles %}
 {% block content %}
 <div id="hiring-flow">
+	<h1>Solicitud única de Emma</h1>
 	<form action="." method="post">
 		{% csrf_token %}
-		<textarea name="description"cols="30" rows="10" placeholder="Descripcion"></textarea><br>
+		<textarea name="description" cols="30" rows="10" placeholder="Descripcion de la actividad"></textarea><br>
+		¿Cuándo se llevará a cabo?
 		<input type="text" name="day" placeholder="Dia">
 		<select name="month">
+			<option value="">Mes</option>
 			<option value="january">Enero</option>
 			<option value="february">Febrero</option>
 			<option value="march">Marzo</option>
@@ -21,15 +24,16 @@
 			<option value="november">Noviembre</option>
 			<option value="december">Diciembre</option>
 		</select><br>
-		<h4>Cual es la direccion del adulto mayor</h4>
+		<h4>¿Cuál es la dirección del adulto mayor?</h4>
 		<input type="text" name="street" placeholder="Calle">
 		<input type="text" name="num_ext" placeholder="Num. Ext">
 		<input type="text" name="num_int" placeholder="Num. Int"><br>
 		<input type="text" name="colony" placeholder="Colonia">
-		<input type="text" name="delegation" placeholder="Delegacion">
+		<input type="text" name="delegation" placeholder="Delegación">
 		<input type="text" name="cp" placeholder="C.P">
-		<h4>Hora de la actividad</h4>
+		<h4>¿A qué hora deseas que se lleve a cabo la actividad?</h4>
 		<select name="time">
+			<option value="">Hora</option>
 			<option value="10:00">10:00</option>
 			<option value="11:00">11:00</option>
 			<option value="12:00">12:00</option>
@@ -51,9 +55,7 @@
 			<option value="2.5">2.5</option>
 			<option value="3">3</option>
 		</select><br><br>
-		<button type="submit">
-			Enviar
-		</button>
+		<button type="submit">Solicitar una Emma</button>
 	</form>
 </div>
 {% endblock %}
