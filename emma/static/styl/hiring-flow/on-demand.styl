@@ -3,7 +3,7 @@
     margin 0 auto
     width 62%
 
-  .row
+  .row:not(.form-loader)
     & > div
       padding 0 7px
       
@@ -12,6 +12,12 @@
 
     &.text-center > div
       vertical-align middle
+      
+  .row.form-loader
+    padding-top 0
+    
+    & > div
+      margin-top 0
     
   .emma-input
     font-size 21px
@@ -74,7 +80,7 @@
     margin 0
     
   .row.duration-row
-    margin-bottom 100px
+    margin-bottom 60px
     
     .col-md-2
       width 12%
@@ -89,4 +95,5 @@
   .emma-btn
     font-size 14px
     margin-bottom 20px
+    margin-top 40px
     padding 10px 32px
