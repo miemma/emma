@@ -13,3 +13,7 @@ $('#schedule-form, #emma-form').submit(function (e) {
   form.find('.form-loader').show();
   form.find('[type="submit"]').attr('disabled', 'disabled');
 });
+
+$('[data-toggle="tooltip"]').tooltip({
+  placement: 'bottom'
+});
