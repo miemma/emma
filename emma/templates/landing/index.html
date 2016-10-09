@@ -21,19 +21,19 @@
 {% block content %}
 	<section class="landing-video-section">
 		<div class="embed-responsive embed-responsive-16by9">
-		  <video src="http://download.blender.org/peach/trailer/trailer_iphone.m4v" autoplay loop></video>
+		  <video src="http://download.blender.org/peach/trailer/trailer_iphone.m4v" autoplay="auto" loop></video>
 		</div>
 		<div class="layer">
 			<div class="text-container">
 			  <div class="row text-center info-1-row-title">
-			    <div class="col-xs-11 col-sm-10 col-md-10 col-lg-10">
+			    <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
 			      <p class="info-1-title">
 			        ¿Preocupado de que tus seres queridos pasen tiempo solos en casa?
 			      </p>
 			    </div>
 			  </div>
 			  <div class="row text-center info-1-row-subtitle">
-			    <div class="col-xs-11 col-sm-9 col-md-6 col-lg-5">
+			    <div class="col-xs-9 col-sm-9 col-md-6 col-lg-5">
 			      <p class="text-center info-1-subtitle">
 			        En menos de 12 horas puedes contar con una de nuestras
 			        compañeras confiables
@@ -41,7 +41,7 @@
 			    </div>
 			  </div>
 			  <div class="row text-center info-1-row-btn">
-			    <div class="col-xs-10 col-sm-5 col-md-4 col-lg-3">
+			    <div class="col-xs-6 col-sm-5 col-md-4 col-lg-3">
 				    {% if request.user.client %}
 					    <a href="{%  url 'clients:dashboard_welcome'  %}"
 					       class="emma-btn-dark info-1-btn-pay">
@@ -60,25 +60,25 @@
 	<section class="mentions">
 	  <div class="container">
 	    <div class="row text-center">
-		    <div class="col-xs-10 col-sm-5 col-md-2 col-lg-2 mentions-col">
+		    <div class="col-xs-5 col-sm-5 col-md-2 col-lg-2 mentions-col">
 			    <a href="https://m.youtube.com/watch?v=tDdfj_b-TKU" target="_blank">
 				    <img src="{% static 'img/icons/radio-21.png' %}"
 	               class="img-responsive mentions-0">
 			    </a>
 	      </div>
-	      <div class="col-xs-10 col-sm-5 col-md-2 col-lg-2 mentions-col">
+	      <div class="col-xs-5 col-sm-5 col-md-2 col-lg-2 mentions-col">
 	        <a href="http://www.excelsior.com.mx/opinion/rafael-alvarez-cordero/2016/03/12/1080417" target="_blank">
 	          <img src="{% static 'img/icons/iconos-13.png' %}"
 	               class="img-responsive mentions-1">
 	        </a>
 	      </div>
-	      <div class="col-xs-10 col-sm-5 col-md-2 col-lg-2 mentions-col">
+	      <div class="col-xs-5 col-sm-5 col-md-2 col-lg-2 mentions-col">
 	        <a href="http://www.soyentrepreneur.com/30283-emma-gana-el-premio-al-estudiante-emprendedor.html" target="_blank">
 	          <img src="{% static 'img/icons/icono-14-nuevo.png' %}"
 	               class="img-responsive mentions-2">
 	        </a>
 	      </div>
-	      <div class="col-xs-10 col-sm-5 col-md-2 col-lg-2 mentions-col">
+	      <div class="col-xs-5 col-sm-5 col-md-2 col-lg-2 mentions-col">
 	        <a href="http://www.elfinanciero.com.mx/economia/emma-la-startup-ganadora-del-premio-al-estudiante-emprendedor.html" target="_blank">
 	          <img src="{% static 'img/icons/iconos-15.png' %}"
 	               class="img-responsive mentions-3">

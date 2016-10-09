@@ -1,6 +1,41 @@
 /* Móviles en vertical
    ------------------------------------------------------------------------- */
+@media screen and (max-width: 700px) and (orientation: portrait)
+  .landing-video-section
+    .col-xs-9
+      width 91.6%
+      
+    .col-xs-6
+      width 72%
+      
+@media screen and (max-width: 600px)
+  .landing-video-section .col-xs-9
+      width 91.6%
+      
+  .landing-video-section .col-xs-6
+      width 72%
+
 @media screen and (max-width: 768px)
+  .landing-video-section
+    background-image url('http://www.puntogeek.com/wp-content/uploads/2010/03/big-buck.jpg')
+    background-position center
+    background-size cover
+    height auto
+    max-height initial
+    
+    .layer
+      height 100%
+      padding 15px 0
+      position relative
+      top 0
+      
+    .text-container
+      top 0
+      transform none
+
+    .embed-responsive, video
+      display none
+
   .info-1
     background-position right -189px bottom 0px
     &-title
@@ -11,32 +46,20 @@
       font-size 19px
     &-btn
       font-size 19px
-    &-row-title
-      padding-top 180px
-
+    &-row-btn
+      margin-top 2em
 
   .mentions
-    padding-bottom 30px
-    &-1
-      margin-top -25px !important
-      height 20px !important
-    &-2
-      height 20px !important
-    &-3
-      height 15px
-      margin-top -17px !important
-      width auto
     &-title
       padding 52px 0 0 0
     &-col
-      margin-top 2em
-      margin-bottom 1.5em
+      margin 1em 0
+      &:nth-child(1), &:nth-child(2)
+        margin-bottom 2em
       &:nth-child(odd)
         margin-right -7px
       &:nth-child(even)
         margin-left -7px
-      &:nth-child(n+2)
-        margin-top 0.2em
       img
         margin 0 auto
 
@@ -275,13 +298,6 @@
 /* Tablets en horizonal y escritorios pequeños
    ------------------------------------------------------------------------- */
 @media (min-width: 992px) and (max-width: 1200px)
-
-  .mentions
-    &-col
-      &:nth-child(4)
-        img
-          margin-top 20px
-
   .how-subtitle
     &-last
       width 95%
