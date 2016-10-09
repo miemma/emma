@@ -19,38 +19,43 @@
 	<!-- End Facebook Pixel Code -->
 {% endblock %}
 {% block content %}
-	<section class="info-1">
-		<div class="info-text-container">
-		  <div class="row text-center info-1-row-title">
-		    <div class="col-xs-11 col-sm-10 col-md-10 col-lg-10">
-		      <p class="info-1-title">
-		        ¿Preocupado de que tus seres queridos pasen tiempo solos en casa?
-		      </p>
-		    </div>
-		  </div>
-		  <div class="row text-center info-1-row-subtitle">
-		    <div class="col-xs-11 col-sm-9 col-md-6 col-lg-5">
-		      <p class="text-center info-1-subtitle">
-		        En menos de 12 horas puedes contar con una de nuestras
-		        compañeras confiables
-		      </p>
-		    </div>
-		  </div>
-		  <div class="row text-center info-1-row-btn">
-		    <div class="col-xs-10 col-sm-5 col-md-4 col-lg-3">
-			    {% if request.user.client %}
-				    <a href="{%  url 'clients:dashboard_welcome'  %}"
-				       class="emma-btn-dark info-1-btn-pay">
-			        Ver perfil
-			      </a>
-			    {% else %}
-				    <a href="{% url 'xauth:signup' %}" class="emma-btn-dark info-1-btn">
-			        Empieza ahora
-			      </a>
-			    {% endif %}
-		    </div>
-		  </div>
+	<section class="landing-video-section">
+		<div class="embed-responsive embed-responsive-16by9">
+		  <video src="http://download.blender.org/peach/trailer/trailer_iphone.m4v" autoplay="autoplay" loop="loop" poster="https://peach.blender.org/wp-content/uploads/its-a-trap.png?3016dc"></video>
+		</div>
+		<div class="layer">
+			<div class="text-container">
+			  <div class="row text-center info-1-row-title">
+			    <div class="col-xs-11 col-sm-10 col-md-10 col-lg-10">
+			      <p class="info-1-title">
+			        ¿Preocupado de que tus seres queridos pasen tiempo solos en casa?
+			      </p>
+			    </div>
+			  </div>
+			  <div class="row text-center info-1-row-subtitle">
+			    <div class="col-xs-11 col-sm-9 col-md-6 col-lg-5">
+			      <p class="text-center info-1-subtitle">
+			        En menos de 12 horas puedes contar con una de nuestras
+			        compañeras confiables
+			      </p>
+			    </div>
+			  </div>
+			  <div class="row text-center info-1-row-btn">
+			    <div class="col-xs-10 col-sm-5 col-md-4 col-lg-3">
+				    {% if request.user.client %}
+					    <a href="{%  url 'clients:dashboard_welcome'  %}"
+					       class="emma-btn-dark info-1-btn-pay">
+				        Ver perfil
+				      </a>
+				    {% else %}
+					    <a href="{% url 'xauth:signup' %}" class="emma-btn-dark info-1-btn">
+				        Empieza ahora
+				      </a>
+				    {% endif %}
+			    </div>
+			  </div>
 		 </div>
+		</div>
 	</section>
 	<section class="mentions">
 	  <div class="container">
