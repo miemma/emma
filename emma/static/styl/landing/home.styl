@@ -1,11 +1,18 @@
 .landing-video-section
-  height calc(100vh - 125px)
+  height calc(((9/16) * 100vw) - 125px)
+  max-height calc(100vh - 125px)
   overflow hidden
   position relative
   
   .embed-responsive
     position relative
     top -125px
+    
+  video
+    background-image url('http://www.puntogeek.com/wp-content/uploads/2010/03/big-buck.jpg')
+    background-position center
+    background-size cover
+    object-fill inherit
     
   .layer
     background rgba(black, 0.2)
