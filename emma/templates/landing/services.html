@@ -30,9 +30,7 @@ especializado con seguimiento geriátrico.
   Siempre encontrarás un plan acorde a las necesidades de tu ser querido:</p>
   <p>
   <div class="plans-selector">
-    <form id="select-plan-form" class="loader-form" method="post" action=".">
-      {% csrf_token %}
-      <input type="hidden" name="plan">
+    <div class="plans-container">
       {% for plan in plans %}
       <div class="plan-item">
         <span class="plan-title">{{ plan.name }}</span>
@@ -43,12 +41,12 @@ especializado con seguimiento geriátrico.
             <p class="description">
               Hasta {{ plan.max_hours_per_month }} hrs. de acompañamiento mensuales
             </p>
-            <button data-plan="{{ plan.id }}" class="emma-btn emma-btn-light" type="submit">Seleccionar</button>
+            <a href="{% url 'xauth:login' %}" class="emma-btn emma-btn-light">Seleccionar</a>
           </div>
         </div>
       </div>
       {% endfor %}
-    </form>
+    </div>
     <div class="plan-item custom">
       <span class="plan-title">Personalizado</span>
       <div class="plan-content-wrapper">
@@ -203,7 +201,4 @@ especializado con seguimiento geriátrico.
     </div>
   </div>
 </div>
-{% endblock %}
-{% block js %}
-<script src="{% static "js/hiring-flow/formloaders.js" %}"></script>
 {% endblock %}

@@ -6,12 +6,13 @@ from datetime import date
 
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render
-from django.views.generic import View, TemplateView
+from django.template.response import TemplateResponse
+from django.views.generic import View, TemplateView, ListView
 from django.conf import settings
 
 from emma.apps.clients.models import PotentialClient
 from emma.apps.emmas.models import PotentialEmma
-from emma.apps.services.models import ScheduledCall
+from emma.apps.services.models import Service, ScheduledCall
 from emma.core.mixins import ClientRequiredMixin
 from emma.core.utils import send_email
 
@@ -20,8 +21,18 @@ class HomeTemplateView(TemplateView):
     template_name = 'landing/index.html'
 
 
-class ServicesTemplateView(TemplateView):
-    template_name = 'landing/services.html'
+class ServicesTemplateView(ListView):
+    @staticmethod
+    def get_context(request):
+        plans = Service.objects.all()
+        ctx = {
+            'plans': plans
+        }
+        return ctx
+
+    def get(self, request):
+        ctx = self.get_context(request)
+        return TemplateResponse(request, 'landing/services.html', ctx)
 
 
 class FAQTemplateView(TemplateView):
