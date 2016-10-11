@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load humanize %}
 {% load static from staticfiles %}
 {% block fbpixel %}
 	<!-- Facebook Pixel Code -->
@@ -19,119 +20,190 @@
 	<!-- End Facebook Pixel Code -->
 {% endblock %}
 {% block content %}
-  <section class="services-detail">
-    <h1 class="services-detail-title">Servicios</h1>
-      <div class="row text-center">
-        <div class="col-lg-5 col-md-5 col-sm-8 col-xs-10 services-detail-col-serv vertical-top">
-          <div class="services-detail-cont">
-            <div class="services-detail-cont-title">
-              <span class="services-detail-cont-title-text">
-                Acompañamiento <br> en casa
-              </span>
-              <span class="services-detail-cont-title-price f-price">
-                $240 por hora
-              </span>
-            </div>
-            <figure class="services-detail-cont-img">
-              <img src="{% static 'img/servicios_1.jpg' %}" class="img-responsive">
-            </figure>
-          </div>
-          <div class="services-detail-cont-desc">
-            <p>
-	            Adecuamos las actividades al interés y ritmo de aprendizaje de
-	            cada persona mayor. Ya sea mediante un taller en particular o
-	            una combinación de varios:
+<div id="hiring-flow">
+  <h2 class="step-title" style="margin-top: 0">Tu Plan</h2>
+  <p class="plans-introductory-text">
+    Desde una hora de Emma con fines de entretenimiento hasta un plan
+especializado con seguimiento geriátrico.
+  </p>
+  <p class="plans-introductory-text">
+  Siempre encontrarás un plan acorde a las necesidades de tu ser querido:</p>
+  <p>
+  <div class="plans-selector">
+    <form id="select-plan-form" class="loader-form" method="post" action=".">
+      {% csrf_token %}
+      <input type="hidden" name="plan">
+      {% for plan in plans %}
+      <div class="plan-item">
+        <span class="plan-title">{{ plan.name }}</span>
+        <div class="plan-content-wrapper">
+          <div class="plan-content">
+            <span class="price">
+            ${{ plan.price|intcomma:False }}<sup class="sup">MXN</sup></span>
+            <p class="description">
+              Hasta {{ plan.max_hours_per_month }} hrs. de acompañamiento mensuales
             </p>
+            <button data-plan="{{ plan.id }}" class="emma-btn emma-btn-light" type="submit">Seleccionar</button>
           </div>
-          <ul class="services-detail-cont-list">
-            <li class="services-detail-cont-list-item">
-              <figure class="services-detail-cont-list-item-img">
-                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
-              </figure>
-              <span>Taller de juegos de mesa</span>
-            </li>
-            <li class="services-detail-cont-list-item">
-              <figure class="services-detail-cont-list-item-img">
-                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
-              </figure>
-              <span>Taller de discusiones guiadas</span>
-            </li>
-            <li class="services-detail-cont-list-item">
-              <figure class="services-detail-cont-list-item-img">
-                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
-              </figure>
-              <span>Taller de cine casero</span>
-            </li>
-            <li class="services-detail-cont-list-item">
-              <figure class="services-detail-cont-list-item-img">
-                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
-              </figure>
-              <span>Taller de tecnología</span>
-            </li>
-          </ul>
-        </div>
-        <div class="col-lg-5 col-md-5 col-sm-8 col-xs-10 services-detail-col-serv vertical-top ">
-          <div class="services-detail-cont">
-            <div class="services-detail-cont-title">
-              <span class="services-detail-cont-title-text text-sp nowrap">
-                Asistencia en transporte
-              </span>
-              <span class="services-detail-cont-title-price">
-                $180 por hora
-              </span>
-            </div>
-            <figure class="services-detail-cont-img">
-              <img src="{% static 'img/servicios_2.jpg' %}" class="img-responsive">
-            </figure>
-          </div>
-          <div class="services-detail-cont-desc">
-            <p>
-	            Nos aseguramos de que el adulto mayor llegue a tiempo a su
-	            destino, lo ayudamos a realizar sus actividades y finalmente nos
-	            aseguramos de que llegue a casa a salvo.
-            </p>
-          </div>
-          <ul class="services-detail-cont-list">
-            <li class="services-detail-cont-list-item">
-              <figure class="services-detail-cont-list-item-img">
-                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
-              </figure>
-              <span>Citas al doctor</span>
-            </li>
-            <li class="services-detail-cont-list-item">
-              <figure class="services-detail-cont-list-item-img">
-                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
-              </figure>
-              <span>Compras en el supermercado</span>
-            </li>
-            <li class="services-detail-cont-list-item">
-              <figure class="services-detail-cont-list-item-img">
-                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
-              </figure>
-              <span>Pendientes diarios</span>
-            </li>
-            <li class="services-detail-cont-list-item">
-              <figure class="services-detail-cont-list-item-img">
-                <img src="{% static 'img/icons/list.png' %}" alt="check"/>
-              </figure>
-              <span>Teatro, cine y museos</span>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-      <div class="row text-center">
-        <div class="col-xs-8 col-sm-3 col-md-3 col-lg-3">
-	        {% if request.user.client %}
-				    <a href="{%  url 'clients:dashboard_welcome'  %}" class="emma-btn-dark services-detail-btn">
-			        Dashboard
-			      </a>
-			    {% else %}
-				    <a href="{% url 'xauth:signup' %}" class="emma-btn-dark services-detail-btn">
-			        Empieza ahora
-			      </a>
-			    {% endif %}
         </div>
       </div>
-  </section>
-{% endblock content %}
+      {% endfor %}
+    </form>
+    <div class="plan-item custom">
+      <span class="plan-title">Personalizado</span>
+      <div class="plan-content-wrapper">
+        <div class="plan-content">
+          <p class="description">
+            ¿Te gustaría tener un plan a tu medida?
+          </p>
+          <a href="#" class="emma-btn emma-btn-light">Crealo aquí</a>
+        </div>
+      </div>
+    </div>
+        <div class="row text-center padding-top-30 form-loader">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-50">
+            <div id="movingBallG">
+              <div class="movingBallLineG"></div>
+              <div id="movingBallG_1" class="movingBallG"></div>
+            </div>
+          </div>
+        </div>
+  </div>
+  <a href="#characteristics-table" class="emma-btn compare-plans-btn">Comparar planes</a>
+  <div class="white">
+    <div id="characteristics-table" class="plans-table-container">
+      <div class="table-responsive">
+        <table class="table plans-characteristics-table">
+          <thead>
+            <tr>
+              <th colspan="2">Beneficios</th>
+              <th>Introductorio</th>
+              <th>Básico</th>
+              <th>Pro</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Activación de intereses del adulto mayor</td>
+              <td>
+                <span class="tooltip-container" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod">
+                    ?
+                </span>
+              </td>
+              <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+              <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+              <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+            </tr>
+            <tr>
+              <td>Reportes mensuales para los familiares</td>
+              <td>
+                <span class="tooltip-container" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod">
+                    ?
+                    </span>
+              </td>
+              <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+              <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+              <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+            </tr>
+            <tr>
+              <td>Combinación de diferentes talleres</td>
+              <td>
+                <span class="tooltip-container" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod">
+                    ?
+                    </span>
+              </td>
+              <td></td>
+              <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+              <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+            </tr>
+            <tr>
+              <td>Monitoreo de actividad cognitiva y de la memoria</td>
+              <td>
+                <span class="tooltip-container" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod">
+                    ?
+                    </span>
+              </td>
+              <td></td>
+              <td></td>
+              <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+            </tr>
+            <tr>
+              <td>Asistencia en transporte para actividades fuera de casa</td>
+              <td>
+                <span class="tooltip-container" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod">
+                    ?
+                    </span>
+              </td>
+              <td></td>
+              <td></td>
+              <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+            </tr>
+            <tr>
+              <td>Plan de atención creado por nuestros geriatras</td>
+              <td>
+                <span class="tooltip-container" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod">
+                    ?
+                    </span>
+              </td>
+              <td></td>
+              <td></td>
+              <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+            </tr>
+            <tr>
+              <td>Involucramiento del geriatra o médico de cabecera</td>
+              <td>
+                <span class="tooltip-container" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod">
+                    ?
+                    </span>
+              </td>
+              <td></td>
+              <td></td>
+              <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+            </tr>
+            <tr>
+              <td>Valoraciones geriátricas periódicas</td>
+              <td>
+                <span class="tooltip-container" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod">
+                    ?
+                    </span>
+              </td>
+              <td></td>
+              <td></td>
+              <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="on-demand-container">
+      <h2 class="on-demand-title">¿Deseas ayuda de Emma por sólo esta ocasión?</h2>
+      <div class="on-demand-images">
+        <div class="image-item">
+          <span class="hover-text">
+            Emma te acompaña con tus pendientes diarios
+          </span>
+        </div>
+        <div class="image-item">
+          <span class="hover-text">
+            ¿Ganas de ir al teatro o al cine?
+          </span>
+        </div>
+        <div class="image-item">
+          <span class="hover-text">
+            Vamos contigo al doctor
+          </span>
+        </div>
+      </div>
+      <div class="button-container">
+        <p>
+          <span>Envíanos tu solicitud y pide una <i>Emma</i> por única vez</span>
+          <a href="{% url 'services:contract_unique' %}" class="emma-btn emma-btn-light">Solicitar una Emma</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block js %}
+<script src="{% static "js/hiring-flow/formloaders.js" %}"></script>
+{% endblock %}
