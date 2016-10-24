@@ -1,12 +1,12 @@
 .landing-video-section
   height calc(((9/16) * 100vw) - 125px)
-  max-height calc(100vh - 125px)
+  max-height calc(100vh - 125px - 86px)
   overflow hidden
   position relative
+  margin-top 86px
   
   .embed-responsive
     position relative
-    top -125px
     
   video
     background-image url('../img/video_poster.jpg')
@@ -15,11 +15,11 @@
     
   .layer
     background rgba(black, 0.2)
-    height calc(100% - 86px)
+    height 100%
     left 0
     position absolute
     right 0
-    top 86px
+    top 0
     z-index 2
     
   .text-container
