@@ -22,17 +22,17 @@ $(function() {
 		document.getElementById('content-no-navbar-wrapper').addEventListener('touchmove', detectTouch, false);
 	}
 
-	$(window).scroll(function () {
-		$(this).scrollTop() < 20 ?
-	    $('header').removeClass('header-navbar-white'):
-			$('header').addClass('header-navbar-white');
-	});
+	// $(window).scroll(function () {
+	// 	$(this).scrollTop() < 20 ?
+	//     $('header').removeClass('header-navbar-white'):
+	// 		$('header').addClass('header-navbar-white');
+	// });
 
-	$(window).scroll(function () {
-		$(this).scrollTop() < 20 ?
-	    $('li[hcolor="white"]').removeClass('white'):
-			$('li[hcolor="white"]').addClass('white');
-	});
+	// $(window).scroll(function () {
+	// 	$(this).scrollTop() < 20 ?
+	//     $('li[hcolor="white"]').removeClass('white'):
+	// 		$('li[hcolor="white"]').addClass('white');
+	// });
 
     $( window ).resize(function() {
         //noinspection JSUnresolvedFunction
