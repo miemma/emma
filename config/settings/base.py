@@ -47,6 +47,7 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     'suit',
     'session_security',
+    'corsheaders',
 )
 
 # Apps specific for this project go here.
@@ -70,6 +71,7 @@ INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS + LOCAL_APPS
 # -----------------------------------------------------------------------------
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -180,3 +182,13 @@ SESSION_SECURITY_WARN_AFTER = env.int("SESSION_SECURITY_WARN_AFTER")
 DATE_INPUT_FORMATS = [
     '%d/%m/%Y'
 ]
+
+MAILCHIMP_API_KEY = env("MAILCHIMP_API_KEY")
+MAILCHIMP_SHARD = env("MAILCHIMP_SHARD")
+MAILCHIMP_API_ROOT = "https://" + MAILCHIMP_SHARD + ".api.mailchimp.com/3.0/"
+
+MAILCHIMP_NEWSLETTER_LIST = env("MAILCHIMP_NEWSLETTER_LIST")
+
+CORS_ORIGIN_WHITELIST = (
+    'blog.miemma.com',
+)

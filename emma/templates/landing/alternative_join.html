@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% block content %}
+  <section class="success" style="margin-top: 75px">
+    <div class="row text-center" style="margin-top: 120px">
+      <div class=" col-lg-12 col-xs-12 col-sm-12 col-md-12">
+        <img src="{% static 'img/icons/check.png' %}"
+             alt="success" class="img-check center-block img-responsive"/>
+      </div>
+    </div>
+    <div class="row text-center success-row-desc" style="font-size: 26px">
+      <div class="col-lg-7 col-md-7 col-sm-10 col-xs-11">
+        <p class="success-desc">
+					¡Muchas gracias por tu interés en aplicar como una Emma o Frank!
+        </p>
+	      <P class="success-desc">
+		      Por el momento no tenemos vacantes disponibles. Te invitamos a que le des like a nuestro página en Facebook para recibir más información y avisarte tan pronto volvamos a abrir la convocatoria.
+	      </P>
+      </div>
+    </div>
+	  <div class="row text-center success-row-desc">
+      <div class="col-lg-7 col-md-7 col-sm-10 col-xs-11">
+	      <div class="fb-page" data-href="https://www.facebook.com/miemma.mexico/" data-tabs="mensajes" data-small-header="true" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/miemma.mexico/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/miemma.mexico/">Emma</a></blockquote></div>
+      </div>
+    </div>
+    <div class="row text-center success-row-btn">
+      <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+        <a id="successBtn" href="{% url 'landing:home' %}"
+           class="emma-btn-dark success-btn">
+          Regresar a la página principal
+        </a>
+      </div>
+    </div>
+    <div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.7&appId=1748550858708018";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+  </section>
+{% endblock content %}

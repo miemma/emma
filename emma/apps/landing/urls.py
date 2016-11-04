@@ -34,8 +34,8 @@ urlpatterns = [
         view=views.SuccessContractTemplateView.as_view(),
         name='success_contract'),
 
-    url(regex=r'^unete/$', view=views.JoinEmailView.as_view(),
-        name='join'),
+    #url(regex=r'^unete/$', view=views.JoinEmailView.as_view(),
+    #    name='join'),
 
     url(regex=r'^agendar/$', view=views.DateEmailView.as_view(),
         name='date'),
@@ -47,4 +47,12 @@ urlpatterns = [
     url(regex=r'^enviar-mail/$',
         view=views.ContactEmailView.as_view(),
         name='send_contact_mail'),
+
+    url(regex=r'^subscribe/$',
+        view=views.NewsletterView.as_view(),
+        name='subscribe'),
+
+    url(regex=r'^gracias/$',
+        view=views.AlternativeJoinEmmaView.as_view(),
+        name='thanks'),
 ]

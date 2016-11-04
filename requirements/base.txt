@@ -22,3 +22,5 @@ django-mailgun==0.8.0
 openpay==0.3
 pyExcelerator==0.6.4.1
 django-session-security==2.3.2
+django-cors-headers==1.1.0
+
