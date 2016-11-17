@@ -8,6 +8,7 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.views import defaults as error_views
+from django.contrib.sitemaps.views import sitemap
 
 from emma.apps.landing import urls as landing_urls
 from emma.apps.xauth import urls as xauth_urls
@@ -16,10 +17,16 @@ from emma.apps.suscriptions import urls as suscription_urls
 from emma.apps.adults import urls as adult_urls
 from emma.apps.clients import urls as clients_urls
 from emma.apps.emmas import urls as emmas_urls
+from emma.core.sitemaps import StaticViewSitemap
+
+sitemaps = {
+    'static': StaticViewSitemap,
+}
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'session_security/', include('session_security.urls')),
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 
     # Custom urls
     # url(r'', include(module_urls, namespace='module')),
@@ -33,9 +40,11 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
+    import debug_toolbar
     # This allows the error pages to be debugged during development, visit
     # these url in browser to see how these error pages look like.
     urlpatterns += [
+       url(r'^__debug__/', include(debug_toolbar.urls)),
         url(r'^400/$', error_views.bad_request, kwargs={
             'exception': Exception("Bad Request!")}),
         url(r'^403/$', error_views.permission_denied, kwargs={
