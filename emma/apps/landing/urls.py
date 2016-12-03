@@ -10,7 +10,7 @@ urlpatterns = [
         view=views.HomeTemplateView.as_view(),
         name='home'),
 
-    url(regex=r'^servicios/$',
+    url(regex=r'^precios/$',
         view=views.ServicesTemplateView.as_view(),
         name='services'),
 
