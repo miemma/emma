@@ -4,16 +4,16 @@
     max-width 670px
     margin-top 20px
     width 90%
-    
+
   .plans-selector
     margin 0 auto
     margin-top 80px
     width 90%
-    
+
     form, .plans-container
       display inline-block
       vertical-align middle
-      
+
       &::after
         border-color #dadada
         border-style solid
@@ -24,16 +24,16 @@
         margin 0 25px
         width 1px
         vertical-align middle
-    
+
     .plan-item
       background white
       display inline-block
       vertical-align middle
       width 230px
-      
+
       &:not(:first-of-type)
         margin-left 10px
-        
+
       .plan-title
         border-color $light_gray
         border-style solid
@@ -41,51 +41,51 @@
         display block
         font-size 21px
         padding 12px 0 10px 0
-      
+
       .plan-content-wrapper
         align-items center
         display flex
         height 265px
         padding 0 30px
-        
+
         .plan-content
           text-align center
           width 100%
-          
+
           .price
             display block
             font-family 'Avenir LT Std Heavy'
             font-size 27px
             line-height 0.9
-            
+
             .sup
               font-size 10px
               margin-left 2px
               top 0
               vertical-align top
               line-height 0.7
-          
+
           .description
             color $gray
             font-size 13px
             margin 23px 0 27px 0
-            
+
           .emma-btn
             display inline-block
             font-size 19px
             padding 7px 25px
-            
+
       &.custom .plan-content-wrapper
         padding 0 35px
-        
+
         .plan-content
           .description
             font-size 15px
-            margin 10px 0 60px 0
-  
+            margin 10px 0 85px 0
+
     .form-loader
       width 50%
-      
+
   .form-loader
       margin 0 auto
       width 80%
@@ -98,13 +98,13 @@
     font-size 19px
     margin 70px 0
     padding 9px 16px
-  
+
   .plans-table-container
     padding 110px 70px 75px 70px
-    
+
     .plans-characteristics-table
       border 1px solid $dashboard_background
-      
+
       thead th
         border none
         height 100px
@@ -112,50 +112,50 @@
         font-size 20px
         font-weight normal
         text-align center
-        
+
         &:first-child
           text-align left
-      
+
       tbody
         tr:nth-child(even)
           background white
-          
+
           td .tooltip-container
             background $light_gray
-          
+
         tr:nth-child(odd)
           background $light_gray
-          
+
           td .tooltip-container
             background white
-          
+
         tr:last-child td
           height 100px
           vertical-align top
-          
+
         tr td
           border none
           font-size 15px
           padding 17px 0
           text-align center
           vertical-align middle
-          
+
           &:first-child
             max-width 170px
             text-align left
             word-wrap break-word
-            
+
           &:nth-child(2)
             padding-left 35px
             text-align left
             width 50px
-          
+
       tr th:first-of-type, tr td:first-of-type
         padding-left 60px
-        
+
       th:first-child
         max-width 260px
-        
+
       .tooltip-container
         border-radius 50%
         cursor pointer
@@ -170,11 +170,11 @@
   .on-demand-container
     .on-demand-title
       font-size 27px
-      
+
     .on-demand-images
       display flex
       margin-top 40px
-      
+
       .image-item
         background-color $gray
         background-blend-mode multiply
@@ -182,13 +182,13 @@
         position relative
         transition background-color 0.2s
         width 33.3333%
-        
+
         &:hover
           background-color rgba(black, 0.7)
 
           .hover-text
             opacity 1
-        
+
         .hover-text
           color white
           display block
@@ -209,21 +209,21 @@
       p
         margin 0 auto
         width 60%
-        
+
         span
           display block
           font-size 21px
-        
+
         .emma-btn
           display inline-block
           font-size 14px
           margin-top 30px
           padding 9px 30px
-        
+
 @media screen and (max-width: 768px)
   .plans-characteristics-table td
     max-width initial !important
-    
+
     &:not(:first-child):not(:nth-child(2))
       padding-left 40px !important
       padding-right 40px !important

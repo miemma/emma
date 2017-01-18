@@ -41,9 +41,9 @@ especializado con seguimiento geriátrico.
         <div class="plan-content-wrapper">
           <div class="plan-content">
             <span class="price">
-            ${{ plan.price|intcomma:False }}<sup class="sup">MXN</sup></span>
+            ${{ plan.price|intcomma:False }}<sup class="sup">MXN</sup> <span class="small">Mensuales</span></span>
             <p class="description">
-              Hasta {{ plan.max_hours_per_month }} hrs. de acompañamiento mensuales
+              {{ plan.weekly_hours }} hrs. de acompañamiento semanales
             </p>
             <a href="{% url 'xauth:login' %}" class="emma-btn emma-btn-light">Seleccionar</a>
           </div>
@@ -79,9 +79,9 @@ especializado con seguimiento geriátrico.
           <thead>
             <tr>
               <th colspan="2">Beneficios</th>
-              <th>Introductorio</th>
               <th>Básico</th>
-              <th>Pro</th>
+              <th>Mixto</th>
+              <th>PRO</th>
             </tr>
           </thead>
           <tbody>
