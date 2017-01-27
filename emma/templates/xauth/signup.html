@@ -13,21 +13,21 @@
       ¿Estás interesado(a) en conocer más sobre nuestros servicios para tu ser querido?
       Ayúdanos completando tu registro y nos pondremos en contacto contigo.
     </p>
-	  <div class="row text-center">
-		  <div class="col-lg-5 col-md-6 col-sm-8 col-xs-10">
-				{% if form.non_field_errors %}
-					<div class="alert alert-danger form-alert" role="alert">
-						{{ form.non_field_errors.as_text|cut:"*" }}
-					</div>
-				{% endif %}
-			</div>
-	  </div>
+    <div class="row text-center">
+      <div class="col-lg-5 col-md-6 col-sm-8 col-xs-10">
+        {% if form.non_field_errors %}
+          <div class="alert alert-danger form-alert" role="alert">
+            {{ form.non_field_errors.as_text|cut:"*" }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
     <div class="row text-center">
       <div class="col-lg-5 col-md-6 col-sm-8 col-xs-10">
         <form class="signup-form" action="." method="post" id="signup-form">
           {% csrf_token %}
-	        {{ form.name }}
-	        {% if form.name.errors %}
+          {{ form.name }}
+          {% if form.name.errors %}
             <div class="alert alert-danger form-alert" role="alert">
               {{ form.name.errors.as_text|cut:"*" }}
             </div>
@@ -38,63 +38,69 @@
               {{ form.last_name.errors.as_text|cut:"*" }}
             </div>
           {% endif %}
-          {{ form.mother_last_name }}
-	        {% if form.mother_last_name.errors %}
-            <div class="alert alert-danger form-alert" role="alert">
-              {{ form.mother_last_name.errors.as_text|cut:"*" }}
+          <div class="row">
+            <div class="col-lg-6 col-sm-6">
+              {{ form.father_last_name }}
+              {% if form.father_last_name.errors %}
+                <div class="alert alert-danger form-alert" role="alert">
+                  {{ form.father_last_name.errors.as_text|cut:"*" }}
+                </div>
+              {% endif %}
             </div>
-          {% endif %}
-          {{ form.father_last_name }}
-	        {% if form.father_last_name.errors %}
-            <div class="alert alert-danger form-alert" role="alert">
-              {{ form.father_last_name.errors.as_text|cut:"*" }}
+            <div class="col-lg-6 col-sm-6">
+              {{ form.mother_last_name }}
+              {% if form.mother_last_name.errors %}
+                <div class="alert alert-danger form-alert" role="alert">
+                  {{ form.mother_last_name.errors.as_text|cut:"*" }}
+                </div>
+              {% endif %}
             </div>
-          {% endif %}
-	        {{ form.email }}
-	        {% if form.email.errors %}
+          </div>
+          {{ form.email }}
+          {% if form.email.errors %}
             <label class="error">
               {{ form.email.errors.as_text|cut:"*" }}
             </label>
           {% endif %}
-          {{ form.password_1}}
-	        {% if form.password_1.errors %}
+          {{ form.password_1 }}
+          {% if form.password_1.errors %}
             <div class="alert alert-danger signup-alert" role="alert">
               {{ form.password_1.errors.as_text|cut:"*" }}
             </div>
           {% endif %}
-          {{ form.password_2}}
-	        {% if form.password_2.errors %}
+          {{ form.password_2 }}
+          {% if form.password_2.errors %}
             <div class="alert alert-danger signup-alert" role="alert">
               {{ form.password_2.errors.as_text|cut:"*" }}
             </div>
           {% endif %}
-	        <div class="row text-center">
-	          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-	            <a class="login-link" href="{% url 'xauth:login' %}">
-	              ¿Ya tienes una cuenta?
-	              <span class="color-yellow">
+          <div class="row text-center">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <a class="login-link" href="{% url 'xauth:login' %}">
+                ¿Ya tienes una cuenta?
+                <span class="color-yellow">
 	                Inicia sesión
 	              </span>
-	            </a>
-	          </div>
-	        </div>
+              </a>
+            </div>
+          </div>
           <div class="row text-center padding-top-30 form-loader">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div id="movingBallG">
-								<div class="movingBallLineG"></div>
-								<div id="movingBallG_1" class="movingBallG"></div>
-						</div>
+                <div class="movingBallLineG"></div>
+                <div id="movingBallG_1" class="movingBallG"></div>
+              </div>
             </div>
           </div>
-	        <div class="row text-center">
-	          <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-	            <input type="submit" value="Registrarme" name="submit_btn_1"
-	                   class="emma-btn-dark signup-btn">
-	          </div>
-	          </div>
-	        </div>
-        </form>
+          <div class="row text-center">
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+              <input type="submit" value="Registrarme" name="submit_btn_1"
+                     class="emma-btn-dark signup-btn">
+            </div>
+          </div>
       </div>
+      </form>
+    </div>
     </div>
   </section>
 {% endblock content %}
