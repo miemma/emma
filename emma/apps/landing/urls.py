@@ -22,6 +22,10 @@ urlpatterns = [
         view=views.AboutTemplateView.as_view(),
         name='about'),
 
+    url(regex=r'^aviso-de-privacidad/$',
+        view=views.PrivacyTemplateView.as_view(),
+        name='privacy'),
+
     url(regex=r'^hecho/$',
         view=views.SuccessTemplateView.as_view(),
         name='success'),

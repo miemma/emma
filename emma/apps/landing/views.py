@@ -296,3 +296,7 @@ class NewsletterView(View):
 
 class AlternativeJoinEmmaView(TemplateView):
     template_name = 'landing/alternative_join.html'
+
+
+class PrivacyTemplateView(TemplateView):
+    template_name = 'landing/privacy.html'
