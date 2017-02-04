@@ -1,0 +1,134 @@
+{% load static from staticfiles %}
+<a href="#characteristics-table" class="emma-btn compare-plans-btn" data-action="scroll">Comparar planes</a>
+<div class="white">
+  <div id="characteristics-table" class="plans-table-container">
+    <div class="table-responsive">
+      <table class="table plans-characteristics-table">
+        <thead>
+          <tr>
+            <th colspan="2">Beneficios</th>
+            <th>Básico</th>
+            <th>Mixto</th>
+            <th>PRO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Activación de intereses del adulto mayor</td>
+            <td>
+              <span class="tooltip-container" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod">
+                  ?
+              </span>
+            </td>
+            <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+            <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+            <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+          </tr>
+          <tr>
+            <td>Reportes mensuales para los familiares</td>
+            <td>
+              <span class="tooltip-container" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod">
+                  ?
+                  </span>
+            </td>
+            <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+            <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+            <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+          </tr>
+          <tr>
+            <td>Combinación de diferentes talleres</td>
+            <td>
+              <span class="tooltip-container" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod">
+                  ?
+                  </span>
+            </td>
+            <td></td>
+            <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+            <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+          </tr>
+          <tr>
+            <td>Asistencia en transporte para actividades fuera de casa</td>
+            <td>
+              <span class="tooltip-container" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod">
+                  ?
+                  </span>
+            </td>
+            <td></td>
+            <td></td>
+            <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+          </tr>
+          <tr>
+            <td>Monitoreo de actividad cognitiva y de la memoria</td>
+            <td>
+              <span class="tooltip-container" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod">
+                  ?
+                  </span>
+            </td>
+            <td></td>
+            <td></td>
+            <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+          </tr>
+          <tr>
+            <td>Plan de atención creado por nuestros geriatras</td>
+            <td>
+              <span class="tooltip-container" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod">
+                  ?
+                  </span>
+            </td>
+            <td></td>
+            <td></td>
+            <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+          </tr>
+          <tr>
+            <td>Involucramiento del geriatra o médico de cabecera</td>
+            <td>
+              <span class="tooltip-container" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod">
+                  ?
+                  </span>
+            </td>
+            <td></td>
+            <td></td>
+            <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+          </tr>
+          <tr>
+            <td>Valoraciones geriátricas periódicas</td>
+            <td>
+              <span class="tooltip-container" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod">
+                  ?
+                  </span>
+            </td>
+            <td></td>
+            <td></td>
+            <td><img src="{% static 'img/icons/check.png' %}" width="40px"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="on-demand-container">
+    <h2 class="on-demand-title">¿Deseas ayuda de Emma por sólo esta ocasión?</h2>
+    <div class="on-demand-images">
+      <div class="image-item">
+        <span class="hover-text">
+          Emma te acompaña con tus pendientes diarios
+        </span>
+      </div>
+      <div class="image-item">
+        <span class="hover-text">
+          ¿Ganas de ir al teatro o al cine?
+        </span>
+      </div>
+      <div class="image-item">
+        <span class="hover-text">
+          Vamos contigo al doctor
+        </span>
+      </div>
+    </div>
+    <div class="button-container">
+      <p>
+        <span>Envíanos tu solicitud y pide una <i>Emma</i> por única vez</span>
+        <a href="{% url 'services:contract_unique' %}" class="emma-btn emma-btn-light">Solicitar una Emma</a>
+      </p>
+    </div>
+  </div>
+</div>
