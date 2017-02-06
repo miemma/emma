@@ -2,7 +2,7 @@
   background-color $light_gray
   overflow-y hidden
   overflow-x hidden
-  
+
   &-loader
     display none
 
@@ -59,27 +59,50 @@
 
 .show-in-mobile
   display none
-  
+
 .login-form.show-in-mobile
   margin-bottom 150px
   margin-top -60px
-  
+
   h2
     font-family "Avenir LT Std Roman"
     font-size 26px
     font-weight bold
     text-align center
     color $dark_gray
-    
+
   p
     font-family "Avenir LT Std Roman"
     font-size 22px
     margin-bottom 20px
     margin-top 10px
 
+@media screen and (max-width: 1110px)
+  .login-title
+    margin-top 4em
+
 @media screen and (max-width: 1025px)
   .hide-in-mobile
     display none
-    
+
   .show-in-mobile
     display block
+
+@media screen and (max-width: 767px)
+  .login-title
+    font-size 27px
+
+  .login-form.show-in-mobile
+    margin-bottom 60px
+
+  .login-form.show-in-mobile h2
+    font-size 21px
+    margin-top 6px
+
+  .login-form.show-in-mobile p
+    font-size 17.5px
+    margin-top 20px
+
+  .login-link,
+  .login-link-2
+    font-size 15px

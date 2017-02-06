@@ -175,6 +175,8 @@
   .on-demand-container
     .on-demand-title
       font-size 27px
+      margin 0 auto
+      width 90%
 
     .on-demand-images
       display flex
@@ -183,30 +185,27 @@
       .image-item
         background-position center 30%
         background-size cover
-        background-blend-mode multiply
-        height 330px
+        height 24.44vw
         position relative
-        transition background-color 0.2s
         width 33.3333%
 
         &:hover
-          background-color rgba(black, 0.7)
-
           .hover-text
             opacity 1
 
         .hover-text
+          background rgba(black, 0.7)
           color white
-          display block
+          display flex
           font-size 26px
           line-height 1.2
           opacity 0
           padding 0 65px
-          position absolute
-          transition opacity 0.2s
-          transform translateY(-50%)
-          top 50%
           width 100%
+          align-items center
+          height 100%
+          transition opacity 0.2s
+          justify-content center
 
     .button-container
       padding 70px 0 85px 0
@@ -226,6 +225,50 @@
           margin-top 30px
           padding 9px 30px
 
+@media screen and (max-width: 1130px)
+  #hiring-flow .plans-selector .plans-container,
+  #hiring-flow .plans-selector form
+    display block
+
+    &::after
+      display none
+      content ''
+
+  #hiring-flow .plans-selector
+    .plan-item
+      margin-top 15px
+
+      &.custom
+        width 100%
+        max-width 720px
+        center-block()
+
+        .plan-content-wrapper
+          height auto
+          padding 35px 15px
+
+          .plan-content .description
+            margin 0 0 30px 0
+
+@media screen and (max-width: 1100px)
+  #hiring-flow
+    margin-top 65px
+
+@media screen and (max-width: 890px)
+  #hiring-flow .on-demand-container .on-demand-images .image-item .hover-text
+    font-size 22px
+    padding 0 30px
+
+@media screen and (max-width: 810px)
+  #hiring-flow .plans-selector .plans-container,
+  #hiring-flow .plans-selector form
+    .plan-item
+      width 100%
+
+      &:not(:first-child)
+        margin-left 0
+
+
 @media screen and (max-width: 768px)
   .plans-characteristics-table td
     max-width initial !important
@@ -233,3 +276,30 @@
     &:not(:first-child):not(:nth-child(2))
       padding-left 40px !important
       padding-right 40px !important
+
+@media screen and (max-width: 767px)
+  #hiring-flow
+    padding-top 40px
+    font-size 16px
+
+    .plans-selector
+      margin-top 46px
+
+    .plans-table-container
+      padding 0
+      padding-bottom 32px
+
+    .on-demand-container .on-demand-title
+      font-size 22px
+
+    .on-demand-container .on-demand-images
+      flex-wrap wrap
+
+      .image-item
+        height 42vw
+        min-height 240px
+        width 100%
+
+        .hover-text
+          background rgba(black, 0.56)
+          opacity 1
