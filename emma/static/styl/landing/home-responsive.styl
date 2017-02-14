@@ -15,7 +15,7 @@
   .landing-video-section .col-xs-6
       width 72%
 
-@media screen and (max-width: 768px)
+@media screen and (max-width: 767px)
   .landing-video-section
     background-image url('../img/video_poster.jpg')
     background-position center
@@ -209,17 +209,18 @@
       &-phone
         text-align center
         margin-top 2em
-      &-list-item
-        text-align center
-        margin-top 1em
-        display inline-block
-        width 47%
-        vertical-align middle
 
+  .footer-info-list
+    text-align center
+
+  .footer-info-list-item
+    display inline-block
+    margin 1em 1em 0 1em
+    width auto
+    vertical-align middle
 /* Móviles en horizontal o tablets en vertical
    ------------------------------------------------------------------------- */
 @media (min-width: 768px) and (max-width: 992px)
-
   .mentions
     &-col
       &:nth-child(n+3)
@@ -263,12 +264,18 @@
         margin-top 3em
 
   .footer
+    padding-top 0
     text-align center
+
+    > .row
+      padding-top 20px
+
     &-join
       padding 0
-    &-join-principal
+
+    &-join-principal,
     &-join-second
-      text-align center
+      text-align left
       margin-top 0.5em
 
     &-join-principal
@@ -276,7 +283,7 @@
 
     &-btn
       margin 1em auto
-      width 90%
+      width 100%
 
     &-social-terms
       align-items center
@@ -285,7 +292,7 @@
       p
         display inline-block
         width 45%
-        font-family "AvenirLTS Medium"
+        font-family "Avenir LT Std Medium"
         font-size 15px
         color $gray
         position relative
@@ -295,17 +302,31 @@
           margin-left 5px
 
     &-info
+      padding-left 0
       &-text
         margin 1em auto 0 auto
         text-align center
         width 80%
       &-phone
         text-align center
-        margin-top 2em
+        margin-top 0
       &-list-item
         text-align center
         margin-top 1em
 
+    &-col
+      &:nth-child(1),
+      &:nth-child(3)
+        width 26%
+
+      &:nth-child(2)
+        width 31%
+
+  .footer-info-list-item
+    margin-top 0.6em
+
+    &:first-of-type
+      margin-top 1em
 /* Tablets en horizonal y escritorios pequeños
    ------------------------------------------------------------------------- */
 @media (min-width: 992px) and (max-width: 1200px)
