@@ -62,16 +62,28 @@
               {{ form.email.errors.as_text|cut:"*" }}
             </label>
           {% endif %}
-          {{ form.password_1 }}
-          {% if form.password_1.errors %}
-            <div class="alert alert-danger signup-alert" role="alert">
-              {{ form.password_1.errors.as_text|cut:"*" }}
+          <div class="row">
+            <div class="col-lg-6 col-sm-6">
+            {{ form.password_1 }}
+            {% if form.password_1.errors %}
+              <div class="alert alert-danger signup-alert" role="alert">
+                {{ form.password_1.errors.as_text|cut:"*" }}
+              </div>
+            {% endif %}
             </div>
-          {% endif %}
-          {{ form.password_2 }}
-          {% if form.password_2.errors %}
+            <div class="col-lg-6 col-sm-6">
+            {{ form.password_2 }}
+            {% if form.password_2.errors %}
+              <div class="alert alert-danger signup-alert" role="alert">
+                {{ form.password_2.errors.as_text|cut:"*" }}
+              </div>
+            {% endif %}
+            </div>
+          </div>
+          {{ form.phone }}
+          {% if form.phone.errors %}
             <div class="alert alert-danger signup-alert" role="alert">
-              {{ form.password_2.errors.as_text|cut:"*" }}
+              {{ form.phone.errors.as_text|cut:"*" }}
             </div>
           {% endif %}
           <div class="row text-center">

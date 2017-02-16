@@ -194,6 +194,14 @@ class SignupForm(forms.Form):
             }
         ),
     )
+    phone = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'login-form-input emma-input',
+                'placeholder': 'Teléfono'
+            }
+        ),
+    )
 
     def __init__(self, *args, **kwargs):
         self.user_cache = None
@@ -228,7 +236,10 @@ class SignupForm(forms.Form):
 
         user.save()
 
-        client = Client(user=user, user_type='User type 1')
+        client = Client(
+            user=user,
+            user_type='User type 1',
+            contact_number=cleaned_data.get('phone'))
         client.save()
 
         self.user_cache = user
