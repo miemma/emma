@@ -20,7 +20,32 @@
     margin-top remify(35)
 
   .how-col .how-desc
+    width 100%
     max-width 320px
+
+@media screen and (max-width: 850px)
+  .whois-carousel
+    margin-top remify(25)
+
+  .whois-carousel__item-content
+    justify-content center
+
+  .whois-carousel__item-box-title
+    text-align center
+
+  .whois-carousel__item-box-content
+    padding-right remify(29)
+
+  .whois-image-img
+    display none
+
+@media screen and (max-width: 390px)
+  .whois-footer
+    span
+      display block
+      center-block()
+      text-align center
+      margin-top remify(18)
 
 @media screen and (max-width: 767px)
   .landing-video-section
@@ -119,39 +144,6 @@
   .whois-list-item-img
     margin-right 0px
     width 40px
-  .whois
-    &-desc
-      width 100%
-      margin 0 auto
-      text-align center
-    &-list
-      padding 2rem 0 5rem 2rem
-    &-btn
-      margin 0 auto
-    &-image
-      display none
-    &-img-1
-      height 50px
-      width auto
-      margin 0 auto
-    &-img-2
-      height 35px
-      width auto
-      margin 0 auto
-    &-img-3
-      height 45px
-      width auto
-      margin 0 auto
-    &-img-4
-      height 35px
-      width auto
-      margin 0 auto
-    &-allies-img
-      &:nth-child(n+4)
-        margin-top 3em
-      &:nth-child(n+3)
-        padding 0 !important
-
 
   .footer
     text-align center
@@ -229,19 +221,6 @@
       margin 0
     &-2
       margin 2em 0 0 0
-
-  .whois
-    &-desc
-      margin 0 auto
-    &-list
-      padding 2rem 0 5rem 6rem
-    &-btn
-      margin 0 auto
-    &-image
-      display none
-    &-allies-img
-      &:nth-child(n+4)
-        margin-top 3em
 
   .footer
     padding-top 0

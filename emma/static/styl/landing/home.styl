@@ -63,7 +63,7 @@
     line-height 1.33
     color #808080
     max-width 838px
-    width 90%
+    width 80%
     center-block()
     margin-top remify(25)
 
@@ -127,7 +127,6 @@
     &-btn
       padding-top 10px
       margin 4em 0 0 0
-
 
 .mentions
   background-color #f0f0f1
@@ -240,6 +239,10 @@
 
 .how-col.col-md-4
   @media (min-width: 992px)
+    width 30%
+
+.how-col.col-sm-4
+  @media (min-width: 768px)
     width 30%
 
 .how-col
@@ -396,6 +399,7 @@
 .whois-carousel__item-box
   background white
   max-width 456px
+  flex-basis 90%
   text-align left
   font-family 'Avenir LT Std Medium'
   line-height 1.08
@@ -450,6 +454,8 @@
     font-family "Avenir LT Std Heavy"
     font-size remify(25)
     text-transform none
+    center-block()
+    width 90%
 
   &-desc
     font-family "Avenir LT Std Medium"
