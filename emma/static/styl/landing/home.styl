@@ -159,7 +159,6 @@
     padding 2.5em 0 2em 0
     font-family 'Avenir LT Std Medium'
 
-
 .video-banner
   background-color $light_gray
   &-row
@@ -235,33 +234,42 @@
   &-row
     margin-top 50px
 
+.landing-how__container
+  width 90% !important
+  max-width 1050px
+
+.how-col.col-md-4
+  @media (min-width: 992px)
+    width 30%
+
+.how-col
+  vertical-align top
 
 .how
   background-color white
   text-align center
   overflow-x hidden
   overflow-y auto
+  padding-bottom remify(57)
 
   &-title
-    font-family 'Avenir LT Std Heavy'
-    font-size 37px
-    color $dark_gray
     text-align center
+    font-size remify(25)
+    color #808080
+    font-family 'Avenir LT Std Heavy'
 
   &-subtitle
     font-family 'Avenir LT Std Heavy'
-    font-size 17.5px
-    line-height 30px
+    font-size remify(22)
     color $dark_gray
     vertical-align text-top
-    min-height 70px
     width 90%
     margin 1.5em auto 0 auto
     display flex
     justify-content center
     align-items flex-start
     &-second
-      width 85%
+      width 100%
 
     &-last
       width 77%
@@ -274,13 +282,12 @@
     display block
 
   &-desc
-    font-family 'Avenir LT Std Heavy'
-    font-size 15px
-    color $dark_gray
-    padding-top 2em
-    width 80%
+    font-family 'Avenir LT Std Medium'
+    font-size remify(16)
+    color #808080
+    padding-top remify(21)
+    width 90%
     margin 0 auto
-    line-height 28px
 
     &-last
       width 90%
@@ -292,17 +299,14 @@
     display block
     padding 0.7rem 0
 
-
   &-row-content
-    margin-top 100px
+    margin-top remify(55)
 
   &-row-title
-    margin-top 100px
-    margin-bottom 20px
+    margin-top remify(36)
 
   &-row-btn
     margin 5em auto 7em auto
-
 
 .benefits
   background-color $white
