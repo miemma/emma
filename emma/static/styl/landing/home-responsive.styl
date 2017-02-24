@@ -15,6 +15,21 @@
   .landing-video-section .col-xs-6
       width 72%
 
+@media screen and (max-width: 1023px)
+  .landing-agend-call__main-div
+    flex-wrap wrap
+    justify-content center
+
+  .landing-agend-call__left-column,
+  .landing-agend-call__right-column
+    flex-basis 90%
+
+  .landing-agend-call__left-column
+    margin-top remify(40)
+
+  .landing-agend-call__right-column
+    margin-top remify(30)
+
 @media screen and (max-width: 768px)
   .how-col:not(:first-child)
     margin-top remify(35)
@@ -38,6 +53,14 @@
 
   .whois-image-img
     display none
+
+@media screen and (max-width: 480px)
+  .landing-agend-call__buttons .emma-btn
+    display block
+    center-block()
+
+    &:not(:first-child)
+      margin-left auto
 
 @media screen and (max-width: 390px)
   .whois-footer

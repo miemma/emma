@@ -525,7 +525,6 @@
     font-family "Avenir LT Std Roman"
     font-size 19px
     color $gray
-    border-top 1px solid $gray
     padding 60px 0 40px 0
     margin 0
 
@@ -567,6 +566,61 @@
   margin-top remify(50)
   max-width 120px
   max-height 16px
+
+.landing-agend-call
+  border-bottom solid 1px #e5e5e5
+  border-top solid 1px #e5e5e5
+  color #808080
+  padding-bottom remify(38)
+
+.landing-agend-call__main-div
+  display flex
+  width 90%
+  max-width 900px
+  center-block()
+  text-align center
+  align-items center
+  justify-content space-around
+
+.landing-agend-call__title
+  font-size remify(20)
+  font-family 'Avenir LT Std Medium'
+
+.landing-agend-call__left-column
+  flex-basis 375px
+
+  p
+    font-size remify(14)
+    line-height 1.43
+    color #9b9b9b
+    margin-top remify(32)
+
+.landing-agend-call__right-column
+  flex-basis 452px
+
+  .embed-responsive
+    padding-bottom 84%
+
+.landing-agend-call__buttons
+  margin-top remify(60)
+
+  .emma-btn
+    display inline-block
+    padding 1em
+    font-family 'Avenir LT Std Heavy'
+    line-height 1
+    padding remify(12.5) remify(14)
+    width remify(163)
+    font-size remify(15)
+    margin-top remify(12)
+
+    &:not(:first-child)
+      margin-left remify(22)
+
+.landing-agend-call__address
+  font-size remify(14)
+  line-height 1.29
+  margin-top remify(18)
 
 #benefitscollapse
   cursor pointer
