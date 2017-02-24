@@ -15,6 +15,13 @@
   .landing-video-section .col-xs-6
       width 72%
 
+@media screen and (max-width: 768px)
+  .how-col:not(:first-child)
+    margin-top remify(35)
+
+  .how-col .how-desc
+    max-width 320px
+
 @media screen and (max-width: 767px)
   .landing-video-section
     background-image url('../img/video_poster.jpg')
@@ -90,29 +97,6 @@
       margin-top 0.4em
     &-row
       margin-top 25px
-
-
-  .how
-    &-desc
-      width 85%
-      padding-top 0
-      margin-bottom 4em
-      max-width 320px
-
-    &-col
-      &:first-child
-        h3
-          min-height auto
-          margin-bottom 10px
-          margin-top 15px
-
-      &:nth-child(3) .how-subtitle
-        max-width 280px
-        min-height 100px
-
-    &-row-btn
-      margin -1em 0 6em 0
-
 
   .benefits
     &-row-btn
