@@ -12,6 +12,13 @@ $red = #FF0000
 $dashboard_background = #f4f4f4
 $border_gray = #dedede
 
+center-block()
+  margin-left auto
+  margin-right auto
+
+remify(pxsize)
+  return unit(pxsize / 16, 'rem')
+
 /* Clases Utiles */
 
 .green
@@ -34,16 +41,16 @@ $border_gray = #dedede
 
 .circle
   border-radius 50%
-  
+
 .flex
   display flex
-  
+
 .flex-grow-1
   flex-grow 1
-  
+
 .white-background
   background white
-  
+
 .centered-col
   margin 0 auto
   float none
@@ -65,7 +72,7 @@ $border_gray = #dedede
 
 .vertical-middle
   vertical-align middle
-  
+
 .padding-0
   padding 0
 
