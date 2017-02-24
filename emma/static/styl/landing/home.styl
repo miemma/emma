@@ -236,7 +236,7 @@
 
 .landing-how__container
   width 90% !important
-  max-width 1050px
+  max-width 990px
 
 .how-col.col-md-4
   @media (min-width: 992px)
@@ -288,6 +288,7 @@
     padding-top remify(21)
     width 90%
     margin 0 auto
+    line-height 1
 
     &-last
       width 90%
@@ -384,23 +385,80 @@
     margin 80px 0 70px 0
     cursor auto !important
 
+.whois-carousel
+  margin-top 10px
+
+.whois-carousel__item-content
+  display flex
+  align-items flex-end
+  justify-content space-around
+
+.whois-carousel__item-box
+  background white
+  max-width 456px
+  text-align left
+  font-family 'Avenir LT Std Medium'
+  line-height 1.08
+
+.whois-carousel__item-box-title
+  font-size remify(21)
+  padding remify(22) remify(29) remify(12) remify(29)
+
+.whois-carousel__item-box-content
+  border-top 1px #e5e5e5 solid
+  padding remify(22) remify(52) remify(40) remify(29)
+  font-size remify(16)
+
+.whois-carousel__item-line
+  display block
+
+  &.whois-carousel__item-line--separator
+    margin-top 1em
+
+.whois-image-img
+  height 287px
+
+.whois-footer
+  padding-top remify(42)
+
+  .emma-btn
+    display inline-block
+    font-size remify(18)
+    padding remify(19) remify(35)
+    font-family 'Avenir LT Std Heavy'
+    line-height 1
+    vertical-align middle
+
+  span
+    display inline-block
+    vertical-align middle
+    font-size remify(13)
+    font-family 'Avenir LT Std Medium'
+    margin-left remify(18)
+    width 130px
+    color #808080
+    line-height 1
+    text-align left
 
 .whois
+  background #f4f4f4
+  padding remify(42) 0
+  text-align center
+  color #808080
+
   &-title
     font-family "Avenir LT Std Heavy"
-    font-size 37px
-    color $dark_gray
-    text-align center
+    font-size remify(25)
     text-transform none
 
   &-desc
-    text-align left
-    font-family "Avenir LT Std Roman"
-    font-size 22px
-    color $dark_gray
-    width 95%
-    margin-left 47px
-    padding-bottom 30px
+    font-family "Avenir LT Std Medium"
+    font-size remify(16)
+    width 90%
+    margin-top remify(22)
+    max-width 554px
+    line-height 1
+    center-block()
 
   &-list
     list-style none
