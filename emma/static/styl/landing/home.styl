@@ -232,6 +232,7 @@
   overflow-x hidden
   overflow-y auto
 
+
   &-title
     font-size 37px
     color $gray
@@ -240,10 +241,10 @@
     font-family 'Avenir LT Std Heavy'
 
   &-cont-title
-    font-size 21px
+    font-size remify(22)
     color $yellow
     text-align center
-    height 60px
+    line-height 1
     display flex
     justify-content center
     align-items center
@@ -251,27 +252,31 @@
     font-family 'Avenir LT Std Heavy'
 
   &-cont-description
-    font-size 21px
+    font-size remify(15)
+    line-height 1
     color $gray
     text-transform none
     width 90%
+    max-width 267px
     margin 0 auto
+    margin-top remify(46)
     display block
     font-family 'Avenir LT Std Roman'
 
   &-separator
     img
-      width 15%
-      margin-top 12.5px
+      width 11px
+      margin-top 0
 
   &-row-title-icon
     margin-top: 70px
   &-row-title
     margin-top 30px
   &-row-content
-    margin-top 50px
-    margin-bottom 120px
-
+    margin 0 auto
+    margin-top remify(50)
+    margin-bottom remify(72)
+    max-width 1180px
 
 .info-2
   background-image url("../img/cover_2.png")
