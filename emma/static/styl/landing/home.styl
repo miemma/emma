@@ -74,6 +74,72 @@
   width 90%
   center-block()
 
+.landing-diagram
+  border solid 3px #f7c42a
+  border-radius 50%
+  height 233px
+  width 248px
+  position relative
+  margin-top remify(100)
+  margin-bottom remify(60)
+  center-block()
+
+.landing-diagram__icon-label
+  display block
+  position absolute
+  font-size remify(18)
+  font-family 'Avenir LT Std Heavy'
+  color #4a4a4a
+  line-height 1
+
+.landing-diagram__icon-item
+  position absolute
+
+  &:first-child, &:nth-child(3)
+    left 50%
+    transform translateX(-50%)
+
+  &:nth-child(2), &:last-child
+    top 50%
+    transform translateY(-50%)
+
+  &:first-child
+    top -25px
+
+    .landing-diagram__icon-label
+      left 50%
+      top -13px
+      transform translate(-50%, -100%)
+      width 180px
+
+  &:nth-child(2)
+    right -25px
+
+    .landing-diagram__icon-label
+      right -17px
+      top 50%
+      transform translate(100%, -50%)
+      width 118px
+      text-align left
+
+  &:nth-child(3)
+    bottom -25px
+
+    .landing-diagram__icon-label
+      bottom -15px
+      left 50%
+      transform translate(-50%, 100%)
+      width 180px
+
+  &:last-child
+    left -25px
+
+    .landing-diagram__icon-label
+      left -10px
+      top 50%
+      transform translate(-100%, -50%)
+      width 145px
+
 .info-1
   background-image url("../img/cover_1.png")
   background-size cover
