@@ -23,15 +23,18 @@ firstValidDate.setMilliseconds(0);
 	  titleFormat: "MM yyyy", /* Leverages same syntax as 'format' */
 	  weekStart: 1
 	};
-	$('#datepicker').datepicker({
+
+	var datepickers = '#datepicker, #call-modal-datepicker, #appointment-modal-datepicker';
+
+	$(datepickers).datepicker({
 	  daysOfWeekDisabled: [0,6],
 	  startDate: firstValidDate,
 	});
-	$('#datepicker .prev').text('<');
-	$('#datepicker .next').text('>');
+	$(datepickers).find('.prev').text('<');
+	$(datepickers).find('.next').text('>');
 
-	$('#reservation-time-button').click(function () {
-			button_time = document.getElementById('reservation-time-button');
+	$('.reservation-time-button').click(function () {
+			button_time = document.getElementById($(this).attr('id'));
 			if (button_time.value == 'AM') {
 					button_time.value = 'PM';
 			} else if (button_time.value == 'PM') {
@@ -39,10 +42,11 @@ firstValidDate.setMilliseconds(0);
 			}
 	});
 
-    $('#datepicker').datepicker()
-        .on('changeDate', function(e) {
-            $('#date_input').val(
-                $('#datepicker').datepicker('getFormattedDate')
-            )
-        });
+  $(datepickers).datepicker()
+	  .on('changeDate', function(e) {
+			var datepicker = $(this).attr('id');
+      $('.date_input[data-for="' + datepicker +  '"]').val(
+          $(datepicker).datepicker('getFormattedDate')
+      )
+  	});
 })();

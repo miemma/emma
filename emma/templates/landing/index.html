@@ -296,7 +296,7 @@
           </div>
           <div class="call-modal__right-column">
             <div class="call-modal__calendar">
-              <div id="datepicker" data-date="{{ today }}"></div>
+              <div id="call-modal-datepicker" data-date="{{ today }}"></div>
               <input type="hidden"  id="date_input"
                 name="date_input" value="{{ today }}">
             </div>
@@ -310,8 +310,8 @@
                     class="minute-input" type="text" max="59" min="0"
                     placeholder="00" value="30" name="minute">
                 </div>
-                <input type="text" name="morning" value="AM"
-                       class="emma-input date-input date-input-little" readonly>
+                <input id="reservation-time-button__call" type="text" name="morning" value="AM"
+                       class="reservation-time-button emma-input date-input date-input-little" readonly>
               </div>
             </div>
           </div>
@@ -371,7 +371,7 @@
             <span class="appointment-modal__toggle-trigger">Ver calendario</span>
             <div class="appointment-modal__toggle">
               <div class="call-modal__calendar">
-                <div id="datepicker" data-date="{{ today }}"></div>
+                <div id="appointment-modal-datepicker" data-date="{{ today }}"></div>
                 <input type="hidden"  id="date_input"
                   name="date_input" value="{{ today }}">
               </div>
@@ -385,8 +385,7 @@
                       class="minute-input" type="text" max="59" min="0"
                       placeholder="00" value="30" name="minute">
                   </div>
-                  <input type="text" name="morning" value="AM"
-                         class="emma-input date-input date-input-little" readonly>
+                  <input id="reservation-time-button__appointment" type="text" name="morning" value="AM" class="reservation-time-button emma-input date-input date-input-little" readonly>
                 </div>
               </div>
             </div>
