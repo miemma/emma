@@ -317,7 +317,7 @@
           </div>
         </form>
         <div class="modal-footer">
-          <button type="button" class="emma-btn emma-btn-light">Programar</button>
+          <button type="submit" class="emma-btn emma-btn-light">Programar</button>
         </div>
       </div>
     </div>
@@ -401,7 +401,7 @@
           </div>
         </form>
         <div class="modal-footer">
-          <button type="button" class="emma-btn emma-btn-light">Agendar</button>
+          <button type="submit" class="emma-btn emma-btn-light">Agendar</button>
         </div>
       </div>
     </div>
@@ -440,11 +440,11 @@
 		});
 	</script>
   <script type="text/javascript">
-    $('#call-modal button').click(function () {
+    $('#call-modal [type="submit"]').click(function () {
       $('#call-modal').modal('hide');
       $('#call-confirmation-modal').modal('toggle');
     });
-    $('#appointment-modal button').click(function () {
+    $('#appointment-modal [type="submit"]').click(function () {
       $('#appointment-modal').modal('hide');
       $('#appointment-confirmation-modal').modal('toggle');
     });
