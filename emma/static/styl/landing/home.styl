@@ -704,6 +704,20 @@
 .home-modal
   line-height 1
 
+  .close
+    float none
+    opacity 1
+    position absolute
+    right -10px
+    top -10px
+    transform translate(100%, -100%)
+
+    img
+      width 26px
+
+  .modal-content
+    margin-top 60px
+
 #call-modal, #appointment-modal
   .modal-dialog
     margin 10px auto
@@ -914,3 +928,8 @@
 
     .call-modal__time
       padding remify(24) remify(25)
+
+@media screen and (max-width: 900px)
+  .home-modal .close
+    right 0
+    transform translateY(-100%)
