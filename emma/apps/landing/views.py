@@ -302,7 +302,7 @@ class PrivacyTemplateView(TemplateView):
     template_name = 'landing/privacy.html'
 
 
-class HomeDateView(View):
+class HomeCallView(View):
     def post(self, request):
         name = request.POST.get('name')
         phone = request.POST.get('phone')
