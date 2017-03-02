@@ -2,33 +2,37 @@
   background-image url(../img/about-cover.png)
   background-size cover
   background-position center
-  min-height 100vh
+  display flex
+  align-items center
+  justify-content flex-start
+  padding remify(80) 10%
+  color white
+  margin-top 65px
 
-.about-detail
-  overflow-x hidden
-  overflow-y auto
-  margin-bottom 6.5em
+.about-section__cover-text
+  flex-basis 100%
+  line-height 1
+  max-width 592px
 
-  &-cover
-    margin-top $header_height
-  &-p
-    font-family "Avenir LT Std Roman"
-    font-size 19px
-    color $gray
-    display block
-    width 80%
-    margin 2em auto
-    text-align justify
-  &-title
-    font-family "Avenir LT Std Heavy"
-    font-size 37px
+.about-section__cover-title
+  margin 0
+  font-size remify(25)
+  font-family 'Avenir LT Std Heavy'
+  margin-bottom remify(8)
+
+.about-section__cover-paragraph
+  font-family 'Avenir LT Std Medium'
+  font-size remify(17.5)
+  margin-top remify(23)
+  line-height 1.13
+  text-align justify
+
+  strong
+    font-family 'Avenir LT Std Heavy'
+
+@media screen and (max-width: 658px)
+  .about-section__cover
+    padding remify(60) 10%
+
+  .about-section__cover-title
     text-align center
-    margin-top 0.7em
-    margin-bottom 0.9em
-    font-weight bold
-  &-subtitle
-    font-family "Avenir LT Std Medium"
-    font-size 30px
-    text-align center
-    width 90%
-    margin 2.5em auto 0 auto
