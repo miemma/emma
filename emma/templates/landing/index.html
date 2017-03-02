@@ -301,13 +301,18 @@
                 name="date_input" value="{{ today }}">
             </div>
             <div class="call-modal__time">
-              <input name="hour" class="hour-input" type="text"
-                     placeholder="00" max="12" min="1"
-                     value="10">:<input
-                class="minute-input" type="text" max="59" min="0"
-                placeholder="00" value="30" name="minute">
-              <input type="text" name="morning" value="AM"
-                     class="emma-input date-input date-input-little" readonly>
+              <div class="call-modal__time-inner">
+                <strong>Hora:</strong>
+                <div class="emma-input">
+                  <input name="hour" class="hour-input" type="text"
+                         placeholder="00" max="12" min="1"
+                         value="10">:<input
+                    class="minute-input" type="text" max="59" min="0"
+                    placeholder="00" value="30" name="minute">
+                </div>
+                <input type="text" name="morning" value="AM"
+                       class="emma-input date-input date-input-little" readonly>
+              </div>
             </div>
           </div>
         </form>
@@ -371,13 +376,18 @@
                   name="date_input" value="{{ today }}">
               </div>
               <div class="call-modal__time">
-                <input name="hour" class="hour-input" type="text"
-                       placeholder="00" max="12" min="1"
-                       value="10">:<input
-                  class="minute-input" type="text" max="59" min="0"
-                  placeholder="00" value="30" name="minute">
-                <input type="text" name="morning" value="AM"
-                       class="emma-input date-input date-input-little" readonly>
+                <div class="call-modal__time-inner">
+                  <strong>Hora:</strong>
+                  <div class="emma-input">
+                    <input name="hour" class="hour-input" type="text"
+                           placeholder="00" max="12" min="1"
+                           value="10">:<input
+                      class="minute-input" type="text" max="59" min="0"
+                      placeholder="00" value="30" name="minute">
+                  </div>
+                  <input type="text" name="morning" value="AM"
+                         class="emma-input date-input date-input-little" readonly>
+                </div>
               </div>
             </div>
           </div>

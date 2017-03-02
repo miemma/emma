@@ -769,6 +769,9 @@
 
   .call-modal__right-column
     max-width 483px
+    color #808080
+    font-family 'Avenir LT Std Medium'
+    text-align center
 
 .call-modal__left-column
   margin-top remify(20)
@@ -794,9 +797,53 @@
   textarea
     height remify(122)
 
+.appointment-modal__toggle-trigger
+  display block
+  text-decoration underline
+  color #4a4a4a
+  font-family 'Avenir LT Std Heavy'
+  font-size remify(15)
+  margin-top remify(20)
+  text-align center
+  cursor pointer
+
 .call-modal__right-column
   margin-top remify(20)
   flex-basis 100%
+
+.call-modal__time
+  background white
+  margin-top remify(24)
+  padding remify(24) remify(35)
+
+.call-modal__time-inner
+  text-align center
+
+  strong
+    font-family 'Avenir LT Std Heavy'
+
+  div.emma-input
+    display inline-block
+    width 80px
+    margin-left remify(13)
+    padding-left remify(7)
+    padding-right remify(7)
+
+  .emma-input.date-input
+    width 37px
+    text-transform lowercase
+    font-family 'Avenir LT Std Heavy'
+    color #9b9b9b
+    display inline-block
+    margin-left 2px
+
+  div.emma-input,
+  .emma-input.date-input
+    border solid 1px #e5e5e5
+    font-size remify(15)
+    border-radius 0
+    padding-top remify(7)
+    padding-bottom remify(7)
 
 @media screen and (max-width: 1100px)
   .landing-video-section
@@ -805,3 +852,17 @@
     .layer
       height 100%
       top 0
+
+@media screen and (max-width: 918px)
+  #appointment-modal
+    .modal-body
+      justify-content space-around
+      font-family 'Avenir LT Std Medium'
+      text-align center
+
+    .call-modal__left-column
+      margin-left 10px
+      margin-right 10px
+
+    .call-modal__time
+      padding remify(24) remify(25)
