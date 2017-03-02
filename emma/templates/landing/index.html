@@ -221,8 +221,8 @@
           Cada adulto mayor tiene necesidades exclusivas. Emma individualiza cada caso para recomendarte el mejor plan de acompañamiento para tu ser querido.
         </p>
         <div class="landing-agend-call__buttons">
-          <a href="#" class="emma-btn emma-btn-light">Programar llamada</a>
-          <a href="#" class="emma-btn emma-btn-light">Agendar cita</a>
+          <button data-toggle="modal" data-target="#call-modal" class="emma-btn emma-btn-light">Programar llamada</button>
+          <button data-toggle="modal" data-target="#appointment-modal" class="emma-btn emma-btn-light">Agendar cita</button>
         </div>
       </div>
       <div class="landing-agend-call__right-column">
@@ -265,4 +265,166 @@
 	    </div>
 	  </div>
 	</section>
+  <div id="call-modal" role="dialog" class="modal fade emma-modal">
+    <div class="modal-dialog" role="document">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Programa una llamada con nuestro equipo</h3>
+        </div>
+        <form  action="" class="modal-body">
+          <div class="call-modal__left-column">
+            <div class="input-wrapper">
+              <input name="name" class="emma-input" required type="text" placeholder="Nombre completo">
+            </div>
+            <div class="input-wrapper">
+              <input name="number" class="emma-input" required type="tel" placeholder="Teléfono">
+            </div>
+            <div class="input-wrapper">
+              <input name="email" class="emma-input" required type="email" placeholder="Correo electrónico">
+            </div>
+            <div class="input-wrapper">
+              <select class="emma-input" required name="" id="">
+                <option value="" disabled selected>Quiero acompañamiento para</option>
+              </select>
+            </div>
+            <div class="input-wrapper">
+              <textarea class="emma-input" name="" id="">
+                Breve descripción del adulto mayor (Opcional)
+              </textarea>
+            </div>
+          </div>
+          <div class="call-modal__right-column">
+            <div class="call-modal__calendar">
+              <div id="datepicker" data-date="{{ today }}"></div>
+              <input type="hidden"  id="date_input"
+                name="date_input" value="{{ today }}">
+            </div>
+            <div class="call-modal__time">
+              <input name="hour" class="hour-input" type="text"
+                     placeholder="00" max="12" min="1"
+                     value="10">:<input
+                class="minute-input" type="text" max="59" min="0"
+                placeholder="00" value="30" name="minute">
+              <input type="text" name="morning" value="AM"
+                     class="emma-input date-input date-input-little" readonly>
+            </div>
+          </div>
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="emma-btn emma-btn-light">Programar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="call-confirmation-modal" role="dialog" class="modal fade emma-modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <img class="emma-modal__check" src="{% static 'img/icons/modal-check.png' %}" alt="">
+          <p class="call-confirmation-modal__text">
+            Tu llamada ha sido programada de manera exitosa para el día
+            <span class="call-confirmation-modal__text--date"><span class="call-confirmation-modal__text--yellow"></span></span>
+            a las <span class="call-confirmation-modal__text--time call-confirmation-modal__text--yellow"></span>
+          </p>
+          <span class="call-confirmation-modal--bottom-text">
+            Mara, fundadora en Emma, se pondrá en contacto contigo
+          </span>
+          <img class="call-confirmation-modal__photo" src="{% static 'img/Mara.png' %}" alt="Mara - Fundadora de Emma">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="appointment-modal" role="dialog" class="modal fade emma-modal">
+    <div class="modal-dialog" role="document">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Agenda una cita en nuestras oficinas</h3>
+        </div>
+        <form  action="" class="modal-body">
+          <div class="call-modal__left-column">
+            <div class="input-wrapper">
+              <input name="name" class="emma-input" required type="text" placeholder="Nombre completo">
+            </div>
+            <div class="input-wrapper">
+              <input name="number" class="emma-input" required type="tel" placeholder="Teléfono">
+            </div>
+            <div class="input-wrapper">
+              <input name="email" class="emma-input" required type="email" placeholder="Correo electrónico">
+            </div>
+            <div class="input-wrapper">
+              <select class="emma-input" required name="" id="">
+                <option value="" disabled selected>Quiero acompañamiento para</option>
+              </select>
+            </div>
+            <div class="input-wrapper">
+              <textarea class="emma-input" name="" id="">
+                Breve descripción del adulto mayor (Opcional)
+              </textarea>
+            </div>
+            <span class="appointment-modal__toggle-trigger">Ver calendario</span>
+            <div class="appointment-modal__toggle">
+              <div class="call-modal__calendar">
+                <div id="datepicker" data-date="{{ today }}"></div>
+                <input type="hidden"  id="date_input"
+                  name="date_input" value="{{ today }}">
+              </div>
+              <div class="call-modal__time">
+                <input name="hour" class="hour-input" type="text"
+                       placeholder="00" max="12" min="1"
+                       value="10">:<input
+                  class="minute-input" type="text" max="59" min="0"
+                  placeholder="00" value="30" name="minute">
+                <input type="text" name="morning" value="AM"
+                       class="emma-input date-input date-input-little" readonly>
+              </div>
+          </div>
+          <div class="call-modal__right-column">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.655238401047!2d-99.17193578563455!3d19.427296586887383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff4a47c81d6b%3A0x5542eb7c54fb6cca!2sR%C3%ADo+Volga+77%2C+Cuauht%C3%A9moc%2C+06500+Ciudad+de+M%C3%A9xico%2C+CDMX!5e0!3m2!1ses!2smx!4v1488389423517"></iframe>
+            </div>
+            <span class="landing-agend-call__address">Río Volga 77, Cuauhtémoc, 06500 Ciudad de México, CDMX</span>
+          </div>
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="emma-btn emma-btn-light">Agendar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="appointment-confirmation-modal" role="dialog" class="modal fade emma-modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <img class="emma-modal__check" src="{% static 'img/icons/modal-check.png' %}" alt="">
+          <p class="call-confirmation-modal__text">
+            Tu visita en nuestras oficinas ha sido agendada de manera exitosa para el día
+            <span class="call-confirmation-modal__text--date"><span class="call-confirmation-modal__text--yellow"></span></span>
+            a las <span class="call-confirmation-modal__text--time call-confirmation-modal__text--yellow"></span>. A la brevedad recibirás un correo de confirmación
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock content %}
+{% block js %}
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker3.min.css" />
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+	<script src="{% static 'js/reservationFormCalendar.js' %}"></script>
+	<script src="{% static 'lib/jstz/jstz.min.js' %}"></script>
+	<script type="text/javascript">
+		$(function() {
+			var tz = jstz.determine();
+			$('#timezone').val(tz.name());
+		});
+	  $( "#dateForm" ).submit(function( event ) {
+		  window._fbq.push(['track', 'Lead']);
+	    return true
+		});
+	</script>
+{% endblock js %}
