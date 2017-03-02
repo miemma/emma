@@ -701,6 +701,103 @@
 #benefitscollapse
   cursor pointer
 
+.home-modal
+  line-height 1
+
+#call-modal, #appointment-modal
+  .modal-dialog
+    margin 10px auto
+    width 90% !important
+
+  .modal-content
+    background #f5f5f5
+
+  .modal-header
+    padding 0 10px
+
+  .modal-body
+    display flex
+    justify-content space-around
+    flex-wrap wrap
+    padding-top 0
+    padding-bottom 0
+    center-block()
+
+  .modal-title
+    font-size remify(18)
+    font-family 'Avenir LT Std Medium'
+
+  .emma-btn
+    font-size remify(15)
+    font-family 'Avenir LT Std Heavy'
+    padding remify(12.5) remify(50)
+
+#call-modal
+  .modal-dialog
+    max-width 720px
+
+  .modal-title
+    padding remify(40) 0 remify(20) 0
+
+  .modal-body
+    max-width 660px
+
+  .call-modal__right-column
+    max-width 250px
+
+  .modal-footer
+    padding-top remify(49)
+    padding-bottom remify(42)
+
+#appointment-modal
+  .modal-dialog
+    max-width 855px
+
+  .modal-title
+    padding remify(30) 0 remify(10) remify(0)
+
+  .modal-body
+    justify-content flex-end
+    padding 0
+
+  .modal-footer
+    padding-top remify(40)
+    padding-bottom remify(25)
+
+  .call-modal__left-column
+    margin-right remify(18)
+
+  .call-modal__right-column
+    max-width 483px
+
+.call-modal__left-column
+  margin-top remify(20)
+  border-radius 4px
+  background #e5e5e5
+  flex-basis 100%
+  max-width 323px
+  padding remify(12) remify(9) remify(15) remify(9)
+
+  .input-wrapper
+    width 100%
+
+    &:not(:first-child)
+      margin-top remify(7)
+
+  .emma-input
+    border-radius 0
+    font-size remify(17)
+    padding remify(15) remify(20) remify(10) remify(20)
+    display block
+    width 100%
+
+  textarea
+    height remify(122)
+
+.call-modal__right-column
+  margin-top remify(20)
+  flex-basis 100%
+
 @media screen and (max-width: 1100px)
   .landing-video-section
     margin-top 65px
