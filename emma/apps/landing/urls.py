@@ -59,4 +59,8 @@ urlpatterns = [
     url(regex=r'^gracias/$',
         view=views.AlternativeJoinEmmaView.as_view(),
         name='thanks'),
+
+    url(regex=r'^agendar-home/$',
+        view=views.HomeDateView.as_view(),
+        name='home_date'),
 ]
