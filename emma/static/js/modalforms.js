@@ -129,6 +129,9 @@
         newModalObject.modal('toggle');
         validForms[validName] = false;
       }
+      if (formObject.is('#appointment-modal__form')) {
+        $('.appointment-modal__toggle').collapse('hide');
+      }
       form[0].reset();
       validator.resetForm();
     };
@@ -151,4 +154,16 @@
   });
 
   $('#call-modal').on('hide.bs.modal', getOnHideFn($('#call-confirmation-modal'), callModalForm, $('#call-modal__form'), 'call'));
+
+  $('#appointment-modal').on('hide.bs.modal', getOnHideFn($('#appointment-confirmation-modal'), appointmentModalForm, $('#appointment-modal__form'), 'appointment'));
+
+  $('.appointment-modal__toggle-trigger').collapse('show');
+
+  $('.appointment-modal__toggle').on('hide.bs.collapse', function () {
+    $('.appointment-modal__toggle-trigger').collapse('show');
+  });
+
+  $('.appointment-modal__toggle').on('show.bs.collapse', function () {
+    $('.appointment-modal__toggle-trigger').collapse('hide');
+  });
 })();

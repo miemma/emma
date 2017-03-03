@@ -376,8 +376,8 @@
             <div class="input-wrapper">
               <textarea name="description" class="emma-input" placeholder="Breve descripción del adulto mayor (Opcional)"></textarea>
             </div>
-            <span class="appointment-modal__toggle-trigger">Ver calendario</span>
-            <div class="appointment-modal__toggle">
+            <span data-toggle="collapse" class="collapse appointment-modal__toggle-trigger" data-target=".appointment-modal__toggle">Ver calendario</span>
+            <div class="collapse appointment-modal__toggle">
               <div class="call-modal__calendar">
                 <div id="appointment-modal-datepicker" data-date="{{ today }}"></div>
                 <input type="hidden"  id="appointment-modal__date-input"
