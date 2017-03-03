@@ -23,34 +23,37 @@ $(document).ready(function () {
   });
 
   jQuery.validator.addMethod("checkDateTime", function(value, element) {
+    var date = new Date(),
+      actual_time = (date.getHours() * 60) + date.getMinutes(),
+      form = $(element).closest('form'),
+      hours, minutes, time, total_minutes;
 
-    var date = new Date();
-    var actual_time = (date.getHours() *60) + date.getMinutes();
-    console.log("El tiempo en minutos actuales son: " + actual_time);
-
-    var hours = parseInt($('#hourInput').val());
-    var minutes = parseInt($('#timeInput').val());
-    var time = $('#reservation-time-button').val();
-    var total_minutes = (hours * 60) + minutes;
+    if ($('#hourInput').length) {
+      hours = parseInt($('#hourInput').val());
+      minutes = parseInt($('#timeInput').val());
+      time = $('#reservation-time-button').val();
+    } else {
+      hours = parseInt(form.find('.hour-input').val());
+      minutes = parseInt(form.find('.minute-input').val());
+      time = $('.reservation-time-button').val();
+    }
+    total_minutes = (hours * 60) + minutes;
     if (time == 'PM') {
       total_minutes += 720;
     }
-    console.log("Los minutos en la hora de la cita son: " + total_minutes);
 
     // Validamos que este dentro del horario de servicio
-    if (total_minutes > 1200 || total_minutes < 540) {
-      console.log("No esta en el horario de atención");
+    if (total_minutes < 540 || total_minutes > 1200) {
       return false; // No esta dentro del horario
     } else { // Si esta dentro del horario
       if ((actual_time + 45) <  total_minutes) {
-        return true
+        return true;
       } else {
-        console.log("Esta en un tiempo invalido");
-        return false
+        return false;
       }
     }
   }, "La hora no es válida");
-  
+
   jQuery.validator.setDefaults({
     highlight: function(element, errorClass) {
       $(element).removeClass(errorClass);
@@ -279,7 +282,7 @@ $(document).ready(function () {
 	    "contract-service": "Selecciona 1 Servicio"
     }
 	});
-  
+
   /* Request Password Form
   ---------------------------------------------------------------------------*/
   $('#passwd-form').validate({
@@ -342,7 +345,7 @@ $(document).ready(function () {
       }
     }
   });
-  
+
   /* Login Form
   ---------------------------------------------------------------------------*/
   $('#login-form').validate({
@@ -352,7 +355,7 @@ $(document).ready(function () {
       }
     }
   });
-  
+
   /* Date Form
   ---------------------------------------------------------------------------*/
   $('#dateForm').validate({
@@ -379,11 +382,11 @@ $(document).ready(function () {
       }
     }
   });
-  
+
   /* Pay Form
   ---------------------------------------------------------------------------*/
   $('#pay-form').validate();
-  
+
   /* Contact Form
   ---------------------------------------------------------------------------*/
   $('#contactForm').validate({
@@ -543,7 +546,7 @@ $(document).ready(function () {
       }
     }
   });
-  
+
   $('#dashboard-medical-form-part-3').validate({
     rules: {
       knows_pda: {
@@ -631,5 +634,51 @@ $(document).ready(function () {
       $('#addCardLoader').show();
       form.submit();
     }
+  });
+
+  var callGroups = {
+    callTimeGroup: "hour minute"
+  },
+  appointmentGroups = {
+     appointmentTimeGroup: callGroups.callTimeGroup
+  },
+  customplanGroups = {
+    customplanTimeGroup: callGroups.callTimeGroup
+  },
+  modalRules = {
+    hour: {
+      checkDateTime: true,
+      number: true,
+      maxlength: 12,
+      minlength: 1,
+      required: true
+    },
+    minute: {
+      checkDateTime: true,
+      number: true,
+      maxlength: 59,
+      minlength: 0,
+      required: true
+    },
+    phone: {
+      number: true,
+      maxlength: 10
+    },
+    description: {
+      required: false
+    }
+  };
+
+  $('#call-modal__form').validate({
+    groups: callGroups,
+    rules: modalRules
+  });
+  $('#appointment-modal__form').validate({
+    groups: appointmentGroups,
+    rules: modalRules
+  });
+  $('#custom-plan-modal__form').validate({
+    groups: customplanGroups,
+    rules: modalRules
   });
 });

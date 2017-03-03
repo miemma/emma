@@ -274,41 +274,40 @@
         <div class="modal-header">
           <h3 class="modal-title">Programa una llamada con nuestro equipo</h3>
         </div>
-        <form  action="" class="modal-body">
+        <form id="call-modal__form" action="" class="modal-body">
           <div class="call-modal__left-column">
             <div class="input-wrapper">
               <input name="name" class="emma-input" required type="text" placeholder="Nombre completo">
             </div>
             <div class="input-wrapper">
-              <input name="number" class="emma-input" required type="tel" placeholder="Teléfono">
+              <input name="phone" class="emma-input" required type="tel" placeholder="Teléfono">
             </div>
             <div class="input-wrapper">
               <input name="email" class="emma-input" required type="email" placeholder="Correo electrónico">
             </div>
             <div class="input-wrapper">
-              <select class="emma-input" required name="" id="">
+              <select class="emma-input" required name="service">
                 <option value="" disabled selected>Quiero acompañamiento para</option>
               </select>
             </div>
             <div class="input-wrapper">
-              <textarea class="emma-input" placeholder="Breve descripción del adulto mayor (Opcional)"></textarea>
+              <textarea name="description" class="emma-input" placeholder="Breve descripción del adulto mayor (Opcional)"></textarea>
             </div>
           </div>
           <div class="call-modal__right-column">
             <div class="call-modal__calendar">
               <div id="call-modal-datepicker" data-date="{{ today }}"></div>
-              <input type="hidden"  id="date_input"
-                name="date_input" value="{{ today }}">
+              <input type="hidden" id="call-modal__date-input"
+                name="date" value="{{ today }}">
             </div>
             <div class="call-modal__time">
               <div class="call-modal__time-inner">
                 <strong>Hora:</strong>
                 <div class="emma-input">
-                  <input name="hour" class="hour-input" type="text"
-                         placeholder="00" max="12" min="1"
-                         value="10">:<input
-                    class="minute-input" type="text" max="59" min="0"
+                  <div class="input-wrapper">
+                    <input name="hour" class="hour-input" type="text" placeholder="00" max="12" min="1" value="10">:<input class="minute-input" type="text" max="59" min="0"
                     placeholder="00" value="30" name="minute">
+                  </div>
                 </div>
                 <input id="reservation-time-button__call" type="text" name="morning" value="AM"
                        class="reservation-time-button emma-input date-input date-input-little" readonly>
@@ -352,41 +351,39 @@
         <div class="modal-header">
           <h3 class="modal-title">Agenda una cita en nuestras oficinas</h3>
         </div>
-        <form  action="" class="modal-body">
+        <form id="appointment-modal__form" action="" class="modal-body">
           <div class="call-modal__left-column">
             <div class="input-wrapper">
               <input name="name" class="emma-input" required type="text" placeholder="Nombre completo">
             </div>
             <div class="input-wrapper">
-              <input name="number" class="emma-input" required type="tel" placeholder="Teléfono">
+              <input name="phone" class="emma-input" required type="tel" placeholder="Teléfono">
             </div>
             <div class="input-wrapper">
               <input name="email" class="emma-input" required type="email" placeholder="Correo electrónico">
             </div>
             <div class="input-wrapper">
-              <select class="emma-input" required name="" id="">
+              <select class="emma-input" required name="service">
                 <option value="" disabled selected>Quiero acompañamiento para</option>
               </select>
             </div>
             <div class="input-wrapper">
-              <textarea class="emma-input" placeholder="Breve descripción del adulto mayor (Opcional)"></textarea>
+              <textarea name="description" class="emma-input" placeholder="Breve descripción del adulto mayor (Opcional)"></textarea>
             </div>
             <span class="appointment-modal__toggle-trigger">Ver calendario</span>
             <div class="appointment-modal__toggle">
               <div class="call-modal__calendar">
                 <div id="appointment-modal-datepicker" data-date="{{ today }}"></div>
-                <input type="hidden"  id="date_input"
-                  name="date_input" value="{{ today }}">
+                <input type="hidden"  id="appointment-modal__date-input"
+                  name="date" value="{{ today }}">
               </div>
               <div class="call-modal__time">
                 <div class="call-modal__time-inner">
                   <strong>Hora:</strong>
                   <div class="emma-input">
-                    <input name="hour" class="hour-input" type="text"
-                           placeholder="00" max="12" min="1"
-                           value="10">:<input
-                      class="minute-input" type="text" max="59" min="0"
-                      placeholder="00" value="30" name="minute">
+                    <div class="input-wrapper">
+                      <input name="hour" class="hour-input" type="text" placeholder="00" max="12" min="1" value="10">:<input class="minute-input" type="text" max="59" min="0" placeholder="00" value="30" name="minute">
+                    </div>
                   </div>
                   <input id="reservation-time-button__appointment" type="text" name="morning" value="AM" class="reservation-time-button emma-input date-input date-input-little" readonly>
                 </div>
