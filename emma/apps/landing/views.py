@@ -306,3 +306,99 @@ class AlternativeJoinEmmaView(TemplateView):
 
 class PrivacyTemplateView(TemplateView):
     template_name = 'landing/privacy.html'
+
+
+class HomeCallView(View):
+    def post(self, request):
+        name = request.POST.get('name')
+        phone = request.POST.get('phone')
+        email = request.POST.get('email')
+        service = request.POST.get('service')
+        description = request.POST.get('description')
+        date = request.POST.get('date')
+        hour = request.POST.get('hour')
+        minute = request.POST.get('minute')
+        morning = request.POST.get('morning')
+
+        ctx = {
+            'name': name,
+            'email': email,
+            'phone': phone,
+            'morning': morning,
+            'hour': hour,
+            'minute': minute,
+            'date': date,
+            'service': service,
+            'description': description,
+
+        }
+
+        send_email(
+            subject='email/subjects/call_schedule.txt',
+            body='email/home_call_schedule.html',
+            from_email="Emma - Ventas <postmaster@%s>" % (
+                settings.MAILGUN_SERVER_NAME
+            ),
+            to_email=[settings.DEFAULT_EMAIL_TO],
+            context=ctx
+        )
+
+        send_email(
+            subject='email/subjects/notification_call.txt',
+            body='email/notification_call.html',
+            from_email="Emma - Notificaciones <postmaster@%s>" % (
+                settings.MAILGUN_SERVER_NAME
+            ),
+            to_email=[email],
+            context=ctx
+        )
+
+        return redirect(reverse('landing:success'))
+
+
+class HomeDateView(View):
+    def post(self, request):
+        name = request.POST.get('name')
+        phone = request.POST.get('phone')
+        email = request.POST.get('email')
+        service = request.POST.get('service')
+        description = request.POST.get('description')
+        date = request.POST.get('date')
+        hour = request.POST.get('hour')
+        minute = request.POST.get('minute')
+        morning = request.POST.get('morning')
+
+        ctx = {
+            'name': name,
+            'email': email,
+            'phone': phone,
+            'morning': morning,
+            'hour': hour,
+            'minute': minute,
+            'date': date,
+            'service': service,
+            'description': description,
+
+        }
+
+        send_email(
+            subject='email/subjects/date_schedule.txt',
+            body='email/home_call_schedule.html',
+            from_email="Emma - Ventas <postmaster@%s>" % (
+                settings.MAILGUN_SERVER_NAME
+            ),
+            to_email=[settings.DEFAULT_EMAIL_TO],
+            context=ctx
+        )
+
+        send_email(
+            subject='email/subjects/notification_date.txt',
+            body='email/notification_call.html',
+            from_email="Emma - Notificaciones <postmaster@%s>" % (
+                settings.MAILGUN_SERVER_NAME
+            ),
+            to_email=[email],
+            context=ctx
+        )
+
+        return redirect(reverse('landing:success'))
