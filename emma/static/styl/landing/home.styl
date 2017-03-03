@@ -466,6 +466,34 @@
 .whois-carousel
   margin-top 10px
 
+  .carousel-indicators
+    bottom remify(-15)
+    transform translateY(100%)
+
+    li
+      box-sizing border-box
+      border solid 1px #9b9b9b
+      width 9px
+      height 9px
+      margin 1px
+
+      &.active
+        background #d8d8d8
+
+  .fa-angle-left,
+  .fa-angle-right
+    color #f7c42a
+    font-size remify(48)
+    position absolute
+    top 50%
+    transform translateY(-50%)
+
+  .fa-angle-left
+    left remify(20)
+
+  .fa-angle-right
+    right remify(20)
+
 .whois-carousel__item-content
   display flex
   align-items flex-end
@@ -478,6 +506,7 @@
   text-align left
   font-family 'Avenir LT Std Medium'
   line-height 1.08
+  margin-top remify(37)
 
 .whois-carousel__item-box-title
   font-size remify(21)
@@ -498,7 +527,7 @@
   height 287px
 
 .whois-footer
-  padding-top remify(42)
+  padding-top remify(65)
 
   .emma-btn
     display inline-block
