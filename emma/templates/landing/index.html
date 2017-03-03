@@ -433,7 +433,7 @@
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <img aria-hidden="true" src="{% static 'img/icons/close.png' %}">
       </button>
-      <form id="call-modal__form" action="" class="modal-content" data-ajax-form>
+      <form id="call-modal__form" action="{% url 'landing:home_call' %}" class="modal-content" data-ajax-form>
         <div class="modal-header">
           <h3 class="modal-title">Programa una llamada con nuestro equipo</h3>
         </div>
@@ -521,7 +521,7 @@
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <img aria-hidden="true" src="{% static 'img/icons/close.png' %}">
       </button>
-      <form id="appointment-modal__form" action="" class="modal-content">
+      <form id="appointment-modal__form" action="{% url 'landing:home_date' %}" class="modal-content">
         <div class="modal-header">
           <h3 class="modal-title">Agenda una cita en nuestras oficinas</h3>
         </div>
