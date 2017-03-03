@@ -350,11 +350,11 @@
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <img aria-hidden="true" src="{% static 'img/icons/close.png' %}">
       </button>
-      <div class="modal-content">
+      <form id="appointment-modal__form" action="" class="modal-content">
         <div class="modal-header">
           <h3 class="modal-title">Agenda una cita en nuestras oficinas</h3>
         </div>
-        <form id="appointment-modal__form" action="" class="modal-body">
+        <div class="modal-body">
           <div class="call-modal__left-column">
             <div class="input-wrapper">
               <input name="name" class="emma-input" required type="text" placeholder="Nombre completo">
@@ -402,11 +402,11 @@
             </div>
             <span class="landing-agend-call__address">Río Volga 77, Cuauhtémoc, 06500 Ciudad de México, CDMX</span>
           </div>
-        </form>
+        </div>
         <div class="modal-footer">
           <button type="submit" class="emma-btn emma-btn-light">Agendar</button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
   <div id="appointment-confirmation-modal" role="dialog" class="modal fade emma-modal home-modal">

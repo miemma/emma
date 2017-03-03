@@ -145,12 +145,12 @@
   appointmentModalForm = $('#appointment-modal__form').validate({
     groups: appointmentGroups,
     rules: modalRules,
-    submitHandler: getSubmitHandler($('#appointment-modal'))
+    submitHandler: getSubmitHandler($('#appointment-modal'), 'appointment')
   });
   customplanModalForm = $('#custom-plan-modal__form').validate({
     groups: customplanGroups,
     rules: modalRules,
-    submitHandler: getSubmitHandler($('#customplan-modal'))
+    submitHandler: getSubmitHandler($('#customplan-modal'), 'customplan')
   });
 
   $('#call-modal').on('hide.bs.modal', getOnHideFn($('#call-confirmation-modal'), callModalForm, $('#call-modal__form'), 'call'));
