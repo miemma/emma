@@ -270,7 +270,7 @@
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <img aria-hidden="true" src="{% static 'img/icons/close.png' %}">
       </button>
-      <form id="call-modal__form" action="" class="modal-content">
+      <form id="call-modal__form" action="" class="modal-content" data-ajax-form>
         <div class="modal-header">
           <h3 class="modal-title">Programa una llamada con nuestro equipo</h3>
         </div>
@@ -334,8 +334,8 @@
           <img class="emma-modal__check" src="{% static 'img/icons/modal-check.png' %}" alt="">
           <p class="call-confirmation-modal__text">
             Tu llamada ha sido programada de manera exitosa para el día
-            <span class="call-confirmation-modal__text--date call-confirmation-modal__text--yellow"></span>
-            a las <span class="call-confirmation-modal__text--time call-confirmation-modal__text--yellow"></span>
+            <span class="confirmation-modal__text--date confirmation-modal__text--yellow"></span> de <span class="confirmation-modal__text--year"></span>
+            a las <span class="confirmation-modal__text--time confirmation-modal__text--yellow"></span>
           </p>
           <span class="call-confirmation-modal--bottom-text">
             Mara, fundadora en Emma, se pondrá en contacto contigo
@@ -419,8 +419,7 @@
           <img class="emma-modal__check" src="{% static 'img/icons/modal-check.png' %}" alt="">
           <p class="call-confirmation-modal__text">
             Tu visita en nuestras oficinas ha sido agendada de manera exitosa para el día
-            <span class="call-confirmation-modal__text--date"><span class="call-confirmation-modal__text--yellow"></span></span>
-            a las <span class="call-confirmation-modal__text--time call-confirmation-modal__text--yellow"></span>. A la brevedad recibirás un correo de confirmación
+            <span class="confirmation-modal__text--date confirmation-modal__text--yellow"></span> de <span class="confirmation-modal__text--year"></span> a las <span class="confirmation-modal__text--time confirmation-modal__text--yellow"></span>. A la brevedad recibirás un correo de confirmación
           </p>
         </div>
       </div>

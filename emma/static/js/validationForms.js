@@ -59,6 +59,7 @@ $(document).ready(function () {
       $(element).removeClass(errorClass);
     },
     submitHandler: function (form) {
+      var isAJAX = $(form).attr('data-ajax-form');
       if ($(form).find('.dependency-base')) {
         if (!$(form).find('.dependency-base').is(':checked')) {
           var siblingFields = $(form).find('.dependency-base')
@@ -76,7 +77,9 @@ $(document).ready(function () {
       if ($(form).find('.form-alert').length) {
         $(form).find('.form-alert').hide();
       }
-      form.submit();
+      if (typeof isAJAX === typeof undefined || isAJAX === false) {
+        form.submit();
+      }
     }
   });
 

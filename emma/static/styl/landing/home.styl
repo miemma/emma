@@ -719,7 +719,7 @@
   .modal-content
     margin-top 60px
 
-#call-modal, #appointment-modal
+#call-modal, #appointment-modal, #customplan-modal
   .modal-dialog
     margin 10px auto
     width 90% !important
@@ -746,6 +746,11 @@
     font-size remify(15)
     font-family 'Avenir LT Std Heavy'
     padding remify(12.5) remify(50)
+
+  input, select
+    &.error
+      text-align left
+      color gray
 
 #call-modal
   .modal-dialog
@@ -870,6 +875,7 @@
       display initial
       padding 0
       color #9b9b9b
+      text-align center
 
     .hour-input
       padding-right 8px !important
@@ -907,7 +913,7 @@
     font-family 'Avenir LT Std Heavy'
     line-height 1.53
 
-.call-confirmation-modal__text--yellow
+.confirmation-modal__text--yellow
   color #f4b921
 
 .emma-modal__check

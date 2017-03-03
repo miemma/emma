@@ -36,9 +36,9 @@
     appointment: false,
     customplan: false
   }
-  callModalForm,
-  appointmentModalForm,
-  customplanModalForm;
+  callModalForm = null,
+  appointmentModalForm = null,
+  customplanModalForm = null;
 
   function setValues(modal, data) {
     var attribute;
@@ -92,38 +92,63 @@
     return monthName;
   }
 
+  function getSubmitHandler(modalObject, validName) {
+    var submitHandler = function (form) {
+      var $form = $(form).serialize(),
+        sentTo = $(form).attr('action');
+      validForms[validName] = true;
+      // $.ajax({
+      //   url: sentTo,
+      //   method: 'POST',
+      //   data: $form
+      // })
+      //   .done(function (data) {
+      //     modalObject.modal('hide');
+      //   });
+      modalObject.modal('hide');
+    };
+    return submitHandler;
+  }
+
+  function getOnHideFn(newModalObject, validator, formObject, validName) {
+    return function () {
+      var form = formObject,
+        date = new Date(form.find('[name="date"]').val()),
+        time = form.find('[name="hour"]').val()
+          + ':' + form.find('[name="minute"]').val()
+          + ' ' + form.find('[name="morning"]').val().toLowerCase(),
+        year = date.getFullYear(),
+        formattedDate = '';
+      formattedDate = date.getDate() + ' de ' + formatMonth(date.getMonth()).toLowerCase();
+      if (validForms[validName]) {
+        setValues(newModalObject, {
+          '.confirmation-modal__text--date': formattedDate,
+          '.confirmation-modal__text--year': year,
+          '.confirmation-modal__text--time': time
+        });
+        newModalObject.modal('toggle');
+        validForms[validName] = false;
+      }
+      form[0].reset();
+      validator.resetForm();
+    };
+  }
+
   callModalForm = $('#call-modal__form').validate({
     groups: callGroups,
     rules: modalRules,
-    submitHandler: function (form) {
-      $('#call-modal').modal('hide');
-    }
+    submitHandler: getSubmitHandler($('#call-modal'), 'call')
   });
   appointmentModalForm = $('#appointment-modal__form').validate({
     groups: appointmentGroups,
-    rules: modalRules
+    rules: modalRules,
+    submitHandler: getSubmitHandler($('#appointment-modal'))
   });
   customplanModalForm = $('#custom-plan-modal__form').validate({
     groups: customplanGroups,
-    rules: modalRules
+    rules: modalRules,
+    submitHandler: getSubmitHandler($('#customplan-modal'))
   });
 
-  $('#call-modal').on('hide.bs.modal', function () {
-    var form = $('#call-modal__form'),
-      date = new Date(form.find('[name="date"]').val()),
-      time = form.find('[name="hour"]').val()
-        + ':' + form.find('[name="minute"]').val()
-        + ' ' + form.find('[name="morning"]').val().toLowerCase(),
-      formattedDate = '';
-    formattedDate = date.getDate() + ' de ' + formatMonth(date.getMonth()).toLowerCase();
-    if (validForms.call) {
-      setValues($('#call-confirmation-modal'), {
-        '.call-confirmation-modal__text--date': formattedDate,
-        '.call-confirmation-modal__text--time': time
-      });
-      $('#call-confirmation-modal').modal('toggle');
-    }
-    $('#call-modal__form')[0].reset();
-    callModalForm.resetForm();
-  });
+  $('#call-modal').on('hide.bs.modal', getOnHideFn($('#call-confirmation-modal'), callModalForm, $('#call-modal__form'), 'call'));
 })();
