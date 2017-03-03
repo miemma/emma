@@ -270,11 +270,11 @@
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <img aria-hidden="true" src="{% static 'img/icons/close.png' %}">
       </button>
-      <div class="modal-content">
+      <form id="call-modal__form" action="" class="modal-content">
         <div class="modal-header">
           <h3 class="modal-title">Programa una llamada con nuestro equipo</h3>
         </div>
-        <form id="call-modal__form" action="" class="modal-body">
+        <div class="modal-body">
           <div class="call-modal__left-column">
             <div class="input-wrapper">
               <input name="name" class="emma-input" required type="text" placeholder="Nombre completo">
@@ -288,6 +288,9 @@
             <div class="input-wrapper">
               <select class="emma-input" required name="service">
                 <option value="" disabled selected>Quiero acompañamiento para</option>
+                <option value="1">...</option>
+                <option value="2">...</option>
+                <option value="3">...</option>
               </select>
             </div>
             <div class="input-wrapper">
@@ -314,11 +317,11 @@
               </div>
             </div>
           </div>
-        </form>
+        </div>
         <div class="modal-footer">
           <button type="submit" class="emma-btn emma-btn-light">Programar</button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
   <div id="call-confirmation-modal" role="dialog" class="modal fade emma-modal home-modal">
@@ -331,7 +334,7 @@
           <img class="emma-modal__check" src="{% static 'img/icons/modal-check.png' %}" alt="">
           <p class="call-confirmation-modal__text">
             Tu llamada ha sido programada de manera exitosa para el día
-            <span class="call-confirmation-modal__text--date"><span class="call-confirmation-modal__text--yellow"></span></span>
+            <span class="call-confirmation-modal__text--date call-confirmation-modal__text--yellow"></span>
             a las <span class="call-confirmation-modal__text--time call-confirmation-modal__text--yellow"></span>
           </p>
           <span class="call-confirmation-modal--bottom-text">
@@ -365,6 +368,9 @@
             <div class="input-wrapper">
               <select class="emma-input" required name="service">
                 <option value="" disabled selected>Quiero acompañamiento para</option>
+                <option value="1">...</option>
+                <option value="2">...</option>
+                <option value="3">...</option>
               </select>
             </div>
             <div class="input-wrapper">
@@ -425,25 +431,6 @@
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker3.min.css" />
 	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
 	<script src="{% static 'js/reservationFormCalendar.js' %}"></script>
+	<script src="{% static 'js/modalforms.js' %}"></script>
 	<script src="{% static 'lib/jstz/jstz.min.js' %}"></script>
-	<script type="text/javascript">
-		$(function() {
-			var tz = jstz.determine();
-			$('#timezone').val(tz.name());
-		});
-	  $( "#dateForm" ).submit(function( event ) {
-		  window._fbq.push(['track', 'Lead']);
-	    return true
-		});
-	</script>
-  <script type="text/javascript">
-    $('#call-modal [type="submit"]').click(function () {
-      $('#call-modal').modal('hide');
-      $('#call-confirmation-modal').modal('toggle');
-    });
-    $('#appointment-modal [type="submit"]').click(function () {
-      $('#appointment-modal').modal('hide');
-      $('#appointment-confirmation-modal').modal('toggle');
-    });
-  </script>
 {% endblock js %}

@@ -859,13 +859,23 @@
     .input-wrapper
       position relative
 
-    .error
+    label.error
       position absolute
       left -.4375rem
       bottom -.4375rem
       padding 0
       transform translate(-25px, 170%)
-      display block
+
+    input.error
+      display initial
+      padding 0
+      color #9b9b9b
+
+    .hour-input
+      padding-right 8px !important
+
+    .minute-input
+      padding-left 8px !important
 
   .emma-input.date-input
     width 37px
@@ -886,6 +896,9 @@
     padding-bottom remify(7)
 
 #call-confirmation-modal, #appointment-confirmation-modal
+  .modal-dialog
+    max-width 498px
+
   .modal-body
     padding remify(35) remify(23) remify(37) remify(23)
     text-align center
@@ -910,6 +923,9 @@
 .call-confirmation-modal--bottom-text
   display block
   margin-top remify(49)
+  font-size remify(15)
+  center-block()
+  max-width 301px
 
 .call-confirmation-modal__photo
   width remify(150)

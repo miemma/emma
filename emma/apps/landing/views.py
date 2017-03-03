@@ -25,8 +25,14 @@ from emma.core.mixins import ClientRequiredMixin
 from emma.core.utils import send_email
 
 
-class HomeTemplateView(TemplateView):
-    template_name = 'landing/index.html'
+class HomeTemplateView(View):
+    @staticmethod
+    def get(request):
+        today = date.today()
+        context = {
+            'today': today.strftime("%m/%d/%Y")
+        }
+        return render(request, 'landing/index.html', context)
 
 
 class ServicesTemplateView(ListView):
