@@ -595,4 +595,16 @@
 	<script src="{% static 'js/reservationFormCalendar.js' %}"></script>
 	<script src="{% static 'js/modalforms.js' %}"></script>
 	<script src="{% static 'lib/jstz/jstz.min.js' %}"></script>
+  <script>
+    $('#whois-carousel').on('slide.bs.carousel', function (ev) {
+      var type = ev.relatedTarget.dataset.emmaType,
+        emmaTitleText = '¿Quiénes son nuestras Emmas?',
+        frankTitleText = '¿Quiénes son nuestros Franks?',
+        emmaDescText = 'Las Emmas son nuestras compañeras confiables. Son mujeres con vocación capacitadas y seleccionadas para tí con gran cuidado.',
+        frankDescText = 'Los Franks son nuestros compañeros confiables. Son hombres con vocación capacitados y seleccionados para ti con gran cuidado.';
+
+      $('.whois-title').html(type == 'emma' ? emmaTitleText : frankTitleText);
+      $('.whois-desc').html(type == 'emma' ? emmaDescText : frankDescText);
+    });
+  </script>
 {% endblock js %}
