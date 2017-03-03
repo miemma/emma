@@ -97,12 +97,14 @@
       var $form = $(form).serialize(),
         sentTo = $(form).attr('action');
       validForms[validName] = true;
+      $(form).find('.form-loader').show();
       // $.ajax({
       //   url: sentTo,
       //   method: 'POST',
       //   data: $form
       // })
       //   .done(function (data) {
+      //     $(form).find('.form-loader').hide();
       //     modalObject.modal('hide');
       //   });
       modalObject.modal('hide');
