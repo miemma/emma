@@ -47,7 +47,7 @@ especializado con seguimiento geriátrico.
 					<p class="description">
 						¿Te gustaría tener un plan a tu medida?
 					</p>
-					<a href="#" class="emma-btn emma-btn-light">Crealo aquí</a>
+					<button data-toggle="modal" data-target="#customplan-modal" class="emma-btn emma-btn-light">Crealo aquí</button>
 				</div>
 			</div>
 		</div>
@@ -64,8 +64,13 @@ especializado con seguimiento geriátrico.
 </div>
 {% endblock %}
 {% block js %}
-<script>
-	$('[data-toggle="tooltip"]').tooltip();
-</script>
-<script src="{% static "js/hiring-flow/formloaders.js" %}"></script>
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker3.min.css" />
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+	<script src="{% static 'js/reservationFormCalendar.js' %}"></script>
+	<script src="{% static "js/hiring-flow/formloaders.js" %}"></script>
+	<script src="{% static 'js/modalforms.js' %}"></script>
+	<script src="{% static 'lib/jstz/jstz.min.js' %}"></script>
+	<script>
+		$('[data-toggle="tooltip"]').tooltip();
+	</script>
 {% endblock %}

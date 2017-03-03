@@ -147,7 +147,7 @@
     rules: modalRules,
     submitHandler: getSubmitHandler($('#appointment-modal'), 'appointment')
   });
-  customplanModalForm = $('#custom-plan-modal__form').validate({
+  customplanModalForm = $('#customplan-modal__form').validate({
     groups: customplanGroups,
     rules: modalRules,
     submitHandler: getSubmitHandler($('#customplan-modal'), 'customplan')
@@ -156,6 +156,8 @@
   $('#call-modal').on('hide.bs.modal', getOnHideFn($('#call-confirmation-modal'), callModalForm, $('#call-modal__form'), 'call'));
 
   $('#appointment-modal').on('hide.bs.modal', getOnHideFn($('#appointment-confirmation-modal'), appointmentModalForm, $('#appointment-modal__form'), 'appointment'));
+
+  $('#customplan-modal').on('hide.bs.modal', getOnHideFn($('#customplan-confirmation-modal'), customplanModalForm, $('#customplan-modal__form'), 'customplan'));
 
   $('.appointment-modal__toggle-trigger').collapse('show');
 

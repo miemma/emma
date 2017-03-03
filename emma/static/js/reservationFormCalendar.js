@@ -24,7 +24,7 @@ firstValidDate.setMilliseconds(0);
 	  weekStart: 1
 	};
 
-	var datepickers = '#datepicker, #call-modal-datepicker, #appointment-modal-datepicker';
+	var datepickers = '#datepicker, #call-modal-datepicker, #appointment-modal-datepicker, #customplan-modal-datepicker';
 
 	$(datepickers).datepicker({
 	  daysOfWeekDisabled: [0,6],

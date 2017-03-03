@@ -132,3 +132,78 @@
     </div>
   </div>
 </div>
+<div id="customplan-modal" role="dialog" class="modal fade emma-modal home-modal">
+  <div class="modal-dialog" role="document">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <img aria-hidden="true" src="{% static 'img/icons/close.png' %}">
+    </button>
+    <form id="customplan-modal__form" action="" class="modal-content" data-ajax-form>
+      <div class="modal-header">
+        <h3 class="modal-title">Programa una llamada con nuestro equipo</h3>
+      </div>
+      <div class="modal-body">
+        <div class="call-modal__left-column">
+          <div class="input-wrapper">
+            <input name="name" class="emma-input" required type="text" placeholder="Nombre completo">
+          </div>
+          <div class="input-wrapper">
+            <input name="phone" class="emma-input" required type="tel" placeholder="Teléfono">
+          </div>
+          <div class="input-wrapper">
+            <input name="email" class="emma-input" required type="email" placeholder="Correo electrónico">
+          </div>
+          <div class="input-wrapper">
+            <select class="emma-input" required name="service">
+              <option value="" disabled selected>Quiero acompañamiento para</option>
+              <option value="1">...</option>
+              <option value="2">...</option>
+              <option value="3">...</option>
+            </select>
+          </div>
+          <div class="input-wrapper">
+            <textarea name="description" class="emma-input" placeholder="Breve descripción del adulto mayor (Opcional)"></textarea>
+          </div>
+        </div>
+        <div class="call-modal__right-column">
+          <div class="call-modal__calendar">
+            <div id="customplan-modal-datepicker" data-date="{{ today }}"></div>
+            <input type="hidden" id="customplan-modal__date-input"
+              name="date" value="{{ today }}">
+          </div>
+          <div class="call-modal__time">
+            <div class="call-modal__time-inner">
+              <strong>Hora:</strong>
+              <div class="emma-input">
+                <div class="input-wrapper">
+                  <input name="hour" class="hour-input" type="text" placeholder="00" max="12" min="1" value="10">:<input class="minute-input" type="text" max="59" min="0"
+                  placeholder="00" value="30" name="minute">
+                </div>
+              </div>
+              <input id="reservation-time-button__customplan" type="text" name="morning" value="AM"
+                     class="reservation-time-button emma-input date-input date-input-little" readonly>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="emma-btn emma-btn-light">Programar</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div id="customplan-confirmation-modal" role="dialog" class="modal fade emma-modal home-modal">
+  <div class="modal-dialog" role="document">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <img aria-hidden="true" src="{% static 'img/icons/close.png' %}">
+    </button>
+    <div class="modal-content">
+      <div class="modal-body">
+        <img class="emma-modal__check" src="{% static 'img/icons/modal-check.png' %}" alt="">
+        <p class="call-confirmation-modal__text">
+          Tu llamada ha sido programada de manera exitosa para el día
+          <span class="confirmation-modal__text--date confirmation-modal__text--yellow"></span> de <span class="confirmation-modal__text--year"></span> a las <span class="confirmation-modal__text--time confirmation-modal__text--yellow"></span>. A la brevedad recibirás un correo de confirmación
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
