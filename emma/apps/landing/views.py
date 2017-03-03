@@ -39,8 +39,10 @@ class ServicesTemplateView(ListView):
     @staticmethod
     def get_context(request):
         plans = Service.objects.all()
+        today = date.today()
         ctx = {
-            'plans': plans
+            'plans': plans,
+            'today': today.strftime("%m/%d/%Y")
         }
         return ctx
 
