@@ -178,25 +178,188 @@
     <p class="whois-desc">
       Las Emmas son nuestras compañeras confiables. Son mujeres con vocación capacitadas y seleccionadas para tí con gran cuidado.
     </p>
-    <div class="whois-carousel">
-      <div class="whois-carousel__item">
-        <div class="whois-carousel__item-content">
-          <div class="whois-carousel__item-box">
-            <div class="whois-carousel__item-box-title">Rocío Sánchez Guadarrama</div>
-            <div class="whois-carousel__item-box-content">
-              <span class="whois-carousel__item-line">Edad: 54 años</span>
-              <span class="whois-carousel__item-line">Ocupación principal: Practico el coaching y soy ama de casa.</span>
-              <span class="whois-carousel__item-line">Estudios y cursos previos:</span>
-              <span class="whois-carousel__item-line whois-carousel__item-line--separator">Lic. Administración (ITAM)</span>
-              <span class="whois-carousel__item-line">Diplomado en recursos humanos (ITAM)</span>
-              <span class="whois-carousel__item-line">Certificaciónde Coaching (ITESM)</span>
+    <div id="whois-carousel" class="whois-carousel carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#whois-carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#whois-carousel" data-slide-to="1"></li>
+        <li data-target="#whois-carousel" data-slide-to="2"></li>
+        <li data-target="#whois-carousel" data-slide-to="3"></li>
+        <li data-target="#whois-carousel" data-slide-to="4"></li>
+        <li data-target="#whois-carousel" data-slide-to="5"></li>
+        <li data-target="#whois-carousel" data-slide-to="6"></li>
+        <li data-target="#whois-carousel" data-slide-to="7"></li>
+        <li data-target="#whois-carousel" data-slide-to="8"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="item whois-carousel__item active" data-emma-type="emma">
+          <div class="whois-carousel__item-content">
+            <div class="whois-carousel__item-box">
+              <div class="whois-carousel__item-box-title">María Alejandra Juárez</div>
+              <div class="whois-carousel__item-box-content">
+                <span class="whois-carousel__item-line">Edad: 53 años</span>
+                <span class="whois-carousel__item-line">Ocupación principal: Agente de seguros y ama de casa.</span>
+                <span class="whois-carousel__item-line">Estudios y cursos previos:</span>
+                <span class="whois-carousel__item-line whois-carousel__item-line--separator">Licenciatura en Química Fármaco-bióloga</span>
+                <span class="whois-carousel__item-line">Contención de emergencias en el hogar (10 hrs. de entrenamiento teórico-práctico)</span>
+              </div>
+            </div>
+            <div class="whois-carousel__item-photo">
+              <img src="{% static 'img/whois-photo-1.png' %}" alt="María" class="img-responsive whois-image-img"/>
             </div>
           </div>
-          <div class="whois-carousel__item-photo">
-            <img src="{% static 'img/cuidadora.png' %}" alt="Mariana" class="img-responsive whois-image-img"/>
+        </div>
+        <div class="item whois-carousel__item" data-emma-type="frank">
+          <div class="whois-carousel__item-content">
+            <div class="whois-carousel__item-box">
+              <div class="whois-carousel__item-box-title">Sebastián Miranda Rubianes</div>
+              <div class="whois-carousel__item-box-content">
+                <span class="whois-carousel__item-line">Edad: 31 años</span>
+                <span class="whois-carousel__item-line">Ocupación principal: Profesor de idiomas.</span>
+                <span class="whois-carousel__item-line">Estudios y cursos previos:</span>
+                <span class="whois-carousel__item-line whois-carousel__item-line--separator">Licenciatura en Negocios y Estudios Internacionales (BA in Business Excellence and International Studies – University of South Wales)</span>
+                <span class="whois-carousel__item-line">Master en Gestión de Desarrollo Sostenible (Universidad de Vigo)</span>
+                <span class="whois-carousel__item-line">Idiomas: Inglés, francés e italiano.</span>
+              </div>
+            </div>
+            <div class="whois-carousel__item-photo">
+              <img src="{% static 'img/whois-photo-2.png' %}" alt="Sebastían" class="img-responsive whois-image-img"/>
+            </div>
+          </div>
+        </div>
+        <div class="item whois-carousel__item" data-emma-type="emma">
+          <div class="whois-carousel__item-content">
+            <div class="whois-carousel__item-box">
+              <div class="whois-carousel__item-box-title">Rocío Sánchez Guadarrama</div>
+              <div class="whois-carousel__item-box-content">
+                <span class="whois-carousel__item-line">Edad: 54 años</span>
+                <span class="whois-carousel__item-line">Ocupación principal: Practico el coaching y soy ama de casa.</span>
+                <span class="whois-carousel__item-line">Estudios y cursos previos:</span>
+                <span class="whois-carousel__item-line whois-carousel__item-line--separator">Lic. Administración (ITAM)</span>
+                <span class="whois-carousel__item-line">Diplomado en recursos humanos (ITAM)</span>
+                <span class="whois-carousel__item-line">Certificación Internacional de Coaching (ITESM)</span>
+                <span class="whois-carousel__item-line">Curso de Italiano (IBERO), Cursos en Historia del Arte y de Artesanía (Escultura, pintura repujado, estofado, manejo de hoja de oro y plata)</span>
+                <span class="whois-carousel__item-line">Contención de emergencias en el hogar (10 hrs. de entrenamiento teórico-práctico)</span>
+              </div>
+            </div>
+            <div class="whois-carousel__item-photo">
+              <img src="{% static 'img/whois-photo-3.png' %}" alt="Rocío" class="img-responsive whois-image-img"/>
+            </div>
+          </div>
+        </div>
+        <div class="item whois-carousel__item" data-emma-type="emma">
+          <div class="whois-carousel__item-content">
+            <div class="whois-carousel__item-box">
+              <div class="whois-carousel__item-box-title">Oliva Balvanera Flores</div>
+              <div class="whois-carousel__item-box-content">
+                <span class="whois-carousel__item-line">Edad: 54 años</span>
+                <span class="whois-carousel__item-line">Ocupación principal: Odontóloga y ama de casa</span>
+                <span class="whois-carousel__item-line">Estudios y cursos previos:</span>
+                <span class="whois-carousel__item-line whois-carousel__item-line--separator"> Odontología (Licenciatura y maestría) Cursos en desarrollo espiritual.</span>
+                <span class="whois-carousel__item-line">Cursos en Historia del Arte</span>
+                <span class="whois-carousel__item-line">Contención de emergencias en el hogar. (10 hrs. de entrenamiento teórico-práctico)</span>
+              </div>
+            </div>
+            <div class="whois-carousel__item-photo">
+              <img src="{% static 'img/whois-photo-4.png' %}" alt="Oliva" class="img-responsive whois-image-img"/>
+            </div>
+          </div>
+        </div>
+        <div class="item whois-carousel__item" data-emma-type="emma">
+          <div class="whois-carousel__item-content">
+            <div class="whois-carousel__item-box">
+              <div class="whois-carousel__item-box-title">Ninibeth Leyva Villegas</div>
+              <div class="whois-carousel__item-box-content">
+                <span class="whois-carousel__item-line">Edad: 42 años</span>
+                <span class="whois-carousel__item-line">Ocupación principal:  Coordinadora de cursos en la Facultad de Contaduría y Administración y ama de casa.</span>
+                <span class="whois-carousel__item-line">Estudios y cursos previos:</span>
+                <span class="whois-carousel__item-line whois-carousel__item-line--separator">Administración de empresas (UNAM)</span>
+              </div>
+            </div>
+            <div class="whois-carousel__item-photo">
+              <img src="{% static 'img/whois-photo-5.png' %}" alt="Nninibeth" class="img-responsive whois-image-img"/>
+            </div>
+          </div>
+        </div>
+        <div class="item whois-carousel__item" data-emma-type="emma">
+          <div class="whois-carousel__item-content">
+            <div class="whois-carousel__item-box">
+              <div class="whois-carousel__item-box-title">Martha Hirmina Galicia Vega</div>
+              <div class="whois-carousel__item-box-content">
+                <span class="whois-carousel__item-line">Edad: 61 años</span>
+                <span class="whois-carousel__item-line">Ocupación principal: Ama de casa.</span>
+                <span class="whois-carousel__item-line">Estudios y cursos previos:</span>
+                <span class="whois-carousel__item-line whois-carousel__item-line--separator"> Licenciatura en Ingeniería Química (UNAM)</span>
+                <span class="whois-carousel__item-line">Cursos en historia Mundial e Historia del Arte por el Museo de Antropología y Museo del Templo Mayor</span>
+                <span class="whois-carousel__item-line">Idiomas: Inglés, alemán.</span>
+              </div>
+            </div>
+            <div class="whois-carousel__item-photo">
+              <img src="{% static 'img/whois-photo-6.png' %}" alt="Martha" class="img-responsive whois-image-img"/>
+            </div>
+          </div>
+        </div>
+        <div class="item whois-carousel__item" data-emma-type="emma">
+          <div class="whois-carousel__item-content">
+            <div class="whois-carousel__item-box">
+              <div class="whois-carousel__item-box-title">Magdalena Quiroz Pool</div>
+              <div class="whois-carousel__item-box-content">
+                <span class="whois-carousel__item-line">Edad: 58 años</span>
+                <span class="whois-carousel__item-line">Ocupación principal: Psicoterapeuta de adolescentes, adultos y parejas. Profesora de preescolar.</span>
+                <span class="whois-carousel__item-line">Estudios y cursos previos:</span>
+                <span class="whois-carousel__item-line whois-carousel__item-line--separator">Licenciatura en Ed. Primaria y Licenciatura en Ed. Preescolar</span>
+                <span class="whois-carousel__item-line">Maestría en terapia racional emotiva</span>
+                <span class="whois-carousel__item-line">Maestría en desarrollo humano. Estudios en sexualidad.</span>
+              </div>
+            </div>
+            <div class="whois-carousel__item-photo">
+              <img src="{% static 'img/whois-photo-7.png' %}" alt="Magdalena" class="img-responsive whois-image-img"/>
+            </div>
+          </div>
+        </div>
+        <div class="item whois-carousel__item" data-emma-type="frank">
+          <div class="whois-carousel__item-content">
+            <div class="whois-carousel__item-box">
+              <div class="whois-carousel__item-box-title">Javier Delgado Martínez</div>
+              <div class="whois-carousel__item-box-content">
+                <span class="whois-carousel__item-line">Edad: 61 años</span>
+                <span class="whois-carousel__item-line">Ocupación principal: Agente de seguros y trabajador independiente.</span>
+                <span class="whois-carousel__item-line">Estudios y cursos previos:</span>
+                <span class="whois-carousel__item-line whois-carousel__item-line--separator">Ingeniería Química (IPN)</span>
+                <span class="whois-carousel__item-line">Máster en Ingeniería Química (Instituto Francés del Petróleo)</span>
+                <span class="whois-carousel__item-line">Idiomas: Francés</span>
+              </div>
+            </div>
+            <div class="whois-carousel__item-photo">
+              <img src="{% static 'img/whois-photo-8.png' %}" alt="Javier" class="img-responsive whois-image-img"/>
+            </div>
+          </div>
+        </div>
+        <div class="item whois-carousel__item" data-emma-type="emma">
+          <div class="whois-carousel__item-content">
+            <div class="whois-carousel__item-box">
+              <div class="whois-carousel__item-box-title">María de los Ángeles Santos Vallejo</div>
+              <div class="whois-carousel__item-box-content">
+                <span class="whois-carousel__item-line">Edad: 49 años</span>
+                <span class="whois-carousel__item-line">Ocupación principal: Ama de casa.</span>
+                <span class="whois-carousel__item-line">Estudios y cursos previos:</span>
+                <span class="whois-carousel__item-line whois-carousel__item-line--separator">Licenciatura en Administración de empresas (Universidad la Salle)</span>
+                <span class="whois-carousel__item-line">Idiomas: Inglés</span>
+              </div>
+            </div>
+            <div class="whois-carousel__item-photo">
+              <img src="{% static 'img/whois-photo-9.png' %}" alt="María" class="img-responsive whois-image-img"/>
+            </div>
           </div>
         </div>
       </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
     <div class="whois-footer">
       <div class="whois-footer__content">
