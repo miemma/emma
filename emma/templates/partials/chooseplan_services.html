@@ -137,7 +137,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
       <img aria-hidden="true" src="{% static 'img/icons/close.png' %}">
     </button>
-    <form id="customplan-modal__form" action="" class="modal-content" data-ajax-form>
+    <form id="customplan-modal__form" action="{% url 'landing:home_call' %}" class="modal-content" data-ajax-form>
       <div class="modal-header">
         <h3 class="modal-title">Crear plan personalizado</h3>
         <p class="modal-description">Llena los siguientes campos y selecciona una fecha y hora en la que te podemos llamar para definir a detalle tu plan con Emma:</p>
