@@ -47,7 +47,7 @@
 .about-section__mentors-grid
   display flex
   flex-wrap wrap
-  justify-content space-around
+  justify-content center
   center-block()
   max-width 860px
   margin-top remify(20)
@@ -55,9 +55,12 @@
 .about-section__mentors-element
   background #f5f5f5
   flex-basis 239px
-  margin-top remify(23)
+  margin remify(23) remify(20) 0 remify(20)
   padding remify(10) remify(10) remify(27) remify(10)
   border-radius 4px
+
+  &:not(:last-child) .about-section__mentors-element__name
+    margin-top remify(35)
 
 .about-section__mentors-element__image
   height 219px
@@ -68,6 +71,15 @@
   color #575656
   margin-top remify(20)
 
+  span
+    display block
+    font-size remify(14)
+    font-family 'Avenir LT Std Medium'
+    margin-top 0.5em
+
+  a
+    color darken($yellow, 10%)
+
 .about-section__diagram
   padding remify(30) 0 remify(84) 0
 
@@ -77,6 +89,11 @@
 
   .landing-diagram
     margin-top remify(130)
+
+@media screen and (max-width: 939px)
+  .about-section__mentors-element
+    &:not(:last-child) .about-section__mentors-element__name
+      margin-top remify(20)
 
 @media screen and (max-width: 658px)
   .about-section__cover
