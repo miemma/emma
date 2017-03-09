@@ -496,14 +496,41 @@
     top 50%
     transform translateY(-50%)
 
-.whois-carousel__item-content
-  max-width 900px
-  margin 0 auto
+.whois-carousel__item
+  &[data-emma-type="frank"] .whois-carousel__item-photo
+    position relative
+    z-index 1
+
+    &::before
+      content 'Frank'
+      background $yellow
+      color white
+      display block
+      position absolute
+      font-family 'Avenir LT Std Heavy'
+      padding 0.5em 2.5em
+      right remify(-10)
+      bottom remify(20)
+      z-index 2
+
+    &::after
+      content ' '
+      background $yellow
+      width remify(20)
+      height remify(10)
+      right remify(-8.5)
+      display block
+      position absolute
+      bottom remify(14)
+      z-index -1
+      transform rotate(-25deg)
 
 .whois-carousel__item-content
   display flex
   align-items flex-end
   justify-content space-around
+  max-width 900px
+  margin 0 auto
 
 .whois-carousel__item-box
   background white
