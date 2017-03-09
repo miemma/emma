@@ -354,11 +354,11 @@
       </div>
       <a class="carousel-control-prev" href="#whois-carousel" role="button" data-slide="prev">
         <span class="fa fa-angle-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
+        <span class="sr-only">Anterior</span>
       </a>
       <a class="carousel-control-next" href="#whois-carousel" role="button" data-slide="next">
         <span class="fa fa-angle-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
+        <span class="sr-only">Siguiente</span>
       </a>
     </div>
     <div class="whois-footer">
@@ -369,11 +369,39 @@
     </div>
   </section>
   <section class="landing-mentions-carousel-section">
-    <div class="landing-mentions-carousel">
-      <div class="landing-mentions-carousel__item">
-        <p class="landing-mentions-carousel__quote">“El proyecto EMMA va a tener mucho éxito pues habrá muchos queridos viejos que requieren ese apoyo para vivir más libres y activos”</p>
-        <img src="{% static 'img/icons/iconos-13.png' %}" alt="Logo" class="landing-mentions-carousel__img">
+    <div id="mentions-carousel" class="landing-mentions-carousel carousel slide">
+      <ol class="carousel-indicators">
+        <li data-target="#mentions-carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#mentions-carousel" data-slide-to="1"></li>
+        <li data-target="#mentions-carousel" data-slide-to="2"></li>
+        <li data-target="#mentions-carousel" data-slide-to="3"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="landing-mentions-carousel__item item active" data-interval="5000">
+          <p class="landing-mentions-carousel__quote">“El proyecto EMMA va a tener mucho éxito pues habrá muchos queridos viejos que requieren ese apoyo para vivir más libres y activos”</p>
+          <a href="http://www.excelsior.com.mx/opinion/rafael-alvarez-cordero/2016/03/12/1080417" target="_blank"><img src="{% static 'img/icons/iconos-13.png' %}" alt="Excelsior" class="landing-mentions-carousel__img"></a>
+        </div>
+        <div class="landing-mentions-carousel__item item" data-interval="5000">
+          <p class="landing-mentions-carousel__quote">“Uno de los principales retos que tenemos en México con nuestros adultos mayores es darles una vejez digna que los mantenga ocupados para que no pierdan el ánimo”</p>
+          <a href="https://www.entrepreneur.com/article/27161" target="_blank"><img src="{% static 'img/icons/iconos-14.png' %}" alt="Entrepreneur" class="landing-mentions-carousel__img"></a>
+        </div>
+        <div class="landing-mentions-carousel__item item" data-interval="5000">
+          <p class="landing-mentions-carousel__quote">“Emma, la startup ganadora al Premio Nacional al Estudiante Emprendedor 2016”</p>
+          <a href="http://www.elfinanciero.com.mx/economia/emma-la-startup-ganadora-del-premio-al-estudiante-emprendedor.html" target="_blank"><img src="{% static 'img/icons/iconos-15.png' %}" alt="El Financiero" class="landing-mentions-carousel__img"></a>
+        </div>
+        <div class="landing-mentions-carousel__item item" data-interval="5000">
+          <p class="landing-mentions-carousel__quote">“El servicio de Emma se enfoca en recuperar la calidez humana en el cuidado no médico al adulto mayor”</p>
+          <a href="https://www.youtube.com/watch?v=tDdfj_b-TKU&app=desktop" target="_blank"><img src="{% static 'img/icons/radio-21.png' %}" alt="Grupo Imagen" class="landing-mentions-carousel__img"></a>
+        </div>
       </div>
+      <a class="carousel-control-prev" href="#mentions-carousel" role="button" data-slide="prev">
+        <span class="fa fa-angle-left" aria-hidden="true"></span>
+        <span class="sr-only">Anterior</span>
+      </a>
+      <a class="carousel-control-next" href="#mentions-carousel" role="button" data-slide="next">
+        <span class="fa fa-angle-right" aria-hidden="true"></span>
+        <span class="sr-only">Siguiente</span>
+      </a>
     </div>
   </section>
   <section class="landing-agend-call">
