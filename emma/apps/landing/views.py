@@ -385,7 +385,7 @@ class HomeDateView(View):
 
         send_email(
             subject='email/subjects/date_schedule.txt',
-            body='email/home_call_schedule.html',
+            body='email/home_date_schedule.html',
             from_email="Emma - Ventas <postmaster@%s>" % (
                 settings.MAILGUN_SERVER_NAME
             ),
