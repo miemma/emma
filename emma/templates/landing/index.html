@@ -456,6 +456,7 @@
         <img aria-hidden="true" src="{% static 'img/icons/close.png' %}">
       </button>
       <form id="call-modal__form" action="{% url 'landing:home_call' %}" class="modal-content" data-ajax-form>
+        {% csrf_token %}
         <div class="modal-header">
           <h3 class="modal-title">Programa una llamada con nuestro equipo</h3>
         </div>
@@ -544,6 +545,7 @@
         <img aria-hidden="true" src="{% static 'img/icons/close.png' %}">
       </button>
       <form id="appointment-modal__form" action="{% url 'landing:home_date' %}" class="modal-content">
+        {% csrf_token %}
         <div class="modal-header">
           <h3 class="modal-title">Agenda una cita en nuestras oficinas</h3>
         </div>
