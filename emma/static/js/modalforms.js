@@ -9,20 +9,20 @@
     customplanTimeGroup: callGroups.callTimeGroup
   },
   modalRules = {
-    // hour: {
-    //   checkDateTime: true,
-    //   number: true,
-    //   maxlength: 12,
-    //   minlength: 1,
-    //   required: true
-    // },
-    // minute: {
-    //   checkDateTime: true,
-    //   number: true,
-    //   maxlength: 59,
-    //   minlength: 0,
-    //   required: true
-    // },
+    hour: {
+      checkDateTime: true,
+      number: true,
+      maxlength: 12,
+      minlength: 1,
+      required: true
+    },
+    minute: {
+      checkDateTime: true,
+      number: true,
+      maxlength: 59,
+      minlength: 0,
+      required: true
+    },
     phone: {
       number: true,
       maxlength: 10
