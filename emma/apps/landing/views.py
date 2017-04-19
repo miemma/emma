@@ -311,6 +311,10 @@ class PrivacyTemplateView(TemplateView):
 
 
 class HomeCallView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super(HomeCallView, self).dispatch(request, *args, **kwargs)
+
     def post(self, request):
         name = request.POST.get('name')
         phone = request.POST.get('phone')
@@ -359,6 +363,10 @@ class HomeCallView(View):
 
 
 class HomeDateView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super(HomeDateView, self).dispatch(request, *args, **kwargs)
+
     def post(self, request):
         name = request.POST.get('name')
         phone = request.POST.get('phone')
