@@ -21,22 +21,21 @@ input[type=text]:disabled
     cursor pointer
     font-family "Avenir LT Std Roman"
     padding 8px 21px
-    
+    transition background 0.2s
+
+    &:hover
+    &:active
+    &:focus
+      background #e6a400
+
     &.large
       padding 8px 40px
-    
+
   &-btn-light
     background-color $yellow
 
   &-btn-dark
     background-color $orange
-
-    &:hover
-    &:active
-    &:focus
-      color white
-      text-decoration none
-      outline none
 
   &-input
     border-radius 5px
