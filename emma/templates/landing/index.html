@@ -29,36 +29,47 @@
 		</div>
 		<div class="layer">
 			<div class="text-container">
-			  <div class="row text-center info-1-row-title">
-			    <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
-			      <p class="info-1-title">
-			        Redefinimos el acompañamiento en casa
-			      </p>
-			    </div>
-			  </div>
-			  <div class="row text-center info-1-row-subtitle">
-			    <div class="col-xs-9 col-sm-9 col-md-8 col-lg-7">
-			      <p class="text-center info-1-subtitle">
-			        A través de nuestros cuidados no médicos, Emma personaliza el aprendizaje,
-              la activación de intereses y el bienestar integral de tus seres queridos desde su hogar
-			      </p>
-			    </div>
-			  </div>
-			  <div class="row text-center info-1-row-btn">
-			    <div class="col-xs-9 col-sm-6 col-md-6 col-lg-4">
-				    {% if request.user.client %}
-					    <a href="{%  url 'clients:dashboard_welcome'  %}"
-					       class="emma-btn-dark info-1-btn-pay">
-				        Ver perfil
-				      </a>
-				    {% else %}
-					    <a href="{% url 'services:contract_plan' %}" class="emma-btn-dark info-1-btn">
-				        Encuentra a tu Emma
-				      </a>
-				    {% endif %}
-			    </div>
-			  </div>
-		 </div>
+        <div class="desktop-content">
+  			  <div class="row text-center info-1-row-title">
+  			    <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+  			      <p class="info-1-title">
+  			        Redefinimos el acompañamiento en casa
+  			      </p>
+  			    </div>
+  			  </div>
+  			  <div class="row text-center info-1-row-subtitle">
+  			    <div class="col-xs-9 col-sm-9 col-md-8 col-lg-7">
+  			      <p class="text-center info-1-subtitle">
+  			        A través de nuestros cuidados no médicos, Emma personaliza el aprendizaje,
+                la activación de intereses y el bienestar integral de tus seres queridos desde su hogar
+  			      </p>
+  			    </div>
+  			  </div>
+  			  <div class="row text-center info-1-row-btn">
+  			    <div class="col-xs-9 col-sm-6 col-md-6 col-lg-4">
+  				    {% if request.user.client %}
+  					    <a href="{%  url 'clients:dashboard_welcome'  %}"
+  					       class="emma-btn-dark info-1-btn-pay">
+  				        Ver perfil
+  				      </a>
+  				    {% else %}
+  					    <a href="{% url 'services:contract_plan' %}" class="emma-btn-dark info-1-btn">
+  				        Encuentra a tu Emma
+  				      </a>
+  				    {% endif %}
+  			    </div>
+  			  </div>
+        </div>
+        <div class="mobile-content">
+          <h1 class="homepage-hero__mobile-title">Un acompañamiento con propósito para tu ser querido</h1>
+          <span class="homepage-hero__mobile-subtitle">Emma lleva calidad de vida al hogar de los adultos mayores.</span>
+          <p class="homepage-hero__mobile-paragraph">
+            ¿Necesitas apoyo para evaluar tu caso? Nosotros podemos ayudar. Programa una valoración sin costo.
+          </p>
+          <a href="tel:+525545449350" class="emma-btn-dark">5545449350</a>
+          <a href="#homepage-services" class="emma-btn-dark" data-action="scroll">Conoce más</a>
+        </div>
+      </div>
 		</div>
 	</section>
   {% comment %}<section class="landing-testimonial">
@@ -70,7 +81,7 @@
       <span class="landing-testimonial__subtitle"><strong>Alejandra Juárez |</strong> Emma</span>
     </div>
   </section>{% endcomment %}
-  <section class="services">
+  <section class="services" id="homepage-services">
 	  <div class="row text-center services-row-title-icon">
 	    <div class="col-xs-12 col-sm-12 col-md-12">
 	      <img src="{% static 'img/icons/bench.png' %}" alt="banca"
