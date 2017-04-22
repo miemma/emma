@@ -1,14 +1,22 @@
-function validate_Date(fechaInicial, fechaFinal) {
-    valuesStart = fechaInicial.split("/");
-    valuesEnd = fechaFinal.split("/");
+function compareDates(initialDate, finalDate) {
+    var date1 = new Date(
+        initialDate.getFullYear(),
+        initialDate.getMonth(),
+        initialDate.getDate()
+      ),
+      date2 = new Date(
+        finalDate.getFullYear(),
+        finalDate.getMonth(),
+        finalDate.getDate()
+      );
 
-    // Verificamos que la fecha no sea posterior a la actual
-    var dateStart = new Date(valuesStart[2], (valuesStart[1] - 1), valuesStart[0]);
-    var dateEnd = new Date(valuesEnd[2], (valuesEnd[1] - 1), valuesEnd[0]);
-    if (dateStart >= dateEnd) {
-        return 0;
+    if (date1.valueOf() < date2.valueOf()) {
+      return 'before';
+    } else if (date1.valueOf() == date2.valueOf()) {
+      return 'equal';
+    } else {
+      return 'after';
     }
-    return 1;
 }
 
 $(document).ready(function () {
@@ -36,74 +44,41 @@ $(document).ready(function () {
     });
 
     jQuery.validator.addMethod("checkDateTime", function (value, element) {
-        console.log("Evaluando Fecha");
-        var date = new Date(),
-            actual_time = (date.getHours() * 60) + date.getMinutes(),
-            form = $(element).closest('form'),
-            hours, minutes, time, total_minutes;
+      var date = new Date(),
+          actual_time = (date.getHours() * 60) + date.getMinutes(),
+          form = $(element).closest('form'),
+          selected_day = $(form.find('[data-date]')).datepicker('getDate'),
+          hours, minutes, time, total_minutes;
 
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth() + 1; //January is 0!
+      if ($('#hourInput').length) {
+          hours = parseInt($('#hourInput').val());
+          minutes = parseInt($('#timeInput').val());
+          time = $('#reservation-time-button').val();
+      } else {
+          hours = parseInt(form.find('.hour-input').val());
+          minutes = parseInt(form.find('.minute-input').val());
+          time = $('.reservation-time-button').val();
+      }
 
-        var yyyy = today.getFullYear();
-        if (dd < 10) {
-            dd = '0' + dd;
-        }
-        if (mm < 10) {
-            mm = '0' + mm;
-        }
-        var actual_date = dd + '/' + mm + '/' + yyyy;
-
-
-        inserted_date = $('#appointment-modal__date-input').val();
-        split_inserted_date = inserted_date.split('/');
-        reformat_inserted_date = split_inserted_date[1] + '/' + split_inserted_date[0] + '/' + split_inserted_date[2];
-
-        console.log(reformat_inserted_date);
-        console.log(actual_date);
-
-        console.log("El tiempo actual es " + actual_time);
-
-        if ($('#hourInput').length) {
-            hours = parseInt($('#hourInput').val());
-            minutes = parseInt($('#timeInput').val());
-            time = $('#reservation-time-button').val();
+      total_minutes = (hours * 60) + minutes;
+      if (time == 'PM') {
+        total_minutes += 720;
+      }
+      // Validamos que este dentro del horario de servicio
+      // 9am - 8pm
+      if (total_minutes < 540 || total_minutes > 1200) {
+        return false; // No esta dentro del horario
+      } else if (compareDates(date, selected_day) == 'equal') { // Es el mismo día
+        if ((actual_time + 45) < total_minutes) {
+          return true;
         } else {
-            hours = parseInt(form.find('.hour-input').val());
-            minutes = parseInt(form.find('.minute-input').val());
-            time = $('.reservation-time-button').val();
+          return false; // No hay suficiente espacio entre la hora actual y la cita
         }
-
-        total_minutes = (hours * 60) + minutes;
-        if (time == 'PM') {
-            total_minutes += 720;
-        }
-        console.log("La hora insertada es " + total_minutes);
-
-        if (validate_Date(actual_date, reformat_inserted_date)) {
-            console.log("La fecha es superior");
-        } else {
-            console.log("La fecha es inferior");
-        }
-
-        // Validamos que este dentro del horario de servicio
-        if (total_minutes < 540 || total_minutes > 1200) {
-            console.log("La hora no esta en el horario de atencion");
-            return false; // No esta dentro del horario
-        } else { // Si esta dentro del horario
-            if ((actual_time + 45) < total_minutes) {
-                console.log("La fecha es correcta");
-                return true;
-            } else {
-                console.log("No se puede agendar con menos de 45 minutos de tiempo")
-                return false;
-            }
-        }
-        //}, function(params, element) {
-        //return error_msg
-        //});
-
+      } else if (compareDates(date, selected_day) == 'before') {
+        return true; // El día seleccionado es posterior
+      } else {
+        return false; // El día seleccionado es anterior
+      }
     }, "La hora no es válida");
 
     jQuery.validator.setDefaults({

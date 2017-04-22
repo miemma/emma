@@ -168,8 +168,8 @@
         <div class="call-modal__right-column">
           <div class="call-modal__calendar">
             <div id="customplan-modal-datepicker" data-date="{{ today }}"></div>
-            <input type="hidden" id="customplan-modal__date-input"
-              name="date" value="{{ today }}">
+            <input class="date-hidden-input" type="hidden" id="customplan-modal__date-input"
+              name="date" data-for="customplan-modal-datepicker" value="{{ today }}">
           </div>
           <div class="call-modal__time">
             <div class="call-modal__time-inner">

@@ -579,8 +579,8 @@
           <div class="call-modal__right-column">
             <div class="call-modal__calendar">
               <div id="call-modal-datepicker" data-date="{{ today }}"></div>
-              <input type="hidden" id="call-modal__date-input"
-                name="date" value="{{ today }}">
+              <input class="date-hidden-input" type="hidden" id="call-modal__date-input"
+                name="date" data-for="call-modal-datepicker" value="{{ today }}">
             </div>
             <div class="call-modal__time">
               <div class="call-modal__time-inner">
@@ -668,8 +668,8 @@
             <div class="collapse appointment-modal__toggle">
               <div class="call-modal__calendar">
                 <div id="appointment-modal-datepicker" data-date="{{ today }}"></div>
-                <input type="hidden"  id="appointment-modal__date-input"
-                  name="date" value="{{ today }}">
+                <input class="date-hidden-input" type="hidden" id="appointment-modal__date-input"
+                  name="date" data-for="call-modal-datepicker" value="{{ today }}">
               </div>
               <div class="call-modal__time">
                 <div class="call-modal__time-inner">

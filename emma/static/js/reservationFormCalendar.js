@@ -1,16 +1,4 @@
-var firstValidDate = new Date();
-firstValidDate.setHours(0);
-firstValidDate.setMinutes(0)
-firstValidDate.setSeconds(0)
-firstValidDate.setMilliseconds(0);
 (function () {
-	firstValidDate.setDate(firstValidDate.getDate());
-	if(firstValidDate.getDay() == 0) {
-	  firstValidDate.setDate(firstValidDate.getDate() + 1);
-	}
-	if(firstValidDate.getDay() == 6) {
-	  firstValidDate.setDate(firstValidDate.getDate() + 2);
-	}
 	$.fn.datepicker.dates['en'] = {
 	  days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sabado"],
 	  daysShort: ["Dom", "Lun", "Mar", "Mier", "Jue", "Vie", "Sab"],
@@ -28,10 +16,40 @@ firstValidDate.setMilliseconds(0);
 
 	$(datepickers).datepicker({
 	  daysOfWeekDisabled: [0,6],
-	  startDate: firstValidDate,
+		useCurrent: false,
+	  startDate: getFirstValidDate()
 	});
 	$(datepickers).find('.prev').text('<');
 	$(datepickers).find('.next').text('>');
+	$(datepickers).datepicker('setDate', getFirstValidDate());
+	$(datepickers).each(updateInput);
+	$(datepickers).datepicker().on('changeDate', function () {
+		var datepicker = $(this);
+		datepicker.siblings('.date-hidden-input')
+			.val(datepicker.datepicker('getFormattedDate'));
+		$(this).closest('form').data('validator').element('.hour-input');
+	});
+
+	function updateInput() {
+		var datepicker = $(this);
+		datepicker.siblings('.date-hidden-input')
+			.val(datepicker.datepicker('getFormattedDate'));
+	}
+
+	function getFirstValidDate() {
+		var date = new Date(),
+			array = [];
+		if (date.getDay() == 6) {
+			date = new Date(Date.now() + 2*86400000);
+		} else if (date.getDay() == 0) {
+			date = new Date(Date.now() + 86400000);
+		}
+		date.setHours(0);
+		date.setMinutes(0);
+		date.setSeconds(0);
+		date.setMilliseconds(0);
+		return date;
+	}
 
 	$('.reservation-time-button').click(function () {
 			button_time = document.getElementById($(this).attr('id'));
@@ -40,13 +58,6 @@ firstValidDate.setMilliseconds(0);
 			} else if (button_time.value == 'PM') {
 					button_time.value = 'AM';
 			}
+			$(this).closest('form').data('validator').element('.hour-input');
 	});
-
-  $(datepickers).datepicker()
-	  .on('changeDate', function(e) {
-			var datepicker = $(this).attr('id');
-      $('.date_input[data-for="' + datepicker +  '"]').val(
-          $(datepicker).datepicker('getFormattedDate')
-      )
-  	});
 })();
