@@ -25,7 +25,7 @@
 {% block content %}
 	<section class="landing-video-section">
 		<div class="embed-responsive embed-responsive-16by9">
-		  <video src="{% static 'img/video/landing_page_video.mp4' %}" autoplay="auto" loop></video>
+		  <video src="{% static 'img/video/landing_page_video.mp4' %}" autoplay="auto" loop psoter="{% static 'img/video_poster.jpg' %}"></video>
 		</div>
 		<div class="layer">
 			<div class="text-container">
@@ -456,7 +456,7 @@
     </div>
     <div class="whois-footer">
       <div class="whois-footer__content">
-        <a href="{% url 'landing:about' %}" class="emma-btn emma-btn-light">Tu seguridad</a>
+        <a href="{% url 'landing:services' %}" class="emma-btn emma-btn-light">Tu seguridad</a>
         <span>Aceptamos únicamente al 15% de nuestras aplicantes</span>
       </div>
     </div>
