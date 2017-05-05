@@ -68,10 +68,16 @@
 
 @media screen and (max-width: 850px)
   .whois-carousel
-    margin-top remify(25)
+    margin-top 0
 
   .whois-carousel__item-content
     justify-content center
+    flex-wrap wrap
+
+  .whois-carousel__item-box
+    margin-top -100px
+    padding-top 100px
+    z-index 1
 
   .whois-carousel__item-box-title
     text-align center
@@ -80,7 +86,23 @@
     padding-right remify(29)
 
   .whois-carousel__item-photo
-    display none
+    order -1
+    z-index 2
+
+  .whois-image-img
+    height 190px
+    border-radius 50%
+    border 5px $yellow solid
+
+  .whois-carousel__item[data-emma-type="frank"]
+    .whois-carousel__item-photo:after
+      display none
+      content ''
+
+  .whois-carousel
+    .fa-angle-left,
+    .fa-angle-right
+      top calc(50% + 50px)
 
 @media screen and (max-width: 480px)
   .landing-agend-call__buttons .emma-btn
