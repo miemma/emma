@@ -123,6 +123,13 @@
       margin-top remify(18)
 
 @media screen and (max-width: 600px)
+  .landing-diagram-section p
+    display none
+
+  .landing-diagram-section__title
+    font-size remify(23)
+    width 350px
+
   .landing-diagram
     display flex
     flex-wrap wrap
@@ -132,7 +139,7 @@
     height auto
     max-width 430px
     margin-bottom remify(24)
-    margin-top remify(30) !important
+    margin-top 15px
 
   .landing-diagram__icon-label,
   .landing-diagram__icon-item
@@ -144,7 +151,10 @@
     transform none !important
 
   .landing-diagram__icon-label
-    display none
+    width 100% !important
+    text-align center !important
+    margin-top 0.8em
+    font-size remify(16)
 
   .landing-diagram__icon-item
     flex-basis 40%
