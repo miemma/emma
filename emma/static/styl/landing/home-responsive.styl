@@ -70,20 +70,22 @@
   .whois-carousel
     margin-top 0
 
+  .whois-carousel__item
+    height 268px
+
   .whois-carousel__item-content
     justify-content center
     flex-wrap wrap
 
   .whois-carousel__item-box
-    margin-top -100px
-    padding-top 100px
+    background transparent
     z-index 1
 
   .whois-carousel__item-box-title
     text-align center
 
   .whois-carousel__item-box-content
-    padding-right remify(29)
+    display none
 
   .whois-carousel__item-photo
     order -1
@@ -102,7 +104,7 @@
   .whois-carousel
     .fa-angle-left,
     .fa-angle-right
-      top calc(50% + 50px)
+      top calc(50%)
 
 @media screen and (max-width: 480px)
   .landing-agend-call__buttons .emma-btn
