@@ -90,7 +90,7 @@ class ContactEmailView(View):
 
         send_email(
             subject='email/subjects/contact.txt',
-            body='email/contact.html',
+            body='email/contact_team.html',
             from_email="Emma - Contacto <postmaster@%s>" % (
                 settings.MAILGUN_SERVER_NAME
             ),
@@ -304,6 +304,9 @@ class NewsletterView(View):
 
 class AlternativeJoinEmmaView(TemplateView):
     template_name = 'landing/alternative_join.html'
+
+class ContactTeamEmmaView(TemplateView):
+        template_name = 'landing/contact_team.html'
 
 
 class PrivacyTemplateView(TemplateView):

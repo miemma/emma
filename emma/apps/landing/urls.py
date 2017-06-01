@@ -60,6 +60,10 @@ urlpatterns = [
         view=views.AlternativeJoinEmmaView.as_view(),
         name='thanks'),
 
+    url(regex=r'^reclutamiento-ok/$',
+        view=views.ContactTeamEmmaView.as_view(),
+        name='thanks'),
+
     url(regex=r'^agendar-home/$',
         view=views.HomeCallView.as_view(),
         name='home_call'),
