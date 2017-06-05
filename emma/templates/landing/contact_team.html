@@ -8,27 +8,41 @@
              alt="success" class="img-check center-block img-responsive"/>
       </div>
     </div>
-    <div class="row text-center success-row-desc" style="font-size: 26px">
+    <div class="row text-center success-row-desc" >
       <div class="col-lg-7 col-md-7 col-sm-10 col-xs-11">
-        <p class="success-desc">
+        <p class="success-desc" style="font-size: 24px">
 					¡Permanece en contacto con nosotros!
         </p><br>
-	      <P class="success-desc">
+	      <P class="success-desc" style="font-size: 22px">
 		     Nos gustaría invitarte a nuestra comunidad Emma en Facebook.
           </P>
-              <P class="success-desc">
+              <P class="success-desc" style="font-size: 22px">
               Al dar click en "me gusta" tendras acceso a la información y contenido relevante para tu futuro labor en Emma
             </P>
 
             <br>
-           <p class="success-desc">
+           <p class="success-desc" style="font-size: 24px">
 					¡Comenzarás a capacitarte como Emma o Frank!
             </p>
       </div>
     </div>
 	  <div class="row text-center success-row-desc">
       <div class="col-lg-7 col-md-7 col-sm-10 col-xs-11">
-	      <div class="fb-page" data-href="https://www.facebook.com/miemma.mexico/" data-tabs="mensajes" data-small-header="true" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/miemma.mexico/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/miemma.mexico/"></a></blockquote></div>
+          <table align="center">
+              <tr>
+                  <td>
+                        <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="400" data-layout="box_count" data-action="like" data-size="large" data-show-faces="false" data-share="false"></div>
+                  </td>
+                  <td>
+                        <div class="fb-page" data-href="https://www.facebook.com/miemma.mexico/" data-width="200" data-height="50" data-small-header="true" data-adapt-container-width="false" data-hide-cover="false"
+                               data-show-facepile="false"><blockquote cite="https://www.facebook.com/miemma.mexico/" class="fb-xfbml-parse-ignore">
+                                    <a href="https://www.facebook.com/miemma.mexico/">Emma</a></blockquote>
+                        </div>
+                  </td>
+              </tr>
+          </table>
+
+
       </div>
     </div>
     <div class="row text-center success-row-btn">
@@ -39,13 +53,14 @@
         </a>
       </div>
     </div>
-    <div id="fb-root"></div>
-		<script>(function(d, s, id) {
-		  var js, fjs = d.getElementsByTagName(s)[0];
-		  if (d.getElementById(id)) return;
-		  js = d.createElement(s); js.id = id;
-		  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.7&appId=1748550858708018";
-		  fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));</script>
+            <div id="fb-root"></div>
+            <script>(function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.9";
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+
   </section>
 {% endblock content %}
