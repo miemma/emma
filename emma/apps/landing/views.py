@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*
 
-from __future__ import print_function
+#from __future__ import print_function
 
 import json
 import urlparse
@@ -415,3 +415,16 @@ class HomeDateView(View):
         )
 
         return redirect(reverse('landing:success'))
+
+
+
+class GuiaPersonal(View):
+
+    def get(self, request):
+        guia = settings.STATICFILES_DIRS[0]+  '/docs/eBookBalanceEmma.pdf'
+        print (guia)
+        with open(guia, 'rb') as archivo:
+            response = HttpResponse(archivo.read(), content_type='application/pdf')
+            response['Content-Disposition'] = 'inline; filename="eBookBalanceEmma.pdf"'
+            return response
+        archivo.closed

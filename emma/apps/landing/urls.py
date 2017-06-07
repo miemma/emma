@@ -71,4 +71,8 @@ urlpatterns = [
     url(regex=r'^cita-home/$',
         view=views.HomeDateView.as_view(),
         name='home_date'),
+
+    url(regex=r'^guia-balance-personal-y-cuidado-de-tus-padres/$',
+        view=views.GuiaPersonal.as_view(),
+        name='home_guia'),
 ]
