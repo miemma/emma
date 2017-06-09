@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.http import Http404
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404, render
 from django.template.response import TemplateResponse
 from django.views.generic import View
 from django.conf import settings
@@ -10,7 +10,7 @@ from django.conf import settings
 from emma.apps.adults.models import Adult
 from emma.apps.clients.forms import UserInformationForm
 from emma.apps.clients.models import Client
-from emma.apps.suscriptions.models import Suscription
+from emma.apps.suscriptions.models import Suscription, Charge
 from emma.apps.xauth.forms import UpdatePasswordForm
 from emma.core.mixins import ClientRequiredMixin, LoginRequiredMixin, \
     GetAdultMixin
@@ -93,6 +93,7 @@ class ClientDetailView(GetAdultMixin, ClientRequiredMixin, View):
         return form
 
 
+
 class AddCardView(GetAdultMixin, ClientRequiredMixin, View):
     template_name = 'clients/add_card.html'
 
@@ -113,6 +114,79 @@ class AddCardView(GetAdultMixin, ClientRequiredMixin, View):
         )
         return redirect(reverse_lazy('suscriptions:dashboard_payment_info'))
 
+
+def addTarjeta(customer, request):
+    card = customer.cards.create(
+        #token_id=request.POST['token_id'],
+        #device_session_id=request.POST['devsessionid'],
+        card_number = request.POST['card_number'],
+        holder_name = request.POST['customer_name'],
+        expiration_year = request.POST['card_year'],
+        expiration_month = request.POST['card_month'],
+        cvv2 = request.POST['card_cvc'],
+    )
+    print card
+    return card
+
+def addCustomer(user):
+    customer = openpay.Customer.create(
+        name=user.first_name,
+        email=user.email,
+        last_name=user.father_last_name,
+    )
+    print customer
+    return customer
+
+def addCharge (customer, request, mount):
+    charge = customer.charges.create(
+        source_id=request.POST['token_id'],
+        device_session_id=request.POST['devsessionid'],
+        method="card",
+        amount=mount,
+        description="Mensualidad de Mi emma",
+        #capture=False,
+    )
+    print charge
+    return charge
+
+class PayCardView(GetAdultMixin, ClientRequiredMixin, View):
+    template_name = 'clients/add_card.html'
+
+
+    def get(self, request, **kwargs):
+        ctx = {
+            'adult': self.get_adult(request)
+        }
+        return TemplateResponse(request, self.template_name, ctx)
+
+    def post(self, request):
+        client = Client.objects.get(user=request.user)
+        suscription = Suscription.objects.get(client=client)
+        #customer = None
+        # if suscription.openpay_id is None:
+        #     customer = openpay.Customer.retrieve(suscription.openpay_id)
+        # else:
+        try:
+            customer=addCustomer(request.user)
+            #card = None # addTarjeta(customer, request)
+            charge = Charge.objects.get(suscription=suscription)
+            addCharge(customer,request,charge.amount)
+            charge.status='paid'
+            charge.save()
+            return render(request, 'clients/pay_finalize.html', {'message':'Su pago se cargo con éxito'})
+        except Exception, e:
+            print e.message
+            return render(request, 'clients/pay_finalize.html', {'message': 'Su pago no pudo ser cargado'})
+
+class PayView(GetAdultMixin, ClientRequiredMixin, View):
+    template_name = 'clients/add_card.html'
+
+
+    def get(self, request, **kwargs):
+        ctx = {
+            'adult': self.get_adult(request)
+        }
+        return TemplateResponse(request, self.template_name, ctx)
 
 class WelcomeView(GetAdultMixin, ClientRequiredMixin, View):
     def get(self, request, **kwargs):

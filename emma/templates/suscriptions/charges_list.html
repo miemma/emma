@@ -19,9 +19,9 @@
                 <th>Mes</th>
                 <th>Plan</th>
                 <th>Monto</th>
-	              <th>Status</th>
-                <th>Tarjeta</th>
-                <th>Recibo</th>
+                <th>Status</th>
+                <th>Detalle</th>
+
               </tr>
             </thead>
             <tbody>
@@ -35,7 +35,7 @@
 	              {% else %}
 	                <td class="red">Pendiente</td>
 	              {% endif %}
-                <td>{{ charge.card }}</td>
+
 	              {% if charge.file %}
 		             <td>
 			            <a class="dashboard-history-file" href="{{ charge.file.url }}" download target="_blank">

@@ -3,8 +3,9 @@
   <li class="dashboard-menu-item"><a href="{{dashboard_payment_info}}">Pagos</a>
     {% if request.path == dashboard_add_card or request.path == dashboard_charges_list or request.path == dashboard_payment_info %}
     <ul class="dashboard-submenu">
-			<li class="dashboard-submenu-item {%if request.path == dashboard_add_card or request.path == dashboard_payment_info%}active{%endif%}"><a href="{{dashboard_payment_info}}">Mis tarjetas</a></li>
-      <li class="dashboard-submenu-item {%if request.path == dashboard_charges_list %}active{%endif%}"><a href="{{dashboard_charges_list}}">Historial de Pagos</a></li>
+			<li class="dashboard-submenu-item {%if request.path == dashboard_add_card or request.path == dashboard_payment_info%}active{%endif%}"><a href="{{dashboard_payment_info}}">Pagar Subscripción</a></li>
+            <li class="dashboard-submenu-item {%if request.path == dashboard_charges_list %}active{%endif%}"><a href="{{dashboard_charges_list}}">Historial de Pagos</a></li>
+            <li class="dashboard-submenu-item {%if False%}active{%endif%}"><a href="#">Mis Tarjetas</a></li>
     </ul>
     {% endif %}
   </li>

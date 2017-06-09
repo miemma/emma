@@ -11,6 +11,7 @@ from emma.apps.adults.models import AdultAddress, Adult
 from emma.apps.services.models import HiredService, ServiceDay
 from emma.apps.suscriptions.models import Charge, Suscription, History
 from emma.core.mixins import ClientRequiredMixin, GetAdultMixin
+from django.core.exceptions import ObjectDoesNotExist
 
 
 class ChargesList(GetAdultMixin, ClientRequiredMixin, ListView):
@@ -50,12 +51,33 @@ class PaymentInfo(GetAdultMixin, ClientRequiredMixin, View):
 
     def get(self, request):
         suscription = Suscription.objects.get(client=self.request.user.client)
-        customer = openpay.Customer.retrieve(suscription.openpay_id)
-        cards = customer.cards.all()
+        print str (request.user.client.id) + '-' + str(request.user.id) + '-' + str(suscription.id)
+        amount=None
+        try:
+            charge = Charge.objects.get(suscription=suscription)
+            amount= str (int(charge.amount))
+            monto=''
+            print amount
+            print charge.status
+            if charge.status == 'pending':
+                monto = 'Su monto del mes es: $' + amount
+                pagado = False
+            else:
+                monto = 'Su monto del mes  $' + amount + ' ha sido pagado ¡Gracias!'
+                pagado = True
+        except ObjectDoesNotExist:
+            amount='No hay un cargo generado'
+        # try:
+        #     customer = openpay.Customer.retrieve(suscription.openpay_id)
+        #     cards = customer.cards.all()
+        # except AuthenticationError :
+        #     cards={}
 
         ctx = {
-            'cards': cards.data,
-            'adult': self.get_adult(request)
+            #'cards': cards.data,
+            'adult': self.get_adult(request),
+            'monto': monto,
+            'pagado': pagado,
         }
         return TemplateResponse(request, self.template_name, ctx)
 

@@ -4,12 +4,12 @@
 <div class="dashboard">
 {% include "clients/dashboard_menu.html" %}
 	<div class="dashboard-content">
-	<form class="addcard-form" action="." method="post" id="addcard-form">
+	<form class="addcard-form" action="." method="post" id="payment-form">
 		<div class="dashboard-box">
 			<div class="dashboard-box-title border">
 				<div class="flex-grow-1">
 					<div class="col-md-6 col-sm-8 col-xs-10 centered-col padding-0">
-						<h2>Agregar Tarjeta</h2>
+						<h2>Pagar Mes</h2>
 					</div>
 				</div>
 			</div>
@@ -17,6 +17,9 @@
 				<div class="col-md-6 col-sm-8 col-xs-10 centered-col">
 			    {% csrf_token %}
 			    <input type="hidden" name="token_id" id="token_id" />
+                    <input type="hidden" name="use_card_points" id="use_card_points" value="false">
+
+
 					<div class="row input-container">
 						<input type="text" autocomplete="off" name="customer_name"
 					           data-openpay-card="holder_name"
@@ -78,7 +81,7 @@
 				</div>
 			</div>
 			<div class="text-center padding-top-20">
-			<button type="button" id="pay-button" class="emma-btn-light large">Agregar</button>
+			<button type="button" id="pay-button" class="emma-btn-light large">Pagar</button>
 			</div>
 		</div>
 	</form>
@@ -86,33 +89,50 @@
 </div>
 {% endblock %}
 {% block js %}
-<script type="text/javascript" src="https://openpay.s3.amazonaws.com/openpay.v1.min.js"></script>
-<script type='text/javascript' src="https://openpay.s3.amazonaws.com/openpay-data.v1.min.js"></script>
+<script type="text/javascript"
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script type="text/javascript"
+        src="https://openpay.s3.amazonaws.com/openpay.v1.min.js"></script>
+<script type='text/javascript'
+  src="https://openpay.s3.amazonaws.com/openpay-data.v1.min.js"></script>
 <script>
 	$(document).ready(function() {
 		$('.addcard-alert').hide();
-	  OpenPay.setId('mg0kzdwsiduimlfaudun');
-	  OpenPay.setApiKey('pk_106c640a77f94dd49bae11cf94937075');
-	  OpenPay.setSandboxMode(true);
-		var deviceSessionId = OpenPay.deviceData.setup("addcard-form", "devsessionid");
+		//Sandbox
+	  //OpenPay.setId('mg0kzdwsiduimlfaudun');
+	  //OpenPay.setApiKey('pk_106c640a77f94dd49bae11cf94937075');
+	  //OpenPay.setSandboxMode(true);
+        //Production
+	  OpenPay.setId('mna5cosv5lgazrx95qro');
+	  OpenPay.setApiKey('pk_013bd713c3184a7a8e0dd34cc82db932');
+	  OpenPay.setSandboxMode(false);
+
+		var deviceSessionId = OpenPay.deviceData.setup("payment-form", "devsessionid");
 	});
 	var success_callbak = function(response) {
-		var token_id = response.data.id;
+		console.log('exit');
+	    var token_id = response.data.id;
 		$('#token_id').val(token_id);
 		$('.addcard-alert').hide();
 		$('.form-loader').hide();
-		$('#addcard-form').submit();
+		$('#payment-form').submit();
 	};
 	var error_callbak = function(response) {
+	    console.log('error');
 		$('.form-loader').hide();
 		$('.addcard-alert').show();
+		var desc = response.data.description != undefined ?
+        response.data.description : response.message;
+        alert("ERROR [" + response.status + "] " + desc);
 	};
 	$('#pay-button').on('click', function(event) {
+	    //alert ('pago');
 		$('.addcard-alert').hide();
 		$('.form-loader').show();
 		OpenPay.token.extractFormAndCreate(
-			'addcard-form', success_callbak, error_callbak
+            'payment-form', success_callbak, error_callbak
 		);
+		console.log('pago');
 	});
 </script>
 {% endblock %}
