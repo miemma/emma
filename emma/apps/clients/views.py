@@ -133,6 +133,7 @@ def addCustomer(user):
         name=user.first_name,
         email=user.email,
         last_name=user.father_last_name,
+        requires_account= False,
     )
     print customer
     return customer
