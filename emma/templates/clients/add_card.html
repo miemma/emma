@@ -99,13 +99,13 @@
 	$(document).ready(function() {
 		$('.addcard-alert').hide();
 		//Sandbox
-	  //OpenPay.setId('mg0kzdwsiduimlfaudun');
-	  //OpenPay.setApiKey('pk_106c640a77f94dd49bae11cf94937075');
-	  //OpenPay.setSandboxMode(true);
+	  OpenPay.setId('mg0kzdwsiduimlfaudun');
+	  OpenPay.setApiKey('pk_106c640a77f94dd49bae11cf94937075');
+	  OpenPay.setSandboxMode(true);
         //Production
-	  OpenPay.setId('mna5cosv5lgazrx95qro');
-	  OpenPay.setApiKey('pk_013bd713c3184a7a8e0dd34cc82db932');
-	  OpenPay.setSandboxMode(false);
+	  //OpenPay.setId('mna5cosv5lgazrx95qro');
+	  //OpenPay.setApiKey('pk_013bd713c3184a7a8e0dd34cc82db932');
+	  //OpenPay.setSandboxMode(false);
 
 		var deviceSessionId = OpenPay.deviceData.setup("payment-form", "devsessionid");
 	});
