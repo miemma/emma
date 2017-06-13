@@ -174,10 +174,10 @@ class PayCardView(GetAdultMixin, ClientRequiredMixin, View):
             addCharge(customer,request,charge.amount)
             charge.status='paid'
             charge.save()
-            return render(request, 'clients/pay_finalize.html', {'message':'Su pago se cargo con éxito'})
+            return render(request, 'clients/pay_finalize.html', {'message':'Su pago se cargo con éxito.'})
         except Exception, e:
             print e.message
-            return render(request, 'clients/pay_finalize.html', {'message': 'Su pago no pudo ser cargado -> ' + e.message })
+            return render(request, 'clients/pay_finalize.html', {'message': 'Su pago no pudo ser cargado, contacte a su proveedor de tarjeta.'})# + e.message })
 
 class PayView(GetAdultMixin, ClientRequiredMixin, View):
     template_name = 'clients/add_card.html'
