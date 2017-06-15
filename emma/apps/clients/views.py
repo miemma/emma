@@ -134,6 +134,7 @@ def addCustomer(user):
         email=user.email,
         last_name=user.father_last_name,
         requires_account= False,
+        external_id=str (user.id)
     )
     print customer
     return customer

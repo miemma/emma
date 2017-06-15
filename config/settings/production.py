@@ -72,13 +72,13 @@ GOOGLE_ANALYTICS_CODE = """
 
 # OPENPAY DEV CONFIGURATION
 #-----------------------------Sandox-----------------------------------------------------
-openpay.api_key = "sk_2ed3e30960384907a0c73444ce6ea1a4"
-openpay.verify_ssl_certs = False
-openpay.merchant_id = "mg0kzdwsiduimlfaudun"
-openpay.production = False
+# openpay.api_key = "sk_2ed3e30960384907a0c73444ce6ea1a4"
+# openpay.verify_ssl_certs = False
+# openpay.merchant_id = "mg0kzdwsiduimlfaudun"
+# openpay.production = False
 
 # -------------------------Production----------------------------------------------------
-# openpay.api_key = "sk_f673c64a0c8d417d86f27109e851b515"
-# openpay.verify_ssl_certs = False
-# openpay.merchant_id = "mna5cosv5lgazrx95qro"
-# openpay.production = True
+openpay.api_key = "sk_f673c64a0c8d417d86f27109e851b515"
+openpay.verify_ssl_certs = False
+openpay.merchant_id = "mna5cosv5lgazrx95qro"
+openpay.production = True
