@@ -12,6 +12,8 @@ from emma.apps.services.models import HiredService, ServiceDay
 from emma.apps.suscriptions.models import Charge, Suscription, History
 from emma.core.mixins import ClientRequiredMixin, GetAdultMixin
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponse, HttpResponseNotFound
+from django.core.files import File
 
 
 class ChargesList(GetAdultMixin, ClientRequiredMixin, ListView):
@@ -45,6 +47,22 @@ class HistoryList(GetAdultMixin, ClientRequiredMixin, ListView):
         context['adult'] = self.get_adult(self.request)
         return context
 
+class DetailPDF (GetAdultMixin, ClientRequiredMixin, View):
+    def get(self, request):
+        try:
+            suscription = Suscription.objects.get(client=self.request.user.client)
+            charge = Charge.objects.get(suscription=suscription)
+            recivo = charge.file
+            print ('archivo: ' + recivo.name)
+            recivo.open(mode='rb')
+            response = HttpResponse(recivo.read(), content_type='application/pdf')
+            response['Content-Disposition'] = 'inline; filename="detalle_pago.pdf"'
+            return response
+            recivo.closed()
+        except Exception, e:
+            print e.message
+            return HttpResponseNotFound('<h1>Recibo not found</h1>')
+
 
 class PaymentInfo(GetAdultMixin, ClientRequiredMixin, View):
     template_name = 'suscriptions/payment_info.html'
@@ -66,7 +84,7 @@ class PaymentInfo(GetAdultMixin, ClientRequiredMixin, View):
                 monto = 'Su monto del mes  $' + amount + ' ha sido pagado ¡Gracias!'
                 pagado = True
         except ObjectDoesNotExist:
-            amount='No hay un cargo generado'
+            monto='No hay un cargo generado del Mes'
         # try:
         #     customer = openpay.Customer.retrieve(suscription.openpay_id)
         #     cards = customer.cards.all()

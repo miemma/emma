@@ -44,7 +44,7 @@
             </div>
 
             <div class="add-card-button-container text-center margin-top-30 padding-top-40">
-	    		<a href="#" class="add-card-btn"><span class="fa fa-plus"></span> Detalle del Mes</a>
+	    		<a href="{% url 'suscriptions:dashboard_detalle' %}" class="add-card-btn" target="_blank"><span class="fa fa-plus"></span> Detalle del Mes</a>
 	    	</div>
         {% if not pagado %}
 	    	<div class="add-card-button-container text-center margin-top-30 padding-top-40">

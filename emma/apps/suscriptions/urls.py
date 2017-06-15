@@ -22,4 +22,8 @@ urlpatterns = [
     url(regex=r'^dashboard/suscripcion/$',
         view=views.SuscriptionDetail.as_view(),
         name='dashboard_suscription'),
+
+    url(regex=r'^dashboard/detalle/$',
+        view=views.DetailPDF.as_view(),
+        name='dashboard_detalle'),
 ]
