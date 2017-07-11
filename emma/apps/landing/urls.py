@@ -75,4 +75,8 @@ urlpatterns = [
     url(regex=r'^guia-balance-personal-y-cuidado-de-tus-padres/$',
         view=views.GuiaPersonal.as_view(),
         name='home_guia'),
+
+    url(regex=r'^presentacion/$',
+        view=views.PresentacionMiemma.as_view(),
+        name='presentacion_miemma'),
 ]

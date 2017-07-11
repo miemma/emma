@@ -428,3 +428,15 @@ class GuiaPersonal(View):
             response['Content-Disposition'] = 'inline; filename="eBookBalanceEmma.pdf"'
             return response
         archivo.closed
+
+
+class PresentacionMiemma(View):
+
+    def get(self, request):
+        guia = settings.STATICFILES_DIRS[0]+  '/docs/Emma_Informacion_2017.pdf'
+        print (guia)
+        with open(guia, 'rb') as archivo:
+            response = HttpResponse(archivo.read(), content_type='application/pdf')
+            response['Content-Disposition'] = 'inline; filename="Emma_Informacion_2017.pdf"'
+            return response
+        archivo.closed
