@@ -65,7 +65,7 @@ urlpatterns = [
         name='thanks'),
 
     url(regex=r'^agendar-home/$',
-        view=views.HomeCallView.as_view(),
+        view=views.HomeContactView.as_view(),
         name='home_call'),
 
     url(regex=r'^cita-home/$',

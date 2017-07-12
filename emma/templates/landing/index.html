@@ -55,7 +55,7 @@
   				    {% else %}
   					    <button data-toggle="modal" data-target="#call-modal"
                   class="emma-btn-dark info-1-btn">
-  				        Encuentra a tu Emma
+  				        Quiero saber más
   				      </button>
   				    {% endif %}
   			    </div>
@@ -68,7 +68,10 @@
             ¿Necesitas apoyo para evaluar tu caso? Nosotros podemos ayudar. Programa una valoración sin costo.
           </p>
           <a href="tel:+525529627151" class="emma-btn-dark">5529627151</a>
-          <a href="#homepage-services" class="emma-btn-dark" data-action="scroll">Conoce más</a>
+          <button data-toggle="modal" data-target="#call-modal"
+                  class="emma-btn-dark info-1-btn">
+  				        Quiero saber más
+          </button>
         </div>
       </div>
 		</div>
@@ -457,7 +460,10 @@
     </div>
     <div class="whois-footer">
       <div class="whois-footer__content">
-        <a href="{% url 'landing:services' %}" class="emma-btn emma-btn-light">Tu seguridad</a>
+        <button data-toggle="modal" data-target="#call-modal"
+                  class="emma-btn-dark info-1-btn">
+  				        Quiero saber más
+  				      </button>
         <span>Aceptamos únicamente al 15% de nuestras aplicantes</span>
       </div>
     </div>
@@ -492,7 +498,7 @@
       </a>
     </div>
   </section>
-  <section class="landing-agend-call">
+  <!--<section class="landing-agend-call">
     <div class="landing-agend-call__main-div">
       <div class="landing-agend-call__left-column">
         <h2 class="landing-agend-call__title">Programa una llamada o agenda una cita con nuestro equipo en nuestras oficinas</h2>
@@ -511,7 +517,7 @@
         <span class="landing-agend-call__address">Calle Montes Urales 424, Lomas - Virreyes, Lomas de Chapultepec V Secc, 11000 Ciudad de México, CDMX.</span>
       </div>
     </div>
-  </section>
+  </section>-->
   <section>
 	  <div class="row text-center">
 	    <div class="col-xs-10 col-sm-10 col-md-9 col-lg-9">
@@ -549,8 +555,9 @@
 
 	  </div>
 	</section>
+
   <div id="call-modal" role="dialog" class="modal fade emma-modal home-modal">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document" style="max-width: 400px;">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <img aria-hidden="true" src="{% static 'img/icons/close.png' %}">
       </button>
@@ -582,7 +589,7 @@
               <textarea name="description" class="emma-input" placeholder="Breve descripción del adulto mayor (Opcional)"></textarea>
             </div>
           </div>
-          <div class="call-modal__right-column">
+          <div class="call-modal__right-column" style="display: none;">
             <div class="call-modal__calendar">
               <div id="call-modal-datepicker" data-date="{{ today }}"></div>
               <input class="date-hidden-input" type="hidden" id="call-modal__date-input"
@@ -617,6 +624,7 @@
       </form>
     </div>
   </div>
+
   <div id="call-confirmation-modal" role="dialog" class="modal fade emma-modal home-modal">
     <div class="modal-dialog" role="document">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">

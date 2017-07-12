@@ -365,6 +365,42 @@ class HomeCallView(View):
         return redirect(reverse('landing:success'))
 
 
+class HomeContactView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super(HomeContactView, self).dispatch(request, *args, **kwargs)
+
+    def post(self, request):
+        name = request.POST.get('name')
+        phone = request.POST.get('phone')
+        email = request.POST.get('email')
+        service = request.POST.get('service')
+        description = request.POST.get('description')
+
+        ctx = {
+            'name': name,
+            'email': email,
+            'phone': phone,
+            'service': service,
+            'description': description,
+
+        }
+
+        print 'Nos comunicaremos'
+
+        customer = PotentialClient(
+            name=name,
+            email=email,
+            phone=phone,
+            kin=service,
+            source='Página Web',
+            description=description
+        )
+        customer.save()
+
+        print 'se guarda customer'
+        return redirect(reverse('landing:success'))
+
 class HomeDateView(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
