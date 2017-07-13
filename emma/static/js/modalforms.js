@@ -37,6 +37,7 @@
     mixto:false,
     pro:false,
     person:false,
+    emma:false,
     appointment: false,
     customplan: false
   }
@@ -45,6 +46,7 @@
   callModalFormMixto=null,
   callModalFormPro=null,
   callModalFormPerson=null,
+  callModalFormEmma=null,
   appointmentModalForm = null,
   customplanModalForm = null;
 
@@ -184,6 +186,10 @@
   });
 
 
+  callModalFormEmma = $('#call-modal__form_emma').validate({
+    submitHandler: getSubmitHandler($('#call-modal_emma'), 'emma')
+  });
+
   appointmentModalForm = $('#appointment-modal__form').validate({
     groups: appointmentGroups,
     rules: modalRules,
@@ -205,6 +211,7 @@
 
   $('#call-modal_person').on('hide.bs.modal', getOnHideFnServices($('#call-confirmation-modal'), callModalFormPerson, $('#call-modal__form_person'), 'person'));
 
+  $('#call-modal_emma').on('hide.bs.modal', getOnHideFnServices($('#call-confirmation-modal'), callModalFormEmma, $('#call-modal__form_emma'), 'emma'));
 
   $('#appointment-modal').on('hide.bs.modal', getOnHideFn($('#appointment-confirmation-modal'), appointmentModalForm, $('#appointment-modal__form'), 'appointment'));
 
