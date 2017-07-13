@@ -68,6 +68,10 @@ urlpatterns = [
         view=views.HomeContactView.as_view(),
         name='home_call'),
 
+    url(regex=r'^agendar-service/$',
+        view=views.HomeServiceView.as_view(),
+        name='service_call'),
+
     url(regex=r'^cita-home/$',
         view=views.HomeDateView.as_view(),
         name='home_date'),

@@ -33,10 +33,18 @@
   },
   validForms = {
     call: false,
+    basico:false,
+    mixto:false,
+    pro:false,
+    person:false,
     appointment: false,
     customplan: false
   }
   callModalForm = null,
+  callModalFormBasico = null,
+  callModalFormMixto=null,
+  callModalFormPro=null,
+  callModalFormPerson=null,
   appointmentModalForm = null,
   customplanModalForm = null;
 
@@ -139,11 +147,43 @@
     };
   }
 
+
+   function getOnHideFnServices(newModalObject, validator, formObject, validName) {
+    return function () {
+      var form = formObject;
+      if (validForms[validName]) {
+
+        newModalObject.modal('toggle');
+        validForms[validName] = false;
+      }
+      form[0].reset();
+      validator.resetForm();
+    };
+  }
+
   callModalForm = $('#call-modal__form').validate({
     groups: callGroups,
     rules: modalRules,
     submitHandler: getSubmitHandler($('#call-modal'), 'call')
   });
+
+  callModalFormBasico = $('#call-modal__form_basico').validate({
+    submitHandler: getSubmitHandler($('#call-modal_basico'), 'basico')
+  });
+
+  callModalFormMixto = $('#call-modal__form_mixto').validate({
+    submitHandler: getSubmitHandler($('#call-modal_mixto'), 'mixto')
+  });
+
+  callModalFormPro = $('#call-modal__form_pro').validate({
+    submitHandler: getSubmitHandler($('#call-modal_pro'), 'pro')
+  });
+
+  callModalFormPerson = $('#call-modal__form_person').validate({
+    submitHandler: getSubmitHandler($('#call-modal_person'), 'person')
+  });
+
+
   appointmentModalForm = $('#appointment-modal__form').validate({
     groups: appointmentGroups,
     rules: modalRules,
@@ -156,6 +196,15 @@
   });
 
   $('#call-modal').on('hide.bs.modal', getOnHideFn($('#call-confirmation-modal'), callModalForm, $('#call-modal__form'), 'call'));
+
+  $('#call-modal_basico').on('hide.bs.modal', getOnHideFnServices($('#call-confirmation-modal'), callModalFormBasico, $('#call-modal__form_basico'), 'basico'));
+
+  $('#call-modal_mixto').on('hide.bs.modal', getOnHideFnServices($('#call-confirmation-modal'), callModalFormMixto, $('#call-modal__form_mixto'), 'mixto'));
+
+  $('#call-modal_pro').on('hide.bs.modal', getOnHideFnServices($('#call-confirmation-modal'), callModalFormPro, $('#call-modal__form_pro'), 'pro'));
+
+  $('#call-modal_person').on('hide.bs.modal', getOnHideFnServices($('#call-confirmation-modal'), callModalFormPerson, $('#call-modal__form_person'), 'person'));
+
 
   $('#appointment-modal').on('hide.bs.modal', getOnHideFn($('#appointment-confirmation-modal'), appointmentModalForm, $('#appointment-modal__form'), 'appointment'));
 

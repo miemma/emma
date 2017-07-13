@@ -564,7 +564,9 @@
       <form id="call-modal__form" action="{% url 'landing:home_call' %}" class="modal-content" data-ajax-form>
         {% csrf_token %}
         <div class="modal-header">
-          <h3 class="modal-title">Programa una llamada con nuestro equipo</h3>
+          <h3 class="modal-title">¡Gracias por tu interés en Emma!<br>
+                Proporciónanos tus datos y te <br>  contactaremos para más información.
+          </h3>
         </div>
         <div class="modal-body">
           <div class="call-modal__left-column">
@@ -578,7 +580,7 @@
               <input name="email" class="emma-input" required type="email" placeholder="Correo electrónico">
             </div>
             <div class="input-wrapper">
-              <select class="emma-input" required name="service">
+              <select class="emma-input"  name="service">
                 <option value="" disabled selected>Quiero acompañamiento para</option>
                 <option value="Mi papá">Mi papá</option>
                 <option value="Mi mamá">Mi mamá</option>
@@ -634,9 +636,9 @@
         <div class="modal-body">
           <img class="emma-modal__check" src="{% static 'img/icons/modal-check.png' %}" alt="">
           <p class="call-confirmation-modal__text">
-            Tu llamada ha sido programada de manera exitosa para el día
-            <span class="confirmation-modal__text--date confirmation-modal__text--yellow"></span> de <span class="confirmation-modal__text--year"></span>
-            a las <span class="confirmation-modal__text--time confirmation-modal__text--yellow"></span>
+            Tus datos de contacto se han guardado con éxito.
+            <!--<span class="confirmation-modal__text--date confirmation-modal__text--yellow"></span> de <span class="confirmation-modal__text--year"></span>
+            a las <span class="confirmation-modal__text--time confirmation-modal__text--yellow"></span>-->
           </p>
           <span class="call-confirmation-modal--bottom-text">
             Mara, fundadora en Emma, se pondrá en contacto contigo
