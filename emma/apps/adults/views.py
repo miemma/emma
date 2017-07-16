@@ -34,37 +34,37 @@ class AdultInformation(GetAdultMixin, ClientRequiredMixin, View):
             'hobbieform':hobbieform,
             'adult': self.get_adult(request)
         }
-        if self.get_adult(request).medical_information:
-            medicalbasicform = self.get_initial_medical_basic_form(
-                request, self.get_adult(request)
-            )
-            medicalcontactsform = self.get_initial_medical_contacts_form(
-                request, self.get_adult(request)
-            )
-            medicalpdaform = self.get_initial_medical_pda_form(
-                request, self.get_adult(request)
-            )
-            medicalinsuranceform = self.get_initial_medical_insurance_form(
-                request, self.get_adult(request)
-            )
-            medicalssform = self.get_initial_medical_ss_form(
-                request, self.get_adult(request)
-            )
-            medicaldoctorform = self.get_initial_medical_doctor_form(
-                request, self.get_adult(request)
-            )
-            medicaldiseasesform = self.get_initial_medical_diseases_form(
-                request, self.get_adult(request)
-            )
-            ctx.update({
-                'medicalbasicform': medicalbasicform,
-                'medicalcontactsform': medicalcontactsform,
-                'medicalpdaform': medicalpdaform,
-                'medicalinsuranceform': medicalinsuranceform,
-                'medicalssform': medicalssform,
-                'medicaldoctorform': medicaldoctorform,
-                'medicaldiseasesform': medicaldiseasesform,
-            })
+        # if self.get_adult(request).medical_information:
+        #     medicalbasicform = self.get_initial_medical_basic_form(
+        #         request, self.get_adult(request)
+        #     )
+        #     medicalcontactsform = self.get_initial_medical_contacts_form(
+        #         request, self.get_adult(request)
+        #     )
+        #     medicalpdaform = self.get_initial_medical_pda_form(
+        #         request, self.get_adult(request)
+        #     )
+        #     medicalinsuranceform = self.get_initial_medical_insurance_form(
+        #         request, self.get_adult(request)
+        #     )
+        #     medicalssform = self.get_initial_medical_ss_form(
+        #         request, self.get_adult(request)
+        #     )
+        #     medicaldoctorform = self.get_initial_medical_doctor_form(
+        #         request, self.get_adult(request)
+        #     )
+        #     medicaldiseasesform = self.get_initial_medical_diseases_form(
+        #         request, self.get_adult(request)
+        #     )
+        #     ctx.update({
+        #         'medicalbasicform': medicalbasicform,
+        #         'medicalcontactsform': medicalcontactsform,
+        #         'medicalpdaform': medicalpdaform,
+        #         'medicalinsuranceform': medicalinsuranceform,
+        #         'medicalssform': medicalssform,
+        #         'medicaldoctorform': medicaldoctorform,
+        #         'medicaldiseasesform': medicaldiseasesform,
+        #     })
         return TemplateResponse(request, self.template_name, ctx)
 
     def post(self, request, id, **kwargs):
