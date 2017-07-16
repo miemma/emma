@@ -11,7 +11,7 @@ from . import models
 
 @admin.register(models.Adult)
 class AdultAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'responsable')
+    list_display = ('first_name', 'last_name') #'responsable')
     actions = [export_as_xls]
     export_as_xls.short_description = "Export selected objects to XLS"
 

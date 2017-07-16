@@ -7,6 +7,17 @@ from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 
+SEX = (
+    (1, 'Femenino'),
+    (2, 'Masculino'),
+)
+
+LEVEL_CULT = (
+    (1, 'High end'),
+    (2, 'Medium end'),
+)
+
+
 class PotentialEmma(models.Model):
     first_name = models.CharField(
         _('First Name'),
@@ -72,6 +83,70 @@ class PotentialEmma(models.Model):
         return '%s %s' % (self.first_name, self.last_name)
 
 
+class EmmaAddress(models.Model):
+    emma_name = models.CharField(
+        _('Adult Name'),
+        max_length=50,
+        blank=False,
+        null=False
+    )
+    street = models.CharField(
+        _('Street'),
+        max_length=50,
+        blank=False,
+        null=False
+    )
+    outdoor_number = models.CharField(
+        _('Outdoor Number'),
+        max_length=25,
+        blank=False,
+        null=False
+    )
+    interior_number = models.CharField(
+        _('Interior Number'),
+        max_length=50,
+        blank=True,
+        null=True
+    )
+    colony = models.CharField(
+        _('Colony'),
+        max_length=50,
+        blank=False,
+        null=False
+    )
+    postal_code = models.PositiveIntegerField(
+        _('Postal Code'),
+        blank=False,
+        null=False
+    )
+    municipality = models.CharField(
+        _('Municipality'),
+        max_length=50,
+        blank=False,
+        null=False
+    )
+    city = models.CharField(
+        _('City'),
+        max_length=50,
+        blank=False,
+        null=False
+    )
+    state = models.CharField(
+        _('State'),
+        max_length=50,
+        blank=False,
+        null=False
+    )
+
+
+    class Meta:
+        verbose_name = 'Address'
+        verbose_name_plural = 'Addresses'
+
+    def __unicode__(self):
+        return 'Address - %s' % self.emma_name
+
+
 
 class Emma(models.Model):
     id = models.BigIntegerField(
@@ -88,6 +163,24 @@ class Emma(models.Model):
         verbose_name=_('User'),
         on_delete=models.CASCADE,
         primary_key=True,
+    )
+    first_name = models.CharField(
+        _('First Name'),
+        max_length=100,
+        null=False,
+        blank=False,
+    )
+    last_name = models.CharField(
+        _('Last Name'),
+        max_length=100,
+        null=False,
+        blank=False,
+    )
+    age = models.CharField(
+        _('Age'),
+        max_length=2,
+        null=False,
+        blank=True,
     )
 
     phone = models.CharField(
@@ -131,6 +224,33 @@ class Emma(models.Model):
         max_length=500,
         blank=True,
         null=True,
+    )
+    sex = models.CharField(
+        _('Sex'),
+        max_length=20,
+        choices=SEX,
+        default=1,
+        blank=False,
+    )
+
+    social_level = models.CharField(
+        _('Social level cultural'),
+        max_length=20,
+        choices=LEVEL_CULT,
+        default=1,
+        blank=False,
+    )
+    calif = models.CharField(
+        _('Calification'),
+        max_length=30,
+        blank=True,
+        null=True,
+    )
+
+    date_admission = models.DateField(
+        _('Birthday'),
+        blank=True,
+        null=True
     )
 
     class Meta:

@@ -72,6 +72,17 @@ class ClientRequiredMixin(object):
             raise PermissionDenied
 
 
+class AdminRequiredMixin(object):
+    @method_decorator(login_required(login_url=reverse_lazy('xauth:login')))
+    def dispatch(self, request, *args, **kwargs):
+        print 'validate'
+        #Client.objects.get(user=request.user)
+        if request.user.is_superuser:
+            return super(AdminRequiredMixin, self).dispatch(request, *args,
+                                                        **kwargs)
+        else:
+            raise PermissionDenied
+
 class ActiveClientRequiredMixin(object):
     @method_decorator(login_required(login_url=reverse_lazy('xauth:login')))
     def dispatch(self, request, *args, **kwargs):

@@ -1,0 +1,132 @@
+{% url 'admins:dashboard_add_client' as add_client %}
+{% url 'admins:dashboard_add_emma' as add_emma %}
+{% url 'admins:dashboard_add_adult' as add_adult %}
+
+{% load static from staticfiles%}
+{% load settings_tag %}
+<!DOCTYPE html>
+<html lang="es_ES">
+  <head>
+  {% include "base/head.html" %}
+  {% block fbpixel %}
+  {% endblock %}
+  </head>
+  <style>
+		.dropdown {
+		    position: relative;
+		    display: inline-block;
+		}
+
+		.dropdown-content {
+		    display: none;
+		    position: absolute;
+		    background-color: #f9f9f9;
+		    min-width: 160px;
+		    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		    z-index: 1;
+				right: 0;
+
+		}
+		.dropdown-content p {
+		    height: 60px;
+				font-family: "Avenir LT Std Roman";
+		}
+		.dropdown-content p:hover {background-color: #f1f1f1}
+
+		.dropdown-content p a {
+      color: #0f0f0f;
+      display: block;
+      line-height: 60px;
+			padding: 0 18px;
+      text-decoration: none;
+		}
+
+		.dropdown:hover .dropdown-content {
+		    display: block;
+		}
+	</style>
+  <body>
+    <div class="container-overflow">
+      {% include "base/contact.html" %}
+      <header class="header-navbar dashboard-navbar">
+        <input type="checkbox" id="navbar-trigger" />
+        <label class="fa fa-bars" for="navbar-trigger"></label>
+				<a href="{% url 'clients:dashboard_welcome' %}">
+			    <img class="header-navbar-logo" src="{% static "img/icons/logo_2.png" %}"/>
+			  </a>
+        <ul class="header-navbar-list">
+          
+            <li class="header-navbar-list-item" hcolor="white">
+	            <a class="header-navbar-list-item-link" href="{{add_client}}">
+	              Clientes
+	            </a>
+	          </li>
+	        <li class="header-navbar-list-item" hcolor="white">
+				<a class="header-navbar-list-item-link" href="{{add_emma}}">
+				  Emma/Frank
+				</a>
+			</li>
+         
+            <li class="header-navbar-list-item" hcolor="white">
+	            <a class="header-navbar-list-item-link" href="{{add_adult}}">
+	              Adultos
+	            </a>
+	        </li>
+	      
+          
+          <li class="header-navbar-list-item" hcolor="white">
+           
+
+	            <div class="dropdown">
+							  <span>
+								  <div class="circle navbar-adult-picture" style="background-image: url('http://www.freelanceme.net/Images/default%20profile%20picture.png')"></div>
+							  </span>
+							  <div class="dropdown-content">
+								  <p>
+								    <a href="{% url 'xauth:logout' %}">Cerrar sesión</a>
+							    </p>
+							  </div>
+							</div>	            
+          </li>
+        </ul>
+      </header>
+      <div id="content-no-navbar-wrapper">
+        <div {% if not '/contratar/' in request.path %}id="dashboard-container"{% endif %}>
+          {% block content %}
+          {% endblock content %}
+        </div>
+		    {% include "base/footer.html" %}
+      </div>
+      <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+
+      <script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
+      <script src="{% static 'js/efects.js' %}"></script>
+      <script type="text/javascript">
+        $( "#contactForm" ).submit(function( event ) {
+          window._fbq.push(['track', 'Lead']);
+          return true
+        });
+      </script>
+      <script src="//cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js" ></script>
+      <script src="{% static 'js/validationForms.js' %}"></script>
+      {% block js %}
+	      <script>
+	        $(document).ready(function(){
+					    $('[data-toggle="tooltip"]').tooltip();
+					});
+
+	      </script>
+      {% endblock %}
+      <!-- Start of Async HubSpot Analytics Code -->
+      <script type="text/javascript">
+       (function(d,s,i,r) {
+         if (d.getElementById(i)){return;}
+         var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
+         n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/2338938.js';
+         e.parentNode.insertBefore(n, e);
+       })(document,"script","hs-analytics",300000);
+      </script>
+      <!-- End of Async HubSpot Analytics Code -->
+    </div>
+  </body>
+</html>

@@ -22,6 +22,23 @@ DAYS = (
     (('sunday'),('Domingo')),
 )
 
+HOURS = (
+    (1,'09:00'),
+    (2,'10:00'),
+    (3,'11:00'),
+    (4,'12:00'),
+    (5,'13:00'),
+    (6,'14:00'),
+    (7,'15:00'),
+    (8,'16:00'),
+    (9,'17:00'),
+    (10,'18:00'),
+    (11,'19:00'),
+    (12,'20:00'),
+    (13,'21:00'),
+    (14,'22:00'),
+)
+
 
 class Service(models.Model):
     name = models.CharField(
@@ -167,6 +184,11 @@ class HiredService(models.Model):
         null=True
     )
 
+    date_plan_init = models.DateField(
+        _('Init date'),
+        blank=True,
+        null=True
+    )
 
     class Meta:
         verbose_name = _('Hired service')
@@ -215,7 +237,11 @@ class ServiceContractProcess():
 
 class ServiceDay(models.Model):
     service = models.ForeignKey(
-        HiredService
+        HiredService,
+        verbose_name=_('service_hired'),
+        related_name='day_of_service',
+        blank=True,
+        null=True
     )
 
     day = models.CharField(
@@ -227,9 +253,18 @@ class ServiceDay(models.Model):
     )
 
     start_time = models.CharField(
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
         default="",
+        choices=HOURS,
+        max_length=30,
+    )
+
+    end_time = models.CharField(
+        blank=True,
+        null=True,
+        default="",
+        choices=HOURS,
         max_length=30,
     )
 
@@ -253,6 +288,7 @@ class ServiceDay(models.Model):
     object_id = models.PositiveIntegerField(
         verbose_name=_('Activity or workshop ID'),
         null=True,
+        blank=True,
     )
     content_object = GenericForeignKey('content_type', 'object_id')
 

@@ -8,6 +8,17 @@ from emma.apps.clients.models import Client
 from emma.apps.doctors.models import Doctor
 
 
+PERFIL = (
+    (1, 'Educacional'),
+    (2, 'Depresión'),
+    (3, 'Aislamiento Social'),
+    (4, 'Deterioro Cognitivo'),
+)
+
+SEX = (
+    (1, 'Femenino'),
+    (2, 'Masculino'),
+)
 class AdultAddress(models.Model):
     adult_name = models.CharField(
         _('Adult Name'),
@@ -237,18 +248,26 @@ class Adult(models.Model):
         null=True,
         blank=True
     )
+    age = models.CharField(
+        _('Age'),
+        max_length=2,
+        null=False,
+        blank=False,
+    )
     birthday = models.DateField(
         _('Birthday'),
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
     address = models.ForeignKey(
         AdultAddress,
         verbose_name=_('Address'),
+        null=True,
     )
     responsable = models.ForeignKey(
         Client,
         verbose_name=_('Responsable'),
+        null=True,
     )
     description = models.TextField(
         _('Description'),
@@ -265,12 +284,24 @@ class Adult(models.Model):
         blank=False,
         null=False,
     )
-    medical_information = models.OneToOneField(
-        MedicalInfo,
-        verbose_name=_('Medical Information'),
+
+    hobbie = models.TextField(
+        _('Hobbie'),
         blank=True,
-        null=True
+        null=True,
     )
+
+    interest = models.TextField(
+        _('Interest'),
+        blank=True,
+        null=True,
+    )
+    # medical_information = models.OneToOneField(
+    #     MedicalInfo,
+    #     verbose_name=_('Medical Information'),
+    #     blank=True,
+    #     null=True
+    # )
     is_candidate = models.BooleanField(
         _('Candidate'),
         default=True,

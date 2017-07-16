@@ -144,7 +144,14 @@ class LoginView(NextUrlMixin, AuthRedirectMixin, FormView):
 
     def form_valid(self, form):
         login(self.request, form.user_cache)
-        return super(LoginView, self).form_valid(form)
+
+        if not form.user_cache.is_superuser:
+            print 'no es superusuario'
+            return redirect('clients:dashboard_welcome')
+        else:
+            print 'es superusuario'
+            return redirect('admins:dashboard_welcome')
+        #return super(LoginView, self).form_valid(form)
 
     def form_invalid(self, form):
         return self.render_to_response(self.get_context_data())

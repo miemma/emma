@@ -18,6 +18,7 @@ from emma.apps.adults import urls as adult_urls
 from emma.apps.clients import urls as clients_urls
 from emma.apps.emmas import urls as emmas_urls
 from emma.core.sitemaps import StaticViewSitemap
+from emma.apps.admins import urls as admins_urls
 
 sitemaps = {
     'static': StaticViewSitemap,
@@ -37,6 +38,7 @@ urlpatterns = [
     url(r'', include(adult_urls, namespace='adults')),
     url(r'', include(clients_urls, namespace='clients')),
     url(r'', include(emmas_urls, namespace='emmas')),
+    url(r'', include(admins_urls, namespace='admins')),
 ]
 
 if settings.DEBUG:

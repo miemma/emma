@@ -19,7 +19,7 @@ class UserCreationForm(forms.ModelForm):
     class Meta:
         model = CoolUser
         fields = ('email', 'first_name', 'mother_last_name',
-                  'father_last_name', 'user_type')
+                  'father_last_name')#, 'user_type')
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -50,7 +50,7 @@ class UserChangeForm(forms.ModelForm):
     class Meta:
         model = CoolUser
         fields = ('email', 'first_name', 'mother_last_name',
-                  'father_last_name', 'user_type')
+                  'father_last_name')#, 'user_type')
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.

@@ -108,11 +108,11 @@ class Client(models.Model):
         default=True,
     )
 
-    address = models.ForeignKey(
-        ClientAddress,
-        verbose_name=_('Address'),
-        null=True,
-    )
+    # address = models.ForeignKey(
+    #     ClientAddress,
+    #     verbose_name=_('Address'),
+    #     null=True,
+    # )
 
     class Meta:
         verbose_name = _('Client')

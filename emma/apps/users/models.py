@@ -12,6 +12,7 @@ from .managers import CoolUserManager
 TYPE_CHOICES = (
     ('emma', 'Emma'),
     ('client', 'Client'),
+    ('admin', 'admin'),
 )
 
 
