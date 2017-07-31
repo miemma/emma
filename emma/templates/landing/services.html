@@ -47,23 +47,23 @@ especializado con seguimiento geriátrico.
             </p>
           {% if plan.name == 'Básico' %}
             <button data-toggle="modal" data-target="#call-modal_basico"
-                  class="emma-btn-dark info-1-btn">
+                  class="emma-btn-dark info-1-btn" disabled>
   				        Seleccionar
             </button>
 
           {% elif plan.name == 'Mixto'%}
             <button data-toggle="modal" data-target="#call-modal_mixto"
-                  class="emma-btn-dark info-1-btn">
+                  class="emma-btn-dark info-1-btn" disabled>
   				        Seleccionar
             </button>
           {% elif plan.name == 'Pro'%}
             <button data-toggle="modal" data-target="#call-modal_pro"
-                  class="emma-btn-dark info-1-btn">
+                  class="emma-btn-dark info-1-btn" disabled>
   				        Seleccionar
             </button>
           {% else %}
             <button data-toggle="modal" data-target="#call-modal_person"
-                  class="emma-btn-dark info-1-btn">
+                  class="emma-btn-dark info-1-btn" disabled>
   				        Seleccionar
             </button>
           {% endif %}
@@ -80,7 +80,7 @@ especializado con seguimiento geriátrico.
             ¿Te gustaría tener un plan a tu medida?
           </p>
            <button data-toggle="modal" data-target="#call-modal_person"
-                  class="emma-btn-dark info-1-btn">
+                  class="emma-btn-dark info-1-btn" disabled>
   				        Seleccionar
             </button>
         </div>
@@ -166,7 +166,7 @@ especializado con seguimiento geriátrico.
     	        </div>
     	      </div>
     	    </div>
-          <button type="submit" class="emma-btn emma-btn-light">Más información</button>
+          <button type="submit" class="emma-btn emma-btn-light" >Más información</button>
         </div>
       </form>
     </div>
